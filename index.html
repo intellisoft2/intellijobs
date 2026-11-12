@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IntelliJobs | Enterprise AI Talent Cloud by Intellisoft</title>
+<meta name="description" content="IntelliJobs by Intellisoft — AI talent cloud: branded careers pages, ATS pipeline, explainable job fit, AI screening, skill assessments, consent-based verification, offers and growth plans.">
+<meta property="og:title" content="IntelliJobs | Enterprise AI Talent Cloud">
+<meta property="og:description" content="IntelliJobs by Intellisoft — AI talent cloud: branded careers pages, ATS pipeline, explainable job fit, AI screening, skill assessments, consent-based verification, offers and growth plans.">
+<meta property="og:url" content="https://jobs.intellisoft-tech.com/">
+<meta name="theme-color" content="#071021">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%226%22%20fill%3D%22%23071021%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227%22%20fill%3D%22none%22%20stroke%3D%22%2349d6c5%22%20stroke-width%3D%222.4%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%238ca7ff%22%2F%3E%3C%2Fsvg%3E">
+<link rel="canonical" href="https://jobs.intellisoft-tech.com/">
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.0.0"};</script>
+<style>
+:root{--bg:#071021;--bg2:#0b172b;--panel:#101d34;--panel2:#142540;--line:#283c59;--line2:#35506f;--text:#eaf2ff;--muted:#a6b8d2;--dim:#7f93b0;
+--a:#49d6c5;--a-ink:#06192a;--b:#8ca7ff;--gold:#ffcf75;--bad:#ff8a98;--good:#5fe0a0;--warn:#ffcf75;--radius:14px;--shadow:0 25px 65px #0007;
+--font:Inter,"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+.light{color:var(--text);--bg:#f6f8fc;--bg2:#eef2f9;--panel:#fff;--panel2:#f3f6fb;--line:#dde4ef;--line2:#c9d3e3;--text:#0d1a2f;--muted:#4f617d;--dim:#71829c;--a-ink:#ffffff;--shadow:0 12px 40px #0d1a2f14}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 var(--font)}
+body.light-body{background:#f6f8fc}
+a{color:var(--a);text-decoration:none}a:hover{text-decoration:underline}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0 0 .5em;line-height:1.2}h1{font-size:clamp(34px,4.6vw,60px);letter-spacing:-2px}h2{font-size:28px;letter-spacing:-.6px}h3{font-size:18px}h4{font-size:15px}
+p{margin:.3em 0 .9em}.muted{color:var(--muted)}.dim{color:var(--dim)}.small{font-size:12.5px}.tiny{font-size:11px}.center{text-align:center}.right{text-align:right}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}.nowrap{white-space:nowrap}.grow{flex:1}.hidden{display:none!important}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}.row{display:flex;align-items:center;gap:12px}.row.wrap-row{flex-wrap:wrap}.row.top{align-items:flex-start}.between{justify-content:space-between}
+.stack>*+*{margin-top:12px}.gap8{gap:8px}.mt0{margin-top:0}.mt8{margin-top:8px}.mt16{margin-top:16px}.mt24{margin-top:24px}.mb0{margin-bottom:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--a);border:1px solid var(--a);color:var(--a-ink);border-radius:10px;padding:10px 16px;font-weight:750;cursor:pointer;text-decoration:none!important;white-space:nowrap}
+.btn:hover{filter:brightness(1.07)}.btn:disabled{opacity:.55;cursor:progress}
+.btn.secondary{background:transparent;color:var(--text);border-color:var(--line2)}.btn.secondary:hover{border-color:var(--a)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}.btn.ghost:hover{color:var(--text)}
+.btn.danger{background:transparent;color:var(--bad);border-color:#7a3443}.btn.small{padding:6px 11px;font-size:12.5px;border-radius:8px}.btn.xl{padding:14px 22px;font-size:16px}
+.chip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:30px;padding:3px 9px;font-size:11.5px;margin:2px 3px 2px 0;white-space:nowrap}
+.chip.ok{color:var(--good);border-color:#2e6b52}.chip.bad{color:var(--bad);border-color:#7a3443}.chip.warn{color:var(--gold);border-color:#7a6431}.chip.info{color:var(--b);border-color:#3c4f8f}.chip.a{color:var(--a);border-color:#2a6e68}
+.light .chip.ok{color:#11804f;border-color:#a6dfc4}.light .chip.bad{color:#c2304a;border-color:#f1b6c0}.light .chip.warn{color:#8a6100;border-color:#ecd59a}.light .chip.a{color:#0d8577;border-color:#9fded6}
+.card{background:linear-gradient(145deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.light .card{background:var(--panel)}
+.card.flat{background:var(--panel)}.card.tight{padding:14px}.card h3{margin-top:0}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.g6{grid-template-columns:repeat(6,minmax(0,1fr))}
+label{display:block;font-size:12.5px;color:var(--muted);margin:10px 0 5px;font-weight:600}
+input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]),select,textarea{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:10px 12px;outline:none}
+.light input,.light select,.light textarea{background:#fff}
+input:focus,select:focus,textarea:focus{border-color:var(--a);box-shadow:0 0 0 3px #49d6c533}textarea{min-height:90px;resize:vertical}input[type=color]{padding:3px;height:42px}
+input[type=checkbox],input[type=radio]{accent-color:var(--a);width:16px;height:16px;vertical-align:middle}
+.check{display:flex;gap:9px;align-items:flex-start;font-weight:500;color:var(--text);font-size:13.5px}.check input{margin-top:3px}
+.form-row{display:grid;gap:0 14px;grid-template-columns:repeat(2,minmax(0,1fr))}.form-row.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th{text-align:left;color:var(--dim);font-weight:650;font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;padding:9px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}tr.click{cursor:pointer}tr.click:hover td{background:#ffffff06}.light tr.click:hover td{background:#0d1a2f06}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}.table-wrap table td:first-child,.table-wrap table th:first-child{padding-left:14px}
+.bar{height:8px;border-radius:20px;background:#263852;overflow:hidden}.light .bar{background:#e3e9f3}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));border-radius:20px}
+.fit{font-weight:850;color:var(--a)}.fit.mid{color:var(--b)}.fit.low{color:var(--gold)}.fit.vlow{color:var(--dim)}
+.notice{padding:12px 15px;border-left:3px solid var(--a);background:#10273b;color:#bdd9e5;border-radius:8px;font-size:13px;margin:10px 0}
+.light .notice{background:#eaf7f5;color:#20444a}.notice.warn{border-color:var(--gold);background:#2b2512;color:#f1dfae}.light .notice.warn{background:#fff6dc;color:#5a4507}.notice.bad{border-color:var(--bad);background:#2d141b;color:#f6c4cc}
+.empty{padding:34px;text-align:center;color:var(--muted);border:1px dashed var(--line2);border-radius:14px}
+.eyebrow{color:var(--a);font-weight:800;letter-spacing:2px;font-size:11px;text-transform:uppercase}
+.kpi{padding:16px}.kpi b{display:block;font-size:28px;letter-spacing:-1px}.kpi span{color:var(--muted);font-size:12.5px}
+.loading{padding:80px;text-align:center;color:var(--muted)}.pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--a);animation:p 1s infinite alternate;margin-left:6px}@keyframes p{to{opacity:.2}}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);background:#13233c;border:1px solid var(--line2);color:var(--text);padding:12px 18px;border-radius:12px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s;z-index:100;max-width:min(560px,92vw);font-size:14px}
+#toast.show{opacity:1;transform:translateX(-50%)}#toast.error{border-color:#7a3443;color:#ffd0d7}#toast.ok{border-color:#2e6b52}
+.modal-bg{position:fixed;inset:0;background:#020814d9;z-index:50;display:grid;place-items:center;padding:18px}
+.modal{width:min(720px,100%);max-height:92vh;overflow:auto;background:var(--panel);border:1px solid var(--line2);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+.modal.wide{width:min(980px,100%)}.modal .x{float:right;background:none;border:0;color:var(--muted);font-size:26px;cursor:pointer;line-height:1}
+/* ---------- public site ---------- */
+.site-top{position:sticky;top:0;z-index:20;background:#081327f2;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.site-top .row{min-height:70px}
+.logo{font-size:22px;font-weight:850;letter-spacing:-.8px;color:var(--text)}.logo b{color:var(--a)}.logo sup{font-size:9px}.logo small{display:block;font-size:10.5px;color:var(--muted);font-weight:500;letter-spacing:0}
+.site-links{display:flex;gap:20px}.site-links a{color:#c3d1e6;font-size:13.5px}.site-links a:hover{color:var(--a);text-decoration:none}
+.hero{padding:76px 0 56px;background:radial-gradient(ellipse at 85% 15%,#21447b 0,transparent 45%)}.hero h1 span{color:var(--a)}.lead{font-size:18px;color:var(--muted);max-width:640px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center}.cta{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 14px}
+.glass{background:linear-gradient(145deg,#13233c,#0c192e);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.sec{padding:64px 0}.sec.alt{background:var(--bg2)}.sec-title{text-align:center;margin-bottom:8px}.sec-sub{text-align:center;color:var(--muted);max-width:720px;margin:0 auto 28px}
+.feature .fi{font-size:24px;display:block;margin-bottom:10px}.feature p{font-size:13.5px;color:var(--muted);margin:0}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}.plan{position:relative;display:flex;flex-direction:column}.plan.popular{border-color:var(--a);box-shadow:0 0 0 1px var(--a) inset}
+.plan .price b{font-size:36px;letter-spacing:-1px}.plan .price span{color:var(--muted)}.plan ul{padding-left:18px;color:var(--muted);font-size:13.5px;flex:1}.plan li{margin:6px 0}
+.ribbon{position:absolute;top:-11px;right:16px;background:var(--a);color:var(--a-ink);font-size:11px;font-weight:800;border-radius:20px;padding:3px 10px}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden;margin:0 auto 22px}.seg button{background:none;border:0;padding:8px 16px;cursor:pointer;color:var(--muted)}.seg button.on{background:var(--a);color:var(--a-ink);font-weight:750}
+.foot{border-top:1px solid var(--line);padding:26px 0;color:var(--dim);font-size:12.5px}
+.auth{min-height:100vh;display:grid;place-items:center;padding:28px;background:radial-gradient(ellipse at 80% 0,#1a3866 0,transparent 50%)}.auth .card{width:min(460px,100%)}
+/* ---------- workspace ---------- */
+.shell{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.side{background:#0a1528;border-right:1px solid var(--line);padding:16px 12px;position:sticky;top:0;height:100vh;overflow:auto}
+.side .logo{padding:4px 10px 14px}.nav-group{margin:14px 0 4px;padding:0 10px;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--dim);font-weight:750}
+.nav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;color:#c3d1e6;font-size:13.5px;text-decoration:none}
+.nav a:hover{background:#ffffff08}.nav a.on{background:#49d6c51a;color:var(--a);font-weight:700}.nav a .count{margin-left:auto;font-size:11px;background:var(--panel2);border-radius:10px;padding:0 7px;color:var(--muted)}
+.nav a.locked{opacity:.55}.main{min-width:0}
+.top{display:flex;align-items:center;gap:12px;padding:14px 26px;border-bottom:1px solid var(--line);background:#081327e6;position:sticky;top:0;z-index:10;backdrop-filter:blur(10px)}
+.page{padding:24px 26px 60px;max-width:1400px}.page-head{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:18px}.page-head h2{margin:0}
+.banner{padding:9px 26px;font-size:13px;background:#2b2512;color:#f1dfae;border-bottom:1px solid #4f4220}.banner.demo{background:#10273b;color:#bdd9e5;border-color:#1f4a5e}.banner.bad{background:#2d141b;color:#f6c4cc}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:4px 0 16px}.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:9px 12px;color:var(--muted);cursor:pointer;font-weight:650}.tabs button.on{color:var(--a);border-color:var(--a)}
+.lanes{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(185px,1fr);gap:12px;overflow-x:auto;padding-bottom:8px}
+.lane{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px;min-height:300px}.lane.drop{border-color:var(--a);background:#49d6c50d}
+.lane h4{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin:2px 4px 10px}
+.pcard{background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:10px 11px;margin-bottom:9px;font-size:12.5px;cursor:grab}.pcard:hover{border-color:var(--a)}.pcard b{font-size:13.5px}
+.pcard select{margin-top:7px;padding:5px 8px;font-size:12px}
+.fitbox{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center}.fitring{width:110px;height:110px;border-radius:50%;display:grid;place-items:center;font-size:30px;font-weight:850;color:var(--a)}
+.ev{display:grid;grid-template-columns:22px 130px 1fr;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}.ev:last-child{border:0}
+.timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.step{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px;font-size:12px}.step.done{border-color:#2e6b52}.step.now{border-color:var(--a)}.step b{display:block;color:var(--a);margin-bottom:4px}
+.chat{display:flex;flex-direction:column;gap:12px}.msg{padding:12px 14px;border-radius:12px;white-space:pre-wrap;font-size:14px;max-width:880px}.msg.me{background:#49d6c51a;align-self:flex-end;border:1px solid #2a6e68}.msg.ai{background:var(--panel2);border:1px solid var(--line)}
+.meter{margin:10px 0}.meter .row{font-size:12.5px;color:var(--muted)}
+.funnel-row{display:grid;grid-template-columns:110px 1fr 60px;gap:10px;align-items:center;margin:7px 0;font-size:13px}
+.q{border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0;background:var(--panel)}.q .opt{display:flex;gap:9px;align-items:center;padding:7px 9px;border-radius:8px;cursor:pointer}.q .opt:hover{background:var(--panel2)}
+.careers-hero{padding:46px 0 34px;color:#fff}.careers-hero h1{font-size:clamp(30px,4vw,46px);letter-spacing:-1.2px}.careers-hero p{color:#ffffffd9;max-width:720px}
+.job-row{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-bottom:10px;text-decoration:none!important;color:var(--text)}
+.job-row:hover{border-color:var(--brand,var(--a));box-shadow:var(--shadow)}
+.task{max-width:760px;margin:0 auto;padding:30px 20px 60px}.timer{position:sticky;top:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-weight:750;z-index:5}
+.skel{color:var(--dim)}
+@media(max-width:1000px){.hero-grid,.g4,.g6{grid-template-columns:repeat(2,minmax(0,1fr))}.plans,.g3{grid-template-columns:1fr}.shell{grid-template-columns:1fr}.side{position:static;height:auto;display:none}.side.open{display:block}.mobile-only{display:inline-flex!important}.site-links{display:none}.timeline{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.g2,.g4,.g6,.hero-grid,.form-row,.form-row.three{grid-template-columns:1fr}.page,.top{padding-left:14px;padding-right:14px}.fitbox{grid-template-columns:1fr}.ev{grid-template-columns:22px 1fr}.ev .dim{grid-column:2}}
+.mobile-only{display:none!important}
+</style>
+
+</head>
+<body>
+  <div id="app"><div class="loading" role="status">Loading IntelliJobs <span class="pulse"></span></div></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript>IntelliJobs needs JavaScript enabled.</noscript>
+<script>
+/* IntelliJobs web app — runs on the hosted site (fetch → Apps Script JSON API) and inside
+   Apps Script (google.script.run). No external libraries. All user text is escaped. */
+'use strict';
+const CONF = (typeof window !== 'undefined' && window.IJ_CONFIG) || {};
+const GAS = typeof google !== 'undefined' && google.script && google.script.run;
+const $ = id => document.getElementById(id);
+const esc = s => String(s === undefined || s === null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const num = n => (Number(n) || 0).toLocaleString('en-US');
+const money = (n, cur) => (n === '' || n === null || n === undefined) ? '' : (cur && cur !== 'USD' ? cur + ' ' : '$') + num(Math.round(Number(n)));
+const pct = n => (n === null || n === undefined || n === '') ? '—' : n + '%';
+const day = s => s ? String(s).slice(0, 10) : '';
+const when = s => { if (!s) return ''; const d = new Date(s); return isNaN(d) ? String(s) : d.toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); };
+const ago = s => { if (!s) return ''; const d = (Date.now() - new Date(s)) / 86400000; return d < 1 ? 'today' : d < 2 ? 'yesterday' : Math.round(d) + 'd ago'; };
+const list = v => String(v || '').split(/\s*,\s*/).filter(Boolean);
+const parse = (s, d) => { if (s && typeof s === 'object') return s; try { return s ? JSON.parse(s) : d; } catch (e) { return d; } };
+const fitCls = n => (n >= 85 ? '' : n >= 70 ? 'mid' : n >= 50 ? 'low' : 'vlow');
+const store = {
+  get: k => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } },
+  set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) { /* storage blocked */ } }
+};
+
+const S = { token: store.get('ij-token'), pub: null, db: null, reports: null, billing: null, plat: null, cand: {}, modal: null,
+  route: { name: '', parts: [], params: {} }, ui: { q: '', jobFilter: 'all', pipeJob: '', candQ: '', tab: {}, chat: [], interval: 'monthly', careers: null, task: null, sideOpen: false } };
+
+/* ------------------------------------------------------------------ transport */
+function rpc(fn, args) {
+  const req = { fn: fn, args: args || [], token: S.token || '' };
+  if (CONF.apiUrl) {
+    return fetch(CONF.apiUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(req), redirect: 'follow' })
+      .then(r => { if (!r.ok) throw new Error('The service is unreachable (HTTP ' + r.status + '). Please try again.'); return r.json(); });
+  }
+  if (GAS) return new Promise((res, rej) => google.script.run.withSuccessHandler(res).withFailureHandler(rej).api(req));
+  return Promise.reject(new Error('IntelliJobs is not connected to its server. Ask the administrator to configure the API URL.'));
+}
+
+async function call(fn, ...args) {
+  const r = await rpc(fn, args);
+  if (r && r.ok) return r.data;
+  const e = new Error((r && r.error) || 'Something went wrong.');
+  e.code = r && r.code;
+  if (e.code === 'AUTH' && S.token) { sessionEnded(e.message); }
+  throw e;
+}
+
+/* ------------------------------------------------------------------ ui primitives */
+let toastTimer = null;
+function toast(msg, kind, ms) {
+  const t = $('toast'); if (!t) return;
+  t.textContent = msg; t.className = 'show ' + (kind || '');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.className = ''; }, ms || 3800);
+}
+function fail(e) { toast(e && e.message ? e.message : String(e), 'error', 6500); }
+
+function openModal(title, body, wide) { S.modal = { title: title, body: body, wide: !!wide }; paintModal(); }
+function closeModal() { S.modal = null; paintModal(); }
+function paintModal() {
+  let m = $('modal-root');
+  if (!m) { m = document.createElement('div'); m.id = 'modal-root'; document.body.appendChild(m); }
+  m.innerHTML = S.modal ? '<div class="modal-bg" data-action="modal-bg"><div class="modal ' + (S.modal.wide ? 'wide' : '') + '" role="dialog" aria-modal="true" aria-label="' + esc(S.modal.title) + '">' +
+    '<button class="x" data-action="close-modal" aria-label="Close">×</button><h3>' + esc(S.modal.title) + '</h3>' + S.modal.body + '</div></div>' : '';
+}
+
+async function busy(btn, p) {
+  const b = btn && btn.tagName ? btn : null, label = b && b.innerHTML;
+  if (b) { b.disabled = true; b.innerHTML = 'Working…'; }
+  try { return await p; } finally { if (b && b.isConnected) { b.disabled = false; b.innerHTML = label; } }
+}
+
+function readFile(file) {
+  return new Promise((res, rej) => {
+    if (!file) return res(null);
+    if (file.size > 5 * 1024 * 1024) return rej(new Error('Files must be under 5 MB.'));
+    const r = new FileReader();
+    r.onload = () => res({ name: file.name, data: String(r.result).replace(/^data:[^,]*,/, '') });
+    r.onerror = () => rej(new Error('Could not read the file.'));
+    r.readAsDataURL(file);
+  });
+}
+
+function download(name, text, mime) {
+  const blob = text instanceof Blob ? text : new Blob([text], { type: mime || 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 800);
+}
+
+function copy(text) {
+  const done = () => toast('Copied to clipboard', 'ok');
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, () => prompt('Copy this link:', text));
+  else prompt('Copy this link:', text);
+}
+
+/** Form values: checkboxes → booleans, numbers left as strings for the server to validate. */
+function formValues(form) {
+  const out = {};
+  Array.from(form.elements).forEach(el => {
+    if (!el.name || el.disabled) return;
+    if (el.type === 'checkbox') { if (el.dataset.multi) { (out[el.name] = out[el.name] || []); if (el.checked) out[el.name].push(el.value); } else out[el.name] = el.checked; }
+    else if (el.type === 'radio') { if (el.checked) out[el.name] = el.value; }
+    else if (el.type === 'file') { /* read separately */ }
+    else out[el.name] = el.value;
+  });
+  return out;
+}
+
+const opt = (v, cur, label) => '<option value="' + esc(v) + '"' + (String(v) === String(cur) ? ' selected' : '') + '>' + esc(label === undefined ? v : label) + '</option>';
+const opts = (arr, cur) => arr.map(v => Array.isArray(v) ? opt(v[0], cur, v[1]) : opt(v, cur)).join('');
+const chip = (t, cls) => '<span class="chip ' + (cls || '') + '">' + esc(t) + '</span>';
+const chips = (arr, cls) => (arr || []).map(x => chip(x, cls)).join('');
+const field = (label, html, cls) => '<div class="' + (cls || '') + '"><label>' + esc(label) + '</label>' + html + '</div>';
+const inp = (name, val, attrs) => '<input name="' + name + '" value="' + esc(val === undefined ? '' : val) + '" ' + (attrs || 'type="text"') + '>';
+const area = (name, val, attrs) => '<textarea name="' + name + '" ' + (attrs || '') + '>' + esc(val || '') + '</textarea>';
+const sel = (name, arr, cur, attrs) => '<select name="' + name + '" ' + (attrs || '') + '>' + opts(arr, cur) + '</select>';
+const bar = (v, max) => '<div class="bar"><i style="width:' + Math.max(0, Math.min(100, Math.round((Number(v) || 0) / (max || 100) * 100))) + '%"></i></div>';
+const stageChip = s => chip(s, { Hired: 'ok', Rejected: 'bad', Withdrawn: 'bad', Offer: 'a', Interview: 'info', Assessment: 'warn' }[s] || '');
+const statusChip = s => chip(s, /Open|Active|Accepted|Completed|Confirmed|Consent given|Clear|Hired|Approved|Passed|Sent$/.test(s) ? 'ok'
+  : /Rejected|Declined|Canceled|Closed|Withdrawn|Adverse|No-show|Disputed|Failed|Archived/.test(s) ? 'bad' : /Pending|Awaiting|Reschedule|Draft|Hold|Invited|Started|Pre-adverse|Consider/.test(s) ? 'warn' : 'info');
+
+/* ------------------------------------------------------------------ routing */
+function parseRoute() {
+  const raw = decodeURIComponent(String(location.hash || '').replace(/^#\/?/, ''));
+  const [path, query] = raw.split('?');
+  const params = {};
+  String(query || '').split('&').forEach(kv => { const p = kv.split('='); if (p[0]) params[p[0]] = (p[1] || '').replace(/\+/g, ' '); });
+  if (/^t=/.test(path)) return { name: 'task', parts: [path.slice(2)], params: params };
+  if (/^demo=/.test(path)) return { name: 'demo', parts: [path.slice(5)], params: params };
+  const parts = path.split('/').filter(Boolean);
+  return { name: (parts[0] || '').toLowerCase(), parts: parts.slice(1), params: params };
+}
+function go(hash) { if (location.hash === hash) route(); else location.hash = hash; }
+function sessionEnded(msg) {
+  S.token = ''; store.set('ij-token', ''); S.db = null; S.billing = null; S.plat = null; S.cand = {}; S.modal = null; paintModal();
+  if (msg) toast(msg, 'error', 6000);
+  go('#login');
+}
+function setSession(res) {
+  S.token = res.token; store.set('ij-token', res.token); S.db = null; S.cand = {};
+  go(res.hasOrg ? '#app/dashboard' : '#onboarding');
+}
+
+const PUBLIC_ROUTES = ['', 'home', 'pricing', 'login', 'register', 'verify', 'forgot', 'reset', 'invite', 'careers', 'job', 'task', 'demo'];
+async function route() {
+  S.route = parseRoute();
+  S.ui.sideOpen = false;
+  const r = S.route;
+  document.body.classList.toggle('light-body', ['careers', 'job', 'task'].indexOf(r.name) >= 0);
+  try {
+    if (r.name === 'demo') return launchDemo(r.parts[0] || 'enterprise');
+    if (r.name === 'billing' && r.params.checkout) return go('#app/billing?checkout=' + r.params.checkout + (r.params.session_id ? '&session_id=' + r.params.session_id : ''));
+    if (PUBLIC_ROUTES.indexOf(r.name) >= 0 && !(r.name === '' && S.token)) return renderPublic();
+    if (!S.token) return go('#login');
+    if (r.name === 'onboarding') return paint(viewOnboarding());
+    if (r.name === '' || r.name !== 'app') return go('#app/dashboard');
+    if (!S.db) { paint('<div class="loading">Loading your workspace<span class="pulse"></span></div>'); await loadDb(); }
+    renderApp();
+  } catch (e) {
+    if (e.code === 'NOORG') return go('#onboarding');
+    if (e.code !== 'AUTH') paint('<div class="auth"><div class="card"><h3>Something went wrong</h3><p class="muted">' + esc(e.message) + '</p><button class="btn" data-action="reload">Try again</button> <button class="btn ghost" data-action="logout">Sign out</button></div></div>');
+  }
+}
+function paint(html) { const a = $('app'); if (a) a.innerHTML = html; }
+async function loadDb() { S.db = await call('getBootstrap'); return S.db; }
+async function refresh(keepCand) { await loadDb(); if (!keepCand) S.cand = {}; S.reports = null; renderApp(); }
+
+/* ------------------------------------------------------------------ lookups */
+const D = () => S.db || {};
+const jobById = id => (D().jobs || []).find(j => j.id === id) || {};
+const candById = id => (D().candidates || []).find(c => c.id === id) || {};
+const appById = id => (D().applications || []).find(a => a.id === id) || {};
+const appsFor = jobId => (D().applications || []).filter(a => a.jobId === jobId);
+const can = role => { const r = (D().lists && D().lists.roles) || ['VIEWER', 'INTERVIEWER', 'RECRUITER', 'HIRING_MANAGER', 'ADMIN']; return S.db && r.indexOf(S.db.who.role) >= r.indexOf(role); };
+const hasFeat = f => !f || (S.db && S.db.org.features.indexOf(f) >= 0);
+const isDemo = () => !!(S.db && S.db.org.demo);
+const writable = () => !S.db || S.db.org.standing.writable !== false;
+const lbl = r => String(r || '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+/* ------------------------------------------------------------------ public site */
+const FEATURE_NAME = {
+  core: 'Requisitions, careers page, ATS pipeline, candidate CRM, explainable fit, interviews & scorecards',
+  ai: 'AI recruiter copilot (job drafting, resume parsing, screening questions, inclusive-language review)',
+  assessments: 'Technical skill assessments with auto-scoring', verification: 'Consent-based verification workflow (FCRA-style notices)',
+  offers: 'Offer approvals and candidate e-acceptance', growth: 'Skill-gap analysis & growth plans', liveAI: 'Live Gemini AI grounded in your data',
+  auditExport: 'Full audit log & data exports', priority: 'Priority support & onboarding'
+};
+const FALLBACK_PLANS = [
+  { key: 'starter', name: 'Starter', tagline: 'Small teams and staffing startups', monthly: 99, annual: 990, limits: { jobs: 5, members: 3, candidates: 500, aiRuns: 50 }, features: ['core', 'ai'] },
+  { key: 'professional', name: 'Professional', tagline: 'Growing recruiting and staffing teams', popular: true, monthly: 349, annual: 3490, limits: { jobs: 50, members: 15, candidates: 10000, aiRuns: 1000 }, features: ['core', 'ai', 'assessments', 'verification', 'offers', 'growth'] },
+  { key: 'enterprise', name: 'Enterprise', tagline: 'Enterprises, government contractors and agencies', monthly: 999, annual: 9990, limits: { jobs: 0, members: 0, candidates: 0, aiRuns: 0 }, features: ['core', 'ai', 'assessments', 'verification', 'offers', 'growth', 'liveAI', 'auditExport', 'priority'] }
+];
+const FALLBACK_DEMOS = [
+  { key: 'starter', name: 'Small team', desc: '2 open roles · 6 candidates · careers page, pipeline and interviews.' },
+  { key: 'staffing', name: 'IT staffing agency', desc: '5 client requisitions · 14 candidates · contract-to-hire, assessments, AI screening.' },
+  { key: 'federal', name: 'Government contractor', desc: 'Clearance-required roles · verification & consent workflow.' },
+  { key: 'enterprise', name: 'Enterprise talent team', desc: '8 requisitions · offers, hires, growth plans, analytics and AI copilot.' }
+];
+const plansList = () => (S.billing && S.billing.plans) || (S.pub && S.pub.plans) || FALLBACK_PLANS;
+const demoList = () => (S.db && S.db.demoPackages) || (S.pub && S.pub.demoFlavors) || FALLBACK_DEMOS;
+const trialDays = () => (S.pub && S.pub.trialDays) || 14;
+const lim = (v, unit) => Number(v) > 0 ? num(v) + ' ' + unit : 'Unlimited ' + unit;
+const logo = () => '<a href="#home" class="logo">Intelli<b>Jobs</b><sup>™</sup><small>by Intellisoft Technologies</small></a>';
+
+async function loadPub() { if (!S.pub) { try { S.pub = await call('getPublicConfig'); } catch (e) { S.pub = null; } } return S.pub; }
+
+function renderPublic() {
+  const r = S.route;
+  if (r.name === 'careers') return renderCareers(r.parts[0]);
+  if (r.name === 'job') return renderJobPage(r.parts[0], r.parts[1]);
+  if (r.name === 'task') return renderTask(r.parts[0]);
+  if (['login', 'register', 'verify', 'forgot', 'reset', 'invite'].indexOf(r.name) >= 0) { paint(viewAuth(r.name)); loadPub().then(p => { if (p && S.route.name === r.name && r.name === 'register') paint(viewAuth(r.name)); }); return; }
+  paint(viewLanding());
+  loadPub().then(() => { if (['', 'home', 'pricing'].indexOf(S.route.name) >= 0) { paint(viewLanding()); if (S.route.name === 'pricing') { const p = $('pricing'); if (p) p.scrollIntoView(); } } });
+}
+
+function planCard(p, interval, cta) {
+  const price = interval === 'annual' ? p.annual : p.monthly;
+  return '<article class="card plan ' + (p.popular ? 'popular' : '') + '">' + (p.popular ? '<span class="ribbon">Most popular</span>' : '') +
+    '<h3>' + esc(p.name) + '</h3><p class="muted small">' + esc(p.tagline || '') + '</p>' +
+    '<div class="price"><b>' + money(price) + '</b><span>' + (interval === 'annual' ? '/yr' : '/mo') + '</span></div>' +
+    '<div class="small ' + (interval === 'annual' ? '' : 'muted') + '" style="color:' + (interval === 'annual' ? 'var(--good)' : '') + '">' + (interval === 'annual' ? '2 months free vs monthly' : 'billed monthly · cancel anytime') + '</div>' +
+    '<ul><li>' + lim(p.limits.jobs, 'active jobs') + ' · ' + lim(p.limits.members, 'team seats') + '</li><li>' + lim(p.limits.candidates, 'candidates') + '</li>' +
+    p.features.map(f => '<li>' + esc(FEATURE_NAME[f] || f) + '</li>').join('') + (Number(p.limits.aiRuns) > 0 ? '<li>' + num(p.limits.aiRuns) + ' AI runs / month</li>' : '<li>Unlimited AI runs</li>') + '</ul>' + cta + '</article>';
+}
+
+function viewLanding() {
+  const iv = S.ui.interval;
+  const mods = [['🔎', 'AI job marketplace', 'Branded careers page, semantic skill matching, one-profile apply, and transparent fit for every candidate.'],
+    ['◎', 'Explainable fit ratio', '0–100 job-related alignment with weighted criteria, evidence from the resume, gaps and verified skills.'],
+    ['▦', 'Enterprise ATS + CRM', 'Requisitions with approvals, Kanban pipeline, talent pool, notes, ratings, CSV import and audit trail.'],
+    ['🎙', 'AI & human interviews', '24/7 written AI-assisted screening, scheduling with calendar invites, structured scorecards and summaries.'],
+    ['⌘', 'Technical skill verification', 'Timed, auto-scored assessments for AWS, Python, SQL, Kubernetes, Terraform, Java and more.'],
+    ['🛡', 'Background & credential checks', 'Candidate-authorized workflow: disclosure, e-signed consent, provider tracking, pre-adverse and adverse notices.'],
+    ['↗', 'AI career growth coach', 'Gap-to-goal plans with official learning resources, labs and reassessment — for candidates and employees.'],
+    ['◇', 'Recruiter copilot', 'Draft jobs from a brief, parse resumes, generate structured questions, check inclusive language, find bottlenecks.'],
+    ['⚙', 'Enterprise ready', 'Multi-tenant isolation, role-based access, approvals, Stripe billing, data export and right-to-erasure.']];
+  return '<div class="site"><header class="site-top"><div class="wrap row">' + logo() +
+    '<nav class="site-links" style="margin-left:24px"><a href="#home" data-action="scroll" data-to="features">Platform</a><a href="#home" data-action="scroll" data-to="demos">Live demo</a><a href="#pricing" data-action="scroll" data-to="pricing">Pricing</a><a href="#careers/intellisoft">Careers at Intellisoft</a><a href="#home" data-action="scroll" data-to="contact">Contact sales</a></nav>' +
+    '<div class="grow"></div>' + (S.token ? '<a class="btn" href="#app/dashboard">Open workspace</a>' : '<a class="btn ghost" href="#login">Sign in</a><a class="btn" href="#register">Start free trial</a>') + '</div></header>' +
+    '<section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Enterprise AI · Talent Intelligence Cloud</div><h1>Discover talent.<br><span>Prove potential.</span><br>Accelerate careers.</h1>' +
+    '<p class="lead">A complete AI-powered jobs marketplace and hiring operating system. Publish roles, understand job fit, validate technical skills, interview virtually, run compliant checks and close skill gaps — in one platform.</p>' +
+    '<div class="cta"><a class="btn xl" href="#register">Start your ' + trialDays() + '-day free trial</a><button class="btn secondary xl" data-action="demo" data-flavor="enterprise">Try the live demo</button></div>' +
+    '<p class="muted small">No credit card required · Private to your organization · Cancel anytime</p></div>' +
+    '<div class="glass"><div class="row between"><span class="eyebrow">Explainable job fit · Sample</span>' + chip('Candidate view', 'a') + '</div><h3 style="margin-top:16px">Senior AI / Cloud Architect</h3>' +
+    '<div class="row between"><div><div class="fit" style="font-size:42px">87%</div><div class="small muted">Estimated role fit</div></div><div class="right"><div class="small muted">Skills alignment</div><b>Strong match</b></div></div>' +
+    bar(87) + '<div class="row between mt8 small"><span class="muted">Cloud architecture</span><span style="color:var(--a)">Verified strength</span></div>' + bar(92) +
+    '<div class="row between mt8 small"><span class="muted">MLOps & LLM evaluation</span><span style="color:var(--gold)">Growth opportunity</span></div>' + bar(64) +
+    '<div class="notice">✦ Growth coach: a 3-week MLOps plan with a hands-on lab, then reassess readiness.</div></div></div></section>' +
+    '<section class="sec alt" id="features"><div class="wrap"><div class="eyebrow center">One connected platform</div><h2 class="sec-title">Beyond the traditional job board</h2><p class="sec-sub">Built for candidates, employers, staffing agencies, universities and enterprise talent teams.</p>' +
+    '<div class="grid g3">' + mods.map(m => '<article class="card feature"><span class="fi">' + m[0] + '</span><h3>' + m[1] + '</h3><p>' + m[2] + '</p></article>').join('') + '</div></div></section>' +
+    '<section class="sec" id="demos"><div class="wrap"><h2 class="sec-title">See it with realistic data — instantly</h2><p class="sec-sub">Pick a demo package. You get a private 24-hour sandbox; no email needed and nothing is shared.</p>' +
+    '<div class="grid g4">' + demoList().map(d => '<article class="card feature"><h3>' + esc(d.name) + '</h3><p>' + esc(d.desc) + '</p><button class="btn secondary small mt16" data-action="demo" data-flavor="' + esc(d.key) + '">Launch demo</button></article>').join('') + '</div></div></section>' +
+    '<section class="sec alt" id="pricing"><div class="wrap center"><h2 class="sec-title">Simple pricing that scales with your hiring</h2><p class="sec-sub">Every plan starts with a ' + trialDays() + '-day free trial. Government and enterprise buyers can pay by invoice or purchase order.</p>' +
+    '<div class="seg" role="group" aria-label="Billing interval"><button class="' + (iv === 'monthly' ? 'on' : '') + '" data-action="interval" data-v="monthly">Monthly</button><button class="' + (iv === 'annual' ? 'on' : '') + '" data-action="interval" data-v="annual">Annual · 2 months free</button></div>' +
+    '<div class="plans" style="text-align:left">' + plansList().map(p => planCard(p, iv, '<a class="btn ' + (p.popular ? '' : 'secondary') + '" href="#register?plan=' + p.key + '&interval=' + iv + '">Start free trial</a>')).join('') + '</div></div></section>' +
+    '<section class="sec"><div class="wrap hero-grid"><div><div class="eyebrow">Responsible enterprise AI</div><h2>AI recommendations. Human decisions.</h2><p class="muted">IntelliJobs is designed around explainability, job-related criteria, accessibility, candidate choice, consent, data minimization, retention controls and auditability. Fit scores never use protected characteristics, and hiring teams remain responsible for employment decisions.</p>' +
+    '<div>' + chips(['Human oversight', 'Explainable scoring', 'Role-based access', 'Audit trails', 'Right to erasure', 'Accommodation requests']) + '</div></div>' +
+    '<div class="card" id="contact"><h3>Talk to sales</h3><p class="muted small">Enterprise, staffing, government contractors, campus hiring and internal mobility.</p>' + leadForm('landing') + '</div></div></section>' +
+    '<footer class="foot"><div class="wrap row between wrap-row"><span>© ' + new Date().getFullYear() + ' Intellisoft Technologies Inc. · IntelliJobs™ · 3615 Chain Bridge Road, Ste D, Fairfax, VA 22030</span><span><a href="https://www.intellisoft-tech.com/products/intellijobs" target="_blank" rel="noopener">Product page</a> · <a href="#careers/intellisoft">Careers</a> · v' + esc((S.pub && S.pub.version) || CONF.version || '') + '</span></div></footer></div>';
+}
+
+function leadForm(source) {
+  return '<form data-form="lead"><input type="hidden" name="source" value="' + esc(source) + '"><div class="form-row">' + field('Name', inp('name', '', 'type="text" required')) + field('Work email', inp('email', '', 'type="email" required')) +
+    field('Company', inp('company')) + field('Hires per year', inp('hires', '', 'type="text" placeholder="e.g. 50"')) + '</div>' + field('How can we help?', area('message', '', 'rows="3"')) +
+    '<div class="hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div><button class="btn mt16" type="submit">Contact sales</button></form>';
+}
+
+/* ------------------------------------------------------------------ auth */
+function viewAuth(v) {
+  const p = S.route.params;
+  const shell = (title, sub, body) => '<div class="auth"><div class="card"><div class="center" style="margin-bottom:12px">' + logo() + '</div><h3 class="center">' + title + '</h3>' +
+    (sub ? '<p class="muted center small">' + sub + '</p>' : '') + body + '</div></div>';
+  if (v === 'login') return shell('Sign in', '', '<form data-form="login">' + field('Email', inp('email', p.email || '', 'type="email" required autocomplete="email"')) +
+    field('Password', inp('password', '', 'type="password" required autocomplete="current-password"')) + '<button class="btn mt16" style="width:100%" type="submit">Sign in</button></form>' +
+    '<p class="small center mt16"><a href="#forgot">Forgot password?</a> · <a href="#invite">Accept an invite</a></p><p class="small center">New here? <a href="#register">Start a free trial</a> or <a href="#home" data-action="demo" data-flavor="enterprise">try the demo</a></p>');
+  if (v === 'register') {
+    const plans = plansList();
+    return shell('Start your ' + trialDays() + '-day free trial', 'No credit card required.', '<form data-form="register">' + field('Your name', inp('name', '', 'required autocomplete="name"')) +
+      field('Work email', inp('email', p.email || '', 'type="email" required autocomplete="email"')) + field('Company', inp('company', '', 'required autocomplete="organization"')) +
+      field('Password (10+ characters, letters and numbers)', inp('password', '', 'type="password" required minlength="10" autocomplete="new-password"')) +
+      '<div class="form-row">' + field('Plan', sel('plan', plans.map(x => [x.key, x.name]), p.plan || 'professional')) + field('Billing', sel('interval', [['monthly', 'Monthly'], ['annual', 'Annual']], p.interval || 'monthly')) + '</div>' +
+      field('Start with sample data (optional)', sel('demo', [['', 'Empty workspace']].concat(demoList().map(d => [d.key, d.name])), '')) +
+      '<button class="btn mt16" style="width:100%" type="submit">Create account</button></form><p class="small center mt16">Already have an account? <a href="#login">Sign in</a></p>');
+  }
+  if (v === 'verify') return shell('Check your email', 'We sent a 6-digit code to ' + esc(p.email || 'your email') + '.', '<form data-form="verify"><input type="hidden" name="email" value="' + esc(p.email || '') + '">' +
+    field('Verification code', inp('code', '', 'inputmode="numeric" autocomplete="one-time-code" required maxlength="6"')) + '<button class="btn mt16" style="width:100%" type="submit">Verify and continue</button></form>' +
+    '<p class="small center mt16"><a href="#verify" data-action="resend-code" data-email="' + esc(p.email || '') + '">Resend code</a></p>');
+  if (v === 'forgot') return shell('Reset your password', 'We will email you a code.', '<form data-form="forgot">' + field('Email', inp('email', p.email || '', 'type="email" required')) +
+    '<button class="btn mt16" style="width:100%" type="submit">Email me a code</button></form><p class="small center mt16"><a href="#login">Back to sign in</a></p>');
+  const invite = v === 'invite';
+  return shell(invite ? 'Accept your invitation' : 'Choose a new password', invite ? 'Enter the code from your invitation email and choose a password.' : 'Enter the code we emailed you.',
+    '<form data-form="reset">' + field('Email', inp('email', p.email || '', 'type="email" required')) + (invite ? field('Your name', inp('name', '')) : '') +
+    field('Code', inp('code', '', 'inputmode="numeric" required maxlength="6"')) + field('New password', inp('password', '', 'type="password" required minlength="10" autocomplete="new-password"')) +
+    '<button class="btn mt16" style="width:100%" type="submit">' + (invite ? 'Join workspace' : 'Save password') + '</button></form>' +
+    (invite ? '<p class="small center mt16">Invitation expired? <a href="#invite" data-action="invite-code">Request a new code</a></p>' : ''));
+}
+
+function viewOnboarding() {
+  return '<div class="auth"><div class="card"><div class="center">' + logo() + '</div><h3 class="center mt16">Create your organization</h3><p class="muted small center">You are signed in but not part of an organization yet.</p>' +
+    '<form data-form="create-org">' + field('Company', inp('company', '', 'required')) + field('Plan', sel('plan', plansList().map(x => [x.key, x.name]), 'professional')) +
+    field('Start with sample data (optional)', sel('demo', [['', 'Empty workspace']].concat(demoList().map(d => [d.key, d.name])), '')) +
+    '<button class="btn mt16" style="width:100%">Create organization</button></form><p class="small center mt16"><a href="#" data-action="logout">Sign out</a></p></div></div>';
+}
+
+async function launchDemo(flavor) {
+  paint('<div class="loading">Preparing your private demo workspace<span class="pulse"></span><p class="small">Loading jobs, candidates, interviews and analytics…</p></div>');
+  try {
+    const res = await call('startDemo', { flavor: flavor });
+    toast('Demo ready — a private sandbox for 24 hours.', 'ok');
+    setSession(res);
+  } catch (e) { fail(e); setTimeout(() => go('#home'), 50); }
+}
+
+/* ------------------------------------------------------------------ careers pages (public, light) */
+function brandStyle(c) { return '--brand:' + esc(c) + ';--a:' + esc(c); }
+function careersTop(org) {
+  return '<div class="careers-hero" style="background:linear-gradient(135deg,' + esc(org.color) + ',#0d1a2f)"><div class="wrap"><div class="small" style="opacity:.85;font-weight:700;letter-spacing:1.5px;text-transform:uppercase">' +
+    esc(org.name) + ' · Careers</div><h1>' + esc(org.headline || 'Join our team') + '</h1>' + (org.about ? '<p>' + esc(org.about) + '</p>' : '') +
+    (org.demo ? '<p class="small"><b>Demo careers page</b> — roles and companies are fictional.</p>' : '') + '</div></div>';
+}
+const salaryText = j => (j.salaryMin || j.salaryMax) ? money(j.salaryMin, j.currency) + (j.salaryMax ? '–' + money(j.salaryMax, j.currency) : '') : '';
+
+async function renderCareers(slug) {
+  paint('<div class="light" style="min-height:100vh"><div class="loading">Loading open roles<span class="pulse"></span></div></div>');
+  try {
+    const d = await call('getCareers', slug || '');
+    S.ui.careers = d;
+    paintCareers();
+  } catch (e) { paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card"><h3>Careers page unavailable</h3><p class="muted">' + esc(e.message) + '</p><a class="btn" href="#home">IntelliJobs home</a></div></div></div>'); }
+}
+function paintCareers() {
+  const d = S.ui.careers, q = (S.ui.q || '').toLowerCase(), wt = S.ui.wt || '';
+  const jobs = d.jobs.filter(j => (!q || (j.title + ' ' + j.requiredSkills.join(' ') + ' ' + j.location + ' ' + j.department).toLowerCase().indexOf(q) >= 0) && (!wt || j.workType === wt));
+  paint('<div class="light" style="min-height:100vh;' + brandStyle(d.org.color) + '">' + careersTop(d.org) + '<div class="wrap" style="padding-top:24px;padding-bottom:50px">' +
+    '<div class="row wrap-row"><input type="search" id="careers-q" data-filter="careers" placeholder="Search roles, skills or locations" value="' + esc(S.ui.q || '') + '" style="max-width:420px">' +
+    '<select data-change="careers-wt" style="max-width:200px">' + opts([['', 'All arrangements'], 'Remote', 'Hybrid', 'On-site'], wt) + '</select><span class="grow"></span><span class="muted small">' + jobs.length + ' open role' + (jobs.length === 1 ? '' : 's') + '</span></div>' +
+    '<div class="mt16">' + (jobs.length ? jobs.map(j => '<a class="job-row" href="#job/' + esc(d.org.slug) + '/' + esc(j.id) + '"><div><b style="font-size:16.5px">' + esc(j.title) + '</b><div class="small muted">' +
+      [j.department, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div><div class="mt8">' + chips(j.requiredSkills.slice(0, 6)) +
+      (j.clearance && j.clearance !== 'None' ? chip(j.clearance + ' clearance', 'warn') : '') + '</div></div><span class="btn small">View & apply</span></a>').join('')
+      : '<div class="empty">No open roles match right now. Check back soon.</div>') + '</div>' +
+    '<p class="small muted center mt24">Powered by IntelliJobs · Applications are reviewed by people; automated matching never makes the decision.</p></div></div>');
+}
+
+async function renderJobPage(slug, jobId) {
+  paint('<div class="light" style="min-height:100vh"><div class="loading">Loading role<span class="pulse"></span></div></div>');
+  try { S.ui.job = await call('getPublicJob', { slug: slug, jobId: jobId }); S.ui.applied = null; S.ui.preview = null; paintJob(); }
+  catch (e) { paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card"><h3>Role unavailable</h3><p class="muted">' + esc(e.message) + '</p><a class="btn" href="#careers/' + esc(slug) + '">See open roles</a></div></div></div>'); }
+}
+
+function fitView(fit, plan, candidateView) {
+  if (!fit) return '';
+  return '<div class="card flat mt16"><div class="fitbox"><div class="fitring" style="background:conic-gradient(var(--a) ' + fit.score * 3.6 + 'deg,var(--line) 0)"><div style="background:var(--panel);width:86px;height:86px;border-radius:50%;display:grid;place-items:center">' + fit.score + '%</div></div>' +
+    '<div><b>' + esc(fit.band) + '</b><div class="small muted">' + esc(fit.notice || '') + '</div>' + (fit.breakdown || []).map(b => '<div class="row between small mt8"><span>' + esc(b.label) + ' <span class="dim">· ' + esc(b.detail) + '</span></span><b>' + b.points + '/' + b.max + '</b></div>' + bar(b.points, b.max)).join('') + '</div></div>' +
+    '<div class="mt16"><b class="small">Found</b> ' + (chips(fit.matched, 'ok') || '<span class="small muted">none recognized yet</span>') + '</div>' +
+    (fit.missing && fit.missing.length ? '<div class="mt8"><b class="small">' + (candidateView ? 'To highlight or develop' : 'Missing / unverified') + '</b> ' + chips(fit.missing, 'warn') + '</div>' : '') +
+    (plan && plan.length ? '<div class="mt16"><b>Your growth plan</b>' + plan.map(w => '<div class="mt8"><b class="small" style="color:var(--a)">Week ' + w.week + ' · ' + esc(w.focus) + '</b><ul class="small" style="margin:4px 0">' + w.items.map(i => '<li>' + linkify(i) + '</li>').join('') + '</ul></div>').join('') + '</div>' : '') + '</div>';
+}
+function linkify(t) { return esc(t).replace(/\((https:\/\/[^\s)]+)\)/g, '(<a href="$1" target="_blank" rel="noopener">$1</a>)'); }
+
+function paintJob() {
+  const d = S.ui.job, j = d.job, slug = d.org.slug;
+  const applied = S.ui.applied;
+  paint('<div class="light" style="min-height:100vh;' + brandStyle(d.org.color) + '">' + '<div class="careers-hero" style="background:linear-gradient(135deg,' + esc(d.org.color) + ',#0d1a2f);padding:34px 0 26px"><div class="wrap">' +
+    '<a href="#careers/' + esc(slug) + '" style="color:#fff;opacity:.85" class="small">← All roles at ' + esc(d.org.name) + '</a><h1 style="margin-top:10px">' + esc(j.title) + '</h1><p>' +
+    [j.department, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</p></div></div>' +
+    '<div class="wrap grid g2" style="padding-top:22px;padding-bottom:50px;grid-template-columns:1.1fr .9fr;align-items:start">' +
+    '<div class="card"><h3>About the role</h3><p style="white-space:pre-wrap">' + esc(j.description) + '</p>' + (j.responsibilities ? '<h4>What you will do</h4><p style="white-space:pre-wrap">' + esc(j.responsibilities) + '</p>' : '') +
+    '<h4>Required skills</h4><div>' + chips(j.requiredSkills, 'a') + '</div>' + (j.preferredSkills.length ? '<h4 class="mt16">Nice to have</h4><div>' + chips(j.preferredSkills) + '</div>' : '') +
+    (j.minYears ? '<p class="small muted mt16">Experience: ' + j.minYears + '+ years of relevant experience, or equivalent demonstrated skills.</p>' : '') +
+    (j.clearance && j.clearance !== 'None' ? '<p class="small">Clearance: ability to obtain and maintain ' + esc(j.clearance) + '.</p>' : '') +
+    '<div class="notice small">We review every application with people. Fit scores are job-related guidance only and never use personal characteristics. Need an accommodation to apply or interview? Mention it in your application.</div></div>' +
+    '<div>' + (applied ? '<div class="card"><h3>Application received ✓</h3><p class="muted">Thank you! We emailed a confirmation. Here is how your profile lines up with this role — and how to grow.</p>' + fitView(applied.fit, applied.plan, true) + '<a class="btn secondary mt16" href="#careers/' + esc(slug) + '">See other roles</a></div>'
+      : '<div class="card"><h3>Check your fit</h3><p class="small muted">Paste your resume to see a transparent skills comparison before you apply. Nothing is saved.</p><form data-form="preview-fit">' +
+      area('resumeText', S.ui.resumeDraft || '', 'rows="5" placeholder="Paste resume text…" id="fit-text"') + '<button class="btn secondary small mt8" type="submit">Check my fit</button></form>' + (S.ui.preview ? fitView(S.ui.preview.fit, S.ui.preview.plan, true) : '') + '</div>' +
+      '<div class="card mt16"><h3>Apply</h3><form data-form="apply"><div class="form-row">' + field('Full name', inp('name', '', 'required autocomplete="name"')) + field('Email', inp('email', '', 'type="email" required autocomplete="email"')) +
+      field('Phone', inp('phone', '', 'type="text" autocomplete="tel"')) + field('Location', inp('location', '', 'type="text" placeholder="City, State"')) + '</div>' +
+      field('LinkedIn (optional)', inp('linkedin', '', 'type="url" placeholder="https://www.linkedin.com/in/…"')) +
+      field('Resume file (PDF, Word, TXT · max 5 MB)', '<input type="file" id="apply-file" accept=".pdf,.doc,.docx,.rtf,.txt,.md,.json">') +
+      field('…or paste your resume', area('resumeText', S.ui.resumeDraft || '', 'rows="5"')) +
+      (j.screeningQuestions || []).map((q, i) => field(q.q + (q.required ? ' *' : ''), area('answer' + i, '', 'rows="2"' + (q.required ? ' required' : '')))).join('') +
+      field('Work authorization (optional)', sel('workAuthorization', [['', 'Prefer to discuss later'], 'Authorized to work without sponsorship', 'Will require sponsorship now or in the future'], '')) +
+      field('Cover note (optional)', area('coverNote', '', 'rows="3"')) +
+      '<label class="check mt16"><input type="checkbox" name="consent" required> <span>I agree that ' + esc(d.org.name) + ' may process my application data for recruiting, and keep it for future roles unless I ask for deletion.</span></label>' +
+      '<div class="hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div><button class="btn mt16" style="width:100%" type="submit">Submit application</button></form></div>') +
+    '</div></div></div>');
+}
+
+/* ------------------------------------------------------------------ candidate task links */
+async function renderTask(token) {
+  paint('<div class="light" style="min-height:100vh"><div class="loading">Opening your link<span class="pulse"></span></div></div>');
+  try { S.ui.task = await call('getCandidateTask', token); S.ui.task.token = token; S.ui.test = null; paintTask(); }
+  catch (e) { paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card"><h3>Link unavailable</h3><p class="muted">' + esc(e.message) + '</p></div></div></div>'); }
+}
+
+function taskShell(inner) {
+  const t = S.ui.task;
+  return '<div class="light" style="min-height:100vh;' + brandStyle(t.org.color || '#49d6c5') + '"><div style="background:linear-gradient(135deg,' + esc(t.org.color || '#49d6c5') + ',#0d1a2f);color:#fff;padding:22px 0"><div class="wrap"><b>' +
+    esc(t.org.name) + '</b><div class="small" style="opacity:.85">' + esc(t.jobTitle) + '</div></div></div><div class="task">' + inner + '</div></div>';
+}
+
+function paintTask() {
+  const t = S.ui.task;
+  const hi = 'Hi ' + esc(t.candidateName || 'there') + ',';
+  if (t.kind === 'interview') {
+    const done = ['Confirmed', 'Canceled', 'Completed'].indexOf(t.status) >= 0;
+    return paint(taskShell('<div class="card"><h3>Your interview</h3><p>' + hi + '</p><p><b>' + esc(t.mode) + '</b><br>' + esc(when(t.startsAt)) + ' · ' + esc(t.durationMin) + ' minutes<br><span class="small muted">Shown in your time zone (' +
+      esc(Intl.DateTimeFormat().resolvedOptions().timeZone) + ')</span></p>' + (t.meetingLink ? '<p>Join link: <a href="' + esc(t.meetingLink) + '" target="_blank" rel="noopener">' + esc(t.meetingLink) + '</a></p>' : '') +
+      '<p>Status: ' + statusChip(t.status) + '</p>' + (t.startsAt ? '<button class="btn secondary small" data-action="task-ics">Add to calendar (.ics)</button>' : '') +
+      (t.hasScreening && !t.screeningDone ? screeningForm(t) : '') +
+      (done ? '' : '<form data-form="task-interview" class="mt16">' + field('Note to the hiring team (optional)', area('note', '', 'rows="2" placeholder="Accessibility needs, preferred times…"')) +
+        '<div class="row mt16"><button class="btn" type="submit" name="action" value="confirm" data-submit="confirm">Confirm attendance</button><button class="btn secondary" type="submit" data-submit="reschedule">Request a different time</button></div></form>') + '</div>'));
+  }
+  if (t.kind === 'screening') {
+    if (t.screeningDone || t.status === 'Completed') return paint(taskShell('<div class="card"><h3>Thank you!</h3><p>Your screening answers were received. The hiring team will be in touch.</p></div>'));
+    return paint(taskShell('<div class="card"><h3>Written screening</h3><p>' + hi + '</p><p class="muted">Answer in your own words with specific examples. Take your time — there is no timer. AI helps organize your answers for the hiring team; a person reviews every response and makes every decision. Need an accommodation? Reply to the invitation email.</p>' + screeningForm(t) + '</div>'));
+  }
+  if (t.kind === 'assessment') return paintAssessment();
+  if (t.kind === 'verification') {
+    if (t.status !== 'Awaiting consent') return paint(taskShell('<div class="card"><h3>Response recorded</h3><p>Status: ' + statusChip(t.status) + '</p><p class="muted small">Questions or a dispute? Reply to the email you received from the hiring team.</p></div>'));
+    return paint(taskShell('<div class="card"><h3>Disclosure regarding background checks</h3><p>' + hi + '</p>' +
+      '<p>' + esc(t.org.name) + ' may obtain information about you from a third-party consumer reporting agency for employment purposes, as part of your application for ' + esc(t.jobTitle) + '. The checks requested are:</p><div>' + chips(t.checks, 'a') + '</div>' +
+      '<p class="mt16">The report will be prepared by ' + esc(t.provider) + '. You have rights under the federal Fair Credit Reporting Act, including the right to request a copy of any report, to dispute inaccurate or incomplete information, and to receive notice before any adverse decision. A summary of your rights is available from the Consumer Financial Protection Bureau (consumerfinance.gov). State or local laws may give you additional rights.</p>' +
+      '<div class="notice small">This disclosure is shown on its own, separate from your application. Nothing is requested unless you authorize it below.</div>' +
+      '<form data-form="task-verify"><h4 class="mt16">Authorization</h4><label class="check"><input type="checkbox" name="consent" required> <span>I have read the disclosure and authorize ' + esc(t.org.name) + ' to obtain the checks listed above for employment purposes.</span></label>' +
+      field('Type your full legal name as your electronic signature', inp('fullName', '', 'required autocomplete="name"')) +
+      '<div class="row mt16"><button class="btn" type="submit">Authorize</button><button class="btn danger" type="button" data-action="task-decline-verify">I do not authorize</button></div></form></div>'));
+  }
+  if (t.kind === 'offer') {
+    if (t.status !== 'Sent') return paint(taskShell('<div class="card"><h3>Offer ' + esc(String(t.status).toLowerCase()) + '</h3><p class="muted">Thank you. The hiring team has your response.</p></div>'));
+    return paint(taskShell('<div class="card"><h3>Your offer 🎉</h3><p>' + hi + '</p><p>We are delighted to offer you the position of <b>' + esc(t.jobTitle) + '</b>.</p><div class="grid g2"><div class="card flat tight"><span class="small muted">Compensation</span><div style="font-size:22px;font-weight:800">' +
+      money(t.salary, t.currency) + '</div></div><div class="card flat tight"><span class="small muted">Start date</span><div style="font-size:22px;font-weight:800">' + esc(t.startDate) + '</div></div></div>' +
+      (t.terms ? '<p class="mt16" style="white-space:pre-wrap">' + esc(t.terms) + '</p>' : '') + '<form data-form="task-offer" class="mt16">' + field('Type your full legal name to accept', inp('fullName', '', 'required autocomplete="name"')) +
+      '<div class="row mt16"><button class="btn" type="submit">Accept offer</button><button class="btn danger" type="button" data-action="task-decline-offer">Decline</button></div></form></div>'));
+  }
+}
+
+function screeningForm(t) {
+  return '<form data-form="task-screening" class="mt16">' + (t.questions || []).map((q, i) => '<div class="q"><b>' + (i + 1) + '. ' + esc(q) + '</b>' + area('a' + i, '', 'rows="4" aria-label="Answer ' + (i + 1) + '"') + '</div>').join('') +
+    '<button class="btn" type="submit">Submit answers</button></form>';
+}
+
+function paintAssessment() {
+  const t = S.ui.task, x = S.ui.test;
+  if (t.status === 'Completed' && !x) return paint(taskShell('<div class="card"><h3>Assessment complete</h3><p>Thank you — your results were shared with the hiring team.</p></div>'));
+  if (x && x.result) return paint(taskShell('<div class="card"><h3>Submitted ✓</h3><p>You answered ' + x.result.correct + ' of ' + x.result.total + ' correctly (' + x.result.score + '%).</p>' +
+    (x.result.late ? '<div class="notice warn">Submitted after the time limit.</div>' : '') + '<p class="muted">The hiring team will review your result together with the rest of your application.</p></div>'));
+  if (!x) return paint(taskShell('<div class="card"><h3>' + esc(t.title) + '</h3><p>Hi ' + esc(t.candidateName) + ',</p><p>' + t.questionCount + ' multiple-choice questions · ' + t.durationMin + ' minutes · pass mark ' + t.passMark + '%.</p>' +
+    '<div class="notice small">The timer starts when you press Start and keeps running if you close the page. Use your own knowledge; you may not need every minute. If you need extra time or a different format as an accommodation, contact the hiring team before starting.</div>' +
+    '<button class="btn" data-action="task-start-test">Start assessment</button></div>'));
+  paint(taskShell('<div class="timer" id="timer">Time left: …</div><form data-form="task-test" class="mt16">' + x.questions.map((q, i) => '<div class="q"><b>' + (i + 1) + '. ' + esc(q.q) + '</b>' +
+    q.options.map((o, oi) => '<label class="opt"><input type="radio" name="q' + i + '" value="' + oi + '"> <span>' + esc(o) + '</span></label>').join('') + '</div>').join('') +
+    '<button class="btn" type="submit">Submit answers</button></form>'));
+  tickTimer();
+}
+let timerHandle = null;
+function tickTimer() {
+  clearInterval(timerHandle);
+  const x = S.ui.test; if (!x || x.result) return;
+  const upd = () => {
+    const el = $('timer'); if (!el) return clearInterval(timerHandle);
+    const left = Math.max(0, Math.round((new Date(x.deadline) - Date.now()) / 1000));
+    el.textContent = 'Time left: ' + Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0');
+    if (left <= 0) { clearInterval(timerHandle); el.textContent = 'Time is up — submitting…'; const f = document.querySelector('form[data-form="task-test"]'); if (f) FORMS['task-test'](formValues(f), f); }
+  };
+  upd(); timerHandle = setInterval(upd, 1000);
+}
+
+function icsText(title, startIso, minutes, location, desc) {
+  const f = d => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const end = new Date(new Date(startIso).getTime() + (Number(minutes) || 45) * 60000);
+  const e = s => String(s || '').replace(/([,;\\])/g, '\\$1').replace(/\n/g, '\\n');
+  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Intellisoft//IntelliJobs//EN', 'BEGIN:VEVENT', 'UID:' + Date.now() + '@intellijobs', 'DTSTAMP:' + f(new Date()), 'DTSTART:' + f(startIso), 'DTEND:' + f(end),
+    'SUMMARY:' + e(title), 'DESCRIPTION:' + e(desc), 'LOCATION:' + e(location || ''), 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+}
+/* ------------------------------------------------------------------ workspace shell */
+const NAV = [
+  ['Hiring', [['dashboard', '◉', 'Dashboard'], ['jobs', '▤', 'Jobs'], ['pipeline', '▦', 'Pipeline'], ['candidates', '☺', 'Candidates'], ['interviews', '🎙', 'Interviews']]],
+  ['Validate', [['assessments', '⌘', 'Assessments', 'assessments'], ['verification', '🛡', 'Verification', 'verification'], ['offers', '✉', 'Offers', 'offers']]],
+  ['Grow & insight', [['growth', '↗', 'Skill growth', 'growth'], ['copilot', '✦', 'AI copilot', 'ai'], ['reports', '▥', 'Reports']]],
+  ['Admin', [['careers-site', '◇', 'Careers site'], ['team', '👥', 'Team'], ['billing', '$', 'Billing'], ['audit', '≣', 'Audit log']]]
+];
+
+function renderApp() {
+  const page = S.route.parts[0] || 'dashboard';
+  const db = S.db, org = db.org;
+  const counts = {
+    jobs: db.jobs.filter(j => j.status === 'Open').length, candidates: db.candidates.length,
+    interviews: db.interviews.filter(i => ['Scheduled', 'Confirmed', 'Reschedule requested'].indexOf(i.status) >= 0 && (!i.startsAt || i.startsAt >= new Date().toISOString())).length,
+    verification: db.verifications.filter(v => ['Awaiting consent', 'Consent given', 'In progress'].indexOf(v.status) >= 0).length,
+    offers: db.offers.filter(o => ['Pending Approval', 'Approved', 'Sent'].indexOf(o.status) >= 0).length
+  };
+  const st = org.standing || {};
+  const banner = org.demo ? '<div class="banner demo">Sandbox demo · private to you · resets within 24 hours · candidate emails are simulated. <a href="#register">Start a free trial</a> to keep your work.</div>'
+    : st.expired || !st.writable ? '<div class="banner bad">' + esc(st.reason) + ' <a href="#app/billing">Choose a plan</a></div>'
+    : st.trial ? '<div class="banner">Free trial · ' + st.daysLeft + ' day' + (st.daysLeft === 1 ? '' : 's') + ' left on ' + esc(org.planName) + '. <a href="#app/billing">Choose a plan</a></div>'
+    : st.pastDue ? '<div class="banner bad">' + esc(st.reason) + ' <a href="#app/billing">Update payment</a></div>' : '';
+  const nav = NAV.map(g => '<div class="nav-group">' + g[0] + '</div><nav class="nav">' + g[1].map(n => {
+    const locked = n[3] && !hasFeat(n[3]);
+    return '<a href="#app/' + n[0] + '" class="' + (page === n[0] || (page === 'job' && n[0] === 'jobs') || (page === 'candidate' && n[0] === 'candidates') ? 'on' : '') + (locked ? ' locked' : '') + '"><span>' + n[1] + '</span>' + n[2] +
+      (locked ? '<span class="count">🔒</span>' : counts[n[0]] ? '<span class="count">' + counts[n[0]] + '</span>' : '') + '</a>';
+  }).join('') + '</nav>').join('') + (db.platformAdmin ? '<div class="nav-group">Intellisoft</div><nav class="nav"><a href="#app/platform" class="' + (page === 'platform' ? 'on' : '') + '"><span>⚑</span>Platform console</a></nav>' : '');
+  const orgSwitch = db.myOrgs.length > 1 ? '<select data-change="switch-org" style="max-width:220px">' + db.myOrgs.map(o => opt(o.id, org.id, o.name)).join('') + '</select>' : '<b>' + esc(org.name) + '</b>';
+  let body = '';
+  try { body = (PAGES[page] || PAGES.dashboard)(); } catch (e) { body = '<div class="notice bad">' + esc(e.message) + '</div>'; console.error(e); }
+  paint('<div class="shell"><aside class="side ' + (S.ui.sideOpen ? 'open' : '') + '">' + logo() + nav + '<div class="small dim" style="padding:16px 10px">v' + esc(db.version) + '</div></aside>' +
+    '<div class="main">' + banner + '<div class="top"><button class="btn ghost small mobile-only" data-action="toggle-side" aria-label="Menu">☰</button>' + orgSwitch + chip(org.planName + (org.status === 'Trialing' ? ' trial' : ''), 'a') +
+    '<span class="grow"></span>' + (org.slug ? '<a class="btn ghost small" href="#careers/' + esc(org.slug) + '" target="_blank" rel="noopener">Careers page ↗</a>' : '') +
+    '<span class="small muted">' + esc(db.who.name || db.who.email) + ' · ' + lbl(db.who.role) + '</span><button class="btn ghost small" data-action="account">Account</button><button class="btn ghost small" data-action="logout">Sign out</button></div>' +
+    '<div class="page">' + body + '</div></div></div>');
+  afterPaint(page);
+}
+
+function afterPaint(page) {
+  if (page === 'reports' && !S.reports) call('getReports').then(r => { S.reports = r; if ((S.route.parts[0] || '') === 'reports') renderApp(); }, fail);
+  if (page === 'billing' && !S.billing) loadBilling();
+  if (page === 'platform' && !S.plat) loadPlatform();
+  if (page === 'audit' && !S.audit) call('getAuditLogs').then(r => { S.audit = r; if (S.route.parts[0] === 'audit') renderApp(); }, e => { S.audit = []; fail(e); });
+  if (page === 'candidate') { const id = S.route.parts[1]; if (id && !S.cand[id]) call('getCandidate', id).then(r => { S.cand[id] = r; if (S.route.parts[1] === id) renderApp(); }, fail); }
+  const f = S.ui.refocus; if (f) { const el = $(f); if (el) { el.focus(); try { el.setSelectionRange(el.value.length, el.value.length); } catch (e) { /* not text */ } } S.ui.refocus = null; }
+}
+
+function head(title, sub, actions) {
+  return '<div class="page-head"><div><h2>' + title + '</h2>' + (sub ? '<div class="muted small">' + sub + '</div>' : '') + '</div><span class="grow"></span>' + (actions || '') + '</div>';
+}
+function locked(feature, what) {
+  return head(what) + '<div class="card"><h3>' + esc(what) + ' is part of a higher plan</h3><p class="muted">' + esc(FEATURE_NAME[feature] || feature) + '.</p>' +
+    (can('ADMIN') ? '<a class="btn" href="#app/billing">See plans</a>' : '<p class="small muted">Ask your administrator to upgrade.</p>') + '</div>';
+}
+const kpi = (v, label, sub) => '<div class="card kpi"><b>' + v + '</b><span>' + label + '</span>' + (sub ? '<div class="tiny dim">' + sub + '</div>' : '') + '</div>';
+
+const PAGES = {};
+
+/* ------------------------------------------------------------------ dashboard */
+PAGES.dashboard = () => {
+  const db = S.db, apps = db.applications, now = new Date().toISOString();
+  const active = apps.filter(a => db.lists.activeStages.indexOf(a.stage) >= 0);
+  const upcoming = db.interviews.filter(i => i.startsAt && i.startsAt >= now && ['Scheduled', 'Confirmed'].indexOf(i.status) >= 0).sort((a, b) => a.startsAt.localeCompare(b.startsAt));
+  const att = [];
+  db.jobs.filter(j => j.status === 'Pending Approval').forEach(j => att.push(['Approve job', j.title, '#app/job/' + j.id]));
+  db.interviews.filter(i => i.status === 'Reschedule requested').forEach(i => att.push(['Reschedule request', candById(i.candidateId).name + ' · ' + jobById(i.jobId).title, '#app/candidate/' + i.candidateId]));
+  db.offers.filter(o => o.status === 'Pending Approval').forEach(o => att.push(['Offer approval', candById(o.candidateId).name + ' · ' + money(o.salary), '#app/offers']));
+  db.offers.filter(o => o.status === 'Approved').forEach(o => att.push(['Send approved offer', candById(o.candidateId).name, '#app/offers']));
+  db.verifications.filter(v => v.status === 'Consent given').forEach(v => att.push(['Start verification', candById(v.candidateId).name + ' consented', '#app/verification']));
+  db.interviews.filter(i => i.mode === 'AI-assisted screening' && i.status === 'Completed' && !db.scorecards.some(s => s.interviewId === i.id) && appById(i.applicationId).stage === 'Screening')
+    .slice(0, 5).forEach(i => att.push(['Review screening', candById(i.candidateId).name + ' · ' + jobById(i.jobId).title, '#app/candidate/' + i.candidateId]));
+  const recent = apps.slice().sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt))).slice(0, 8);
+  const empty = !db.jobs.length && !db.candidates.length;
+  return head('Good ' + (new Date().getHours() < 12 ? 'morning' : new Date().getHours() < 18 ? 'afternoon' : 'evening') + (db.who.name ? ', ' + esc(db.who.name.split(' ')[0]) : ''), esc(db.org.name) + ' hiring overview',
+    can('RECRUITER') ? '<button class="btn" data-action="new-job">+ New job</button><button class="btn secondary" data-action="new-candidate">+ Add candidate</button>' : '') +
+    (empty ? '<div class="card"><h3>Get started in minutes</h3><div class="grid g3 mt16"><div class="card flat"><b>1 · Create a job</b><p class="small muted">Paste a hiring brief — the copilot drafts the posting, skills and screening questions.</p><button class="btn small" data-action="new-job">Create job</button></div>' +
+      '<div class="card flat"><b>2 · Share your careers page</b><p class="small muted">Candidates apply with one profile and see a transparent fit.</p>' + (db.org.careersUrl ? '<button class="btn secondary small" data-action="copy" data-text="' + esc(db.org.careersUrl) + '">Copy careers link</button>' : '') + '</div>' +
+      '<div class="card flat"><b>Or explore with sample data</b><p class="small muted">Load a demo package into this empty workspace.</p>' + (can('ADMIN') ? sel('pkg', demoList().map(d => [d.key, d.name]), 'enterprise', 'id="pkg"') + '<button class="btn secondary small mt8" data-action="load-pkg">Load sample data</button>' : '') + '</div></div></div>' : '') +
+    '<div class="grid g6 mt16">' + kpi(db.jobs.filter(j => j.status === 'Open').length, 'Open jobs', db.jobs.filter(j => j.status === 'Pending Approval').length + ' pending approval') +
+    kpi(active.length, 'Active candidates', apps.length + ' applications') + kpi(upcoming.length, 'Upcoming interviews') + kpi(db.offers.filter(o => o.status === 'Sent').length, 'Offers out') +
+    kpi(apps.length ? Math.round(apps.reduce((s, a) => s + Number(a.fitScore || 0), 0) / apps.length) + '%' : '—', 'Average fit') + kpi(apps.filter(a => a.stage === 'Hired').length, 'Hires') + '</div>' +
+    '<div class="grid g2 mt16"><div class="card"><h3>Needs attention</h3>' + (att.length ? att.slice(0, 10).map(a => '<a class="row between" style="padding:9px 0;border-bottom:1px solid var(--line);color:var(--text)" href="' + a[2] + '"><span>' + chip(a[0], 'warn') + ' ' + esc(a[1]) + '</span><span class="dim">→</span></a>').join('') : '<p class="muted">All caught up. ✓</p>') + '</div>' +
+    '<div class="card"><h3>Upcoming interviews</h3>' + (upcoming.length ? upcoming.slice(0, 7).map(i => '<a class="row between" style="padding:9px 0;border-bottom:1px solid var(--line);color:var(--text)" href="#app/candidate/' + i.candidateId + '"><span><b>' + esc(candById(i.candidateId).name) + '</b> <span class="small muted">· ' + esc(jobById(i.jobId).title) + '</span></span><span class="small">' + esc(when(i.startsAt)) + ' ' + statusChip(i.status) + '</span></a>').join('') : '<p class="muted">Nothing scheduled.</p>') + '</div></div>' +
+    '<div class="card mt16"><div class="row between"><h3 class="mb0">Recent applicants</h3><a href="#app/pipeline" class="small">Open pipeline →</a></div>' + (recent.length ? '<div class="table-wrap mt16"><table><tr><th>Candidate</th><th>Job</th><th>Stage</th><th>Fit</th><th>Source</th><th>Applied</th></tr>' +
+      recent.map(a => '<tr class="click" data-action="open-cand" data-id="' + a.candidateId + '"><td><b>' + esc(candById(a.candidateId).name) + '</b><div class="small muted">' + esc(candById(a.candidateId).headline) + '</div></td><td>' + esc(jobById(a.jobId).title) + '</td><td>' + stageChip(a.stage) + '</td><td><span class="fit ' + fitCls(a.fitScore) + '">' + a.fitScore + '%</span></td><td class="small">' + esc(a.source) + '</td><td class="small muted">' + ago(a.createdAt) + '</td></tr>').join('') + '</table></div>' : '<p class="muted">No applications yet.</p>') + '</div>';
+};
+
+/* ------------------------------------------------------------------ jobs */
+PAGES.jobs = () => {
+  const f = S.ui.jobFilter, jobs = S.db.jobs.filter(j => f === 'all' || j.status === f).sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+  const u = S.db.org.usage, l = S.db.org.limits;
+  return head('Jobs', 'Requisitions, approvals and publishing · ' + u.jobs + (Number(l.jobs) ? ' / ' + l.jobs : '') + ' active', can('RECRUITER') ? '<button class="btn" data-action="new-job">+ New job</button>' : '') +
+    '<div class="tabs">' + ['all'].concat(S.db.lists.jobStatuses).map(s => '<button class="' + (f === s ? 'on' : '') + '" data-action="job-filter" data-v="' + esc(s) + '">' + (s === 'all' ? 'All' : esc(s)) + ' <span class="dim small">' + (s === 'all' ? S.db.jobs.length : S.db.jobs.filter(j => j.status === s).length) + '</span></button>').join('') + '</div>' +
+    (jobs.length ? '<div class="table-wrap"><table><tr><th>Job</th><th>Status</th><th>Pipeline</th><th>Top fit</th><th>Pay</th><th>Opened</th></tr>' + jobs.map(j => {
+      const ja = appsFor(j.id), act = ja.filter(a => S.db.lists.activeStages.indexOf(a.stage) >= 0);
+      return '<tr class="click" data-action="open-job" data-id="' + j.id + '"><td><b>' + esc(j.title) + '</b><div class="small muted">' + [j.department, j.location, j.workType, j.clientName].filter(Boolean).map(esc).join(' · ') + '</div><div>' + chips(list(j.requiredSkills).slice(0, 5)) + '</div></td>' +
+        '<td>' + statusChip(j.status) + (j.createdBy === 'sample-data' && !isDemo() ? '<div class="tiny dim">sample · hidden from careers page</div>' : '') + '</td><td class="small">' + ja.length + ' total · ' + act.length + ' active<br>' + ja.filter(a => a.stage === 'Hired').length + ' hired / ' + j.openings + ' opening' + (j.openings > 1 ? 's' : '') + '</td>' +
+        '<td>' + (act.length ? '<span class="fit ' + fitCls(Math.max.apply(null, act.map(a => a.fitScore))) + '">' + Math.max.apply(null, act.map(a => a.fitScore)) + '%</span>' : '<span class="dim">—</span>') + '</td>' +
+        '<td class="small nowrap">' + esc(salaryText(j)) + '</td><td class="small muted">' + (j.publishedAt ? ago(j.publishedAt) : day(j.createdAt)) + '</td></tr>';
+    }).join('') + '</table></div>' : '<div class="empty">No jobs here yet.' + (can('RECRUITER') ? ' <a href="#app/jobs" data-action="new-job">Create one</a> — or paste a brief and let the copilot draft it.' : '') + '</div>');
+};
+
+PAGES.job = () => {
+  const j = jobById(S.route.parts[1]);
+  if (!j.id) return '<div class="empty">Job not found. <a href="#app/jobs">Back to jobs</a></div>';
+  const ja = appsFor(j.id), url = S.db.org.slug ? S.db.org.careersUrl.replace(/#careers\/.*/, '#job/' + S.db.org.slug + '/' + j.id) : '';
+  const acts = [];
+  if (j.status === 'Pending Approval' && can('HIRING_MANAGER')) acts.push('<button class="btn" data-action="approve-job" data-id="' + j.id + '" data-v="1">Approve & publish</button><button class="btn secondary" data-action="approve-job" data-id="' + j.id + '" data-v="0">Return to draft</button>');
+  if (j.status === 'Draft' && can('RECRUITER')) acts.push(can('HIRING_MANAGER') ? '<button class="btn" data-action="job-status" data-id="' + j.id + '" data-v="Open">Publish</button>' : '<button class="btn" data-action="job-status" data-id="' + j.id + '" data-v="Pending Approval">Submit for approval</button>');
+  if (j.status === 'Open' && can('RECRUITER')) acts.push('<button class="btn secondary" data-action="job-status" data-id="' + j.id + '" data-v="On Hold">Hold</button><button class="btn secondary" data-action="job-status" data-id="' + j.id + '" data-v="Closed">Close</button>');
+  if ((j.status === 'On Hold' || j.status === 'Closed') && can('RECRUITER')) acts.push(can('HIRING_MANAGER') ? '<button class="btn secondary" data-action="job-status" data-id="' + j.id + '" data-v="Open">Reopen</button>' : '');
+  if (can('RECRUITER')) acts.push('<button class="btn secondary" data-action="edit-job" data-id="' + j.id + '">Edit</button><button class="btn ghost" data-action="dup-job" data-id="' + j.id + '">Duplicate</button>');
+  if (can('ADMIN') && !ja.length) acts.push('<button class="btn danger" data-action="delete-job" data-id="' + j.id + '">Delete</button>');
+  const qs = parse(j.screeningQuestions, []);
+  return '<a href="#app/jobs" class="small">← Jobs</a>' + head(esc(j.title) + ' ' + statusChip(j.status), [j.department, j.location, j.workType, j.employmentType, salaryText(j), j.clientName].filter(Boolean).map(esc).join(' · '), acts.join('')) +
+    (j.status === 'Open' && url ? '<div class="notice row between wrap-row"><span>Live on your careers page: <a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(url) + '</a></span><button class="btn small secondary" data-action="copy" data-text="' + esc(url) + '">Copy link</button></div>' : '') +
+    '<div class="grid g2" style="grid-template-columns:1.4fr .8fr;align-items:start"><div>' + pipelineBoard(j.id) + '</div><div class="card"><h3>Requirements</h3><b class="small">Required</b><div>' + chips(list(j.requiredSkills), 'a') + '</div>' +
+    (j.preferredSkills ? '<b class="small">Preferred</b><div>' + chips(list(j.preferredSkills)) + '</div>' : '') + '<p class="small muted mt8">Min experience: ' + (j.minYears || 0) + ' yrs · Openings: ' + j.openings + (j.clearance !== 'None' ? ' · Clearance: ' + esc(j.clearance) : '') + '</p>' +
+    '<p class="small muted">Recruiter: ' + esc(j.recruiter) + (j.hiringManager ? ' · Hiring manager: ' + esc(j.hiringManager) : '') + (j.approvedBy ? ' · Approved by ' + esc(j.approvedBy) : '') + '</p>' +
+    '<h4 class="mt16">Application questions</h4>' + (qs.length ? '<ol class="small">' + qs.map(q => '<li>' + esc(q.q) + (q.required ? ' <span class="dim">(required)</span>' : '') + '</li>').join('') + '</ol>' : '<p class="small muted">None.</p>') +
+    (hasFeat('ai') && can('RECRUITER') ? '<button class="btn secondary small" data-action="ai-questions" data-id="' + j.id + '">✦ Structured interview questions</button>' : '') +
+    '<details class="mt16"><summary class="small">Description</summary><p class="small" style="white-space:pre-wrap">' + esc(j.description) + '\n\n' + esc(j.responsibilities) + '</p></details></div></div>';
+};
+
+function jobForm(j) {
+  j = j || {};
+  const L = S.db.lists, qs = parse(j.screeningQuestions, []);
+  return '<form data-form="job"><input type="hidden" name="id" value="' + esc(j.id || '') + '">' +
+    (hasFeat('ai') && !j.id ? '<div class="card flat tight"><b>✦ Draft from a hiring brief</b><p class="small muted mb0">Paste a rough request or an existing job description. The copilot fills in the fields below for you to review.</p>' +
+      '<textarea id="brief" rows="3" placeholder="We need a senior AWS data engineer in Fairfax, hybrid, Python, Snowflake, 5+ years, $135k–$165k…"></textarea><input type="file" id="brief-file" accept=".txt,.md,.json,.pdf,.docx" class="mt8"> <button class="btn secondary small mt8" type="button" data-action="ai-draft">Draft with AI</button></div>' : '') +
+    '<div class="form-row">' + field('Job title', inp('title', j.title, 'required')) + field('Department', inp('department', j.department)) + field('Location', inp('location', j.location, 'placeholder="City, State or United States"')) +
+    field('Work arrangement', sel('workType', L.workTypes, j.workType || 'Hybrid')) + field('Employment type', sel('employmentType', L.employmentTypes, j.employmentType || 'Full-time')) + field('Openings', inp('openings', j.openings || 1, 'type="number" min="1"')) +
+    field('Pay from', inp('salaryMin', j.salaryMin, 'type="number" min="0"')) + field('Pay to', inp('salaryMax', j.salaryMax, 'type="number" min="0"')) +
+    field('Required skills (comma separated)', inp('requiredSkills', j.requiredSkills, 'required list="skill-list"')) + field('Preferred skills', inp('preferredSkills', j.preferredSkills)) +
+    field('Minimum years', inp('minYears', j.minYears || 0, 'type="number" min="0"')) + field('Clearance', sel('clearance', L.clearances, j.clearance || 'None')) +
+    field('Client (staffing)', inp('clientName', j.clientName)) + field('Hiring manager', inp('hiringManager', j.hiringManager)) + field('Recruiter email', inp('recruiter', j.recruiter || S.db.who.email, 'type="email"')) + field('Closes on', inp('closesAt', j.closesAt, 'type="date"')) + '</div>' +
+    '<datalist id="skill-list">' + L.skills.map(s => '<option value="' + esc(s) + '">').join('') + '</datalist>' +
+    field('Description', area('description', j.description, 'rows="4"')) + field('Responsibilities', area('responsibilities', j.responsibilities, 'rows="4"')) +
+    field('Application questions (one per line; end with * to make optional)', area('questions', qs.map(q => q.q + (q.required ? '' : ' *')).join('\n'), 'rows="3"')) +
+    '<div id="inclusive"></div><div class="row wrap-row mt16">' + (hasFeat('ai') ? '<button class="btn ghost" type="button" data-action="ai-inclusive">Inclusive-language check</button>' : '') + '<span class="grow"></span>' +
+    '<button class="btn secondary" type="submit" data-submit="draft">' + (j.id ? 'Save changes' : 'Save draft') + '</button>' + (!j.id ? '<button class="btn" type="submit" data-submit="publish">' + (can('HIRING_MANAGER') ? 'Publish' : 'Submit for approval') + '</button>' : '') + '</div></form>';
+}
+
+/* ------------------------------------------------------------------ pipeline */
+function pipelineBoard(jobId) {
+  const apps = (jobId ? appsFor(jobId) : S.db.applications).filter(a => a.stage !== 'Withdrawn');
+  const lanes = ['Applied', 'Screening', 'Assessment', 'Interview', 'Offer', 'Hired'];
+  const rej = apps.filter(a => a.stage === 'Rejected');
+  return '<div class="lanes">' + lanes.map(s => {
+    const items = apps.filter(a => a.stage === s).sort((a, b) => b.fitScore - a.fitScore);
+    return '<div class="lane" data-lane="' + s + '"><h4><span>' + s + '</span><span>' + items.length + '</span></h4>' + items.map(a => {
+      const c = candById(a.candidateId);
+      return '<div class="pcard" draggable="' + (can('RECRUITER') ? 'true' : 'false') + '" data-app="' + a.id + '"><div class="row between"><b data-action="open-cand" data-id="' + c.id + '" style="cursor:pointer">' + esc(c.name) + '</b><span class="fit ' + fitCls(a.fitScore) + '">' + a.fitScore + '%</span></div>' +
+        '<div class="muted">' + esc(jobId ? c.headline : jobById(a.jobId).title) + '</div><div class="tiny dim">' + (a.rating ? '★'.repeat(a.rating) + ' · ' : '') + ago(a.stageChangedAt) + ' in stage · ' + esc(a.source) + '</div>' +
+        (can('RECRUITER') ? '<select data-change="stage" data-id="' + a.id + '" aria-label="Move ' + esc(c.name) + '">' + opts(S.db.lists.stages, a.stage) + '</select>' : '') + '</div>';
+    }).join('') + '</div>';
+  }).join('') + '</div>' + (rej.length ? '<details class="mt8"><summary class="small muted">Rejected (' + rej.length + ')</summary><div class="small mt8">' + rej.map(a => '<a href="#app/candidate/' + a.candidateId + '">' + esc(candById(a.candidateId).name) + '</a> <span class="dim">· ' + esc(a.rejectReason) + '</span>').join('<br>') + '</div></details>' : '');
+}
+
+PAGES.pipeline = () => {
+  const jobs = S.db.jobs.filter(j => j.status !== 'Draft');
+  const cur = S.ui.pipeJob;
+  return head('Pipeline', 'Drag cards between stages, or use the stage menu on each card.', '<select data-change="pipe-job" style="max-width:320px">' + opts([['', 'All jobs']].concat(jobs.map(j => [j.id, j.title + ' · ' + j.status])), cur) + '</select>') +
+    (S.db.applications.length ? pipelineBoard(cur) : '<div class="empty">No applications yet. Share your careers page or add candidates to a job.</div>');
+};
+
+/* ------------------------------------------------------------------ candidates */
+PAGES.candidates = () => {
+  const q = (S.ui.candQ || '').toLowerCase();
+  const rows = S.db.candidates.filter(c => !q || (c.name + ' ' + c.email + ' ' + c.headline + ' ' + c.skills + ' ' + c.tags + ' ' + c.location).toLowerCase().indexOf(q) >= 0)
+    .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+  const u = S.db.org.usage, l = S.db.org.limits;
+  return head('Candidates', 'Talent pool · ' + num(u.candidates) + (Number(l.candidates) ? ' / ' + num(l.candidates) : '') + ' candidates',
+    (can('RECRUITER') ? '<button class="btn" data-action="new-candidate">+ Add candidate</button><button class="btn secondary" data-action="import-cands">Import CSV</button>' : '') +
+    (can('ADMIN') && hasFeat('auditExport') ? '<button class="btn ghost" data-action="export-cands">Export</button>' : '')) +
+    '<input type="search" id="cand-q" data-filter="cand" placeholder="Search name, skill, tag, location…" value="' + esc(S.ui.candQ || '') + '" style="max-width:460px">' +
+    (rows.length ? '<div class="table-wrap mt16"><table><tr><th>Candidate</th><th>Skills</th><th>Exp.</th><th>Applications</th><th>Source</th><th>Added</th></tr>' + rows.map(c => {
+      const ca = S.db.applications.filter(a => a.candidateId === c.id);
+      return '<tr class="click" data-action="open-cand" data-id="' + c.id + '"><td><b>' + esc(c.name) + '</b> ' + (c.status !== 'Active' ? statusChip(c.status) : '') + '<div class="small muted">' + esc(c.headline) + (c.location ? ' · ' + esc(c.location) : '') + '</div>' + (c.tags ? chips(list(c.tags), 'info') : '') + '</td>' +
+        '<td>' + chips(list(c.skills).slice(0, 5)) + '</td><td class="small">' + (c.yearsExp ? c.yearsExp + ' yrs' : '—') + '</td><td class="small">' + (ca.length ? ca.map(a => esc(jobById(a.jobId).title) + ' ' + stageChip(a.stage) + ' <span class="fit ' + fitCls(a.fitScore) + '">' + a.fitScore + '%</span>').join('<br>') : '<span class="dim">Talent pool</span>') + '</td>' +
+        '<td class="small">' + esc(c.source) + '</td><td class="small muted">' + ago(c.createdAt) + '</td></tr>';
+    }).join('') + '</table></div>' : '<div class="empty mt16">No candidates' + (q ? ' match "' + esc(q) + '"' : ' yet') + '.</div>');
+};
+
+function candForm(c) {
+  c = c || {};
+  return '<form data-form="candidate"><input type="hidden" name="id" value="' + esc(c.id || '') + '">' +
+    (!c.id ? '<div class="card flat tight"><b>Upload a resume</b> <span class="small muted">PDF, Word or text — we extract the profile for you to review.</span><input type="file" id="cand-file" accept=".pdf,.doc,.docx,.rtf,.txt,.md,.json" class="mt8" data-change="cand-file"></div>' : '') +
+    '<div class="form-row">' + field('Full name', inp('name', c.name, 'required')) + field('Email', inp('email', c.email, 'type="email" required')) + field('Phone', inp('phone', c.phone)) + field('Location', inp('location', c.location)) +
+    field('Headline', inp('headline', c.headline)) + field('Years of experience', inp('yearsExp', c.yearsExp, 'type="number" min="0"')) + field('Skills', inp('skills', c.skills, 'list="skill-list"')) +
+    field('Source', sel('source', S.db.lists.sources, c.source || 'Sourced')) + field('Tags', inp('tags', c.tags, 'placeholder="silver-medalist, referral"')) + field('LinkedIn', inp('linkedin', c.linkedin, 'type="url"')) +
+    (c.id ? field('Status', sel('status', ['Active', 'Archived', 'Do not contact'], c.status)) : field('Add to job (optional)', sel('jobId', [['', '— Talent pool only —']].concat(S.db.jobs.filter(j => j.status === 'Open').map(j => [j.id, j.title])), ''))) + '</div>' +
+    '<datalist id="skill-list">' + S.db.lists.skills.map(s => '<option value="' + esc(s) + '">').join('') + '</datalist>' +
+    field('Resume text', area('resumeText', c.resumeText, 'rows="7" id="cand-resume"')) + '<button class="btn mt16" type="submit">' + (c.id ? 'Save changes' : 'Add candidate') + '</button></form>';
+}
+
+PAGES.candidate = () => {
+  const id = S.route.parts[1], d = S.cand[id], c0 = candById(id);
+  if (!d) return '<a href="#app/candidates" class="small">← Candidates</a>' + head(esc(c0.name || 'Candidate')) + '<div class="loading">Loading profile<span class="pulse"></span></div>';
+  const c = d.candidate, tab = S.ui.tab[id] || 'apps';
+  const acts = can('RECRUITER') ? ['<button class="btn" data-action="add-to-job" data-id="' + c.id + '">Add to job</button>', '<button class="btn secondary" data-action="schedule" data-cand="' + c.id + '">Schedule interview</button>',
+    hasFeat('assessments') ? '<button class="btn secondary" data-action="send-test" data-cand="' + c.id + '">Send assessment</button>' : '', '<button class="btn secondary" data-action="message" data-id="' + c.id + '">Email</button>',
+    '<button class="btn ghost" data-action="edit-cand" data-id="' + c.id + '">Edit</button>'].join('') : '';
+  const tabs = [['apps', 'Applications & fit'], ['interviews', 'Interviews (' + d.interviews.length + ')'], ['validate', 'Assessments & checks'], ['offers', 'Offers'], ['growth', 'Growth'], ['notes', 'Notes (' + d.notes.length + ')'], ['resume', 'Resume']];
+  return '<a href="#app/candidates" class="small">← Candidates</a>' + head(esc(c.name) + ' ' + (c.status !== 'Active' ? statusChip(c.status) : ''), [c.headline, c.location, c.yearsExp ? c.yearsExp + ' yrs' : '', c.email, c.phone].filter(Boolean).map(esc).join(' · ') +
+    (c.linkedin ? ' · <a href="' + esc(c.linkedin) + '" target="_blank" rel="noopener">LinkedIn</a>' : ''), acts) +
+    '<div>' + chips(list(c.skills)) + chips(d.verified.map(s => '✓ ' + s + ' verified'), 'ok') + (c.tags ? chips(list(c.tags), 'info') : '') + '</div>' +
+    '<div class="tabs mt16">' + tabs.map(t => '<button class="' + (tab === t[0] ? 'on' : '') + '" data-action="cand-tab" data-id="' + c.id + '" data-v="' + t[0] + '">' + t[1] + '</button>').join('') + '</div>' + (CAND_TABS[tab] || CAND_TABS.apps)(d);
+};
+
+function evidenceRows(fit) {
+  return (fit.required || []).map(r => '<div class="ev"><span>' + (r.verified ? '✅' : r.found ? '✓' : '✗') + '</span><b>' + esc(r.skill) + '</b><span class="dim">' + (r.verified ? 'Verified by assessment. ' : '') + esc(r.evidence || (r.found ? 'Mentioned in profile' : 'No evidence yet — verify in interview or assessment')) + '</span></div>').join('') +
+    (fit.preferred || []).map(r => '<div class="ev"><span>' + (r.found || r.verified ? '✓' : '·') + '</span><span>' + esc(r.skill) + ' <span class="tiny dim">preferred</span></span><span class="dim">' + esc(r.evidence || '') + '</span></div>').join('');
+}
+
+const CAND_TABS = {
+  apps: d => d.applications.length ? d.applications.map(a => {
+    const f = a.fit || {};
+    return '<div class="card mt16"><div class="row between wrap-row"><div><h3 class="mb0">' + esc(a.jobTitle) + '</h3><div class="small muted">Applied ' + day(a.createdAt) + ' · ' + esc(a.source) + (a.rejectReason ? ' · Reason: ' + esc(a.rejectReason) : '') + '</div></div>' +
+      '<div class="row">' + (can('INTERVIEWER') ? '<select data-change="rate" data-id="' + a.id + '" aria-label="Rating">' + opts([['', 'Rate…'], [1, '★'], [2, '★★'], [3, '★★★'], [4, '★★★★'], [5, '★★★★★']], a.rating) + '</select>' : '') +
+      (can('RECRUITER') ? '<select data-change="stage" data-id="' + a.id + '">' + opts(S.db.lists.stages, a.stage) + '</select>' : stageChip(a.stage)) + '</div></div>' +
+      '<div class="grid g2 mt16" style="grid-template-columns:.9fr 1.1fr"><div>' + fitView(f, null, false) + '</div><div class="card flat"><h4>Evidence by requirement</h4>' + evidenceRows(f) + '</div></div>' +
+      (parse(a.answers, []).filter(x => x.a).length ? '<details class="mt8"><summary class="small">Application answers</summary>' + parse(a.answers, []).map(x => '<p class="small"><b>' + esc(x.q) + '</b><br>' + esc(x.a) + '</p>').join('') + '</details>' : '') +
+      (a.coverNote ? '<details class="mt8"><summary class="small">Cover note</summary><p class="small" style="white-space:pre-wrap">' + esc(a.coverNote) + '</p></details>' : '') +
+      (can('RECRUITER') ? '<div class="row wrap-row mt16"><button class="btn small secondary" data-action="schedule" data-app="' + a.id + '">Schedule interview</button>' +
+        (hasFeat('assessments') ? '<button class="btn small secondary" data-action="send-test" data-app="' + a.id + '">Send assessment</button>' : '') +
+        (hasFeat('verification') ? '<button class="btn small secondary" data-action="verify" data-app="' + a.id + '">Request verification</button>' : '') +
+        (hasFeat('offers') ? '<button class="btn small secondary" data-action="new-offer" data-app="' + a.id + '">Create offer</button>' : '') +
+        (hasFeat('growth') ? '<button class="btn small ghost" data-action="new-plan" data-cand="' + a.candidateId + '" data-job="' + a.jobId + '">Growth plan</button>' : '') + '</div>' : '') + '</div>';
+  }).join('') : '<div class="empty">In the talent pool — not attached to a job. ' + (can('RECRUITER') ? '<a href="#app/candidates" data-action="add-to-job" data-id="' + d.candidate.id + '">Add to a job</a>' : '') + '</div>',
+  interviews: d => d.interviews.length ? d.interviews.slice().reverse().map(i => interviewCard(i, d.scorecards.filter(s => s.interviewId === i.id))).join('') : '<div class="empty">No interviews yet.</div>',
+  validate: d => '<h4>Assessments</h4>' + (d.invites.length ? '<div class="table-wrap"><table><tr><th>Assessment</th><th>Status</th><th>Score</th><th>Completed</th></tr>' + d.invites.map(i => {
+    const t = S.db.assessments.find(x => x.id === i.assessmentId) || {};
+    return '<tr><td>' + esc(t.title) + '<div class="small muted">' + esc(t.skill) + ' · pass ' + t.passMark + '%</div></td><td>' + statusChip(i.status) + '</td><td>' + (i.status === 'Completed' ? '<b>' + i.score + '%</b> ' + (i.passed === 'Yes' ? chip('Passed', 'ok') : chip('Below pass mark', 'warn')) : '—') + '</td><td class="small">' + day(i.completedAt) + '</td></tr>';
+  }).join('') + '</table></div>' : '<p class="muted small">None sent.</p>') +
+    '<h4 class="mt24">Verification</h4>' + (d.verifications.length ? d.verifications.map(verificationCard).join('') : '<p class="muted small">No checks requested.</p>'),
+  offers: d => d.offers.length ? d.offers.map(o => offerRow(o)).join('') : '<div class="empty">No offers.</div>',
+  growth: d => (d.plans.length ? d.plans.map(p => planCardView(p)).join('') : '<div class="empty">No growth plans yet.</div>'),
+  notes: d => (can('INTERVIEWER') ? '<form data-form="note" class="card flat tight"><input type="hidden" name="candidateId" value="' + d.candidate.id + '">' + area('body', '', 'rows="2" placeholder="Add a note for the hiring team…" required') + '<button class="btn small mt8">Add note</button></form>' : '') +
+    d.notes.map(n => '<div class="card flat tight mt8"><div class="small muted">' + esc(n.author) + ' · ' + when(n.createdAt) + '</div><div style="white-space:pre-wrap">' + esc(n.body) + '</div></div>').join('') +
+    (d.messages.length ? '<h4 class="mt24">Emails</h4>' + d.messages.map(m => '<div class="card flat tight mt8"><div class="small muted">' + esc(m.author) + ' · ' + when(m.createdAt) + ' · ' + esc(m.status) + '</div><b>' + esc(m.subject) + '</b><div class="small" style="white-space:pre-wrap">' + esc(m.body) + '</div></div>').join('') : ''),
+  resume: d => '<div class="card"><div class="row between"><h3 class="mb0">Resume</h3>' + (d.candidate.resumeFileId ? '<button class="btn small secondary" data-action="dl-resume" data-id="' + d.candidate.id + '">Download original (' + esc(d.candidate.resumeName) + ')</button>' : '') + '</div>' +
+    '<pre style="white-space:pre-wrap;font-family:inherit;font-size:13.5px" class="mt16">' + esc(d.candidate.resumeText || 'No resume on file.') + '</pre></div>' +
+    '<p class="small muted mt16">Consent recorded: ' + (d.candidate.consentAt ? day(d.candidate.consentAt) : 'not via careers page') + (d.candidate.workAuthorization ? ' · Work authorization: ' + esc(d.candidate.workAuthorization) : '') + '</p>' +
+    (can('ADMIN') ? '<button class="btn danger small" data-action="erase-cand" data-id="' + d.candidate.id + '">Erase candidate (right to erasure)</button>' : '')
+};
+/* ------------------------------------------------------------------ interviews */
+function interviewCard(i, cards) {
+  const c = candById(i.candidateId), j = jobById(i.jobId), qa = parse(i.responses, []);
+  const mine = cards.find(s => s.interviewer === S.db.who.email);
+  return '<div class="card mt16"><div class="row between wrap-row"><div><h3 class="mb0">' + esc(i.mode) + ' ' + statusChip(i.status) + '</h3><div class="small muted">' + esc(c.name) + ' · ' + esc(j.title) +
+    (i.startsAt ? ' · ' + esc(when(i.startsAt)) + ' · ' + i.durationMin + ' min' : ' · candidate answers any time') + (i.interviewers ? ' · Panel: ' + esc(i.interviewers) : '') + '</div>' +
+    (i.meetingLink ? '<a class="small" href="' + esc(i.meetingLink) + '" target="_blank" rel="noopener">' + esc(i.meetingLink) + '</a>' : '') + '</div><div class="row wrap-row">' +
+    (can('RECRUITER') && ['Scheduled', 'Confirmed', 'Reschedule requested'].indexOf(i.status) >= 0 ? '<button class="btn small ghost" data-action="iv-link" data-id="' + i.id + '">New candidate link</button>' +
+      (i.startsAt ? '<button class="btn small ghost" data-action="iv-ics" data-id="' + i.id + '">.ics</button><button class="btn small secondary" data-action="iv-resched" data-id="' + i.id + '">Reschedule</button>' : '') +
+      '<select data-change="iv-status" data-id="' + i.id + '" aria-label="Interview status">' + opts([['', 'Set status…'], 'Completed', 'No-show', 'Canceled'], '') + '</select>' : '') +
+    (can('INTERVIEWER') && i.mode !== 'AI-assisted screening' ? '<button class="btn small" data-action="scorecard" data-id="' + i.id + '">' + (mine ? 'Edit my scorecard' : 'Submit scorecard') + '</button>' : '') +
+    (hasFeat('ai') && (cards.length || i.responses) ? '<button class="btn small secondary" data-action="iv-summary" data-id="' + i.id + '">✦ Summarize</button>' : '') + '</div></div>' +
+    (i.aiSummary ? '<div class="notice small mt8" style="white-space:pre-wrap"><b>Screening summary (for human review)</b>\n' + esc(i.aiSummary) + '</div>' : '') +
+    (qa.length ? '<details class="mt8"><summary class="small">Candidate answers (' + qa.length + ')</summary>' + qa.map(x => '<p class="small"><b>' + esc(x.q) + '</b><br>' + esc(x.a || '—') + '</p>').join('') + '</details>' : '') +
+    (cards.length ? '<div class="table-wrap mt8"><table><tr><th>Interviewer</th><th>Overall</th><th>Recommendation</th><th>Competencies</th><th>Notes</th></tr>' + cards.map(s => '<tr><td class="small">' + esc(s.interviewer) + '</td><td><b>' + s.overall + '/5</b></td><td>' +
+      chip(s.recommendation, /yes/i.test(s.recommendation) ? 'ok' : 'bad') + '</td><td class="small">' + Object.entries(parse(s.ratings, {})).map(e => esc(e[0]) + ' ' + e[1]).join(' · ') + '</td><td class="small">' + esc(s.notes) + '</td></tr>').join('') + '</table></div>' : '') +
+    '<div id="sum-' + i.id + '"></div></div>';
+}
+
+PAGES.interviews = () => {
+  const now = new Date().toISOString(), all = S.db.interviews;
+  const upcoming = all.filter(i => ['Scheduled', 'Confirmed', 'Reschedule requested'].indexOf(i.status) >= 0 && (!i.startsAt || i.startsAt >= now)).sort((a, b) => String(a.startsAt || 'z').localeCompare(String(b.startsAt || 'z')));
+  const needCards = all.filter(i => i.mode !== 'AI-assisted screening' && i.startsAt && i.startsAt < now && ['Scheduled', 'Confirmed', 'Completed'].indexOf(i.status) >= 0 && !S.db.scorecards.some(s => s.interviewId === i.id));
+  const recent = all.filter(i => upcoming.indexOf(i) < 0).sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt))).slice(0, 12);
+  const sc = id => S.db.scorecards.filter(s => s.interviewId === id);
+  return head('Interviews', 'AI-assisted screening, human panels, calendar invites and structured scorecards', can('RECRUITER') ? '<button class="btn" data-action="schedule">+ Schedule</button>' : '') +
+    '<div class="notice small">AI-assisted screening gives candidates structured, job-related written questions they can answer 24/7, with an upfront disclosure and an accommodation path. A person reviews every answer. Live audio/video calls use your own meeting links (Teams, Zoom, Meet).</div>' +
+    (needCards.length ? '<h3 class="mt24">Scorecards needed (' + needCards.length + ')</h3>' + needCards.map(i => interviewCard(i, sc(i.id))).join('') : '') +
+    '<h3 class="mt24">Upcoming & awaiting response (' + upcoming.length + ')</h3>' + (upcoming.length ? upcoming.map(i => interviewCard(i, sc(i.id))).join('') : '<div class="empty">Nothing scheduled.</div>') +
+    '<h3 class="mt24">Recent</h3>' + (recent.length ? recent.filter(i => needCards.indexOf(i) < 0).map(i => interviewCard(i, sc(i.id))).join('') : '<p class="muted">—</p>');
+};
+
+/* ------------------------------------------------------------------ assessments */
+PAGES.assessments = () => {
+  if (!hasFeat('assessments')) return locked('assessments', 'Assessments');
+  const tests = S.db.assessments;
+  return head('Assessments', 'Timed, auto-scored skill checks — passing adds verified evidence to job fit', can('RECRUITER') ? '<button class="btn" data-action="new-test">+ New assessment</button>' : '') +
+    (tests.length ? '<div class="grid g3">' + tests.map(t => {
+      const inv = S.db.invites.filter(i => i.assessmentId === t.id), done = inv.filter(i => i.status === 'Completed');
+      return '<div class="card"><div class="row between"><h3 class="mb0">' + esc(t.title) + '</h3>' + statusChip(t.status) + '</div><div class="small muted">' + esc(t.skill) + ' · ' + esc(t.level) + ' · ' + parse(t.questions, []).length + ' questions · ' + t.durationMin + ' min · pass ' + t.passMark + '%</div>' +
+        '<div class="grid g3 mt16"><div><b>' + inv.length + '</b><div class="tiny dim">invited</div></div><div><b>' + done.length + '</b><div class="tiny dim">completed</div></div><div><b>' + (done.length ? Math.round(done.filter(i => i.passed === 'Yes').length / done.length * 100) + '%' : '—') + '</b><div class="tiny dim">pass rate</div></div></div>' +
+        (can('RECRUITER') ? '<div class="row mt16"><button class="btn small" data-action="send-test" data-test="' + t.id + '">Invite candidate</button><button class="btn small ghost" data-action="test-archive" data-id="' + t.id + '" data-v="' + (t.status === 'Active' ? 'Archived' : 'Active') + '">' + (t.status === 'Active' ? 'Archive' : 'Restore') + '</button></div>' : '') + '</div>';
+    }).join('') + '</div>' : '<div class="empty">No assessments yet. Generate one from the built-in banks (AWS, Python, SQL, Kubernetes, Terraform, Java, React, Security, ML, LLM, Docker) or write your own.</div>') +
+    (S.db.invites.length ? '<h3 class="mt24">Results</h3><div class="table-wrap"><table><tr><th>Candidate</th><th>Assessment</th><th>Status</th><th>Score</th><th>When</th></tr>' + S.db.invites.slice().reverse().map(i => {
+      const t = tests.find(x => x.id === i.assessmentId) || {};
+      return '<tr class="click" data-action="open-cand" data-id="' + i.candidateId + '"><td><b>' + esc(candById(i.candidateId).name) + '</b></td><td>' + esc(t.title) + '</td><td>' + statusChip(i.status) + '</td><td>' + (i.status === 'Completed' ? i.score + '% ' + (i.passed === 'Yes' ? chip('Passed', 'ok') : chip('Below', 'warn')) : '—') + '</td><td class="small muted">' + ago(i.completedAt || i.createdAt) + '</td></tr>';
+    }).join('') + '</table></div>' : '');
+};
+
+function testEditor(qs) {
+  return (qs || []).map((q, i) => '<div class="q" data-q="' + i + '"><div class="row between"><b>Question ' + (i + 1) + '</b><button class="btn ghost small" type="button" data-action="q-del" data-i="' + i + '">Remove</button></div>' +
+    area('q' + i, q.q, 'rows="2" required') + q.options.map((o, oi) => '<div class="row mt8"><input type="radio" name="a' + i + '" value="' + oi + '"' + (q.answer === oi ? ' checked' : '') + ' aria-label="Correct answer">' +
+      inp('o' + i + '_' + oi, o, 'type="text" required') + '</div>').join('') + '</div>').join('');
+}
+
+/* ------------------------------------------------------------------ verification */
+function verificationCard(v) {
+  const steps = [['01 · Disclose', 'Request & disclosure sent', true], ['02 · Authorize', v.consentAt ? 'E-signed by ' + v.consentName + ' · ' + day(v.consentAt) : v.status === 'Consent declined' ? 'Declined' : 'Awaiting candidate', !!v.consentAt],
+    ['03 · Verify', v.providerRef ? 'Provider ref ' + v.providerRef : v.status === 'In progress' ? 'With provider' : '—', ['In progress', 'Completed', 'Pre-adverse notice sent', 'Adverse action sent'].indexOf(v.status) >= 0],
+    ['04 · Review', v.result ? 'Result: ' + v.result : '—', !!v.result], ['05 · Resolve', v.adverseAt ? 'Adverse action ' + day(v.adverseAt) : v.preAdverseAt ? 'Pre-adverse ' + day(v.preAdverseAt) : v.result === 'Clear' ? 'Cleared' : '—', !!v.adverseAt || v.result === 'Clear']];
+  return '<div class="card mt16"><div class="row between wrap-row"><div><b>' + esc(candById(v.candidateId).name) + '</b> · ' + esc(jobById(appById(v.applicationId).jobId).title) + ' ' + statusChip(v.status) + '<div class="small muted">' + esc(v.checks) + ' · ' + esc(v.provider) + '</div></div><div class="row wrap-row">' +
+    (can('RECRUITER') && v.status === 'Consent given' ? '<button class="btn small" data-action="ver-update" data-id="' + v.id + '" data-v="In progress">Mark sent to provider</button>' : '') +
+    (can('RECRUITER') && ['In progress', 'Consent given'].indexOf(v.status) >= 0 ? '<button class="btn small secondary" data-action="ver-result" data-id="' + v.id + '">Record result</button>' : '') +
+    (can('HIRING_MANAGER') && v.result === 'Consider' && !v.preAdverseAt && v.status !== 'Disputed' ? '<button class="btn small danger" data-action="pre-adverse" data-id="' + v.id + '">Send pre-adverse notice</button>' : '') +
+    (can('HIRING_MANAGER') && v.preAdverseAt && !v.adverseAt ? '<button class="btn small danger" data-action="adverse" data-id="' + v.id + '">Final adverse action</button><button class="btn small ghost" data-action="ver-update" data-id="' + v.id + '" data-v="Disputed">Mark disputed</button>' : '') +
+    (can('RECRUITER') && ['Awaiting consent', 'Consent given', 'In progress'].indexOf(v.status) >= 0 ? '<button class="btn small ghost" data-action="ver-update" data-id="' + v.id + '" data-v="Canceled">Cancel</button>' : '') + '</div></div>' +
+    '<div class="timeline mt16">' + steps.map((s, i) => '<div class="step ' + (s[2] ? 'done' : '') + '"><b>' + s[0] + '</b>' + esc(s[1]) + '</div>').join('') + '</div>' + (v.notes ? '<p class="small muted mt8" style="white-space:pre-wrap">' + esc(v.notes) + '</p>' : '') + '</div>';
+}
+
+PAGES.verification = () => {
+  if (!hasFeat('verification')) return locked('verification', 'Verification');
+  const v = S.db.verifications.slice().reverse();
+  return head('Verification hub', 'Candidate-first background, identity and credential verification workflow') +
+    '<div class="notice small">IntelliJobs manages disclosure, written authorization, provider tracking and adverse-action notices; checks are performed by your authorized screening provider. Employment background checks must follow the FCRA and applicable state/local (including fair-chance) laws — review notice templates with counsel. Never use protected characteristics in decisions.</div>' +
+    (v.length ? v.map(verificationCard).join('') : '<div class="empty">No verification requests. Start one from a candidate\'s application.</div>');
+};
+
+/* ------------------------------------------------------------------ offers */
+function offerRow(o) {
+  return '<div class="card mt16"><div class="row between wrap-row"><div><b>' + esc(candById(o.candidateId).name) + '</b> · ' + esc(jobById(o.jobId).title) + ' ' + statusChip(o.status) +
+    '<div class="small muted">' + money(o.salary, o.currency) + ' · start ' + esc(o.startDate) + (o.approver ? ' · approved by ' + esc(o.approver) : '') + ' · created by ' + esc(o.createdBy) + '</div></div><div class="row wrap-row">' +
+    (can('HIRING_MANAGER') && o.status === 'Pending Approval' ? '<button class="btn small" data-action="offer-decide" data-id="' + o.id + '" data-v="1">Approve</button><button class="btn small secondary" data-action="offer-decide" data-id="' + o.id + '" data-v="0">Return</button>' : '') +
+    (can('RECRUITER') && (o.status === 'Approved' || o.status === 'Sent') ? '<button class="btn small" data-action="offer-send" data-id="' + o.id + '">' + (o.status === 'Sent' ? 'Resend / new link' : 'Send to candidate') + '</button>' : '') +
+    (can('HIRING_MANAGER') && ['Draft', 'Pending Approval', 'Approved', 'Sent'].indexOf(o.status) >= 0 ? '<button class="btn small ghost" data-action="offer-withdraw" data-id="' + o.id + '">Withdraw</button>' : '') + '</div></div>' +
+    (o.terms ? '<p class="small" style="white-space:pre-wrap">' + esc(o.terms) + '</p>' : '') + '</div>';
+}
+PAGES.offers = () => {
+  if (!hasFeat('offers')) return locked('offers', 'Offers');
+  const o = S.db.offers.slice().reverse();
+  return head('Offers', 'Approvals by hiring managers, e-acceptance by candidates') + (o.length ? o.map(offerRow).join('') : '<div class="empty">No offers yet. Create one from an application in the Offer stage.</div>');
+};
+
+/* ------------------------------------------------------------------ growth */
+function planCardView(p) {
+  const plan = parse(p.plan, []);
+  return '<div class="card mt16"><div class="row between"><div><b>' + esc(candById(p.candidateId).name) + '</b> → ' + esc(jobById(p.jobId).title) + ' ' + statusChip(p.status) + '<div class="small muted">Gaps: ' + (parse(p.gaps, []).map(esc).join(', ') || 'none') + '</div></div>' +
+    (can('RECRUITER') && p.status === 'Active' ? '<button class="btn small ghost" data-action="plan-done" data-id="' + p.id + '">Mark completed</button>' : '') + '</div><div class="grid g3 mt8">' +
+    plan.map(w => '<div class="card flat tight"><b class="small" style="color:var(--a)">Week ' + w.week + ' · ' + esc(w.focus) + '</b><ul class="small" style="padding-left:18px;margin:6px 0">' + w.items.map(i => '<li>' + linkify(i) + '</li>').join('') + '</ul></div>').join('') + '</div></div>';
+}
+PAGES.growth = () => {
+  if (!hasFeat('growth')) return locked('growth', 'Skill growth');
+  const gaps = {};
+  S.db.applications.filter(a => S.db.lists.activeStages.indexOf(a.stage) >= 0).forEach(a => (parse(a.fitDetail, {}).missing || []).forEach(s => { gaps[s] = (gaps[s] || 0) + 1; }));
+  const top = Object.entries(gaps).sort((a, b) => b[1] - a[1]).slice(0, 10), max = top.length ? top[0][1] : 1;
+  return head('Skill growth', 'Gap-to-goal plans: microlearning, labs, mentorship and reassessment', can('RECRUITER') ? '<button class="btn" data-action="new-plan">+ Growth plan</button>' : '') +
+    '<div class="grid g2"><div class="card"><h3>Most common gaps in active pipelines</h3>' + (top.length ? top.map(g => '<div class="funnel-row"><span>' + esc(g[0]) + '</span>' + bar(g[1], max) + '<span class="small muted">' + g[1] + '</span></div>').join('') : '<p class="muted">No gaps detected.</p>') +
+    '<p class="small muted mt8">Use these to target sourcing, write realistic requirements, or offer upskilling to near-fit candidates and employees.</p></div>' +
+    '<div class="card"><h3>Pathways</h3><div class="stack small"><div>📚 <b>Microlearning</b> — official vendor training linked per skill</div><div>🧪 <b>Hands-on labs</b> — project evidence and portfolio</div><div>🏅 <b>Certification prep</b> — cloud and vendor-neutral paths</div><div>👩‍🏫 <b>Mentor + mock interview</b> — then reassess with an assessment</div></div></div></div>' +
+    '<h3 class="mt24">Plans</h3>' + (S.db.skillPlans.length ? S.db.skillPlans.slice().reverse().map(planCardView).join('') : '<div class="empty">No growth plans yet.</div>');
+};
+
+/* ------------------------------------------------------------------ copilot */
+PAGES.copilot = () => {
+  if (!hasFeat('ai')) return locked('ai', 'AI copilot');
+  const prompts = ['What needs attention this week?', 'Top candidates for ' + ((S.db.jobs.find(j => j.status === 'Open') || {}).title || 'my open job'), 'Where are candidates getting stuck?', 'Which jobs have no applicants?'];
+  const used = S.db.org.usage.aiRuns, cap = Number(S.db.org.limits.aiRuns);
+  return head('AI copilot', (S.db.org.liveAI ? 'Live Gemini, grounded in your hiring data' : 'Rules engine' + (hasFeat('liveAI') ? ' · add a Gemini key in the platform console for live AI' : ' · live LLM on Enterprise')) + ' · ' + used + (cap ? ' / ' + cap : '') + ' runs this month') +
+    '<div class="grid g2" style="grid-template-columns:1.3fr .7fr;align-items:start"><div class="card"><div class="chat" id="chat">' + (S.ui.chat.length ? S.ui.chat.map(m => '<div class="msg ' + m.who + '">' + esc(m.text) + (m.provider ? '<div class="tiny dim mt8">' + esc(m.provider) + ' · draft for human review</div>' : '') + '</div>').join('') : '<p class="muted">Ask about your pipeline, bottlenecks or shortlists. Answers use job-related evidence only.</p>') + '</div>' +
+    '<form data-form="copilot" class="row mt16">' + inp('question', '', 'type="text" placeholder="Ask the copilot…" required id="cp-q"') + '<button class="btn" type="submit">Ask</button></form><div class="mt8">' + prompts.map(p => '<button class="chip" style="cursor:pointer" data-action="cp-prompt" data-q="' + esc(p) + '">' + esc(p) + '</button>').join('') + '</div></div>' +
+    '<div class="stack"><div class="card"><h3>Tools</h3><div class="stack"><button class="btn secondary" data-action="new-job">✦ Draft a job from a brief</button><button class="btn secondary" data-action="tool-parse">✦ Parse a resume</button><button class="btn secondary" data-action="tool-inclusive">✦ Inclusive-language check</button></div></div>' +
+    '<div class="card"><h3>Recent runs</h3>' + S.db.agentRuns.slice(0, 8).map(r => '<div class="small" style="padding:6px 0;border-bottom:1px solid var(--line)"><b>' + esc(r.agent) + '</b> · ' + esc(String(r.request).slice(0, 70)) + '<div class="tiny dim">' + esc(r.provider) + ' · ' + ago(r.createdAt) + '</div></div>').join('') + '</div></div></div>';
+};
+
+/* ------------------------------------------------------------------ reports */
+PAGES.reports = () => {
+  const r = S.reports;
+  if (!r) return head('Reports') + '<div class="loading">Crunching numbers<span class="pulse"></span></div>';
+  const t = r.totals, max = Math.max(1, r.funnel[0].count);
+  return head('Reports', 'Funnel, speed, sources, fit calibration and rejection reasons', '<button class="btn ghost" data-action="reports-refresh">Refresh</button>') +
+    '<div class="grid g6">' + kpi(t.openJobs, 'Open jobs', t.pendingApproval + ' pending') + kpi(t.applications, 'Applications') + kpi(t.hires, 'Hires') + kpi(t.avgTimeToHire === null ? '—' : t.avgTimeToHire + 'd', 'Avg time to hire') +
+    kpi(pct(t.offerAcceptance), 'Offer acceptance') + kpi(pct(t.assessmentPassRate), 'Assessment pass rate') + '</div>' +
+    '<div class="grid g2 mt16"><div class="card"><h3>Hiring funnel</h3>' + r.funnel.map((f, i) => '<div class="funnel-row"><span>' + f.stage + '</span>' + bar(f.count, max) + '<span class="small">' + f.count + (i ? ' <span class="dim">' + Math.round(f.count / max * 100) + '%</span>' : '') + '</span></div>').join('') + '</div>' +
+    '<div class="card"><h3>Fit calibration</h3><p class="small muted">Does job-related fit predict progress? Compare interview and hire rates by fit band.</p><div class="table-wrap"><table><tr><th>Fit band</th><th>Applications</th><th>Interviewed</th><th>Hired</th></tr>' +
+    r.fitBands.map(b => '<tr><td>' + b.band + '</td><td>' + b.applications + '</td><td>' + b.interviewed + (b.applications ? ' <span class="dim small">(' + Math.round(b.interviewed / b.applications * 100) + '%)</span>' : '') + '</td><td>' + b.hired + '</td></tr>').join('') + '</table></div></div></div>' +
+    '<div class="card mt16"><h3>By job</h3><div class="table-wrap"><table><tr><th>Job</th><th>Status</th><th>Days open</th>' + ['Applied', 'Screening', 'Assessment', 'Interview', 'Offer', 'Hired', 'Rejected'].map(s => '<th>' + s + '</th>').join('') + '</tr>' +
+    r.byJob.map(j => '<tr class="click" data-action="open-job" data-id="' + j.id + '"><td><b>' + esc(j.title) + '</b></td><td>' + statusChip(j.status) + '</td><td>' + j.daysOpen + '</td>' + ['Applied', 'Screening', 'Assessment', 'Interview', 'Offer', 'Hired', 'Rejected'].map(s => '<td>' + (j.stages[s] || '·') + '</td>').join('') + '</tr>').join('') + '</table></div></div>' +
+    '<div class="grid g2 mt16"><div class="card"><h3>Source effectiveness</h3><div class="table-wrap"><table><tr><th>Source</th><th>Apps</th><th>Interviews</th><th>Hires</th><th>Avg fit</th></tr>' +
+    r.sources.sort((a, b) => b.applications - a.applications).map(s => '<tr><td>' + esc(s.source) + '</td><td>' + s.applications + '</td><td>' + s.interviews + '</td><td>' + s.hires + '</td><td>' + s.avgFit + '%</td></tr>').join('') + '</table></div></div>' +
+    '<div class="card"><h3>Rejection reasons</h3>' + (r.rejectReasons.length ? r.rejectReasons.map(x => '<div class="funnel-row" style="grid-template-columns:1fr 120px 30px"><span class="small">' + esc(x.reason) + '</span>' + bar(x.count, r.rejectReasons[0].count) + '<span class="small">' + x.count + '</span></div>').join('') : '<p class="muted">None recorded.</p>') +
+    '<p class="small muted mt8">Every rejection requires a job-related reason, which supports consistent, auditable decisions.</p></div></div>';
+};
+
+/* ------------------------------------------------------------------ team, careers site, audit */
+PAGES.team = () => {
+  const m = S.db.members, l = S.db.org.limits;
+  return head('Team', m.filter(x => x.status === 'Active').length + (Number(l.members) ? ' / ' + l.members : '') + ' seats in use') +
+    '<div class="notice small">Roles: <b>Viewer</b> reads · <b>Interviewer</b> notes, ratings, scorecards · <b>Recruiter</b> manages jobs, candidates, interviews, assessments · <b>Hiring manager</b> approves jobs & offers, adverse-action decisions · <b>Admin</b> team, billing, careers site, erasure.</div>' +
+    (can('ADMIN') ? '<form data-form="invite" class="card flat row wrap-row">' + inp('email', '', 'type="email" placeholder="colleague@company.com" required style="max-width:320px"') + sel('role', S.db.lists.roles.map(r => [r, lbl(r)]), 'RECRUITER', 'style="max-width:200px"') + '<button class="btn" type="submit">Invite</button></form>' : '') +
+    '<div class="table-wrap mt16"><table><tr><th>Email</th><th>Role</th><th>Status</th><th>Invited by</th><th></th></tr>' + m.map(x => '<tr><td>' + esc(x.email) + '</td><td>' +
+      (can('ADMIN') ? '<select data-change="member-role" data-id="' + x.id + '">' + opts(S.db.lists.roles.map(r => [r, lbl(r)]), x.role) + '</select>' : lbl(x.role)) + '</td><td>' + statusChip(x.status) + '</td><td class="small muted">' + esc(x.invitedBy) + '</td><td class="right">' +
+      (can('ADMIN') ? '<button class="btn small ghost" data-action="member-toggle" data-id="' + x.id + '">' + (x.status === 'Active' ? 'Deactivate' : 'Reactivate') + '</button><button class="btn small ghost" data-action="member-resend" data-id="' + x.id + '">Resend invite</button>' : '') + '</td></tr>').join('') + '</table></div>';
+};
+
+PAGES['careers-site'] = () => {
+  const o = S.db.org;
+  const snippet = '<a href="' + o.careersUrl + '" target="_blank" rel="noopener">View open roles at ' + o.name + '</a>';
+  return head('Careers site', 'Your branded, mobile-friendly job board with one-profile apply') +
+    '<div class="grid g2"><div class="card"><form data-form="careers"><div class="form-row">' + field('Careers address', inp('slug', o.slug, (can('ADMIN') ? '' : 'disabled ') + 'type="text" pattern="[a-z0-9-]+"')) + field('Brand color', inp('color', o.brandColor, 'type="color"')) + '</div>' +
+    field('Headline', inp('headline', o.careersHeadline)) + field('About your company', area('about', o.careersAbout, 'rows="4"')) +
+    '<label class="check mt16"><input type="checkbox" name="enabled"' + (o.careersEnabled ? ' checked' : '') + '> <span>Careers page is live</span></label>' +
+    (can('ADMIN') && !isDemo() ? '<button class="btn mt16" type="submit">Save</button>' : '<p class="small muted mt16">' + (isDemo() ? 'Read-only in the sandbox demo.' : 'Administrators can edit these settings.') + '</p>') + '</form></div>' +
+    '<div class="card"><h3>Share & embed</h3><p class="small muted">Public link</p><div class="row"><input type="text" readonly value="' + esc(o.careersUrl) + '"><button class="btn secondary small" data-action="copy" data-text="' + esc(o.careersUrl) + '">Copy</button></div>' +
+    '<a class="btn small mt8" href="#careers/' + esc(o.slug) + '" target="_blank" rel="noopener">Preview ↗</a><p class="small muted mt16">Link from your website (paste into any page, including Google Sites → Embed):</p><textarea readonly rows="3" class="mono">' + esc(snippet) + '</textarea>' +
+    '<p class="small muted mt16">Each open job also has its own link — share it on LinkedIn, job boards or email.</p></div></div>';
+};
+
+PAGES.audit = () => {
+  const a = S.audit;
+  return head('Audit log', 'Every change, approval, consent and candidate action', can('ADMIN') && hasFeat('auditExport') ? '<button class="btn ghost" data-action="audit-export">Export CSV</button>' : '') +
+    (!a ? '<div class="loading">Loading<span class="pulse"></span></div>' : a.length ? '<div class="table-wrap"><table><tr><th>When</th><th>Actor</th><th>Action</th><th>Entity</th></tr>' + a.map(x => '<tr><td class="small nowrap">' + esc(when(x.createdAt)) + '</td><td class="small">' + esc(x.actor) + '</td><td>' + chip(x.action) + '</td><td class="small">' + esc(x.entity) + ' <span class="dim mono">' + esc(String(x.entityId).slice(0, 12)) + '</span></td></tr>').join('') + '</table></div>' : '<div class="empty">No activity yet.</div>');
+};
+
+/* ------------------------------------------------------------------ billing */
+function loadBilling() { return call('getBillingSummary').then(b => { S.billing = b; if (S.route.parts[0] === 'billing') { renderApp(); confirmReturn(); } }, e => { S.billing = { error: e.message }; renderApp(); }); }
+let confirmedOnce = false;
+function confirmReturn() {
+  const p = S.route.params;
+  if (p.checkout === 'success' && p.session_id && !confirmedOnce) {
+    confirmedOnce = true;
+    call('confirmCheckout', p.session_id).then(() => { toast('Subscription active — thank you!', 'ok'); S.billing = null; S.db = null; go('#app/billing'); }, fail);
+  } else if (p.checkout === 'cancel') toast('Checkout canceled — no charge was made.');
+}
+const meter = (label, used, limit) => '<div class="meter"><div class="row between"><span>' + label + '</span><span>' + num(used) + (Number(limit) ? ' / ' + num(limit) : ' · unlimited') + '</span></div>' + bar(Number(limit) ? used : 0, Number(limit) || 1) + '</div>';
+PAGES.billing = () => {
+  const b = S.billing;
+  if (!b) return head('Billing') + '<div class="loading">Loading<span class="pulse"></span></div>';
+  if (b.error) return head('Billing') + '<div class="notice bad">' + esc(b.error) + '</div>';
+  const iv = S.ui.interval;
+  return head('Billing', 'Plan, usage and invoices') + (b.isDemo ? '<div class="notice">Billing is disabled in the sandbox demo. <a href="#register">Start a free trial</a>.</div>' : '') +
+    '<div class="grid g2"><div class="card"><h3>' + esc(b.plan.name) + ' ' + statusChip(b.status) + '</h3><p class="small muted">' + (b.status === 'Trialing' ? 'Trial ends ' + esc(b.trialEnds) : b.currentPeriodEnd ? 'Renews ' + esc(b.currentPeriodEnd) + ' · ' + esc(b.interval) : esc(b.interval)) + '</p>' +
+    (b.standing.reason ? '<div class="notice warn small">' + esc(b.standing.reason) + '</div>' : '') + (b.hasCustomer && b.canManage ? '<button class="btn secondary" data-action="portal">Manage payment & invoices</button>' : '') + '</div>' +
+    '<div class="card"><h3>Usage</h3>' + meter('Active jobs', b.usage.jobs, b.plan.limits.jobs) + meter('Team seats', b.usage.members, b.plan.limits.members) + meter('Candidates', b.usage.candidates, b.plan.limits.candidates) + meter('AI runs this month', b.usage.aiRuns, b.plan.limits.aiRuns) + '</div></div>' +
+    '<div class="center mt24"><div class="seg"><button class="' + (iv === 'monthly' ? 'on' : '') + '" data-action="interval" data-v="monthly">Monthly</button><button class="' + (iv === 'annual' ? 'on' : '') + '" data-action="interval" data-v="annual">Annual · 2 months free</button></div></div>' +
+    '<div class="plans">' + b.plans.map(p => planCard(p, iv, !b.canManage || b.isDemo ? '<p class="small muted">Administrators manage billing.</p>' :
+      '<div class="stack">' + (b.stripeEnabled ? '<button class="btn ' + (p.popular ? '' : 'secondary') + '" data-action="checkout" data-plan="' + p.key + '">' + (b.plan.key === p.key && b.status === 'Active' ? 'Current plan' : 'Choose ' + esc(p.name)) + '</button>' : '') +
+      '<button class="btn ghost small" data-action="invoice" data-plan="' + p.key + '">Pay by invoice / PO</button></div>')).join('') + '</div>' +
+    (b.events.length ? '<div class="card mt24"><h3>Billing history</h3><div class="table-wrap"><table><tr><th>Date</th><th>Event</th><th>Plan</th><th>Amount</th><th>Reference</th></tr>' + b.events.map(e => '<tr><td class="small">' + day(e.createdAt) + '</td><td>' + esc(e.type) + '</td><td>' + esc(e.plan) + ' ' + esc(e.interval) + '</td><td>' + (e.amount ? money(e.amount) : '—') + '</td><td class="small mono">' + esc(String(e.reference).slice(0, 24)) + '</td></tr>').join('') + '</table></div></div>' : '');
+};
+
+/* ------------------------------------------------------------------ platform console */
+function loadPlatform() {
+  return Promise.all([call('platformOverview'), call('platformGetSettings'), call('platformListLeads'), call('platformListUsers')])
+    .then(r => { S.plat = { o: r[0], s: r[1], leads: r[2], users: r[3] }; if (S.route.parts[0] === 'platform') renderApp(); }, e => { S.plat = { error: e.message }; renderApp(); });
+}
+PAGES.platform = () => {
+  const p = S.plat;
+  if (!S.db.platformAdmin) return '<div class="empty">Platform administrators only.</div>';
+  if (!p) return head('Platform console') + '<div class="loading">Loading<span class="pulse"></span></div>';
+  if (p.error) return head('Platform console') + '<div class="notice bad">' + esc(p.error) + '</div>';
+  const t = p.o.totals, tab = S.ui.tab.platform || 'tenants', s = p.s.settings;
+  const tabs = [['tenants', 'Tenants'], ['leads', 'Leads (' + t.leadsNew + ' new)'], ['users', 'Users'], ['billing', 'Billing events'], ['settings', 'Settings']];
+  let body = '';
+  if (tab === 'tenants') body = '<div class="table-wrap"><table><tr><th>Organization</th><th>Plan</th><th>Status</th><th>Usage</th><th>MRR</th><th>Created</th><th></th></tr>' + p.o.orgs.map(o => '<tr><td><b>' + esc(o.name) + '</b><div class="small muted">' + esc(o.ownerEmail) + (o.slug ? ' · /' + esc(o.slug) : '') + '</div>' + (o.notes ? '<div class="tiny dim">' + esc(o.notes) + '</div>' : '') + '</td>' +
+    '<td>' + esc(o.plan) + ' <span class="small dim">' + esc(o.interval) + '</span></td><td>' + statusChip(o.status) + (o.status === 'Trialing' ? '<div class="tiny dim">ends ' + esc(o.trialEnds) + '</div>' : '') + '</td><td class="small">' + o.members + ' seats · ' + o.openJobs + ' jobs · ' + num(o.candidates) + ' cand.</td><td>' + money(o.mrr) + '</td><td class="small muted">' + day(o.createdAt) + '</td>' +
+    '<td class="right nowrap"><button class="btn small secondary" data-action="plat-edit" data-id="' + o.id + '">Edit</button><button class="btn small ghost" data-action="plat-join" data-id="' + o.id + '">Open as support</button></td></tr>').join('') + '</table></div>';
+  if (tab === 'leads') body = p.leads.length ? '<div class="table-wrap"><table><tr><th>Lead</th><th>Company</th><th>Message</th><th>Source</th><th>Status</th></tr>' + p.leads.map(l => '<tr><td><b>' + esc(l.name) + '</b><div class="small"><a href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a> ' + esc(l.phone) + '</div><div class="tiny dim">' + day(l.createdAt) + '</div></td><td>' + esc(l.company) + '<div class="small muted">' + esc(l.hires) + ' hires/yr</div></td><td class="small">' + esc(l.message) + '</td><td class="small">' + esc(l.source) + '</td><td><select data-change="lead-status" data-id="' + l.id + '">' + opts(['New', 'Contacted', 'Qualified', 'Won', 'Lost'], l.status) + '</select></td></tr>').join('') + '</table></div>' : '<div class="empty">No leads yet.</div>';
+  if (tab === 'users') body = '<div class="table-wrap"><table><tr><th>User</th><th>Status</th><th>Orgs</th><th>Last sign-in</th><th></th></tr>' + p.users.map(u => '<tr><td><b>' + esc(u.name) + '</b><div class="small muted">' + esc(u.email) + '</div></td><td>' + statusChip(u.status) + (u.verified ? '' : ' ' + chip('unverified', 'warn')) + '</td><td>' + u.orgs + '</td><td class="small muted">' + day(u.lastLoginAt) + '</td><td class="right"><button class="btn small ghost" data-action="plat-user" data-id="' + u.id + '" data-v="' + (u.status === 'Disabled' ? 'Active' : 'Disabled') + '">' + (u.status === 'Disabled' ? 'Enable' : 'Disable') + '</button></td></tr>').join('') + '</table></div>';
+  if (tab === 'billing') body = '<div class="row"><button class="btn secondary small" data-action="plat-sync">Sync Stripe now</button></div><div class="table-wrap mt16"><table><tr><th>Date</th><th>Org</th><th>Event</th><th>Plan</th><th>Amount</th><th>By</th></tr>' + p.o.events.map(e => '<tr><td class="small">' + day(e.createdAt) + '</td><td>' + esc(e.orgName) + '</td><td>' + esc(e.type) + '</td><td>' + esc(e.plan) + ' ' + esc(e.interval) + '</td><td>' + (e.amount ? money(e.amount) : '—') + '</td><td class="small">' + esc(e.actor) + '</td></tr>').join('') + '</table></div>';
+  if (tab === 'settings') body = '<div class="grid g2"><form data-form="plat-settings" class="card"><h3>Settings</h3>' + Object.keys(s).map(k => field(k, inp(k, s[k]))).join('') + '<button class="btn mt16">Save settings</button></form>' +
+    '<div class="stack"><div class="card"><h3>Secrets</h3><p class="small muted">Write-only. Stored in Script Properties, never shown again.</p>' + Object.keys(p.s.secrets).map(k => '<form data-form="plat-secret" class="mt16"><input type="hidden" name="key" value="' + k + '"><label>' + k + ' ' + (p.s.secrets[k] ? chip('set ' + p.s.secrets[k], 'ok') : chip('not set', 'warn')) + '</label><div class="row">' + inp('value', '', 'type="password" placeholder="' + (k === 'STRIPE_SECRET_KEY' ? 'sk_live_… or sk_test_…' : 'Gemini API key') + '"') + '<button class="btn small">Save</button></div></form>').join('') + '</div>' +
+    '<div class="card"><h3>Maintenance</h3><p class="small muted">Owner: ' + esc(p.s.owner) + ' · v' + esc(p.s.version) + '<br>API: <span class="mono">' + esc(String(p.s.scriptUrl).replace(/\/s\/(.{10}).*\/exec/, '/s/$1…/exec')) + '</span></p><button class="btn secondary small" data-action="plat-purge">Purge expired demos</button></div></div></div>';
+  return head('Platform console', 'IntelliJobs SaaS · all tenants') + '<div class="grid g6">' + kpi(money(t.mrr), 'MRR', money(t.arr) + ' ARR') + kpi(t.paying, 'Paying orgs', t.orgs + ' total') + kpi(t.trialing, 'Trials', t.trialsEndingSoon + ' ending ≤7d · ' + t.expiredTrials + ' expired') +
+    kpi(t.pastDue, 'Past due') + kpi(t.signups30, 'Sign-ups (30d)', t.demosActive + ' live demos') + kpi(num(t.candidates), 'Candidates', t.openJobs + ' open jobs') + '</div>' +
+    '<div class="tabs mt16">' + tabs.map(x => '<button class="' + (tab === x[0] ? 'on' : '') + '" data-action="plat-tab" data-v="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>' + body;
+};
+/* ------------------------------------------------------------------ action helpers */
+function appOptions(d) {
+  let apps = S.db.applications.filter(a => ['Rejected', 'Withdrawn', 'Hired'].indexOf(a.stage) < 0);
+  if (d.app) apps = apps.filter(a => a.id === d.app);
+  else if (d.cand) apps = apps.filter(a => a.candidateId === d.cand);
+  if (!apps.length) return null;
+  return sel('applicationId', apps.map(a => [a.id, candById(a.candidateId).name + ' — ' + jobById(a.jobId).title + ' (' + a.stage + ', ' + a.fitScore + '%)']), d.app || '', 'required');
+}
+const mailNote = m => !m ? '' : m.sent ? ' Email sent.' : m.simulated ? ' (Email simulated for demo/test address.)' : ' Email could not be sent — copy the link instead.';
+async function act(p, okMsg, opts) {
+  opts = opts || {};
+  const r = await p;
+  if (okMsg) toast(typeof okMsg === 'function' ? okMsg(r) : okMsg, 'ok', 5000);
+  if (opts.close !== false) closeModal();
+  if (opts.refresh !== false) await refresh(false);
+  return r;
+}
+function linkModal(title, link, mail) {
+  openModal(title, '<p class="small muted">' + esc(mailNote(mail).trim() || 'Share this private link with the candidate:') + '</p><div class="row"><input type="text" readonly value="' + esc(link) + '"><button class="btn small" data-action="copy" data-text="' + esc(link) + '">Copy</button></div>' +
+    '<p class="small muted mt8">Links are single-purpose and expire after 14 days. Generating a new link disables the previous one.</p><a class="btn secondary small mt8" href="' + esc(link) + '" target="_blank" rel="noopener">Open candidate view ↗</a>');
+}
+
+const ACTIONS = {
+  'scroll': d => { const el = $(d.to); if (el) el.scrollIntoView({ behavior: 'smooth' }); },
+  'demo': d => launchDemo(d.flavor || 'enterprise'),
+  'interval': d => { S.ui.interval = d.v; S.route.name === 'app' ? renderApp() : paint(viewLanding()); },
+  'reload': () => { S.db = null; route(); },
+  'logout': async () => { try { await call('logout'); } catch (e) { /* already ended */ } sessionEnded(); toast('Signed out.'); },
+  'toggle-side': () => { S.ui.sideOpen = !S.ui.sideOpen; renderApp(); },
+  'close-modal': () => closeModal(),
+  'modal-bg': (d, el, e) => { if (e.target === el) closeModal(); },
+  'copy': d => copy(d.text),
+  'resend-code': async d => { try { await call('resendCode', { email: d.email }); toast('A new code is on its way.', 'ok'); } catch (e) { fail(e); } },
+  'invite-code': async () => { const email = (document.querySelector('form[data-form="reset"] [name=email]') || {}).value; if (!email) return toast('Enter your email first.', 'error'); try { await call('requestPasswordCode', { email: email }); toast('If you were invited, a new code is on its way.', 'ok'); } catch (e) { fail(e); } },
+  'account': () => openModal('Account', '<p class="small muted">' + esc(S.db.who.email) + ' · ' + lbl(S.db.who.role) + ' in ' + esc(S.db.org.name) + '</p>' +
+    (isDemo() ? '<p class="small">This is a sandbox demo account.</p>' : '<form data-form="change-password"><h4>Change password</h4>' + field('Current password', inp('current', '', 'type="password" required')) + field('New password', inp('next', '', 'type="password" required minlength="10"')) + '<button class="btn mt16">Update password</button></form>' +
+      '<h4 class="mt24">Organizations</h4>' + S.db.myOrgs.map(o => '<div class="small">' + esc(o.name) + ' · ' + lbl(o.role) + ' · ' + esc(o.plan) + '</div>').join('') +
+      '<form data-form="create-org" class="mt16 row">' + inp('company', '', 'placeholder="New organization name" required') + '<button class="btn secondary small">Create</button></form>' +
+      '<button class="btn ghost small mt16" data-action="logout-all">Sign out on all devices</button>')),
+  'logout-all': async () => { try { await call('logoutAll'); } catch (e) { /* */ } sessionEnded('Signed out everywhere.'); },
+  'load-pkg': async (d, el) => { const v = ($('pkg') || {}).value; try { await busy(el, act(call('loadDemoPackage', v), 'Sample data loaded.')); } catch (e) { fail(e); } },
+  /* jobs */
+  'new-job': () => { if (!can('RECRUITER')) return toast('Recruiter access is required.', 'error'); go('#app/jobs'); setTimeout(() => openModal('New job', jobForm(), true), 0); },
+  'edit-job': d => openModal('Edit job', jobForm(jobById(d.id)), true),
+  'open-job': d => go('#app/job/' + d.id),
+  'job-filter': d => { S.ui.jobFilter = d.v; renderApp(); },
+  'job-status': async (d, el) => { try { await busy(el, act(call('setJobStatus', { id: d.id, status: d.v }), 'Job ' + (d.v === 'Pending Approval' ? 'submitted for approval' : 'is now ' + d.v.toLowerCase()) + '.')); } catch (e) { fail(e); } },
+  'approve-job': async (d, el) => { try { await busy(el, act(call('approveJob', { id: d.id, approve: d.v === '1' }), d.v === '1' ? 'Approved and published.' : 'Returned to draft.')); } catch (e) { fail(e); } },
+  'dup-job': async (d, el) => { try { const r = await busy(el, act(call('duplicateJob', d.id), 'Duplicated as a draft.')); go('#app/job/' + r.id); } catch (e) { fail(e); } },
+  'delete-job': async (d, el) => { if (!confirm('Delete this job permanently?')) return; try { await busy(el, act(call('deleteJob', d.id), 'Job deleted.')); go('#app/jobs'); } catch (e) { fail(e); } },
+  'ai-draft': async (d, el) => {
+    let brief = ($('brief') || {}).value || '';
+    try {
+      const f = $('brief-file') && $('brief-file').files[0];
+      if (f) { const file = await readFile(f); const x = await call('extractResumeText', file); brief = (brief + '\n' + x.text).trim(); }
+      if (brief.trim().length < 15) return toast('Paste a few sentences about the role first.', 'error');
+      const r = await busy(el, call('aiDraftJob', { brief: brief }));
+      const form = document.querySelector('form[data-form="job"]');
+      ['title', 'location', 'workType', 'employmentType', 'salaryMin', 'salaryMax', 'requiredSkills', 'preferredSkills', 'minYears', 'clearance', 'description', 'responsibilities'].forEach(k => { if (form[k] && r[k] !== undefined && r[k] !== '') form[k].value = r[k]; });
+      if (form.questions && !form.questions.value.trim()) form.questions.value = (r.workType !== 'Remote' ? 'This role is ' + r.workType.toLowerCase() + (r.location ? ' in ' + r.location : '') + '. Does that arrangement work for you?\n' : '') + 'What interests you about this role? *';
+      $('inclusive').innerHTML = inclusiveHtml(r.inclusive);
+      toast('Draft ready (' + r.provider + ') — review before saving.', 'ok');
+    } catch (e) { fail(e); }
+  },
+  'ai-inclusive': async (d, el) => { const f = document.querySelector('form[data-form="job"]'); try { const r = await busy(el, call('aiInclusiveReview', { text: [f.title.value, f.description.value, f.responsibilities.value, f.salaryMin.value ? '$' + f.salaryMin.value : ''].join('\n') })); $('inclusive').innerHTML = inclusiveHtml(r.flags, r.score); } catch (e) { fail(e); } },
+  'ai-questions': async (d, el) => { try { const r = await busy(el, call('aiScreeningQuestions', { jobId: d.id })); openModal('Structured interview questions', '<p class="small muted">Ask every candidate the same questions and score with the rubric. Generated by ' + esc(r.provider) + '.</p><ol>' + r.questions.map(q => '<li class="mt8">' + esc(q.q) + ' <span class="chip">' + esc(q.skill) + '</span></li>').join('') + '</ol><h4>Rubric</h4><ul class="small">' + r.rubric.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul><button class="btn secondary small" data-action="copy" data-text="' + esc(r.questions.map((q, i) => (i + 1) + '. ' + q.q).join('\n')) + '">Copy questions</button>'); } catch (e) { fail(e); } },
+  /* candidates */
+  'new-candidate': () => { if (!can('RECRUITER')) return toast('Recruiter access is required.', 'error'); openModal('Add candidate', candForm(), true); },
+  'edit-cand': d => { const c = (S.cand[d.id] || {}).candidate; if (c) openModal('Edit candidate', candForm(c), true); },
+  'open-cand': d => go('#app/candidate/' + d.id),
+  'cand-tab': d => { S.ui.tab[d.id] = d.v; renderApp(); },
+  'import-cands': () => openModal('Import candidates (CSV)', '<p class="small muted">Header row with at least <b>name</b> and <b>email</b>. Optional: phone, location, headline, skills, yearsExp, source, tags, linkedin. Up to 500 rows.</p><form data-form="import"><input type="file" id="csv-file" accept=".csv,text/csv"><p class="small center muted">or paste</p>' + area('csv', 'name,email,headline,skills,yearsExp\nJane Doe,jane@example.com,Data Engineer,"Python, SQL, AWS",5', 'rows="6" class="mono"') + '<button class="btn mt16">Import</button></form>'),
+  'export-cands': async () => { try { download('intellijobs-candidates.csv', await call('exportCandidatesCsv'), 'text/csv'); } catch (e) { fail(e); } },
+  'erase-cand': async (d, el) => { if (!confirm('Permanently erase this candidate and every linked record (applications, interviews, notes, files)? This cannot be undone.')) return; try { await busy(el, act(call('eraseCandidate', d.id), 'Candidate erased.')); go('#app/candidates'); } catch (e) { fail(e); } },
+  'add-to-job': d => { const open = S.db.jobs.filter(j => j.status === 'Open' || j.status === 'Pending Approval'); if (!open.length) return toast('Create or open a job first.', 'error'); openModal('Add to job', '<form data-form="add-to-job"><input type="hidden" name="candidateId" value="' + esc(d.id) + '">' + field('Job', sel('jobId', open.map(j => [j.id, j.title]), '')) + field('Source', sel('source', S.db.lists.sources, candById(d.id).source || 'Sourced')) + '<button class="btn mt16">Add & score fit</button></form>'); },
+  'message': d => { const c = candById(d.id); openModal('Email ' + c.name, '<form data-form="message"><input type="hidden" name="candidateId" value="' + esc(d.id) + '">' + field('Subject', inp('subject', '', 'required')) + field('Message', area('body', 'Hi ' + (c.name || '').split(' ')[0] + ',\n\n', 'rows="7" required')) + '<p class="small muted">Sent from IntelliJobs on behalf of ' + esc(S.db.org.name) + '; replies come to you.</p><button class="btn mt8">Send</button></form>'); },
+  'dl-resume': async d => { try { const f = await call('getResumeFile', d.id); const bin = atob(f.data), arr = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i); download(f.name, new Blob([arr], { type: f.mime })); } catch (e) { fail(e); } },
+  /* interviews */
+  'schedule': d => {
+    const sel1 = appOptions(d);
+    if (!sel1) return toast('Add the candidate to an open job first.', 'error');
+    const local = new Date(Date.now() + 2 * 86400000); local.setMinutes(0, 0, 0); local.setHours(10);
+    const iso = new Date(local - local.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+    openModal('Schedule interview', '<form data-form="schedule">' + field('Application', sel1) + field('Interview type', sel('mode', S.db.lists.interviewModes, 'Human virtual interview', 'data-change="iv-mode"')) +
+      '<div id="iv-when"><div class="form-row">' + field('Date & time (your time zone)', inp('startsAt', iso, 'type="datetime-local"')) + field('Duration (minutes)', inp('durationMin', 45, 'type="number" min="10"')) + '</div>' +
+      field('Meeting link (Teams, Zoom, Meet…)', inp('meetingLink', '', 'type="url" placeholder="https://"')) + '</div>' + field('Interviewers (emails, comma separated)', inp('interviewers', S.db.who.email)) +
+      '<div class="notice small" id="iv-hint">The candidate gets an email with a calendar invite and a private link to confirm or request another time.</div><button class="btn mt8">Schedule & notify</button></form>');
+  },
+  'iv-link': async (d, el) => { try { const r = await busy(el, call('resendInterviewLink', d.id)); linkModal('Candidate link', r.link, r.mail); } catch (e) { fail(e); } },
+  'iv-ics': d => { const i = S.db.interviews.find(x => x.id === d.id); download('interview.ics', icsText(jobById(i.jobId).title + ' interview · ' + candById(i.candidateId).name, i.startsAt, i.durationMin, i.meetingLink, i.mode), 'text/calendar'); },
+  'iv-resched': d => { const i = S.db.interviews.find(x => x.id === d.id); const loc = new Date(i.startsAt); const iso = new Date(loc - loc.getTimezoneOffset() * 60000).toISOString().slice(0, 16); openModal('Reschedule', '<form data-form="resched"><input type="hidden" name="id" value="' + i.id + '">' + field('New date & time', inp('startsAt', iso, 'type="datetime-local" required')) + field('Meeting link', inp('meetingLink', i.meetingLink, 'type="url"')) + '<label class="check mt16"><input type="checkbox" name="notify" checked> <span>Email the candidate an updated invite</span></label><button class="btn mt16">Save</button></form>'); },
+  'scorecard': d => {
+    const i = S.db.interviews.find(x => x.id === d.id), mine = S.db.scorecards.find(s => s.interviewId === d.id && s.interviewer === S.db.who.email) || {};
+    const r = parse(mine.ratings, {});
+    openModal('Scorecard · ' + candById(i.candidateId).name, '<form data-form="scorecard"><input type="hidden" name="interviewId" value="' + i.id + '"><p class="small muted">Rate evidence you observed, 1 (none) to 5 (exceptional). Job-related competencies only.</p>' +
+      S.db.lists.competencies.map(k => '<div class="row between mt8"><span>' + esc(k) + '</span>' + sel('r_' + k, [['', '—'], 1, 2, 3, 4, 5], r[k] || '', 'style="max-width:90px"') + '</div>').join('') +
+      '<div class="form-row mt16">' + field('Overall', sel('overall', [1, 2, 3, 4, 5], mine.overall || 3)) + field('Recommendation', sel('recommendation', S.db.lists.recommendations, mine.recommendation || 'Yes')) + '</div>' +
+      field('Evidence & notes', area('notes', mine.notes, 'rows="4" placeholder="Specific examples the candidate gave…"')) + '<button class="btn mt16">Submit scorecard</button></form>');
+  },
+  'iv-summary': async (d, el) => { try { const r = await busy(el, call('aiSummarizeInterview', d.id)); const box = $('sum-' + d.id); if (box) box.innerHTML = '<div class="notice small" style="white-space:pre-wrap"><b>Panel summary · ' + esc(r.provider) + ' · for human review</b>\n' + esc(r.summary) + '</div>'; } catch (e) { fail(e); } },
+  /* assessments */
+  'new-test': () => { S.ui.qs = []; openModal('New assessment', testForm(), true); },
+  'test-gen': async (d, el) => {
+    const f = document.querySelector('form[data-form="test"]'); collectQs(f);
+    try { const r = await busy(el, call('generateAssessment', { skill: f.skill.value, level: f.level.value, count: f.count.value || 5 })); if (!r.questions.length) return toast(r.message || 'No questions generated.', 'error', 7000); S.ui.qs = S.ui.qs.concat(r.questions); if (!f.title.value) f.title.value = f.skill.value + ' practical fundamentals'; $('qs').innerHTML = testEditor(S.ui.qs); toast(r.questions.length + ' questions added (' + r.provider + ') — review each one.', 'ok'); } catch (e) { fail(e); }
+  },
+  'q-add': () => { const f = document.querySelector('form[data-form="test"]'); collectQs(f); S.ui.qs.push({ q: '', options: ['', '', '', ''], answer: 0 }); $('qs').innerHTML = testEditor(S.ui.qs); },
+  'q-del': d => { const f = document.querySelector('form[data-form="test"]'); collectQs(f); S.ui.qs.splice(Number(d.i), 1); $('qs').innerHTML = testEditor(S.ui.qs); },
+  'test-archive': async (d, el) => { try { await busy(el, act(call('updateAssessment', { id: d.id, status: d.v }), 'Saved.')); } catch (e) { fail(e); } },
+  'send-test': d => {
+    const tests = S.db.assessments.filter(t => t.status === 'Active');
+    if (!tests.length) return toast('Create an assessment first (Assessments → New).', 'error');
+    const sel1 = appOptions(d); if (!sel1) return toast('No open applications to invite.', 'error');
+    openModal('Send assessment', '<form data-form="send-test">' + field('Application', sel1) + field('Assessment', sel('assessmentId', tests.map(t => [t.id, t.title + ' · ' + t.skill]), d.test || '')) + '<button class="btn mt16">Send invitation</button></form>');
+  },
+  /* verification */
+  'verify': d => openModal('Request verification', '<form data-form="verify-req"><input type="hidden" name="applicationId" value="' + esc(d.app) + '"><p class="small muted">The candidate receives a standalone disclosure and must e-sign an authorization before anything is requested.</p>' +
+    S.db.lists.checkTypes.map(c => '<label class="check mt8"><input type="checkbox" name="checks" data-multi="1" value="' + esc(c) + '"' + (/Identity|Employment|Education/.test(c) ? ' checked' : '') + '> <span>' + esc(c) + '</span></label>').join('') +
+    field('Screening provider', inp('provider', 'Authorized screening provider')) + field('Internal notes', area('notes', '', 'rows="2"')) + '<button class="btn mt16">Send disclosure & consent request</button></form>'),
+  'ver-update': async (d, el) => { try { await busy(el, act(call('updateVerification', { id: d.id, status: d.v }), 'Updated.')); } catch (e) { fail(e); } },
+  'ver-result': d => { const v = S.db.verifications.find(x => x.id === d.id); openModal('Record result', '<form data-form="ver-result"><input type="hidden" name="id" value="' + v.id + '">' + field('Provider reference', inp('providerRef', v.providerRef)) + field('Result', sel('result', [['Clear', 'Clear'], ['Consider', 'Consider (needs individualized review)']], v.result || 'Clear')) + field('Notes', area('notes', v.notes, 'rows="3"')) + '<button class="btn mt16">Save & complete</button></form>'); },
+  'pre-adverse': d => openModal('Pre-adverse action notice', '<form data-form="pre-adverse"><input type="hidden" name="id" value="' + esc(d.id) + '"><div class="notice warn small">Before any decision: conduct an individualized assessment (nature of the record, time passed, relevance to the job) as required by law. The candidate receives this notice, is pointed to their report and rights, and gets ' + 5 + ' business days to respond.</div>' + field('Internal reason (job-related)', area('reason', '', 'rows="3" required')) + '<button class="btn danger mt16">Send pre-adverse notice</button></form>'),
+  'adverse': async (d, el) => { if (!confirm('Send the final adverse action notice and reject this application?')) return; try { await busy(el, act(call('sendAdverseAction', { id: d.id }), r => 'Adverse action notice recorded.' + mailNote(r.mail))); } catch (e) { fail(e); } },
+  /* offers */
+  'new-offer': d => { const a = appById(d.app), j = jobById(a.jobId), start = new Date(Date.now() + 21 * 86400000).toISOString().slice(0, 10); openModal('Create offer', '<form data-form="offer"><input type="hidden" name="applicationId" value="' + esc(d.app) + '"><div class="form-row">' + field('Salary (' + (j.currency || 'USD') + ')', inp('salary', j.salaryMin && j.salaryMax ? Math.round((Number(j.salaryMin) + Number(j.salaryMax)) / 2) : '', 'type="number" min="0" required')) + field('Start date', inp('startDate', start, 'type="date" required')) + '</div>' + field('Terms', area('terms', 'Benefits: health, dental, vision, 401(k) match, paid time off.\nThis offer is contingent on successful completion of the verification process.', 'rows="4"')) + '<p class="small muted">' + (can('HIRING_MANAGER') ? 'You can approve this offer yourself.' : 'A hiring manager must approve before it is sent.') + '</p><button class="btn mt8">Create offer</button></form>'); },
+  'offer-decide': async (d, el) => { try { await busy(el, act(call('decideOffer', { id: d.id, approve: d.v === '1' }), d.v === '1' ? 'Offer approved.' : 'Returned to draft.')); } catch (e) { fail(e); } },
+  'offer-send': async (d, el) => { try { const r = await busy(el, act(call('sendOffer', d.id), null)); linkModal('Offer sent', r.link, r.mail); } catch (e) { fail(e); } },
+  'offer-withdraw': async (d, el) => { if (!confirm('Withdraw this offer?')) return; try { await busy(el, act(call('withdrawOffer', d.id), 'Offer withdrawn.')); } catch (e) { fail(e); } },
+  /* growth */
+  'new-plan': d => { const cands = S.db.candidates, jobs = S.db.jobs.filter(j => j.status !== 'Draft'); openModal('Growth plan', '<form data-form="plan">' + field('Candidate', sel('candidateId', cands.map(c => [c.id, c.name]), d.cand || '')) + field('Target job', sel('jobId', jobs.map(j => [j.id, j.title]), d.job || '')) + '<label class="check mt16"><input type="checkbox" name="notify"> <span>Email the plan to the candidate</span></label><button class="btn mt16">Create plan</button></form>'); },
+  'plan-done': async (d, el) => { try { await busy(el, act(call('updateSkillPlan', { id: d.id, status: 'Completed' }), 'Plan completed.')); } catch (e) { fail(e); } },
+  /* copilot & tools */
+  'cp-prompt': d => { const f = document.querySelector('form[data-form="copilot"]'); f.question.value = d.q; FORMS.copilot({ question: d.q }, f); },
+  'tool-parse': () => openModal('Parse a resume', '<form data-form="tool-parse"><input type="file" id="tp-file" accept=".pdf,.doc,.docx,.rtf,.txt,.md,.json">' + area('text', '', 'rows="6" placeholder="…or paste resume text"') + '<button class="btn mt8">Parse</button></form><div id="tp-out"></div>', true),
+  'tool-inclusive': () => openModal('Inclusive-language check', '<form data-form="tool-inclusive">' + area('text', '', 'rows="8" placeholder="Paste a job description…" required') + '<button class="btn mt8">Check</button></form><div id="ti-out"></div>', true),
+  'reports-refresh': () => { S.reports = null; renderApp(); },
+  'audit-export': async () => { try { download('intellijobs-audit.csv', await call('getAuditCsv'), 'text/csv'); } catch (e) { fail(e); } },
+  /* team */
+  'member-toggle': async (d, el) => { const m = S.db.members.find(x => x.id === d.id); try { await busy(el, act(call('updateMember', { id: m.id, role: m.role, status: m.status === 'Active' ? 'Inactive' : 'Active' }), 'Updated.')); } catch (e) { fail(e); } },
+  'member-resend': async (d, el) => { try { await busy(el, call('resendInvite', d.id)); toast('Invitation re-sent.', 'ok'); } catch (e) { fail(e); } },
+  /* billing */
+  'checkout': async (d, el) => { try { const r = await busy(el, call('startCheckout', { plan: d.plan, interval: S.ui.interval })); location.href = r.url; } catch (e) { fail(e); } },
+  'portal': async (d, el) => { try { const r = await busy(el, call('openBillingPortal')); location.href = r.url; } catch (e) { fail(e); } },
+  'invoice': d => openModal('Pay by invoice or purchase order', '<form data-form="invoice"><input type="hidden" name="plan" value="' + esc(d.plan) + '"><input type="hidden" name="interval" value="' + esc(S.ui.interval) + '"><p class="small muted">Our team will send an invoice for the ' + esc(d.plan) + ' plan (' + esc(S.ui.interval) + ') and activate it on receipt.</p>' + field('PO number (optional)', inp('poNumber')) + field('Billing contact & notes', area('notes', '', 'rows="3"')) + '<button class="btn mt16">Request invoice</button></form>'),
+  /* platform */
+  'plat-tab': d => { S.ui.tab.platform = d.v; renderApp(); },
+  'plat-edit': d => { const o = S.plat.o.orgs.find(x => x.id === d.id); openModal('Edit ' + o.name, '<form data-form="plat-org"><input type="hidden" name="orgId" value="' + o.id + '"><div class="form-row">' + field('Plan', sel('plan', ['starter', 'professional', 'enterprise'], o.plan)) + field('Status', sel('status', ['Trialing', 'Active', 'PastDue', 'Canceled', 'Suspended'], o.status)) + field('Interval', sel('interval', ['monthly', 'annual'], o.interval || 'monthly')) + field('Trial ends', inp('trialEnds', o.trialEnds, 'type="date"')) + '</div>' + field('Notes', area('notes', o.notes, 'rows="2"')) + field('Reason (logged)', inp('reason', '', 'required')) + '<button class="btn mt16">Save</button></form>'); },
+  'plat-join': async (d, el) => { if (!confirm('Join this organization as a support administrator? This is recorded in its audit log.')) return; try { await busy(el, call('platformJoinOrg', d.id)); S.db = null; S.plat = null; go('#app/dashboard'); } catch (e) { fail(e); } },
+  'plat-user': async (d, el) => { try { await busy(el, call('platformSetUserStatus', { id: d.id, status: d.v })); S.plat = null; renderApp(); } catch (e) { fail(e); } },
+  'plat-sync': async (d, el) => { try { const r = await busy(el, call('platformSyncBilling')); toast(r.synced + ' subscription(s) synced.', 'ok'); S.plat = null; renderApp(); } catch (e) { fail(e); } },
+  'plat-purge': async (d, el) => { try { const r = await busy(el, call('platformPurgeDemos', false)); toast(r.demosRemoved + ' expired demo(s) removed.', 'ok'); S.plat = null; renderApp(); } catch (e) { fail(e); } },
+  /* candidate tasks */
+  'task-ics': () => { const t = S.ui.task; download('interview.ics', icsText(t.jobTitle + ' interview · ' + t.org.name, t.startsAt, t.durationMin, t.meetingLink, t.mode), 'text/calendar'); },
+  'task-start-test': async (d, el) => { try { S.ui.test = await busy(el, call('startAssessment', { token: S.ui.task.token })); paintAssessment(); } catch (e) { fail(e); } },
+  'task-decline-verify': async (d, el) => { if (!confirm('Decline the requested checks? The hiring team will be notified.')) return; try { await busy(el, call('respondVerification', { token: S.ui.task.token, consent: false })); renderTask(S.ui.task.token); } catch (e) { fail(e); } },
+  'task-decline-offer': async (d, el) => { if (!confirm('Decline this offer?')) return; try { await busy(el, call('respondOffer', { token: S.ui.task.token, accept: false })); renderTask(S.ui.task.token); } catch (e) { fail(e); } }
+};
+
+function inclusiveHtml(flags, score) {
+  if (!flags) return '';
+  if (!flags.length) return '<div class="notice small">✓ No inclusive-language issues found.</div>';
+  return '<div class="notice warn small"><b>Inclusive-language suggestions' + (score !== undefined ? ' · score ' + score + '/100' : '') + '</b><ul style="margin:6px 0;padding-left:18px">' + flags.map(f => '<li><b>' + esc(f.term) + '</b> — ' + esc(f.issue) + '. Try: ' + esc(f.suggestion) + '</li>').join('') + '</ul></div>';
+}
+function testForm() {
+  return '<form data-form="test"><div class="form-row three">' + field('Skill', '<input name="skill" list="bank" required value="AWS">') + field('Level', sel('level', ['Junior', 'Mid', 'Senior', 'Expert'], 'Mid')) + field('Generate', inp('count', 5, 'type="number" min="2" max="15"')) + '</div>' +
+    '<datalist id="bank">' + S.db.lists.bankSkills.map(s => '<option value="' + esc(s) + '">').join('') + '</datalist><button class="btn secondary small mt8" type="button" data-action="test-gen">✦ Generate questions</button>' +
+    '<div class="form-row three mt16">' + field('Title', inp('title', '', 'required')) + field('Time limit (min)', inp('durationMin', 20, 'type="number" min="5"')) + field('Pass mark (%)', inp('passMark', 70, 'type="number" min="1" max="100"')) + '</div>' +
+    '<div id="qs">' + testEditor(S.ui.qs) + '</div><button class="btn ghost small" type="button" data-action="q-add">+ Add question</button><div class="row mt16"><span class="grow"></span><button class="btn">Save assessment</button></div></form>';
+}
+function collectQs(f) {
+  S.ui.qs = (S.ui.qs || []).map((q, i) => ({ q: f['q' + i] ? f['q' + i].value : q.q, options: q.options.map((o, oi) => f['o' + i + '_' + oi] ? f['o' + i + '_' + oi].value : o),
+    answer: (() => { const r = f.querySelector('input[name="a' + i + '"]:checked'); return r ? Number(r.value) : q.answer; })() }));
+  return S.ui.qs;
+}
+
+/* ------------------------------------------------------------------ forms */
+const FORMS = {
+  'lead': async (v, f, b) => { try { await busy(b, call('submitLead', v)); f.reset(); toast('Thanks! Our team will contact you within one business day.', 'ok', 6000); } catch (e) { fail(e); } },
+  'login': async (v, f, b) => { try { const r = await busy(b, call('login', v)); r.pending ? go('#verify?email=' + encodeURIComponent(r.email)) : setSession(r); } catch (e) { fail(e); } },
+  'register': async (v, f, b) => { try { const r = await busy(b, call('register', v)); r.pending ? go('#verify?email=' + encodeURIComponent(r.email)) : setSession(r); } catch (e) { fail(e); } },
+  'verify': async (v, f, b) => { try { setSession(await busy(b, call('verifyEmail', v))); toast('Welcome to IntelliJobs!', 'ok'); } catch (e) { fail(e); } },
+  'forgot': async (v, f, b) => { try { await busy(b, call('requestPasswordCode', v)); toast('If an account exists, a code is on its way.', 'ok'); go('#reset?email=' + encodeURIComponent(v.email)); } catch (e) { fail(e); } },
+  'reset': async (v, f, b) => { try { setSession(await busy(b, call('resetPassword', v))); toast('Password saved.', 'ok'); } catch (e) { fail(e); } },
+  'create-org': async (v, f, b) => { try { await busy(b, call('createOrganization', v)); closeModal(); S.db = null; go('#app/dashboard'); toast('Organization created.', 'ok'); } catch (e) { fail(e); } },
+  'change-password': async (v, f, b) => { try { await busy(b, call('changePassword', v)); closeModal(); toast('Password updated. Other sessions were signed out.', 'ok'); } catch (e) { fail(e); } },
+  'preview-fit': async (v, f, b) => { const d = S.ui.job; S.ui.resumeDraft = v.resumeText; try { S.ui.preview = await busy(b, call('previewFit', { slug: d.org.slug, jobId: d.job.id, resumeText: v.resumeText })); paintJob(); } catch (e) { fail(e); } },
+  'apply': async (v, f, b) => {
+    const d = S.ui.job;
+    try {
+      const file = await readFile($('apply-file') && $('apply-file').files[0]);
+      const answers = (d.job.screeningQuestions || []).map((q, i) => v['answer' + i] || '');
+      const r = await busy(b, call('applyToJob', Object.assign({}, v, { slug: d.org.slug, jobId: d.job.id, file: file, answers: answers, consent: !!v.consent })));
+      S.ui.applied = r; paintJob(); window.scrollTo(0, 0);
+    } catch (e) { fail(e); }
+  },
+  'task-interview': async (v, f, b) => { const action = b && b.dataset.submit === 'reschedule' ? 'reschedule' : 'confirm'; try { const r = await busy(b, call('respondInterview', { token: S.ui.task.token, action: action, note: v.note })); toast(action === 'confirm' ? 'Confirmed — see you then!' : 'Request sent to the hiring team.', 'ok'); S.ui.task.status = r.status; paintTask(); } catch (e) { fail(e); } },
+  'task-screening': async (v, f, b) => { const qs = S.ui.task.questions || []; try { await busy(b, call('submitScreening', { token: S.ui.task.token, answers: qs.map((q, i) => v['a' + i] || '') })); S.ui.task.screeningDone = true; S.ui.task.status = 'Completed'; paintTask(); window.scrollTo(0, 0); } catch (e) { fail(e); } },
+  'task-test': async (v, f, b) => { clearInterval(timerHandle); const x = S.ui.test; try { x.result = await busy(b, call('submitAssessment', { token: S.ui.task.token, answers: x.questions.map((q, i) => (v['q' + i] === undefined ? null : Number(v['q' + i]))) })); paintAssessment(); window.scrollTo(0, 0); } catch (e) { fail(e); tickTimer(); } },
+  'task-verify': async (v, f, b) => { try { await busy(b, call('respondVerification', { token: S.ui.task.token, consent: !!v.consent, fullName: v.fullName })); toast('Thank you — your authorization was recorded.', 'ok'); renderTask(S.ui.task.token); } catch (e) { fail(e); } },
+  'task-offer': async (v, f, b) => { try { await busy(b, call('respondOffer', { token: S.ui.task.token, accept: true, fullName: v.fullName })); toast('Congratulations and welcome aboard!', 'ok', 6000); renderTask(S.ui.task.token); } catch (e) { fail(e); } },
+  'job': async (v, f, b) => {
+    const qs = String(v.questions || '').split('\n').map(s => s.trim()).filter(Boolean).map(s => ({ q: s.replace(/\s*\*$/, ''), required: !/\*$/.test(s) }));
+    const data = Object.assign({}, v, { screeningQuestions: qs, publish: b && b.dataset.submit === 'publish' }); delete data.questions;
+    try {
+      if (v.id) await busy(b, act(call('updateJob', data), 'Job saved.'));
+      else { const r = await busy(b, act(call('createJob', data), r2 => r2.status === 'Open' ? 'Published to your careers page.' : r2.status === 'Pending Approval' ? 'Submitted for approval.' : 'Draft saved.')); go('#app/job/' + r.id); }
+    } catch (e) { fail(e); }
+  },
+  'candidate': async (v, f, b) => {
+    try {
+      if (v.id) { await busy(b, act(call('updateCandidate', v), 'Candidate saved.')); delete S.cand[v.id]; renderApp(); }
+      else { const fe = $('cand-file'); const file = fe && fe.files[0] ? await readFile(fe.files[0]) : null; if (file) v.file = file; const r = await busy(b, act(call('createCandidate', v), 'Candidate added' + (v.jobId ? ' and scored for the job.' : '.'))); go('#app/candidate/' + r.id); }
+    } catch (e) { fail(e); }
+  },
+  'note': async (v, f, b) => { try { await busy(b, call('addNote', v)); delete S.cand[v.candidateId]; renderApp(); toast('Note added.', 'ok'); } catch (e) { fail(e); } },
+  'message': async (v, f, b) => { try { const r = await busy(b, act(call('sendCandidateMessage', v), r2 => 'Message ' + r2.status.toLowerCase() + '.')); delete S.cand[v.candidateId]; } catch (e) { fail(e); } },
+  'add-to-job': async (v, f, b) => { try { await busy(b, act(call('addToJob', v), r => 'Added · fit ' + r.fit + '%.')); } catch (e) { fail(e); } },
+  'import': async (v, f, b) => { try { const file = $('csv-file') && $('csv-file').files[0]; const csv = file ? await file.text() : v.csv; const r = await busy(b, act(call('importCandidates', csv), r2 => r2.added + ' candidate(s) imported' + (r2.skipped.length ? ', ' + r2.skipped.length + ' skipped' : '') + '.')); if (r.skipped.length) openModal('Skipped rows', '<ul class="small">' + r.skipped.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>'); } catch (e) { fail(e); } },
+  'schedule': async (v, f, b) => { const data = Object.assign({}, v, { timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }); if (v.startsAt) data.startsAt = new Date(v.startsAt).toISOString(); if (v.mode === 'AI-assisted screening') delete data.startsAt; try { const r = await busy(b, act(call('scheduleInterview', data), null)); linkModal('Interview scheduled', r.link, r.mail); } catch (e) { fail(e); } },
+  'resched': async (v, f, b) => { try { await busy(b, act(call('updateInterview', { id: v.id, startsAt: new Date(v.startsAt).toISOString(), meetingLink: v.meetingLink, notify: !!v.notify }), r => 'Rescheduled.' + mailNote(r.mail))); } catch (e) { fail(e); } },
+  'scorecard': async (v, f, b) => { const ratings = {}; S.db.lists.competencies.forEach(k => { if (v['r_' + k]) ratings[k] = v['r_' + k]; }); try { await busy(b, act(call('submitScorecard', { interviewId: v.interviewId, ratings: ratings, overall: v.overall, recommendation: v.recommendation, notes: v.notes }), 'Scorecard submitted.')); } catch (e) { fail(e); } },
+  'test': async (v, f, b) => { const qs = collectQs(f); try { await busy(b, act(call('createAssessment', { title: v.title, skill: v.skill, level: v.level, durationMin: v.durationMin, passMark: v.passMark, questions: qs }), 'Assessment saved.')); S.ui.qs = []; } catch (e) { fail(e); } },
+  'send-test': async (v, f, b) => { try { const r = await busy(b, act(call('inviteToAssessment', v), null)); linkModal('Assessment sent', r.link, r.mail); } catch (e) { fail(e); } },
+  'verify-req': async (v, f, b) => { try { const r = await busy(b, act(call('requestVerification', { applicationId: v.applicationId, checks: v.checks || [], provider: v.provider, notes: v.notes }), null)); linkModal('Consent request sent', r.link, r.mail); } catch (e) { fail(e); } },
+  'ver-result': async (v, f, b) => { try { await busy(b, act(call('updateVerification', { id: v.id, providerRef: v.providerRef, result: v.result, notes: v.notes, status: 'Completed' }), v.result === 'Consider' ? 'Recorded. Review individually before any pre-adverse notice.' : 'Result recorded.')); } catch (e) { fail(e); } },
+  'pre-adverse': async (v, f, b) => { try { await busy(b, act(call('sendPreAdverse', v), r => 'Pre-adverse notice recorded. Earliest final decision: ' + r.earliestFinal + '.' + mailNote(r.mail))); } catch (e) { fail(e); } },
+  'offer': async (v, f, b) => { try { await busy(b, act(call('createOffer', v), r => r.status === 'Approved' ? 'Offer approved — send it when ready.' : 'Offer sent for approval.')); } catch (e) { fail(e); } },
+  'plan': async (v, f, b) => { try { const r = await busy(b, act(call('createSkillPlan', v), r2 => 'Plan created for ' + (r2.gaps.length ? r2.gaps.join(', ') : 'proving existing skills') + '.' + mailNote(r2.mail))); } catch (e) { fail(e); } },
+  'copilot': async (v, f, b) => { S.ui.chat.push({ who: 'me', text: v.question }); renderApp(); try { const r = await call('aiCopilot', { question: v.question }); S.ui.chat.push({ who: 'ai', text: r.answer, provider: r.provider }); } catch (e) { S.ui.chat.push({ who: 'ai', text: e.message }); } renderApp(); S.ui.refocus = 'cp-q'; afterPaint('copilot'); },
+  'tool-parse': async (v, f, b) => { try { const file = await readFile($('tp-file') && $('tp-file').files[0]); let text = v.text; if (file) text = (await call('extractResumeText', file)).text; const r = await busy(b, call('aiParseResume', { text: text })); $('tp-out').innerHTML = '<div class="card flat mt16"><b>' + esc(r.name || '(name not detected)') + '</b> · ' + esc(r.headline) + '<div class="small muted">' + esc(r.email) + ' ' + esc(r.phone) + ' · ' + (r.years || '?') + ' years</div><div class="mt8">' + chips(r.skills, 'a') + '</div><div class="tiny dim mt8">' + esc(r.provider) + '</div></div>'; } catch (e) { fail(e); } },
+  'tool-inclusive': async (v, f, b) => { try { const r = await busy(b, call('aiInclusiveReview', v)); $('ti-out').innerHTML = inclusiveHtml(r.flags, r.score); } catch (e) { fail(e); } },
+  'invite': async (v, f, b) => { try { await busy(b, act(call('addMember', v), r => r.invited ? (r.emailed ? 'Invitation emailed.' : 'Member added — the invitation email could not be sent; they can use "Accept an invite".') : 'Member added.')); } catch (e) { fail(e); } },
+  'careers': async (v, f, b) => { try { await busy(b, act(call('updateCareersSettings', { slug: v.slug, headline: v.headline, about: v.about, color: v.color, enabled: !!v.enabled }), 'Careers site saved.')); } catch (e) { fail(e); } },
+  'invoice': async (v, f, b) => { try { await busy(b, act(call('requestInvoice', v), 'Invoice requested — our team will be in touch.', { refresh: false })); S.billing = null; renderApp(); } catch (e) { fail(e); } },
+  'plat-settings': async (v, f, b) => { try { await busy(b, call('platformSaveSettings', v)); toast('Settings saved.', 'ok'); S.plat = null; S.pub = null; renderApp(); } catch (e) { fail(e); } },
+  'plat-secret': async (v, f, b) => { try { await busy(b, call('platformSetSecret', v)); toast(v.value ? 'Secret saved.' : 'Secret removed.', 'ok'); S.plat = null; renderApp(); } catch (e) { fail(e); } },
+  'plat-org': async (v, f, b) => { try { await busy(b, call('platformUpdateOrg', v)); closeModal(); toast('Organization updated.', 'ok'); S.plat = null; renderApp(); } catch (e) { fail(e); } }
+};
+
+/* ------------------------------------------------------------------ change handlers */
+const CHANGES = {
+  'switch-org': async v => { try { await call('switchOrg', v); S.db = null; S.billing = null; S.reports = null; S.audit = null; route(); } catch (e) { fail(e); } },
+  'stage': (v, el) => {
+    const id = el.dataset.id;
+    if (v === 'Rejected') return openModal('Reject application', '<form data-form="reject"><input type="hidden" name="applicationId" value="' + id + '">' + field('Job-related reason (required)', sel('reason', S.db.lists.rejectReasons, '')) + '<label class="check mt16"><input type="checkbox" name="notify" checked> <span>Send a respectful decline email</span></label><button class="btn danger mt16">Reject</button></form>');
+    moveTo(id, v);
+  },
+  'rate': async (v, el) => { if (!v) return; try { await call('rateApplication', { applicationId: el.dataset.id, rating: v }); toast('Rated.', 'ok'); const a = appById(el.dataset.id); a.rating = Number(v); } catch (e) { fail(e); } },
+  'pipe-job': v => { S.ui.pipeJob = v; renderApp(); },
+  'careers-wt': v => { S.ui.wt = v; paintCareers(); },
+  'iv-status': async (v, el) => { if (!v) return; try { await act(call('updateInterview', { id: el.dataset.id, status: v }), 'Interview marked ' + v.toLowerCase() + '.'); } catch (e) { fail(e); } },
+  'iv-mode': v => { const w = $('iv-when'), h = $('iv-hint'); if (w) w.style.display = v === 'AI-assisted screening' ? 'none' : ''; if (h) h.textContent = v === 'AI-assisted screening' ? 'The candidate gets structured, job-related written questions to answer any time in the next 14 days, with an AI disclosure and accommodation path. You get a summary for human review.' : 'The candidate gets an email with a calendar invite and a private link to confirm or request another time.'; },
+  'member-role': async (v, el) => { const m = S.db.members.find(x => x.id === el.dataset.id); try { await act(call('updateMember', { id: m.id, role: v, status: m.status }), 'Role updated.'); } catch (e) { fail(e); renderApp(); } },
+  'lead-status': async (v, el) => { try { await call('platformUpdateLead', { id: el.dataset.id, status: v }); toast('Lead updated.', 'ok'); } catch (e) { fail(e); } },
+  'cand-file': async (v, el) => {
+    try {
+      const file = await readFile(el.files[0]); if (!file) return;
+      toast('Reading resume…');
+      const r = await call('extractResumeText', file), f = el.form, p = r.parsed;
+      f.resumeText.value = r.text;
+      [['name', p.name], ['email', p.email], ['phone', p.phone], ['headline', p.headline], ['yearsExp', p.years || ''], ['skills', (p.skills || []).join(', ')], ['linkedin', p.linkedin]].forEach(x => { if (x[1] && !f[x[0]].value) f[x[0]].value = x[1]; });
+      toast('Profile extracted — review and save.', 'ok');
+    } catch (e) { fail(e); }
+  }
+};
+FORMS.reject = async (v, f, b) => { try { await busy(b, act(call('moveStage', { applicationId: v.applicationId, stage: 'Rejected', reason: v.reason, notify: !!v.notify }), r => 'Rejected.' + mailNote(r.mail))); } catch (e) { fail(e); } };
+async function moveTo(id, stage) {
+  try { await act(call('moveStage', { applicationId: id, stage: stage }), 'Moved to ' + stage + '.'); }
+  catch (e) { fail(e); renderApp(); }
+}
+
+/* ------------------------------------------------------------------ wiring */
+function bind() {
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-action]'); if (!el) return;
+    const fn = ACTIONS[el.dataset.action]; if (!fn) return;
+    if (el.dataset.action !== 'modal-bg') e.preventDefault();
+    fn(el.dataset, el, e);
+  });
+  document.addEventListener('submit', e => {
+    const f = e.target.closest('form[data-form]'); if (!f) return;
+    e.preventDefault();
+    const h = FORMS[f.dataset.form]; if (h) h(formValues(f), f, e.submitter || f.querySelector('button[type=submit],button:not([type])'));
+  });
+  document.addEventListener('change', e => {
+    const el = e.target.closest('[data-change]'); if (!el) return;
+    const h = CHANGES[el.dataset.change]; if (h) h(el.value, el, e);
+  });
+  let deb = null;
+  document.addEventListener('input', e => {
+    const el = e.target.closest('[data-filter]'); if (!el) return;
+    clearTimeout(deb);
+    deb = setTimeout(() => {
+      if (el.dataset.filter === 'careers') { S.ui.q = el.value; paintCareers(); S.ui.refocus = 'careers-q'; afterPaint(''); }
+      if (el.dataset.filter === 'cand') { S.ui.candQ = el.value; S.ui.refocus = 'cand-q'; renderApp(); }
+    }, 180);
+  });
+  let dragId = null;
+  document.addEventListener('dragstart', e => { const c = e.target.closest && e.target.closest('[data-app]'); if (c) { dragId = c.dataset.app; e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', dragId); } catch (x) { /* IE */ } } });
+  document.addEventListener('dragover', e => { const l = e.target.closest && e.target.closest('[data-lane]'); if (l && dragId) { e.preventDefault(); document.querySelectorAll('.lane.drop').forEach(x => x !== l && x.classList.remove('drop')); l.classList.add('drop'); } });
+  document.addEventListener('dragleave', e => { const l = e.target.closest && e.target.closest('[data-lane]'); if (l && !l.contains(e.relatedTarget)) l.classList.remove('drop'); });
+  document.addEventListener('drop', e => {
+    const l = e.target.closest && e.target.closest('[data-lane]'); if (!l || !dragId) return;
+    e.preventDefault(); l.classList.remove('drop');
+    const a = appById(dragId), id = dragId; dragId = null;
+    if (a.stage !== l.dataset.lane) CHANGES.stage(l.dataset.lane, { dataset: { id: id } });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && S.modal) closeModal(); });
+  window.addEventListener('hashchange', route);
+}
+
+bind();
+route();
+</script>
+
+</body>
+</html>
