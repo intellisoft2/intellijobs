@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.9.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.10.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -251,6 +251,8 @@ input[type=file]{max-width:100%}input,select,textarea{max-width:100%;box-sizing:
 .perm{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);font-size:13px;cursor:pointer}
 .perm input{margin-top:2px;accent-color:var(--a)}.perm small{display:block;color:var(--dim);font-size:11px}.perm.na{opacity:.5;cursor:not-allowed}
 .idtag{display:inline-block;font:600 11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.3px;color:var(--b);border:1px solid #70aaff55;background:#70aaff14;border-radius:6px;padding:0 6px;vertical-align:2px;cursor:copy;white-space:nowrap}h2 .idtag{font-size:12px;vertical-align:5px}
+.btn.join{background:linear-gradient(115deg,#4de0c3,#70aaff);color:#04222c}.btn.join .ic{width:16px;height:16px}button.chip{cursor:pointer}
+.flagrow{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.flagrow .chip .ic{width:12px;height:12px;vertical-align:-2px}.notice.warn{border-left-color:#f5b942}
 </style>
 
 </head>
@@ -755,7 +757,7 @@ function paintTask() {
   if (t.kind === 'interview') {
     const done = ['Confirmed', 'Canceled', 'Completed'].indexOf(t.status) >= 0;
     return paint(taskShell('<div class="card"><h3>Your interview</h3><p>' + hi + '</p><p><b>' + esc(t.mode) + '</b><br>' + esc(when(t.startsAt)) + ' · ' + esc(t.durationMin) + ' minutes<br><span class="small muted">Shown in your time zone (' +
-      esc(Intl.DateTimeFormat().resolvedOptions().timeZone) + ')</span></p>' + (t.meetingLink ? '<p>Join link: <a href="' + esc(t.meetingLink) + '" target="_blank" rel="noopener">' + esc(t.meetingLink) + '</a></p>' : '') +
+      esc(Intl.DateTimeFormat().resolvedOptions().timeZone) + ')</span></p>' + (t.meetingLink ? '<p><a class="btn join" href="' + esc(t.meetingLink) + '" target="_blank" rel="noopener">' + ic('video') + ' Join ' + esc(t.provider && t.provider !== 'Video link' ? 'with ' + t.provider : 'the meeting') + '</a><br><span class="tiny dim">' + esc(t.meetingLink) + '</span></p>' : '') +
       '<p>Status: ' + statusChip(t.status) + '</p>' + (t.startsAt ? '<button class="btn secondary small" data-action="task-ics">Add to calendar (.ics)</button>' : '') +
       (t.hasScreening && !t.screeningDone ? screeningForm(t) : '') +
       (done ? '' : '<form data-form="task-interview" class="mt16">' + field('Note to the hiring team (optional)', area('note', '', 'rows="2" placeholder="Accessibility needs, preferred times…"')) +
@@ -919,7 +921,7 @@ PAGES.jobs = () => {
     (jobs.length ? '<div class="table-wrap"><table><tr><th>Job</th><th>Status</th><th>Pipeline</th><th>Top fit</th><th>Pay</th><th>Opened</th></tr>' + jobs.map(j => {
       const ja = appsFor(j.id), act = ja.filter(a => S.db.lists.activeStages.indexOf(a.stage) >= 0);
       return '<tr class="click" data-action="open-job" data-id="' + j.id + '"><td><b>' + esc(j.title) + '</b> ' + idTag(j.code) + '<div class="small muted">' + [j.department, j.location, j.workType, j.clientName].filter(Boolean).map(esc).join(' · ') + '</div><div>' + chips(list(j.requiredSkills).slice(0, 5)) + '</div></td>' +
-        '<td>' + statusChip(j.status) + (j.createdBy === 'sample-data' && !isDemo() ? '<div class="tiny dim">sample · hidden from careers page</div>' : '') + '</td><td class="small">' + ja.length + ' total · ' + act.length + ' active<br>' + ja.filter(a => a.stage === 'Hired').length + ' hired / ' + j.openings + ' opening' + (j.openings > 1 ? 's' : '') + '</td>' +
+        '<td>' + statusChip(j.status) + flagChips(j) + (j.createdBy === 'sample-data' && !isDemo() ? '<div class="tiny dim">sample · hidden from careers page</div>' : '') + '</td><td class="small">' + ja.length + ' total · ' + act.length + ' active<br>' + ja.filter(a => a.stage === 'Hired').length + ' hired / ' + j.openings + ' opening' + (j.openings > 1 ? 's' : '') + '</td>' +
         '<td>' + (act.length ? '<span class="fit ' + fitCls(Math.max.apply(null, act.map(a => a.fitScore))) + '">' + Math.max.apply(null, act.map(a => a.fitScore)) + '%</span>' : '<span class="dim">—</span>') + '</td>' +
         '<td class="small nowrap">' + esc(salaryText(j)) + '</td><td class="small muted">' + (j.publishedAt ? ago(j.publishedAt) : day(j.createdAt)) + '</td></tr>';
     }).join('') + '</table></div>' : '<div class="empty">No jobs here yet.' + (can('RECRUITER') ? ' <a href="#app/jobs" data-action="new-job">Create one</a> — or paste a brief and let the copilot draft it.' : '') + '</div>');
@@ -1083,7 +1085,7 @@ function interviewCard(i, cards) {
   const mine = cards.find(s => s.interviewer === S.db.who.email);
   return '<div class="card mt16"><div class="row between wrap-row"><div><h3 class="mb0">' + esc(i.mode) + ' ' + statusChip(i.status) + '</h3><div class="small muted">' + esc(c.name) + ' · ' + esc(j.title) +
     (i.startsAt ? ' · ' + esc(when(i.startsAt)) + ' · ' + i.durationMin + ' min' : ' · candidate answers any time') + (i.interviewers ? ' · Panel: ' + esc(i.interviewers) : '') + '</div>' +
-    (i.meetingLink ? '<a class="small" href="' + esc(i.meetingLink) + '" target="_blank" rel="noopener">' + esc(i.meetingLink) + '</a>' : '') + '</div><div class="row wrap-row">' +
+    (i.meetingLink ? '<a class="btn small join mt8" href="' + esc(i.meetingLink) + '" target="_blank" rel="noopener">' + ic('video') + ' Join ' + esc(PROVIDER_LABEL[i.provider] || 'meeting') + '</a> <span class="tiny dim">' + esc(i.meetingLink) + '</span>' : i.provider === 'phone' ? '<div class="small">' + ic('mic') + ' Phone call</div>' : i.provider === 'inperson' ? '<div class="small">' + ic('pin') + ' In person</div>' : '') + '</div><div class="row wrap-row">' +
     (can('RECRUITER') && ['Scheduled', 'Confirmed', 'Reschedule requested'].indexOf(i.status) >= 0 ? '<button class="btn small ghost" data-action="iv-link" data-id="' + i.id + '">New candidate link</button>' +
       (i.startsAt ? '<button class="btn small ghost" data-action="iv-ics" data-id="' + i.id + '">.ics</button><button class="btn small secondary" data-action="iv-resched" data-id="' + i.id + '">Reschedule</button>' : '') +
       '<select data-change="iv-status" data-id="' + i.id + '" aria-label="Interview status">' + opts([['', 'Set status…'], 'Completed', 'No-show', 'Canceled'], '') + '</select>' : '') +
@@ -1392,7 +1394,7 @@ const ACTIONS = {
     const iso = new Date(local - local.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
     openModal('Schedule interview', '<form data-form="schedule">' + field('Application', sel1) + field('Interview type', sel('mode', S.db.lists.interviewModes, 'Human virtual interview', 'data-change="iv-mode"')) +
       '<div id="iv-when"><div class="form-row">' + field('Date & time (your time zone)', inp('startsAt', iso, 'type="datetime-local"')) + field('Duration (minutes)', inp('durationMin', 45, 'type="number" min="10"')) + '</div>' +
-      field('Meeting link (Teams, Zoom, Meet…)', inp('meetingLink', '', 'type="url" placeholder="https://"')) + '</div>' + field('Interviewers (emails, comma separated)', inp('interviewers', S.db.who.email)) +
+      providerFields() + '</div>' + field('Interviewers (emails, comma separated)', inp('interviewers', S.db.who.email)) +
       '<div class="notice small" id="iv-hint">The candidate gets an email with a calendar invite and a private link to confirm or request another time.</div><button class="btn mt8">Schedule & notify</button></form>');
   },
   'iv-link': async (d, el) => { try { const r = await busy(el, call('resendInterviewLink', d.id)); linkModal('Candidate link', r.link, r.mail); } catch (e) { fail(e); } },
@@ -1525,7 +1527,7 @@ const FORMS = {
   'message': async (v, f, b) => { try { const r = await busy(b, act(call('sendCandidateMessage', v), r2 => 'Message ' + r2.status.toLowerCase() + '.')); delete S.cand[v.candidateId]; } catch (e) { fail(e); } },
   'add-to-job': async (v, f, b) => { try { await busy(b, act(call('addToJob', v), r => 'Added · fit ' + r.fit + '%.')); } catch (e) { fail(e); } },
   'import': async (v, f, b) => { try { const file = $('csv-file') && $('csv-file').files[0]; const csv = file ? await file.text() : v.csv; const r = await busy(b, act(call('importCandidates', csv), r2 => r2.added + ' candidate(s) imported' + (r2.skipped.length ? ', ' + r2.skipped.length + ' skipped' : '') + '.')); if (r.skipped.length) openModal('Skipped rows', '<ul class="small">' + r.skipped.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>'); } catch (e) { fail(e); } },
-  'schedule': async (v, f, b) => { const data = Object.assign({}, v, { timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }); if (v.startsAt) data.startsAt = new Date(v.startsAt).toISOString(); if (v.mode === 'AI-assisted screening') delete data.startsAt; try { const r = await busy(b, act(call('scheduleInterview', data), null)); linkModal('Interview scheduled', r.link, r.mail); } catch (e) { fail(e); } },
+  'schedule': async (v, f, b) => { const data = Object.assign({}, v, { timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }); if (v.startsAt) data.startsAt = new Date(v.startsAt).toISOString(); if (v.mode === 'AI-assisted screening') delete data.startsAt; try { const r = await busy(b, act(call('scheduleInterview', data), null)); linkModal('Interview scheduled', r.link, r.mail); if (r.meetingLink) toast((r.provider || 'Meeting') + ' link ready: ' + r.meetingLink, 'ok'); } catch (e) { fail(e); } },
   'resched': async (v, f, b) => { try { await busy(b, act(call('updateInterview', { id: v.id, startsAt: new Date(v.startsAt).toISOString(), meetingLink: v.meetingLink, notify: !!v.notify }), r => 'Rescheduled.' + mailNote(r.mail))); } catch (e) { fail(e); } },
   'scorecard': async (v, f, b) => { const ratings = {}; S.db.lists.competencies.forEach(k => { if (v['r_' + k]) ratings[k] = v['r_' + k]; }); try { await busy(b, act(call('submitScorecard', { interviewId: v.interviewId, ratings: ratings, overall: v.overall, recommendation: v.recommendation, notes: v.notes }), 'Scorecard submitted.')); } catch (e) { fail(e); } },
   'test': async (v, f, b) => { const qs = collectQs(f); try { await busy(b, act(call('createAssessment', { title: v.title, skill: v.skill, level: v.level, durationMin: v.durationMin, passMark: v.passMark, questions: qs }), 'Assessment saved.')); S.ui.qs = []; } catch (e) { fail(e); } },
@@ -2457,7 +2459,9 @@ platIntakeHtml = function () {
       '<td><input type="email" name="notify' + i + '" value="' + esc(b.notify) + '" placeholder="who gets private alerts"></td><td class="small">' +
       '<label class="check"><input type="checkbox" name="autoPublish' + i + '"' + (b.autoPublish ? ' checked' : '') + '> Publish clean requirements automatically</label>' +
       '<label class="check"><input type="checkbox" name="autoMarket' + i + '"' + (b.autoMarket ? ' checked' : '') + '> Market consultants without screening</label>' +
-      '<label class="check"><input type="checkbox" name="replyCandidates' + i + '"' + (b.replyCandidates ? ' checked' : '') + '> Reply to candidates who email themselves</label></td>' +
+      '<label class="check"><input type="checkbox" name="replyCandidates' + i + '"' + (b.replyCandidates ? ' checked' : '') + '> Reply to candidates who email themselves</label>' +
+      '<label class="check"><input type="checkbox" name="holdGroup' + i + '"' + (b.holdGroup !== false ? ' checked' : '') + '> Hold Google Group requirements for review</label>' +
+      '<label class="check"><input type="checkbox" name="holdPersonal' + i + '"' + (b.holdPersonal !== false ? ' checked' : '') + '> Hold requirements from personal email (Gmail, Yahoo…) for review</label></td>' +
       '<td><button class="btn small ghost" type="button" data-action="box-remove" data-i="' + i + '">Remove</button></td></tr>').join('') + '</table></div><button class="btn mt16">Save mailboxes</button></form>' : '<p class="small muted mt16">No staffing mailbox yet.</p>') +
     '<details class="mt16"><summary class="small">How to connect bob@… (once)</summary><ol class="small"><li>In bob\'s Gmail: Settings → Forwarding → add the intake account (the Google account that deploys IntelliHire) and confirm; then a filter for all incoming mail (or from:* -from:me) → Forward to it. Or ask your Google Workspace admin for a routing rule that BCCs bob\'s mail to it.</li>' +
     '<li>In the intake account: a filter <b>to:bob@intellisoft-tech.com</b> → apply label <b>intellihire-intake</b>.</li><li>Add the mailbox here and choose the workspace (Intellisoft Technologies). Bob can also forward any single email by hand.</li></ol></details></div>';
@@ -2492,7 +2496,7 @@ Object.assign(ACTIONS, {
       field('Role title (if not posted)', inp('jobTitle', '')) + field('Message to the staffing company', area('message', '', 'rows="3" placeholder="Start date, duration, interview availability…"')) +
       '<p class="tiny dim">The staffing company receives your request and contacts you with the consultant\'s availability and terms.</p><button class="btn">Send request</button></form>');
   },
-  'box-add': () => { S.ui.boxes = (S.ui.boxes || []).concat([{ address: '', orgId: (S.plat.intake.orgs[0] || {}).id, autoPublish: true, autoMarket: false, replyCandidates: true, notify: '' }]); renderApp(); },
+  'box-add': () => { S.ui.boxes = (S.ui.boxes || []).concat([{ address: '', orgId: (S.plat.intake.orgs[0] || {}).id, autoPublish: true, autoMarket: false, replyCandidates: true, holdGroup: true, holdPersonal: true, notify: '' }]); renderApp(); },
   'box-remove': d => { S.ui.boxes.splice(Number(d.i), 1); renderApp(); },
   'intake-as': async (d, el) => { try { S.plat.intake = await busy(el, call('platformIntakeReprocess', { id: d.id, as: d.v })); toast('Processed as ' + d.v + '.', 'ok'); renderApp(); } catch (e) { fail(e); } }
 });
@@ -2501,7 +2505,7 @@ Object.assign(FORMS, {
   'cons-save': async (v, f, b) => { try { await busy(b, call('updateConsultant', v)); toast('Marketing profile saved.', 'ok'); S.cons = null; S.bench = null; renderApp(); } catch (e) { fail(e); } },
   'cons-request': async (v, f, b) => { try { const r = await busy(b, call('requestConsultant', v)); closeModal(); toast(r.already ? 'You already requested this consultant.' : 'Request sent — the staffing company will contact you.', 'ok', 6000); S.talent = null; renderApp(); } catch (e) { fail(e); } },
   'boxes-save': async (v, f, b) => {
-    const boxes = (S.ui.boxes || []).map((x, i) => ({ address: v['address' + i], orgId: v['orgId' + i], notify: v['notify' + i], autoPublish: !!v['autoPublish' + i], autoMarket: !!v['autoMarket' + i], replyCandidates: !!v['replyCandidates' + i] }));
+    const boxes = (S.ui.boxes || []).map((x, i) => ({ address: v['address' + i], orgId: v['orgId' + i], notify: v['notify' + i], autoPublish: !!v['autoPublish' + i], autoMarket: !!v['autoMarket' + i], replyCandidates: !!v['replyCandidates' + i], holdGroup: !!v['holdGroup' + i], holdPersonal: !!v['holdPersonal' + i] }));
     try { S.plat.intake = await busy(b, call('platformStaffingSave', { mailboxes: boxes })); S.ui.boxes = null; toast('Staffing mailboxes saved.', 'ok'); await refresh(); } catch (e) { fail(e); }
   }
 });
@@ -2715,6 +2719,174 @@ Object.assign(CHANGES, {
   'inv-preset': (v, el) => { const f = el.form; S.ui.inv = { preset: el.value, scope: f.scope.value, open: true }; renderApp(); const nf = document.querySelector('form[data-form=invite2]'); if (nf) { nf.email.value = f.email.value; nf.title.value = f.title.value; } },
   'acc-role': (v, el) => { const x = S.db.members.find(m => m.id === el.dataset.id); if (!x) return; const f = el.form; const tmp = Object.assign({}, x, { title: f.title.value, scope: f.scope.value }); openModal('Access — ' + x.email, memberAccessForm(tmp, el.value), true); }
 });
+
+/* ------------------------------------------------------------------ v1.10 video interviews: Google Meet, Zoom, Teams, Webex */
+const PROVIDER_LABEL = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', other: 'meeting', phone: 'Phone', inperson: 'In person' };
+function savedLinks() { try { return JSON.parse(localStorage.getItem('ih-meet-links') || '{}'); } catch (e) { return {}; } }
+function providerFields() { return '<div id="iv-prov">' + providerInner() + '</div>'; }
+function providerInner() {
+  const pv = S.ui.ivProvider || (savedLinks().last || 'meet'), links = savedLinks();
+  const needs = ['zoom', 'teams', 'webex', 'other'].indexOf(pv) >= 0;
+  return '<div class="form-row">' + field('How', sel('provider', [['meet', 'Google Meet — link created automatically'], ['zoom', 'Zoom'], ['teams', 'Microsoft Teams'], ['webex', 'Webex'], ['other', 'Other video link'], ['phone', 'Phone call'], ['inperson', 'In person']], pv, 'data-change="iv-provider"')) +
+    '<div id="iv-linkbox"' + (needs ? '' : ' hidden') + '>' + field(PROVIDER_LABEL[pv] === 'meeting' ? 'Meeting link' : (PROVIDER_LABEL[pv] || 'Meeting') + ' link', inp('meetingLink', links[pv] || '', 'type="url" placeholder="https://"')) +
+    '<label class="check tiny"><input type="checkbox" name="remember" checked> Remember this link</label></div></div>' +
+    (pv === 'meet' ? '<p class="tiny dim" style="margin-top:-4px">' + ic('calendar') + ' A Google Calendar event with a Meet link is created; the candidate and interviewers get the calendar invitation.</p>' : '');
+}
+Object.assign(CHANGES, {
+  'iv-provider': (v, el) => { S.ui.ivProvider = el.value; const w = el.closest('#iv-prov'); if (w) { w.innerHTML = providerInner(); } }
+});
+const baseScheduleForm = FORMS.schedule;
+FORMS.schedule = async (v, f, b) => {
+  if (v.remember && v.meetingLink) { const l = savedLinks(); l[v.provider] = v.meetingLink; l.last = v.provider; try { localStorage.setItem('ih-meet-links', JSON.stringify(l)); } catch (e) { /* private mode */ } }
+  else { const l = savedLinks(); l.last = v.provider; try { localStorage.setItem('ih-meet-links', JSON.stringify(l)); } catch (e) { /* private mode */ } }
+  if (/AI-assisted/.test(v.mode)) { delete v.provider; v.meetingLink = ''; }
+  if (['meet', 'phone', 'inperson'].indexOf(v.provider) >= 0) v.meetingLink = '';
+  if (v.provider === 'phone' && /virtual/i.test(v.mode)) v.mode = 'Phone screen';
+  if (v.provider === 'inperson' && /virtual/i.test(v.mode)) v.mode = 'On-site';
+  return baseScheduleForm(v, f, b);
+};
+
+/* ------------------------------------------------------------------ audit log with totals + filters */
+PAGES.audit = () => {
+  const a = S.audit, f = S.ui.af || { days: 30, action: '', q: '' };
+  if (a && Array.isArray(a)) { S.audit = null; return PAGES.audit(); }
+  const acts = a ? Object.keys(a.counts).sort() : [];
+  return head('Audit log', 'Every change, approval, consent, candidate action and processed email', can('ADMIN') && hasFeat('auditExport') && canP('data.export') ? '<button class="btn ghost" data-action="audit-export">Export CSV</button>' : '') +
+    '<form data-form="audit-filter" class="row wrap-row">' + sel('days', [[1, 'Last 24 hours'], [7, 'Last 7 days'], [30, 'Last 30 days'], [90, 'Last 90 days'], [0, 'All time']], f.days, 'style="max-width:170px"') +
+    sel('action', [['', 'All actions'], ['EMAIL_*', 'All processed emails']].concat(acts.map(k => [k, k + ' (' + a.counts[k] + ')'])), f.action, 'style="max-width:280px"') +
+    inp('q', f.q, 'type="search" placeholder="Search actor, subject, ID…" style="max-width:280px"') + '<button class="btn small">Apply</button></form>' +
+    (!a ? '<div class="loading">Loading<span class="pulse"></span></div>' :
+      '<div class="grid g4 mt16">' + kpi(num(a.all), 'Events in period') + kpi(num(a.email), 'Emails processed') + kpi(num(Object.keys(a.counts).filter(k => /^EMAIL_(FAILED|REVIEW|REJECTED|THROTTLED)/.test(k)).reduce((s, k) => s + a.counts[k], 0)), 'Emails failed / to review') + kpi(num(a.total), 'Matching filter') + '</div>' +
+      '<div class="row wrap-row mt8">' + Object.keys(a.counts).filter(k => /^EMAIL_/.test(k)).map(k => '<button class="chip' + (/FAILED|REVIEW/.test(k) ? ' warn' : /PUBLISHED|CREATED/.test(k) ? ' ok' : '') + '" data-action="audit-act" data-v="' + k + '">' + esc(k.replace('EMAIL_', '').toLowerCase()) + ' · ' + a.counts[k] + '</button>').join('') + '</div>' +
+      (a.rows.length ? '<div class="table-wrap mt16"><table><tr><th>When</th><th>Actor</th><th>Action</th><th>Entity</th></tr>' + a.rows.map(x => '<tr><td class="small nowrap">' + esc(when(x.createdAt)) + '</td><td class="small">' + esc(x.actor) + '</td><td>' + chip(x.action, /^EMAIL_(FAILED|REVIEW)/.test(x.action) ? 'warn' : '') + '</td><td class="small">' + esc(x.entity) + ' <span class="dim">' + esc(String(x.entityId).slice(0, 90)) + '</span></td></tr>').join('') + '</table></div>' +
+        (a.total > a.rows.length ? '<p class="small muted">Showing the latest ' + a.rows.length + ' of ' + num(a.total) + ' — narrow the filter or export CSV for everything.</p>' : '') : '<div class="empty mt16">No activity matches.</div>'));
+};
+function loadAudit() { S.auditLoading = true; const f = S.ui.af || { days: 30 }; return call('getAuditLogs', f).then(r => { S.audit = Array.isArray(r) ? { rows: r, counts: {}, total: r.length, all: r.length, email: 0 } : r; }, e => { S.audit = { rows: [], counts: {}, total: 0, all: 0, email: 0 }; fail(e); }).then(() => { S.auditLoading = false; if (S.route.parts[0] === 'audit') renderApp(); }); }
+const baseAfterPaintAudit = afterPaint;
+afterPaint = function (page) { if (page === 'audit') { if (!S.audit && !S.auditLoading) loadAudit(); } else baseAfterPaintAudit(page); };
+Object.assign(FORMS, { 'audit-filter': v => { S.ui.af = { days: Number(v.days), action: v.action, q: v.q }; S.audit = null; renderApp(); } });
+Object.assign(ACTIONS, { 'audit-act': d => { S.ui.af = Object.assign({ days: 30, q: '' }, S.ui.af, { action: d.v }); S.audit = null; renderApp(); } });
+
+/* ------------------------------------------------------------------ console: failed emails + Gmail labels */
+const basePlatIntake110 = platIntakeHtml;
+platIntakeHtml = function () {
+  let html = basePlatIntake110();
+  const it = S.plat.intake;
+  if (!it) return html;
+  const failed = it.log.filter(l => l.status === 'Failed');
+  if (failed.length) {
+    const box = '<div class="card mt16"><h3>Failed (' + failed.length + ') <span class="tiny dim">also labelled <b>intellihire-failed</b> in Gmail</span></h3><div class="table-wrap"><table><tr><th>When</th><th>From</th><th>Subject</th><th>Reason</th><th></th></tr>' +
+      failed.slice(0, 30).map(l => '<tr><td class="small nowrap">' + ago(l.receivedAt) + '</td><td class="small">' + esc(l.sender) + '</td><td class="small">' + esc(l.subject) + '</td><td class="tiny dim">' + esc(l.detail) + '</td><td class="right nowrap"><button class="btn small secondary" data-action="intake-as" data-id="' + l.id + '" data-v="job">Re-process as job</button><button class="btn small ghost" data-action="intake-as" data-id="' + l.id + '" data-v="candidate">as candidate</button></td></tr>').join('') + '</table></div></div>';
+    const i = html.indexOf('<h3 class="mt24">Recent intake</h3>');
+    html = i > 0 ? html.slice(0, i) + box + html.slice(i) : html + box;
+  }
+  return html.replace('<h3 class="mt24">Recent intake</h3>', '<div class="notice small mt24">' + ic('mail') + ' Gmail labels: <b>intellihire-processed</b> = handled · <b>intellihire-failed</b> = could not be read (review here or in Gmail) · add <b>intellihire-retry</b> to any email in Gmail to re-process it on the next run.</div><h3 class="mt24">Recent intake</h3>');
+};
+/* ------------------------------------------------------------------ v1.10 requirement sources: flags, review queue, clients & vendors */
+const FLAG_INFO = {
+  'personal-email': ['Personal email', 'warn', 'Sent from a personal mailbox such as Gmail or Yahoo'],
+  'google-group': ['Google Group', 'warn', 'Came through a Google Group subscription — often re-posted or incomplete'],
+  'suspect': ['Not genuine?', 'bad', 'Does not look like a genuine single requirement'],
+  'low-detail': ['Few details', '', 'Missing client, rate, duration or location'],
+  'source-disabled': ['Client disabled', 'bad', 'The client or vendor was disabled by an admin']
+};
+function flagChips(j) {
+  const fl = Array.isArray(j.flags) ? j.flags : String(j.flags || '').split(',').filter(Boolean);
+  if (!fl.length && j.reviewStatus !== 'Pending') return '';
+  return '<div class="flagrow">' + (j.reviewStatus === 'Pending' ? '<span class="chip warn" title="Waiting for a recruiter to approve">' + ic('flag') + ' Review</span>' : '') +
+    fl.filter(f => FLAG_INFO[f]).map(f => '<span class="chip ' + FLAG_INFO[f][1] + '" title="' + esc(FLAG_INFO[f][2]) + '">' + esc(FLAG_INFO[f][0]) + '</span>').join('') + '</div>';
+}
+
+/* nav */
+const baseRenderAppSources = renderApp;
+renderApp = function () {
+  const items = NAV[0][1], i = items.findIndex(n => n[0] === 'sources');
+  if (isStaffing() && can('RECRUITER') && i < 0) { const b = items.findIndex(n => n[0] === 'bench'); items.splice(b >= 0 ? b + 1 : 4, 0, ['sources', ic('flag'), 'Clients & review']); }
+  if ((!isStaffing() || !can('RECRUITER')) && i >= 0) items.splice(i, 1);
+  return baseRenderAppSources();
+};
+
+function loadSources() {
+  if (S.srcLoading) return;
+  S.srcLoading = true;
+  call('getSources', { days: (S.ui.src || {}).days || 0 }).then(r => { S.sources = r; }, e => { S.sources = { error: e.message }; }).then(() => { S.srcLoading = false; if (S.route.parts[0] === 'sources') renderApp(); });
+}
+PAGES.sources = () => {
+  if (!isStaffing()) return head('Clients & review') + '<div class="empty">Connect a staffing mailbox to this workspace (platform console → Email intake) to track clients and vendors.</div>';
+  const r = S.sources, u = S.ui.src || { tab: 'review', days: 0, q: '' };
+  if (!r) { loadSources(); return head('Clients & review') + '<div class="loading">Loading<span class="pulse"></span></div>'; }
+  if (r.error) return head('Clients & review') + '<div class="empty">' + esc(r.error) + '</div>';
+  const t = r.totals, tab = u.tab || 'review';
+  const tabs = [['review', 'Needs review', r.review.length], ['clients', 'Clients', r.clients.length]].concat(r.canSee ? [['vendors', 'Vendors', r.vendors.length]] : []);
+  return head('Clients & review', 'Requirement emails that need a human, and who they come from', '<button class="btn ghost" data-action="src-reload">' + ic('swap') + ' Refresh</button>') +
+    '<div class="grid g4">' + kpi(num(t.reqs), 'Requirements received') + kpi(num(t.clients), 'End clients', t.disabled ? t.disabled + ' disabled' : '') + kpi(num(t.pending), 'Waiting for review') +
+    kpi(num(t.personal) + ' · ' + num(t.group), 'Personal email · Google Group') + '</div>' +
+    '<div class="tabs mt16">' + tabs.map(x => '<button class="' + (tab === x[0] ? 'on' : '') + '" data-action="src-tab" data-v="' + x[0] + '">' + x[1] + ' <span class="dim small">' + x[2] + '</span></button>').join('') + '</div>' +
+    (tab === 'review' ? reviewHtml(r) : sourceTable(r, tab === 'clients' ? 'client' : 'vendor', u.q || ''));
+};
+function reviewHtml(r) {
+  if (!r.review.length) return '<div class="empty">Nothing to review. Requirements from Google Groups, personal email addresses and anything that does not look genuine will wait here.</div>';
+  const canPub = can('HIRING_MANAGER') && canP('jobs.publish');
+  return '<div class="notice small">' + ic('flag') + ' These jobs were created from email but are <b>not public</b>. Check each one, then approve (publishes with the original posting date — the email date) or reject.' +
+    ' Google Group / personal-email holding can be switched off per mailbox in the platform console.</div>' +
+    (canPub ? '<div class="row wrap-row mt8"><label class="check small"><input type="checkbox" data-change="src-all"> Select all</label><button class="btn small" data-action="src-bulk" data-v="approve">' + ic('check') + ' Approve selected</button><button class="btn small ghost" data-action="src-bulk" data-v="reject">Reject selected</button></div>' : '') +
+    '<div class="table-wrap mt8"><table><tr>' + (canPub ? '<th></th>' : '') + '<th>Job</th><th>Why it is flagged</th><th>From</th><th>Received</th>' + (canPub ? '<th></th>' : '') + '</tr>' + r.review.map(j =>
+      '<tr>' + (canPub ? '<td><input type="checkbox" class="src-pick" value="' + j.id + '"></td>' : '') +
+      '<td><a href="#app/job/' + j.id + '"><b>' + esc(j.title) + '</b></a> ' + idTag(j.code) + '<div class="small muted">' + [j.location, j.workType].filter(Boolean).map(esc).join(' · ') + '</div>' + chips(j.skills) + '</td>' +
+      '<td>' + flagChips(j) + '<div class="tiny dim mt8">' + esc(j.flagNote || '') + '</div></td>' +
+      '<td class="small">' + esc(j.sender) + (j.vendor ? '<div class="tiny dim">' + esc(j.vendor) + '</div>' : '') + (j.client ? '<div class="tiny">Client: ' + esc(j.client) + '</div>' : '') + (j.viaGroup ? '<div class="tiny dim">via ' + esc(j.viaGroup) + '</div>' : '') +
+      (j.subject ? '<div class="tiny dim" title="' + esc(j.subject) + '">“' + esc(j.subject.slice(0, 70)) + '”</div>' : '') + '</td>' +
+      '<td class="small nowrap">' + esc(day(j.sourceDate)) + '<div class="tiny dim">' + ago(j.sourceDate) + '</div></td>' +
+      (canPub ? '<td class="right nowrap"><button class="btn small" data-action="src-review" data-id="' + j.id + '" data-v="approve">Approve</button> <button class="btn small ghost" data-action="src-review" data-id="' + j.id + '" data-v="reject">Reject</button></td>' : '') + '</tr>').join('') + '</table></div>';
+}
+function sourceTable(r, kind, q) {
+  const all = kind === 'client' ? r.clients : r.vendors;
+  const ql = q.toLowerCase(), rows = all.filter(x => !ql || String(x.name + ' ' + x.key).toLowerCase().indexOf(ql) >= 0);
+  const label = kind === 'client' ? 'Client' : 'Vendor';
+  return '<div class="row wrap-row"><input type="search" data-change="src-q" value="' + esc(q) + '" placeholder="Search ' + kind + 's…" style="max-width:300px">' +
+    '<span class="small muted">' + (kind === 'client' ? 'End clients named in requirement emails.' : 'Who sent the requirements (company domain, or the full address for personal email).') +
+    (r.canManage ? ' Disabling one blocks its new requirements and puts its open jobs on hold.' : ' Only admins can disable a ' + kind + '.') + '</span></div>' +
+    (rows.length ? '<div class="table-wrap mt8"><table><tr><th>' + label + '</th><th class="right">Requirements</th><th class="right">Jobs</th><th class="right">Open</th>' + (kind === 'vendor' ? '<th class="right">Flagged</th>' : '') + '<th>Last seen</th><th>Status</th>' + (r.canManage ? '<th></th>' : '') + '</tr>' +
+      rows.map(x => '<tr><td><b>' + esc(x.name) + '</b>' + (kind === 'vendor' && x.name !== x.key ? '<div class="tiny dim">' + esc(x.key) + '</div>' : '') + (x.personal ? ' <span class="chip warn">Personal email</span>' : '') + (x.group ? ' <span class="chip">via Google Group · ' + x.group + '</span>' : '') + '</td>' +
+        '<td class="right">' + num(x.reqs) + '</td><td class="right">' + num(x.jobs) + '</td><td class="right">' + num(x.open) + '</td>' + (kind === 'vendor' ? '<td class="right">' + (x.flagged ? '<span class="chip bad">' + x.flagged + '</span>' : '0') + '</td>' : '') +
+        '<td class="small nowrap">' + (x.lastSeen ? ago(x.lastSeen) : '—') + '</td><td>' + (x.status === 'Disabled' ? '<span class="chip bad" title="' + esc('By ' + (x.changedBy || '') + ' ' + day(x.changedAt || '')) + '">Disabled</span>' : '<span class="chip ok">Active</span>') + '</td>' +
+        (r.canManage ? '<td class="right"><button class="btn small ' + (x.status === 'Disabled' ? 'secondary' : 'ghost') + '" data-action="src-status" data-kind="' + kind + '" data-key="' + esc(x.key) + '" data-name="' + esc(x.name) + '" data-v="' + (x.status === 'Disabled' ? 'Active' : 'Disabled') + '">' + (x.status === 'Disabled' ? 'Enable' : 'Disable') + '</button></td>' : '') + '</tr>').join('') +
+      '</table></div>' : '<div class="empty mt8">No ' + kind + 's yet' + (q ? ' matching “' + esc(q) + '”' : '') + '.</div>');
+}
+Object.assign(ACTIONS, {
+  'src-reload': () => { S.sources = null; renderApp(); },
+  'src-tab': d => { S.ui.src = Object.assign({}, S.ui.src, { tab: d.v }); renderApp(); },
+  'src-review': async (d, el) => {
+    try { const r = await busy(el, call('reviewEmailJobs', { ids: [d.id], decision: d.v })); S.sources = r; toast(d.v === 'approve' ? (r.skipped ? 'Not published — plan limit or disabled client.' : 'Approved and published.') : 'Rejected — the job is closed.', r.skipped ? 'error' : 'ok'); await refresh(); } catch (e) { fail(e); }
+  },
+  'src-bulk': async (d, el) => {
+    const ids = [...document.querySelectorAll('.src-pick:checked')].map(x => x.value);
+    if (!ids.length) return toast('Select at least one job.', 'error');
+    if (d.v === 'reject' && !confirmBox('Reject ' + ids.length + ' job(s)? They will be closed.')) return;
+    try { const r = await busy(el, call('reviewEmailJobs', { ids: ids, decision: d.v })); S.sources = r; toast((d.v === 'approve' ? 'Published ' : 'Rejected ') + r.done + (r.skipped ? ' · ' + r.skipped + ' skipped' : '') + '.', 'ok'); await refresh(); } catch (e) { fail(e); }
+  },
+  'src-status': async (d, el) => {
+    if (d.v === 'Disabled' && !confirmBox('Disable ' + d.name + '? New requirements from this ' + d.kind + ' will be blocked and its open jobs put on hold.')) return;
+    try { const r = await busy(el, call('setSourceStatus', { kind: d.kind, key: d.key, name: d.name, status: d.v })); S.sources = r; toast(d.name + (d.v === 'Disabled' ? ' disabled' : ' enabled') + ' · ' + r.changedJobs + ' job(s) updated.', 'ok'); await refresh(); } catch (e) { fail(e); }
+  }
+});
+Object.assign(CHANGES, {
+  'src-q': (v, el) => { S.ui.src = Object.assign({}, S.ui.src, { q: el.value }); renderApp(); const i = document.querySelector('[data-change=src-q]'); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } },
+  'src-all': (v, el) => { document.querySelectorAll('.src-pick').forEach(x => { x.checked = el.checked; }); }
+});
+function confirmBox(m) { try { return window.confirm(m); } catch (e) { return true; } }
+
+/* job page: why it is held + approve / reject */
+const baseJobPageSources = PAGES.job;
+PAGES.job = () => {
+  const html = baseJobPageSources(), j = jobById(S.route.parts[1]);
+  if (!j || !j.id || (j.reviewStatus !== 'Pending' && !j.flags)) return html;
+  const canPub = can('HIRING_MANAGER') && canP('jobs.publish') && j.reviewStatus === 'Pending';
+  const box = '<div class="notice small' + (j.reviewStatus === 'Pending' ? ' warn' : '') + '">' + flagChips(j) + '<div class="mt8">' + (j.reviewStatus === 'Pending' ? '<b>Held for review</b> — not on the careers page yet. ' : '') + esc(j.flagNote || '') + '</div>' +
+    (canPub ? '<div class="row mt8"><button class="btn small" data-action="src-review" data-id="' + j.id + '" data-v="approve">Approve & publish</button><button class="btn small ghost" data-action="src-review" data-id="' + j.id + '" data-v="reject">Reject</button></div>' : '') + '</div>';
+  const g = html.indexOf('<span class="grow"></span>'), i = g > 0 ? html.indexOf('</div>', g) : -1;
+  return i > 0 ? html.slice(0, i + 6) + box + html.slice(i + 6) : box + html;
+};
 
 bind();
 route();
