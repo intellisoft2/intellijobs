@@ -389,7 +389,7 @@ const plansList = () => (S.billing && S.billing.plans) || (S.pub && S.pub.plans)
 const demoList = () => (S.db && S.db.demoPackages) || (S.pub && S.pub.demoFlavors) || FALLBACK_DEMOS;
 const trialDays = () => (S.pub && S.pub.trialDays) || 14;
 const lim = (v, unit) => Number(v) > 0 ? num(v) + ' ' + unit : 'Unlimited ' + unit;
-const logo = () => '<a href="#home" class="logo">Intelli<b>Jobs</b><sup>™</sup><small>by Intellisoft Technologies</small></a>';
+const logo = () => '<a href="#home" class="logo">Intelli<b>Hire</b><sup>™</sup><small>by Intellisoft Technologies</small></a>';
 
 async function loadPub() { if (!S.pub) { try { S.pub = await call('getPublicConfig'); } catch (e) { S.pub = null; } } return S.pub; }
 
