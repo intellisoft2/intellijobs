@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.7.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.8.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -209,6 +209,44 @@ a{color:var(--a)}
 .req-chip .ic{width:15px;height:15px}.req-chip.visa{border-color:#4de0c366;color:#0a8f78}.mkt-card .req-chip.visa{color:var(--a)}
 .feature .fi .ic{width:22px;height:22px}.fi{color:var(--a)}.stat-row.icons b .ic{width:26px;height:26px;color:var(--a)}.notice .ic{vertical-align:-4px;margin-right:2px}
 .chip.info .ic{width:13px;height:13px;vertical-align:-2px}
+
+/* v1.8 — posting dates + mobile */
+.posted{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;color:var(--dim);margin:2px 8px 2px 2px;white-space:nowrap}.posted .ic{width:13px;height:13px}
+.hero-dates{opacity:.9;display:flex;align-items:center;gap:4px;flex-wrap:wrap}.hero-dates .ic{width:14px;height:14px}
+.grid>*,.split>*,.mkt-card>*,[style*="grid-template-columns"]>*{min-width:0}
+@media(max-width:900px){
+  [style*="grid-template-columns:1fr 300px"],[style*="grid-template-columns:300px 1fr"],[style*="grid-template-columns:1.1fr .9fr"],[style*="grid-template-columns:1.4fr .8fr"],
+  [style*="grid-template-columns:.9fr 1.1fr"],[style*="grid-template-columns:1.3fr .7fr"]{grid-template-columns:1fr!important}
+}
+@media(max-width:700px){
+  .top{flex-wrap:wrap;row-gap:6px;padding:10px 12px}.top>span.small.muted{display:none}.top .btn.small{padding:6px 9px;font-size:12px}.top select{max-width:180px}
+  .page-head{flex-wrap:wrap;gap:10px}.page-head h2{font-size:24px}
+  .tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}.tabs::-webkit-scrollbar{display:none}.tabs button{white-space:nowrap;flex:0 0 auto}
+  .modal-bg{padding:8px;align-items:end}.modal{padding:16px;border-radius:16px 16px 12px 12px;max-height:94vh}
+  input,select,textarea{font-size:16px}
+  .cta{flex-direction:column;align-items:stretch}.cta .btn{width:100%}
+  .mkt-card{padding:14px;gap:12px}.mkt-card .org-dot{width:40px;height:40px}.req-chip{white-space:normal;line-height:1.35}
+  .careers-hero{padding:28px 0 22px}.careers-hero h1{font-size:30px}.co-logo{width:52px;height:52px;flex-basis:52px}
+  .job-row{flex-direction:column;align-items:stretch;gap:10px}.job-row .btn{width:100%}
+  .stat-row{gap:14px;flex-wrap:wrap}.kpi b{font-size:24px}
+  .wizard-steps button{font-size:11px;padding:9px 4px}
+  .hero h1{font-size:clamp(34px,10vw,48px)}
+  table th,table td{padding:8px 9px}
+  .card{padding:16px}
+  #toast{left:12px;right:12px;max-width:none;transform:translateY(30px);bottom:12px;text-align:center}#toast.show{transform:none}
+}
+input[type=file]{max-width:100%}input,select,textarea{max-width:100%;box-sizing:border-box}
+
+/* mobile navigation drawer (the earlier .mobile-only rule hid the menu button) */
+@media(max-width:1000px){
+  .mobile-only{display:inline-flex!important}
+  .side{display:none}
+  .side.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;width:min(300px,86vw);height:100vh;z-index:70;overflow:auto;box-shadow:20px 0 60px #000a;animation:ij-slide .18s ease-out}
+  .side-scrim{position:fixed;inset:0;background:#030a14a6;z-index:65}
+  @keyframes ij-slide{from{transform:translateX(-30px);opacity:.4}to{transform:none;opacity:1}}
+}
+@media(max-width:640px){.grid:has(> .kpi){grid-template-columns:repeat(2,minmax(0,1fr))}.kpi{padding:14px}.kpi b{font-size:22px}}
+.top .mobile-only .ic{width:20px;height:20px}
 </style>
 
 </head>
@@ -254,6 +292,7 @@ const IC_PATHS = {
   list: '<path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/>',
   flag: '<path d="M5 21V4M5 4h11l-1.8 4L16 12H5"/>',
   clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
   agent: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'
 };
 function ic(name, cls) {
@@ -267,6 +306,16 @@ function workStatusSelect(name, value, required) {
   if (value && list.indexOf(value) < 0) list.unshift(value);
   return '<select name="' + name + '"' + (required ? ' required' : '') + '><option value="">Select your work status…</option>' + list.map(s => '<option' + (s === value ? ' selected' : '') + '>' + esc(s) + '</option>').join('') + '</select>';
 }
+
+/** "Posted today" / "Posted 3 days ago" with the full date as a tooltip. */
+function postedLabel(iso) {
+  if (!iso) return '';
+  const d = new Date(iso); if (isNaN(d)) return '';
+  const days = Math.floor((Date.now() - d) / 86400000), full = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const rel = days < 1 ? 'today' : days < 2 ? 'yesterday' : days < 31 ? days + ' days ago' : 'on ' + full;
+  return '<span class="posted" title="Posted ' + full + '">' + ic('clock') + 'Posted ' + rel + '</span>';
+}
+function fullDate(iso) { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
 /* IntelliHire web app — runs on the hosted site (fetch → Apps Script JSON API) and inside
    Apps Script (google.script.run). No external libraries. All user text is escaped. */
 'use strict';
@@ -629,7 +678,7 @@ function paintCareers() {
     '<select data-change="careers-wt" style="max-width:200px">' + opts([['', 'All arrangements'], 'Remote', 'Hybrid', 'On-site'], wt) + '</select><span class="grow"></span><span class="muted small">' + jobs.length + ' open role' + (jobs.length === 1 ? '' : 's') + '</span></div>' +
     '<div class="mt16">' + (jobs.length ? jobs.map(j => '<a class="job-row" href="#job/' + esc(d.org.slug) + '/' + esc(j.id) + '"><div><b style="font-size:16.5px">' + esc(j.title) + '</b><div class="small muted">' +
       [j.department, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div><div class="mt8">' + chips(j.requiredSkills.slice(0, 6)) +
-      (j.clearance && j.clearance !== 'None' ? chip(j.clearance + ' clearance', 'warn') : '') + '</div>' + reqChips(j) + '</div><span class="btn small">View & apply</span></a>').join('')
+      (j.clearance && j.clearance !== 'None' ? chip(j.clearance + ' clearance', 'warn') : '') + postedLabel(j.publishedAt) + '</div>' + reqChips(j) + '</div><span class="btn small">View & apply</span></a>').join('')
       : '<div class="empty">No open roles match right now. Check back soon.</div>') + '</div>' +
     '<p class="small muted center mt24">Powered by IntelliHire · Applications are reviewed by people; automated matching never makes the decision.</p></div></div>');
 }
@@ -655,7 +704,8 @@ function paintJob() {
   const applied = S.ui.applied;
   paint('<div class="light" style="min-height:100vh;' + brandStyle(d.org.color) + '">' + '<div class="careers-hero' + (d.org.bannerUrl ? ' has-banner' : '') + '" style="' + heroBg(d.org) + ';padding:34px 0 26px"><div class="wrap"><div class="co-brand">' + coLogo(d.org, true) +
     '<a href="#careers/' + esc(slug) + '" style="color:#fff;opacity:.9" class="small">← All roles at ' + esc(d.org.name) + '</a></div><h1 style="margin-top:6px">' + esc(j.title) + '</h1><p>' +
-    [j.department, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</p></div></div>' +
+    [j.department, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</p>' +
+    '<p class="small hero-dates">' + (j.publishedAt ? ic('clock') + ' Posted ' + esc(fullDate(j.publishedAt)) : '') + (j.closesAt ? ' &nbsp;·&nbsp; ' + ic('calendar') + ' Apply by ' + esc(fullDate(j.closesAt)) : '') + (j.ref ? ' &nbsp;·&nbsp; Ref ' + esc(j.ref) : '') + '</p></div></div>' +
     '<div class="wrap grid g2" style="padding-top:22px;padding-bottom:50px;grid-template-columns:1.1fr .9fr;align-items:start">' +
     '<div class="card"><h3>About the role</h3>' + reqChips(j, true) + '<p style="white-space:pre-wrap">' + esc(j.description) + '</p>' + (j.responsibilities ? '<h4>What you will do</h4><p style="white-space:pre-wrap">' + esc(j.responsibilities) + '</p>' : '') +
     '<h4>Required skills</h4><div>' + chips(j.requiredSkills, 'a') + '</div>' + (j.preferredSkills.length ? '<h4 class="mt16">Nice to have</h4><div>' + chips(j.preferredSkills) + '</div>' : '') +
@@ -797,7 +847,7 @@ function renderApp() {
   let body = '';
   try { body = (PAGES[page] || PAGES.dashboard)(); } catch (e) { body = '<div class="notice bad">' + esc(e.message) + '</div>'; console.error(e); }
   paint('<div class="shell"><aside class="side ' + (S.ui.sideOpen ? 'open' : '') + '">' + logo() + nav + '<div class="small dim" style="padding:16px 10px">v' + esc(db.version) + '</div></aside>' +
-    '<div class="main">' + banner + '<div class="top"><button class="btn ghost small mobile-only" data-action="toggle-side" aria-label="Menu">☰</button>' + orgSwitch + chip(org.planName + (org.status === 'Trialing' ? ' trial' : ''), 'a') +
+    '<div class="main">' + banner + '<div class="top"><button class="btn ghost small mobile-only" data-action="toggle-side" aria-label="Menu" aria-expanded="' + (S.ui.sideOpen ? 'true' : 'false') + '">' + ic('menu') + '</button>' + orgSwitch + chip(org.planName + (org.status === 'Trialing' ? ' trial' : ''), 'a') +
     '<span class="grow"></span>' + (org.slug ? '<a class="btn ghost small" href="#careers/' + esc(org.slug) + '" target="_blank" rel="noopener">Careers page ↗</a>' : '') +
     '<span class="small muted">' + esc(db.who.name || db.who.email) + ' · ' + lbl(db.who.role) + '</span><button class="btn ghost small" data-action="account">Account</button><button class="btn ghost small" data-action="logout">Sign out</button></div>' +
     '<div class="page">' + body + '</div></div></div>');
@@ -1661,7 +1711,7 @@ function orgDot(org) {
 function mktCard(j) {
   return '<a class="mkt-card' + (j.featured ? ' featured' : '') + '" href="#job/' + esc(j.org.slug) + '/' + esc(j.id) + '">' + orgDot(j.org) +
     '<div><div class="row wrap-row gap8"><b style="font-size:16.5px">' + esc(j.title) + '</b>' + (j.featured ? '<span class="badge-feat">★ Featured</span>' : '') + (j.fit ? '<span class="fit ' + fitCls(j.fit.score) + '">' + j.fit.score + '% fit</span>' : '') + '</div>' +
-    '<div class="small muted">' + [j.org.name, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div><div class="mt8">' + chips(j.requiredSkills.slice(0, 6)) + '</div>' + reqChips(j) + '</div>' +
+    '<div class="small muted">' + [j.org.name, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div><div class="mt8">' + chips(j.requiredSkills.slice(0, 6)) + postedLabel(j.publishedAt) + '</div>' + reqChips(j) + '</div>' +
     '<span class="btn small secondary">View & apply</span></a>';
 }
 function viewMarket(loading) {
@@ -2033,13 +2083,13 @@ mktCard = function (j) {
     '<div><div class="row wrap-row gap8"><b style="font-size:16.5px">' + esc(j.title) + '</b>' + (j.featured ? '<span class="badge-feat">★ Featured partner</span>' : '') + badge +
     (j.fit ? '<span class="fit ' + fitCls(j.fit.score) + '">' + j.fit.score + '% fit</span>' : '') + '</div>' +
     '<div class="small muted">' + [j.org.name, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div>' +
-    '<div class="mt8">' + chips(j.requiredSkills.slice(0, 6)) + '<span class="tiny dim">via ' + esc(j.source) + ' · ' + ago(j.publishedAt) + '</span></div></div>' +
+    '<div class="mt8">' + chips(j.requiredSkills.slice(0, 6)) + postedLabel(j.publishedAt) + '<span class="tiny dim"> · via ' + esc(j.source) + '</span></div></div>' +
     '<span class="btn small secondary">Details</span></div>';
 };
 function rememberJobs(list) { S.ui.extIndex = S.ui.extIndex || {}; (list || []).forEach(j => { if (j.external) S.ui.extIndex[j.id] = j; }); }
 function extJobModal(j) {
   openModal(j.title, '<div class="row wrap-row gap8">' + orgDot(j.org) + '<div><b>' + esc(j.org.name) + '</b><div class="small muted">' + [j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div></div></div>' +
-    (j.sector === 'gov' ? '<div class="notice small mt16">Government position' + (j.agency ? ' · ' + esc(j.agency) : '') + (j.closesAt ? ' · closes ' + esc(day(j.closesAt)) : '') + '. Apply on the official site.</div>' : '') +
+    (j.sector === 'gov' ? '<div class="notice small mt16">Government position' + (j.agency ? ' · ' + esc(j.agency) : '') + '. Apply on the official site.</div>' : '') + '<div class="mt8">' + postedLabel(j.publishedAt) + (j.closesAt ? '<span class="posted">' + ic('calendar') + 'Closes ' + esc(fullDate(j.closesAt)) + '</span>' : '') + '</div>' +
     '<p class="mt16" style="white-space:pre-wrap">' + esc(j.description || 'Open the original posting for the full description.') + '</p><div>' + chips(j.requiredSkills) + '</div>' +
     '<div class="row wrap-row mt16"><button class="btn" data-action="ext-apply" data-id="' + esc(j.id) + '">Apply on ' + esc(j.source) + ' ↗</button>' +
     (S.seekerToken ? '' : '<a class="btn secondary" href="#me/register" data-action="close-modal-go" data-to="#me/register">Create a profile to get matched</a>') + '</div>' +
@@ -2527,6 +2577,16 @@ Object.assign(FORMS, {
     growth: 'trend', copilot: 'bot', reports: 'report', 'careers-site': 'globe', team: 'users', billing: 'card', audit: 'list' };
   NAV.forEach(g => g[1].forEach(n => { if (map[n[0]]) n[1] = ic(map[n[0]]); }));
 })();
+
+/* v1.8 — mobile drawer: scrim to close, and close after navigating */
+const baseRenderAppMobile = renderApp;
+renderApp = function () {
+  const r = baseRenderAppMobile.apply(this, arguments);
+  const sh = document.querySelector('.shell');
+  if (sh && S.ui.sideOpen && !sh.querySelector('.side-scrim')) { const d = document.createElement('div'); d.className = 'side-scrim'; d.dataset.action = 'toggle-side'; sh.appendChild(d); }
+  return r;
+};
+window.addEventListener('hashchange', () => { if (S.ui && S.ui.sideOpen) S.ui.sideOpen = false; });
 
 bind();
 route();
