@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#071021">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%226%22%20fill%3D%22%23071021%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227%22%20fill%3D%22none%22%20stroke%3D%22%2349d6c5%22%20stroke-width%3D%222.4%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%238ca7ff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.4.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.5.0"};</script>
 <style>
 :root{--bg:#07061a;--bg2:#0d0b26;--panel:#13113a;--panel2:#1b1850;--line:#2b2766;--line2:#3d3889;--text:#f3f1ff;--muted:#b9b3e6;--dim:#8a84bd;
 --a:#8b5cf6;--a-ink:#ffffff;--b:#22d3ee;--c:#f472b6;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -2166,6 +2166,183 @@ Object.assign(CHANGES, {
   'con-type': v => { const c = $('con-config'); if (c && CONFIG_HINTS[v]) c.value = CONFIG_HINTS[v]; }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target && e.target.dataset && e.target.dataset.action === 'ext-job') ACTIONS['ext-job'](e.target.dataset); });
+/* ==================================================================================
+   v1.5 — staffing mailboxes (C2C): consultant bench, private requirement sources,
+   consultants in the talent marketplace, console mailbox settings.
+   ================================================================================== */
+const isStaffing = () => !!(S.db && S.db.org && S.db.org.staffing);
+const CS_TONE = { New: 'warn', Screening: 'a', Interviewed: 'a', Marketed: 'ok', Submitted: 'a', Placed: 'ok', Inactive: '' };
+
+/* nav: "Consultant bench" for staffing workspaces */
+const baseRenderAppStaff = renderApp;
+renderApp = function () {
+  const items = NAV[0][1], i = items.findIndex(n => n[0] === 'bench');
+  if (isStaffing() && i < 0) items.splice(4, 0, ['bench', '⚇', 'Consultant bench']);
+  if (!isStaffing() && i >= 0) items.splice(i, 1);
+  return baseRenderAppStaff();
+};
+
+/* ------------------------------------------------------------------ bench list + detail */
+PAGES.bench = () => {
+  if (!isStaffing()) return head('Consultant bench') + '<div class="empty">Connect a staffing mailbox to this workspace in the platform console (Email intake) to build your bench from email.</div>';
+  if (!can('RECRUITER')) return head('Consultant bench') + '<div class="empty">Recruiters and above can manage the bench.</div>';
+  if (S.route.parts[1]) return benchDetail(S.route.parts[1]);
+  const b = S.bench;
+  if (!b) { call('listBench').then(r => { S.bench = r; if (S.route.parts[0] === 'bench') renderApp(); }, fail); return head('Consultant bench') + '<div class="loading">Loading<span class="pulse"></span></div>'; }
+  const f = S.ui.benchF || 'all', q = (S.ui.benchQ || '').toLowerCase();
+  const list = b.consultants.filter(x => (f === 'all' || x.status === f) && (!q || (x.name + ' ' + x.headline + ' ' + x.skills + ' ' + x.alias + ' ' + x.vendorCompany).toLowerCase().indexOf(q) >= 0));
+  const cnt = s => b.consultants.filter(x => x.status === s).length, newReq = b.requests.filter(r => r.status === 'New').length;
+  return head('Consultant bench', 'Consultants received by email at ' + esc(S.db.org.staffing.mailboxes.join(', ')) + ' · screen and interview them, then market them to employers (C2C)',
+    (b.benchJobId ? '<a class="btn secondary" href="#app/job/' + esc(b.benchJobId) + '">Screening pipeline</a>' : '')) +
+    '<div class="grid g4">' + kpi(cnt('New'), 'New — to screen') + kpi(cnt('Screening') + cnt('Interviewed'), 'In screening / interviewed') + kpi(cnt('Marketed'), 'Marketed to employers') + kpi(newReq, 'New employer requests') + '</div>' +
+    (b.requests.length ? '<div class="card mt16"><h3>Employer requests</h3><div class="table-wrap"><table><tr><th>When</th><th>Employer</th><th>Consultant</th><th>Role / message</th><th>Status</th></tr>' + b.requests.slice(0, 20).map(r => {
+      const x = b.consultants.find(c => c.id === r.consultantId) || {};
+      return '<tr><td class="small nowrap">' + ago(r.createdAt) + '</td><td><b>' + esc(r.requesterOrgName) + '</b><div class="small"><a href="mailto:' + esc(r.requesterEmail) + '">' + esc(r.requesterEmail) + '</a></div></td><td><a href="#app/bench/' + esc(r.consultantId) + '">' + esc(x.name || x.alias || '—') + '</a><div class="tiny dim">' + esc(x.alias || '') + '</div></td>' +
+        '<td class="small">' + esc(r.jobTitle) + (r.message ? '<div class="dim">' + esc(r.message) + '</div>' : '') + '</td><td><select data-change="creq-status" data-id="' + r.id + '">' + opts(['New', 'Contacted', 'Submitted', 'Interviewing', 'Placed', 'Closed'], r.status) + '</select></td></tr>';
+    }).join('') + '</table></div></div>' : '') +
+    '<div class="row wrap-row mt16"><div class="tabs" style="border:0;margin:0">' + ['all'].concat(b.statuses).map(s => '<button class="' + (f === s ? 'on' : '') + '" data-action="bench-filter" data-v="' + s + '">' + (s === 'all' ? 'All' : s) + ' <span class="dim small">' + (s === 'all' ? b.consultants.length : cnt(s)) + '</span></button>').join('') + '</div><span class="grow"></span>' +
+    '<input type="search" placeholder="Search name, skill, vendor" value="' + esc(S.ui.benchQ || '') + '" data-change="bench-q" style="max-width:260px"></div>' +
+    (list.length ? '<div class="table-wrap mt8"><table><tr><th>Consultant</th><th>Skills</th><th>Location · auth · availability</th><th>Source</th><th>Status</th><th></th></tr>' + list.map(x =>
+      '<tr class="click" data-action="open-consultant" data-id="' + x.id + '"><td><b>' + esc(x.name) + '</b> <span class="tiny dim">' + esc(x.alias) + '</span><div class="small muted">' + esc(x.headline) + (x.yearsExp ? ' · ' + x.yearsExp + ' yrs' : '') + '</div>' + (x.stage ? '<div class="tiny dim">Screening stage: ' + esc(x.stage) + '</div>' : '') + '</td>' +
+      '<td>' + chips(list_(x.skills).slice(0, 5)) + '</td><td class="small">' + [x.location, x.workAuth, x.availability].filter(Boolean).map(esc).join(' · ') + (x.rate ? '<div class="tiny dim">rate ' + esc(x.rate) + '</div>' : '') + '</td>' +
+      '<td class="small">' + (x.submittedBy === 'Vendor' ? '<b>' + esc(x.vendorCompany || x.vendorEmail) + '</b><div class="tiny dim">' + esc(x.vendorContact) + '</div>' : 'Self') + '<div class="tiny dim">' + ago(x.receivedAt) + '</div></td>' +
+      '<td>' + chip(x.status, CS_TONE[x.status]) + (x.openRequests ? ' ' + chip(x.openRequests + ' request' + (x.openRequests > 1 ? 's' : ''), 'warn') : '') + (x.views ? '<div class="tiny dim">' + x.views + ' employer views</div>' : '') + '</td><td class="right">›</td></tr>').join('') + '</table></div>'
+      : '<div class="empty">No consultants here yet. Resumes emailed to ' + esc(S.db.org.staffing.mailboxes[0]) + ' appear here automatically.</div>');
+};
+const list_ = v => String(v || '').split(/\s*,\s*/).filter(Boolean);
+
+function benchDetail(id) {
+  const d = S.cons && S.cons.consultant.id === id ? S.cons : null;
+  if (!d) { call('getConsultant', id).then(r => { S.cons = r; if (S.route.parts[1] === id) renderApp(); }, fail); return head('Consultant') + '<div class="loading">Loading<span class="pulse"></span></div>'; }
+  const x = d.consultant, c = d.candidate;
+  return head(c.name || x.alias, x.alias + ' · ' + x.headline, '<a class="btn secondary" href="#app/bench">← Bench</a>' + (c.id ? '<a class="btn secondary" href="#app/candidate/' + esc(c.id) + '">Open in ATS (interviews, notes)</a>' : '')) +
+    '<div class="split"><div class="stack">' +
+    '<div class="card"><div class="row between"><h3 class="mb0">Status</h3>' + chip(x.status, CS_TONE[x.status]) + '</div><div class="row wrap-row mt8">' + d.statuses.map(s => '<button class="btn small ' + (s === x.status ? '' : 'ghost') + '" data-action="cons-status" data-id="' + x.id + '" data-v="' + s + '">' + s + '</button>').join('') + '</div>' +
+    '<p class="tiny dim mt8">Marketed = visible (anonymized) to employers in the IntelliHire talent marketplace. They can read the redacted resume and request the consultant; they never see contact details or the vendor.</p></div>' +
+    '<div class="card"><h3>Private details <span class="tiny dim">(recruiters only)</span></h3><div class="small stack">' +
+      '<div><b>Contact:</b> ' + esc([c.email, c.phone].filter(Boolean).join(' · ') || '—') + '</div><div><b>Location:</b> ' + esc(x.location || '—') + '</div>' +
+      '<div><b>Submitted by:</b> ' + (x.submittedBy === 'Vendor' ? esc(x.vendorContact) + ' — ' + esc(x.vendorCompany) + ' · <a href="mailto:' + esc(x.vendorEmail) + '">' + esc(x.vendorEmail) + '</a>' + (x.vendorPhone ? ' · ' + esc(x.vendorPhone) : '') : 'the consultant') + '</div>' +
+      '<div><b>Rate:</b> ' + esc(x.rate || '—') + ' · <b>Work authorization:</b> ' + esc(x.workAuth || '—') + ' · <b>Availability:</b> ' + esc(x.availability || '—') + '</div>' +
+      (c.resumeFileId ? '<div><button class="btn small secondary" data-action="dl-resume" data-id="' + esc(c.id) + '">Original resume</button></div>' : '') + '</div></div>' +
+    '<div class="card"><h3>Best matching open jobs</h3>' + (d.matches.length ? d.matches.map(m => '<div class="row between" style="padding:5px 0"><a href="#app/job/' + esc(m.id) + '">' + esc(m.title) + '</a><span class="small muted">' + esc(m.location || '') + '</span><span class="fit ' + fitCls(m.score) + '">' + m.score + '%</span></div>').join('') : '<p class="small muted">No open jobs yet.</p>') + '</div>' +
+    (d.requests.length ? '<div class="card"><h3>Employer requests</h3>' + d.requests.map(r => '<div class="small" style="padding:6px 0;border-bottom:1px solid var(--line)"><b>' + esc(r.requesterOrgName) + '</b> · <a href="mailto:' + esc(r.requesterEmail) + '">' + esc(r.requesterEmail) + '</a> · ' + ago(r.createdAt) + ' ' + chip(r.status) + '<div class="dim">' + esc(r.jobTitle) + ' ' + esc(r.message) + '</div></div>').join('') + '</div>' : '') +
+    '</div><form data-form="cons-save" class="card"><input type="hidden" name="id" value="' + esc(x.id) + '"><h3>Marketing profile <span class="tiny dim">(what employers see)</span></h3>' +
+    '<div class="form-row">' + field('Headline', inp('headline', x.headline)) + field('Location (city, state)', inp('location', x.location)) + field('Availability', inp('availability', x.availability)) + field('Work authorization', inp('workAuth', x.workAuth)) + '</div>' +
+    field('Skills', inp('skills', x.skills)) + field('Summary', area('summary', x.summary, 'rows="3"')) +
+    field('Redacted resume', area('redactedResume', x.redactedResume, 'rows="16" class="mono"')) + '<div class="row mt16"><button class="btn">Save</button><button class="btn ghost" type="button" data-action="cons-redact" data-id="' + x.id + '">Re-run redaction</button>' +
+    '<span class="tiny dim">Names, emails, phones, addresses, links and personal identifiers are removed automatically — review before marketing.</span></div></form></div>';
+}
+
+/* ------------------------------------------------------------------ job page: private requirement sources */
+const baseJobPageStaff = PAGES.job;
+PAGES.job = () => {
+  const html = baseJobPageStaff();
+  const j = jobById(S.route.parts[1]);
+  if (!j.id || !isStaffing() || !can('RECRUITER') || !(S.db.staffReqCounts || {})[j.id]) return html;
+  const sr = S.staffReqs && S.staffReqs.jobId === j.id ? S.staffReqs : null;
+  if (!sr) call('getStaffReqs', j.id).then(r => { S.staffReqs = Object.assign(r, { jobId: j.id }); if (S.route.parts[1] === j.id) renderApp(); }, fail);
+  const n = S.db.staffReqCounts[j.id];
+  return '<div class="notice small" style="border-color:#f5b94a">🔒 This job came from ' + n + ' vendor email' + (n > 1 ? 's' : '') + '. Vendor, end client, rate and contacts are private to recruiters — <a href="#" data-action="scroll" data-to="staff-sources">view sources</a>.</div>' +
+    html + '<div class="card mt24" id="staff-sources" style="border-color:#f5b94a66"><div class="row between wrap-row"><h3 class="mb0">🔒 Requirement sources <span class="tiny dim">(private · never shown to candidates or on the careers page)</span></h3>' +
+    '<span class="small muted">' + S.db.staffReqCounts[j.id] + ' vendor email' + (S.db.staffReqCounts[j.id] > 1 ? 's' : '') + '</span></div>' +
+    (!sr ? '<div class="loading">Loading<span class="pulse"></span></div>' : '<div class="table-wrap mt8"><table><tr><th>Vendor / contact</th><th>End client</th><th>Rate · duration</th><th>Req · deadline · visa</th><th>Status</th><th></th></tr>' + sr.sources.map(s =>
+      '<tr><td><b>' + esc(s.vendorCompany || '—') + '</b><div class="small">' + esc(s.contactName) + ' · <a href="mailto:' + esc(s.contactEmail) + '?subject=' + encodeURIComponent('Re: ' + s.subject) + '">' + esc(s.contactEmail) + '</a>' + (s.contactPhone ? ' · ' + esc(s.contactPhone) : '') + '</div><div class="tiny dim">' + ago(s.receivedAt) + '</div></td>' +
+      '<td>' + esc(s.endClient || '—') + '</td><td class="small">' + esc(s.rate || '—') + '<div class="dim">' + esc(s.duration || '') + '</div></td><td class="small">' + esc(s.reqId || '—') + '<div class="dim">' + esc([s.deadline, s.workAuth].filter(Boolean).join(' · ')) + '</div></td>' +
+      '<td><select data-change="sreq-status" data-id="' + s.id + '">' + opts(sr.statuses, s.status) + '</select></td><td class="right"><button class="btn small ghost" data-action="sreq-original" data-id="' + s.id + '">Original email</button></td></tr>').join('') + '</table></div>' +
+      '<h4 class="mt16">Bench consultants for this requirement</h4>' + (sr.bench.length ? '<div class="row wrap-row">' + sr.bench.slice(0, 8).map(b => '<a class="chip" href="#app/bench/' + esc(b.id) + '">' + esc(b.name || b.alias) + ' · <b class="' + fitCls(b.score) + '">' + b.score + '%</b> · ' + esc(b.status) + '</a>').join('') + '</div>' : '<p class="small muted">No bench consultants yet.</p>')) + '</div>';
+};
+
+/* ------------------------------------------------------------------ talent marketplace: consultant cards */
+const baseTalentCard = talentCardHtml;
+talentCardHtml = function (p) {
+  if (p.kind !== 'consultant') return baseTalentCard(p);
+  return '<div class="card" style="border-color:#22d3ee55"><div class="row"><div class="avatar" style="background:linear-gradient(135deg,#0ea5e9,#8b5cf6)">C</div><div class="grow"><b>' + esc(p.alias) + '</b><div class="small muted">' + esc(p.headline) + '</div></div>' +
+    (p.fit ? '<span class="fit ' + fitCls(p.fit.score) + '" style="font-size:20px">' + p.fit.score + '%</span>' : '') + '</div>' +
+    '<div class="small muted">' + [p.location, p.yearsExp ? p.yearsExp + ' yrs' : '', p.availability].filter(Boolean).map(esc).join(' · ') + '</div><div>' + chips(p.skills.slice(0, 8)) + '</div>' +
+    '<div class="tiny dim">Contract consultant represented by <b>' + esc(p.agency) + '</b> (C2C)</div>' +
+    '<div class="row mt8"><button class="btn small secondary" data-action="cons-view" data-id="' + esc(p.id) + '">Redacted resume</button>' +
+    (p.requested ? chip('Requested · ' + p.requested, 'ok') : can('RECRUITER') ? '<button class="btn small" data-action="cons-request" data-id="' + esc(p.id) + '">Request consultant</button>' : '') + '</div></div>';
+};
+const baseTalentPage = PAGES.talent;
+PAGES.talent = () => {
+  const html = baseTalentPage();
+  if (!hasFeat('talent')) return html;
+  const k = (S.ui.tf || {}).kind || 'all';
+  const tabs = '<div class="tabs mt16" style="border:0">' + [['all', 'Everyone'], ['candidates', 'Candidates (unlock with credits)'], ['consultants', 'Contract consultants (C2C)']].map(t => '<button class="' + (k === t[0] ? 'on' : '') + '" data-action="talent-kind" data-v="' + t[0] + '">' + t[1] + '</button>').join('') + '</div>';
+  return html.replace('<div class="notice small mt16">', tabs + '<div class="notice small mt16">');
+};
+
+/* ------------------------------------------------------------------ console: staffing mailboxes + review queue */
+const basePlatIntake = platIntakeHtml;
+platIntakeHtml = function () {
+  const html = basePlatIntake(), it = S.plat.intake;
+  if (!it || !it.mailboxes) return html;
+  const boxes = S.ui.boxes || (S.ui.boxes = it.mailboxes.map(b => Object.assign({}, b)));
+  const orgOpts = it.orgs.map(o => [o.id, o.name + (o.slug ? ' (/' + o.slug + ')' : '')]);
+  const box = '<div class="card mt24"><div class="row between wrap-row"><div><h3 class="mb0">Staffing mailboxes (C2C)</h3><p class="small muted mb0">A recruiter inbox such as bob@intellisoft-tech.com. Vendor job requirements become clean public jobs (vendor, client, rate and contacts kept private); resumes become anonymized bench consultants.</p></div>' +
+    '<button class="btn secondary" data-action="box-add">+ Add mailbox</button></div>' +
+    (boxes.length ? '<form data-form="boxes-save"><div class="table-wrap mt16"><table><tr><th>Mailbox</th><th>Workspace</th><th>Notify</th><th>Options</th><th></th></tr>' + boxes.map((b, i) =>
+      '<tr><td><input type="email" name="address' + i + '" value="' + esc(b.address) + '" placeholder="bob@intellisoft-tech.com" required></td><td><select name="orgId' + i + '">' + opts(orgOpts, b.orgId) + '</select></td>' +
+      '<td><input type="email" name="notify' + i + '" value="' + esc(b.notify) + '" placeholder="who gets private alerts"></td><td class="small">' +
+      '<label class="check"><input type="checkbox" name="autoPublish' + i + '"' + (b.autoPublish ? ' checked' : '') + '> Publish clean requirements automatically</label>' +
+      '<label class="check"><input type="checkbox" name="autoMarket' + i + '"' + (b.autoMarket ? ' checked' : '') + '> Market consultants without screening</label>' +
+      '<label class="check"><input type="checkbox" name="replyCandidates' + i + '"' + (b.replyCandidates ? ' checked' : '') + '> Reply to candidates who email themselves</label></td>' +
+      '<td><button class="btn small ghost" type="button" data-action="box-remove" data-i="' + i + '">Remove</button></td></tr>').join('') + '</table></div><button class="btn mt16">Save mailboxes</button></form>' : '<p class="small muted mt16">No staffing mailbox yet.</p>') +
+    '<details class="mt16"><summary class="small">How to connect bob@… (once)</summary><ol class="small"><li>In bob\'s Gmail: Settings → Forwarding → add the intake account (the Google account that deploys IntelliHire) and confirm; then a filter for all incoming mail (or from:* -from:me) → Forward to it. Or ask your Google Workspace admin for a routing rule that BCCs bob\'s mail to it.</li>' +
+    '<li>In the intake account: a filter <b>to:bob@intellisoft-tech.com</b> → apply label <b>intellihire-intake</b>.</li><li>Add the mailbox here and choose the workspace (Intellisoft Technologies). Bob can also forward any single email by hand.</li></ol></details></div>';
+  const review = it.log.filter(l => l.status === 'Review');
+  const rq = review.length ? '<div class="card mt16"><h3>Needs review (' + review.length + ')</h3><div class="table-wrap"><table><tr><th>When</th><th>From</th><th>Subject</th><th></th></tr>' + review.slice(0, 30).map(l =>
+    '<tr><td class="small nowrap">' + ago(l.receivedAt) + '</td><td class="small">' + esc(l.sender) + '</td><td class="small">' + esc(l.subject) + '</td><td class="right nowrap"><button class="btn small secondary" data-action="intake-as" data-id="' + l.id + '" data-v="job">Treat as job</button><button class="btn small ghost" data-action="intake-as" data-id="' + l.id + '" data-v="candidate">Treat as candidate</button></td></tr>').join('') + '</table></div></div>' : '';
+  const i = html.indexOf('<h3 class="mt24">Recent intake</h3>');
+  return i > 0 ? html.slice(0, i) + box + rq + html.slice(i) : html + box + rq;
+};
+
+/* ------------------------------------------------------------------ actions */
+Object.assign(ACTIONS, {
+  'bench-filter': d => { S.ui.benchF = d.v; renderApp(); },
+  'open-consultant': d => go('#app/bench/' + d.id),
+  'cons-status': async (d, el) => {
+    try { await busy(el, call('updateConsultant', { id: d.id, status: d.v })); toast('Status: ' + d.v + (d.v === 'Marketed' ? ' — now visible (anonymized) to employers.' : '.'), 'ok'); S.cons = null; S.bench = null; renderApp(); } catch (e) { fail(e); }
+  },
+  'cons-redact': async (d, el) => { try { await busy(el, call('redactAgain', d.id)); S.cons = null; toast('Redaction re-run from the original resume.', 'ok'); renderApp(); } catch (e) { fail(e); } },
+  'sreq-original': d => { const s = (S.staffReqs.sources || []).find(x => x.id === d.id); if (s) openModal('Original email (private)', '<pre class="mono small" style="white-space:pre-wrap;max-height:60vh;overflow:auto">' + esc(s.original) + '</pre>', true); },
+  'talent-kind': d => { S.ui.tf = Object.assign({}, S.ui.tf, { kind: d.v }); S.talent = null; renderApp(); },
+  'cons-view': async (d, el) => {
+    try { const r = await busy(el, call('viewConsultant', d.id));
+      openModal(r.alias + ' — ' + r.headline, '<div class="small muted">' + [r.location, r.yearsExp ? r.yearsExp + ' yrs' : '', r.availability, r.workAuthorization].filter(Boolean).map(esc).join(' · ') + '</div><div class="mt8">' + chips(r.skills) + '</div>' +
+        (r.summary ? '<p>' + esc(r.summary) + '</p>' : '') + '<pre class="mono small mt16" style="white-space:pre-wrap;max-height:50vh;overflow:auto">' + esc(r.redactedResume) + '</pre>' +
+        '<div class="notice small mt16">Represented by ' + esc(r.agency) + ' on a contract (C2C) basis. Contact details are shared by ' + esc(r.agency) + ' when you request the consultant.</div>' +
+        (can('RECRUITER') ? '<button class="btn mt16" data-action="cons-request" data-id="' + esc(r.id) + '">Request this consultant</button>' : ''), true);
+    } catch (e) { fail(e); }
+  },
+  'cons-request': d => {
+    const jobs = S.db.jobs.filter(j => j.status === 'Open');
+    openModal('Request consultant', '<form data-form="cons-request"><input type="hidden" name="id" value="' + esc(d.id) + '">' + field('For which role?', sel('jobId', [['', 'Other / not posted yet']].concat(jobs.map(j => [j.id, j.title])), '')) +
+      field('Role title (if not posted)', inp('jobTitle', '')) + field('Message to the staffing company', area('message', '', 'rows="3" placeholder="Start date, duration, interview availability…"')) +
+      '<p class="tiny dim">The staffing company receives your request and contacts you with the consultant\'s availability and terms.</p><button class="btn">Send request</button></form>');
+  },
+  'box-add': () => { S.ui.boxes = (S.ui.boxes || []).concat([{ address: '', orgId: (S.plat.intake.orgs[0] || {}).id, autoPublish: true, autoMarket: false, replyCandidates: true, notify: '' }]); renderApp(); },
+  'box-remove': d => { S.ui.boxes.splice(Number(d.i), 1); renderApp(); },
+  'intake-as': async (d, el) => { try { S.plat.intake = await busy(el, call('platformIntakeReprocess', { id: d.id, as: d.v })); toast('Processed as ' + d.v + '.', 'ok'); renderApp(); } catch (e) { fail(e); } }
+});
+Object.assign(FORMS, {
+  'talent-search': v => { S.ui.tf = Object.assign({}, v, { kind: (S.ui.tf || {}).kind || 'all' }); S.talent = null; renderApp(); },
+  'cons-save': async (v, f, b) => { try { await busy(b, call('updateConsultant', v)); toast('Marketing profile saved.', 'ok'); S.cons = null; S.bench = null; renderApp(); } catch (e) { fail(e); } },
+  'cons-request': async (v, f, b) => { try { const r = await busy(b, call('requestConsultant', v)); closeModal(); toast(r.already ? 'You already requested this consultant.' : 'Request sent — the staffing company will contact you.', 'ok', 6000); S.talent = null; renderApp(); } catch (e) { fail(e); } },
+  'boxes-save': async (v, f, b) => {
+    const boxes = (S.ui.boxes || []).map((x, i) => ({ address: v['address' + i], orgId: v['orgId' + i], notify: v['notify' + i], autoPublish: !!v['autoPublish' + i], autoMarket: !!v['autoMarket' + i], replyCandidates: !!v['replyCandidates' + i] }));
+    try { S.plat.intake = await busy(b, call('platformStaffingSave', { mailboxes: boxes })); S.ui.boxes = null; toast('Staffing mailboxes saved.', 'ok'); await refresh(); } catch (e) { fail(e); }
+  }
+});
+Object.assign(CHANGES, {
+  'bench-q': (v, el) => { S.ui.benchQ = el.value; renderApp(); },
+  'creq-status': async (v, el) => { try { await call('updateConsultantRequest', { id: el.dataset.id, status: el.value }); toast('Updated.', 'ok'); } catch (e) { fail(e); } },
+  'sreq-status': async (v, el) => { try { await call('updateStaffReq', { id: el.dataset.id, status: el.value }); toast('Updated.', 'ok'); } catch (e) { fail(e); } }
+});
+
+const baseJobsPageStaff = PAGES.jobs;
+PAGES.jobs = () => (isStaffing() && can('RECRUITER') ? '<div class="notice small">📨 Requirements emailed to <b>' + esc(S.db.org.staffing.mailboxes.join(', ')) + '</b> are posted here automatically as clean contract jobs. Vendor, end client, rate and contacts stay private on each job (🔒 ' +
+  Object.keys(S.db.staffReqCounts || {}).length + ' jobs from email).</div>' : '') + baseJobsPageStaff();
 
 bind();
 route();
