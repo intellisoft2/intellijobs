@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#071021">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%226%22%20fill%3D%22%23071021%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227%22%20fill%3D%22none%22%20stroke%3D%22%2349d6c5%22%20stroke-width%3D%222.4%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%238ca7ff%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.3.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.4.0"};</script>
 <style>
 :root{--bg:#07061a;--bg2:#0d0b26;--panel:#13113a;--panel2:#1b1850;--line:#2b2766;--line2:#3d3889;--text:#f3f1ff;--muted:#b9b3e6;--dim:#8a84bd;
 --a:#8b5cf6;--a-ink:#ffffff;--b:#22d3ee;--c:#f472b6;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -169,10 +169,13 @@ body:not(.light-body){background:radial-gradient(ellipse at 83% 0%,#4738a144,tra
 .loading{position:relative;max-width:600px;margin:50px auto;padding:80px 30px;background:linear-gradient(145deg,#1b2a4b,#101b36);border:1px solid #ffffff24;border-radius:24px;box-shadow:0 20px 70px #0005}.loading:before{content:'';position:absolute;left:24px;right:24px;bottom:32px;height:5px;border-radius:99px;background:#ffffff19}.loading:after{content:'';position:absolute;left:24px;bottom:32px;height:5px;width:34%;border-radius:99px;background:var(--grad);animation:ijLoad 1.7s ease-in-out infinite alternate}@keyframes ijLoad{from{left:24px;width:18%}to{left:55%;width:39%}}
 @media(max-width:680px){.wizard-steps{gap:4px}.wizard-steps button{font-size:11px;padding:10px 5px}.wizard-heading{padding:8px 0}.loading{margin:20px 10px;padding:65px 20px}}
 @media(prefers-reduced-motion:reduce){.loading:after,.ij-step-panel{animation:none!important}}
+@media(max-width:1000px){.site-top .row{flex-wrap:wrap;gap:6px 8px;padding-top:8px;padding-bottom:8px;min-height:0}.site-top .row>*{flex-shrink:1;min-width:0}.site-top .grow{display:none}.site-links{display:flex!important;order:5;width:100%;margin-left:0!important;overflow-x:auto;gap:18px;padding:4px 0 6px;scrollbar-width:none}.site-links::-webkit-scrollbar{display:none}}
+@media(max-width:640px){.site-top .btn{padding:7px 11px;font-size:12.5px;min-height:0}.site-top .row>a.btn:first-of-type{margin-left:auto}}
 </style>
 
 </head>
 <body>
+  <div id="ij-network-progress" role="progressbar" aria-label="Loading data" aria-hidden="true"></div><div id="ij-network-label" role="status" aria-live="polite">Securely loading data…</div>
   <div id="app"><div class="loading" role="status">Loading IntelliHire <span class="pulse"></span></div></div>
   <div id="toast" role="status" aria-live="polite"></div>
   <noscript>IntelliHire needs JavaScript enabled.</noscript>
@@ -329,7 +332,7 @@ function setSession(res) {
   go(res.hasOrg ? '#app/dashboard' : '#onboarding');
 }
 
-const PUBLIC_ROUTES = ['candidate-demo', 'jobs', 'me', 'talent-pricing', '', 'home', 'pricing', 'login', 'register', 'verify', 'forgot', 'reset', 'invite', 'careers', 'job', 'task', 'demo'];
+const PUBLIC_ROUTES = ['gov', 'partners', 'partner', 'candidate-demo', 'jobs', 'me', 'talent-pricing', '', 'home', 'pricing', 'login', 'register', 'verify', 'forgot', 'reset', 'invite', 'careers', 'job', 'task', 'demo'];
 async function route() {
   S.route = parseRoute();
   S.ui.sideOpen = false;
@@ -436,12 +439,13 @@ function viewLanding() {
     bar(87) + '<div class="row between mt8 small"><span class="muted">Cloud architecture</span><span style="color:var(--a)">Verified strength</span></div>' + bar(92) +
     '<div class="row between mt8 small"><span class="muted">MLOps & LLM evaluation</span><span style="color:var(--gold)">Growth opportunity</span></div>' + bar(64) +
     '<div class="notice">✦ Growth coach: a 3-week MLOps plan with a hands-on lab, then reassess readiness.</div></div></div></section>' +
+    landingJobsHtml() +
     '<section class="sec alt" id="features"><div class="wrap"><div class="eyebrow center">One connected platform</div><h2 class="sec-title">Beyond the traditional job board</h2><p class="sec-sub">Built for candidates, employers, staffing agencies, universities and enterprise talent teams.</p>' +
     '<div class="grid g3">' + mods.map(m => '<article class="card feature"><span class="fi">' + m[0] + '</span><h3>' + m[1] + '</h3><p>' + m[2] + '</p></article>').join('') + '</div></div></section>' +
     '<section class="sec" id="demos"><div class="wrap"><h2 class="sec-title">See it with realistic data — instantly</h2><p class="sec-sub">Pick a demo package. You get a private 24-hour sandbox; no email needed and nothing is shared.</p>' +
     '<div class="grid g4">' + demoList().map(d => '<article class="card feature"><h3>' + esc(d.name) + '</h3><p>' + esc(d.desc) + '</p><button class="btn secondary small mt16" data-action="demo" data-flavor="' + esc(d.key) + '">Launch employer demo</button></article>').join('') + '</div>' +
     '<div class="center mt24"><button class="btn" data-action="seeker-demo">✦ Try the candidate experience</button> <a class="btn secondary" href="#jobs">Browse the job marketplace</a></div></div></section>' +
-    seekerSection() +
+    seekerSection() + govTeaserHtml() + partnerTeaserHtml() + emailIntakeTeaserHtml() +
     '<section class="sec alt" id="pricing"><div class="wrap center"><h2 class="sec-title">Simple pricing that scales with your hiring</h2><p class="sec-sub">Every plan starts with a ' + trialDays() + '-day free trial. Government and enterprise buyers can pay by invoice or purchase order.</p>' +
     '<div class="seg" role="group" aria-label="Billing interval"><button class="' + (iv === 'monthly' ? 'on' : '') + '" data-action="interval" data-v="monthly">Monthly</button><button class="' + (iv === 'annual' ? 'on' : '') + '" data-action="interval" data-v="annual">Annual · 2 months free</button></div>' +
     '<div class="plans" style="text-align:left">' + plansList().map(p => planCard(p, iv, '<a class="btn ' + (p.popular ? '' : 'secondary') + '" href="#register?plan=' + p.key + '&interval=' + iv + '">Start free trial</a>')).join('') + '</div>' + creditsPricing() + '</div></section>' +
@@ -793,7 +797,7 @@ PAGES.job = () => {
 function jobForm(j) {
   j = j || {};
   const L = S.db.lists, qs = parse(j.screeningQuestions, []);
-  return '<form data-form="job" class="ij-job-wizard"><div class="wizard-heading"><span class="wizard-kicker">JOB STUDIO</span><h3>Build a great opportunity</h3><p>Start with essentials, define the role, then review before publishing.</p></div><div class="wizard-steps"><button type="button" class="on" data-ij-step="0">01 · Basics</button><button type="button" data-ij-step="1">02 · Requirements</button><button type="button" data-ij-step="2">03 · Review & publish</button></div><div class="ij-step-panel" data-ij-panel="0"><input type="hidden" name="id" value="' + esc(j.id || '') + '">' +
+  return '<form data-form="job" class="ij-job-wizard" novalidate><div class="wizard-heading"><span class="wizard-kicker">JOB STUDIO</span><h3>Build a great opportunity</h3><p>Start with essentials, define the role, then review before publishing.</p></div><div class="wizard-steps"><button type="button" class="on" data-ij-step="0">01 · Basics</button><button type="button" data-ij-step="1">02 · Requirements</button><button type="button" data-ij-step="2">03 · Review & publish</button></div><div class="ij-step-panel" data-ij-panel="0"><input type="hidden" name="id" value="' + esc(j.id || '') + '">' +
     (hasFeat('ai') && !j.id ? '<div class="card flat tight"><b>✦ Draft from a hiring brief</b><p class="small muted mb0">Paste a rough request or an existing job description. The copilot fills in the fields below for you to review.</p>' +
       '<textarea id="brief" rows="3" placeholder="We need a senior AWS data engineer in Fairfax, hybrid, Python, Snowflake, 5+ years, $135k–$165k…"></textarea><input type="file" id="brief-file" accept=".txt,.md,.json,.pdf,.docx" class="mt8"> <button class="btn secondary small mt8" type="button" data-action="ai-draft">Draft with AI</button></div>' : '') +
     '<div class="form-row">' + field('Job title', inp('title', j.title, 'required')) + field('Department', inp('department', j.department)) + field('Location', inp('location', j.location, 'placeholder="City, State or United States"')) +
@@ -806,7 +810,7 @@ function jobForm(j) {
     field('Description', area('description', j.description, 'rows="4"')) + field('Responsibilities', area('responsibilities', j.responsibilities, 'rows="4"')) +
     field('Application questions (one per line; end with * to make optional)', area('questions', qs.map(q => q.q + (q.required ? '' : ' *')).join('\n'), 'rows="3"')) +
     '<div id="inclusive"></div></div><div class="ij-step-panel" data-ij-panel="2" hidden><div class="notice">Review the details in the previous steps before publishing. Drafts can be edited later; publishing may require approval depending on your role.</div><div class="row wrap-row mt16">' + (hasFeat('ai') ? '<button class="btn ghost" type="button" data-action="ai-inclusive">Inclusive-language check</button>' : '') + '<span class="grow"></span>' +
-    '<button class="btn secondary" type="submit" data-submit="draft">' + (j.id ? 'Save changes' : 'Save draft') + '</button>' + (!j.id ? '<button class="btn" type="submit" data-submit="publish">' + (can('HIRING_MANAGER') ? 'Publish' : 'Submit for approval') + '</button>' : '') + '</div></div><div class="wizard-controls"><button type="button" class="btn secondary" data-ij-prev hidden>← Back</button><span class="grow"></span><button type="button" class="btn" data-ij-next>Continue →</button></div></form>';
+    '<button class="btn secondary" type="submit" data-submit="draft">' + (j.id ? 'Save changes' : 'Save draft') + '</button>' + (!j.id ? '<button class="btn" type="submit" data-submit="publish">' + (can('HIRING_MANAGER') ? 'Publish' : 'Submit for approval') + '</button>' : '') + '</div></div><div class="wizard-controls"><button type="button" class="btn secondary" data-ij-prev hidden>← Back</button><span class="grow"></span>' + (j.id ? '<button class="btn ghost" type="submit" data-submit="draft">Save changes</button>' : '') + '<button type="button" class="btn" data-ij-next>Continue →</button></div></form>';
 }
 
 /* ------------------------------------------------------------------ pipeline */
@@ -1123,11 +1127,14 @@ PAGES.platform = () => {
   if (!p) return head('Platform console') + '<div class="loading">Loading<span class="pulse"></span></div>';
   if (p.error) return head('Platform console') + '<div class="notice bad">' + esc(p.error) + '</div>';
   const t = p.o.totals, tab = S.ui.tab.platform || 'tenants', s = p.s.settings;
-  const tabs = [['tenants', 'Tenants'], ['demos', 'Demos'], ['leads', 'Leads (' + t.leadsNew + ' new)'], ['users', 'Employer users'], ['seekers', 'Candidates (' + num(t.seekers) + ')'], ['billing', 'Billing events'], ['settings', 'Settings']];
+  const tabs = [['tenants', 'Tenants'], ['agents', 'Job agents'], ['partners', 'Partners'], ['intake', 'Email intake'], ['demos', 'Demos'], ['leads', 'Leads (' + t.leadsNew + ' new)'], ['users', 'Employer users'], ['seekers', 'Candidates (' + num(t.seekers) + ')'], ['billing', 'Billing events'], ['settings', 'Settings']];
   let body = '';
   if (tab === 'tenants') body = '<div class="table-wrap"><table><tr><th>Organization</th><th>Plan</th><th>Status</th><th>Usage</th><th>MRR</th><th>Created</th><th></th></tr>' + p.o.orgs.map(o => '<tr><td><b>' + esc(o.name) + '</b><div class="small muted">' + esc(o.ownerEmail) + (o.slug ? ' · /' + esc(o.slug) : '') + '</div>' + (o.notes ? '<div class="tiny dim">' + esc(o.notes) + '</div>' : '') + '</td>' +
     '<td>' + esc(o.plan) + ' <span class="small dim">' + esc(o.interval) + '</span></td><td>' + statusChip(o.status) + (o.status === 'Trialing' ? '<div class="tiny dim">ends ' + esc(o.trialEnds) + '</div>' : '') + '</td><td class="small">' + o.members + ' seats · ' + o.openJobs + ' jobs · ' + num(o.candidates) + ' cand.<br><span class="credit-pill" style="padding:1px 8px;font-size:11px">' + o.credits + ' credits</span></td><td>' + money(o.mrr) + '</td><td class="small muted">' + day(o.createdAt) + '</td>' +
     '<td class="right nowrap"><button class="btn small secondary" data-action="plat-edit" data-id="' + o.id + '">Edit</button><button class="btn small ghost" data-action="plat-join" data-id="' + o.id + '">Open as support</button></td></tr>').join('') + '</table></div>';
+  if (tab === 'agents') body = platAgentsHtml();
+  if (tab === 'partners') body = platPartnersHtml();
+  if (tab === 'intake') body = platIntakeHtml();
   if (tab === 'demos') body = platDemosHtml();
   if (tab === 'seekers') body = platSeekersHtml();
   if (tab === 'leads') body = p.leads.length ? '<div class="table-wrap"><table><tr><th>Lead</th><th>Company</th><th>Message</th><th>Source</th><th>Status</th></tr>' + p.leads.map(l => '<tr><td><b>' + esc(l.name) + '</b><div class="small"><a href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a> ' + esc(l.phone) + '</div><div class="tiny dim">' + day(l.createdAt) + '</div></td><td>' + esc(l.company) + '<div class="small muted">' + esc(l.hires) + ' hires/yr</div></td><td class="small">' + esc(l.message) + '</td><td class="small">' + esc(l.source) + '</td><td><select data-change="lead-status" data-id="' + l.id + '">' + opts(['New', 'Contacted', 'Qualified', 'Won', 'Lost'], l.status) + '</select></td></tr>').join('') + '</table></div>' : '<div class="empty">No leads yet.</div>';
@@ -1468,9 +1475,9 @@ function setSeeker(res) {
 }
 
 function siteHeader(active) {
-  const link = (h, t, k) => '<a href="' + h + '"' + (active === k ? ' style="color:#fff;font-weight:700"' : '') + '>' + t + '</a>';
+  const link = (h, t, k) => '<a href="' + h + '" style="white-space:nowrap' + (active === k ? ';color:#fff;font-weight:700' : '') + '">' + t + '</a>';
   return '<header class="site-top"><div class="wrap row">' + logo() + '<nav class="site-links" style="margin-left:24px">' +
-    link('#jobs', 'Find jobs', 'jobs') + link('#home', 'For employers', 'home') + link('#pricing', 'Pricing', 'pricing') + link('#careers/intellisoft', 'Careers at Intellisoft', 'careers') + '</nav><div class="grow"></div>' +
+    link('#jobs', 'Jobs', 'jobs') + link('#gov', 'Gov jobs', 'gov') + link('#home', 'Employers', 'home') + link('#partners', 'Partners', 'partners') + link('#pricing', 'Pricing', 'pricing') + '</nav><div class="grow"></div>' +
     (S.seekerToken ? '<a class="btn ghost" href="#me">My candidate profile</a>' : '<a class="btn ghost" href="#me/login">Candidate sign in</a>') +
     (S.token ? '<a class="btn" href="#app/dashboard">Employer workspace</a>' : '<a class="btn ghost" href="#login">Employer sign in</a><a class="btn" href="#register">Post jobs free</a>') + '</div></header>';
 }
@@ -1556,7 +1563,7 @@ function viewMarket(loading) {
   return '<div class="site">' + siteHeader('jobs') + '<section class="hero" style="padding:46px 0 26px"><div class="wrap"><div class="eyebrow">IntelliHire marketplace</div><h1 style="font-size:clamp(30px,4vw,48px)">Find work that <span>fits you.</span></h1>' +
     '<p class="lead">Open roles from every employer on IntelliHire. Transparent fit, one-click apply with your profile, and every application tracked in one place.</p>' +
     '<form data-form="market" class="searchbar mt16">' + inp('q', q.q, 'type="search" placeholder="Title, skill or company"') + inp('location', q.location, 'type="text" placeholder="Location"') +
-    sel('workType', [['', 'Any arrangement'], 'Remote', 'Hybrid', 'On-site'], q.workType) + '<button class="btn" type="submit">Search</button></form></div></section>' +
+    sel('workType', [['', 'Any arrangement'], 'Remote', 'Hybrid', 'On-site'], q.workType) + '<button class="btn" type="submit">Search</button></form>' + marketTabs() + '</div></section>' +
     '<div class="wrap" style="padding-bottom:60px"><div class="grid" style="grid-template-columns:1fr 300px;align-items:start"><div>' +
     (loading || !m ? '<div class="loading">Searching<span class="pulse"></span></div>' : (m.demo ? '<div class="notice small">Demo marketplace — fictional employers and roles.</div>' : '') +
       '<div class="small muted" style="margin-bottom:10px">' + num(m.total) + ' open role' + (m.total === 1 ? '' : 's') + '</div>' +
@@ -1796,7 +1803,7 @@ async function fillCandFromResume(src) {
 }
 
 Object.assign(FORMS, {
-  'market': (v) => { S.ui.mq = { q: v.q, location: v.location, workType: v.workType, page: 0 }; paint(viewMarket(true)); call('searchJobs', Object.assign({ token: S.seekerToken || '' }, S.ui.mq)).then(r => { S.market = r; paint(viewMarket()); }, fail); },
+  'market': (v) => { S.ui.mq = { q: v.q, location: v.location, workType: v.workType, sector: (S.ui.mq || {}).sector || 'all', page: 0 }; paint(viewMarket(true)); call('searchJobs', Object.assign({ token: S.seekerToken || '' }, S.ui.mq)).then(r => { S.market = r; paint(viewMarket()); }, fail); },
   'seeker-register': async (v, f, b) => { try { const r = await busy(b, call('seekerRegister', v)); r.pending ? go('#me/verify?email=' + encodeURIComponent(r.email)) : setSeeker(r); } catch (e) { fail(e); } },
   'seeker-verify': async (v, f, b) => { try { setSeeker(await busy(b, call('seekerVerify', v))); toast('Welcome! Add your resume to get matched.', 'ok'); } catch (e) { fail(e); } },
   'seeker-login': async (v, f, b) => { try { const r = await busy(b, call('seekerLogin', v)); r.pending ? go('#me/verify?email=' + encodeURIComponent(r.email)) : setSeeker(r); } catch (e) { fail(e); } },
@@ -1902,6 +1909,264 @@ document.addEventListener('click', function(ev) {
   form.querySelector('[data-ij-next]').hidden = target === panels.length-1;
   form.querySelector('.wizard-heading').scrollIntoView({block:'nearest',behavior:'smooth'});
 });
+
+/* ==================================================================================
+   v1.4 — every job on the landing page, job agents (aggregated + government jobs),
+   Partner Network, email intake, console tabs.
+   ================================================================================== */
+const SECTORS = [['all', 'All jobs'], ['direct', 'Direct employers'], ['gov', 'Government'], ['remote', 'Remote'], ['featured', 'Featured']];
+
+/* ------------------------------------------------------------------ job cards */
+const baseMktCard = mktCard;
+mktCard = function (j) {
+  if (!j.external) return baseMktCard(j);
+  const badge = j.sector === 'gov' ? '<span class="chip info">🏛 ' + esc(j.agency || 'Government') + '</span>' : '';
+  return '<div class="mkt-card' + (j.featured ? ' featured' : '') + '" role="button" tabindex="0" data-action="ext-job" data-id="' + esc(j.id) + '">' + orgDot(j.org) +
+    '<div><div class="row wrap-row gap8"><b style="font-size:16.5px">' + esc(j.title) + '</b>' + (j.featured ? '<span class="badge-feat">★ Featured partner</span>' : '') + badge +
+    (j.fit ? '<span class="fit ' + fitCls(j.fit.score) + '">' + j.fit.score + '% fit</span>' : '') + '</div>' +
+    '<div class="small muted">' + [j.org.name, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div>' +
+    '<div class="mt8">' + chips(j.requiredSkills.slice(0, 6)) + '<span class="tiny dim">via ' + esc(j.source) + ' · ' + ago(j.publishedAt) + '</span></div></div>' +
+    '<span class="btn small secondary">Details</span></div>';
+};
+function rememberJobs(list) { S.ui.extIndex = S.ui.extIndex || {}; (list || []).forEach(j => { if (j.external) S.ui.extIndex[j.id] = j; }); }
+function extJobModal(j) {
+  openModal(j.title, '<div class="row wrap-row gap8">' + orgDot(j.org) + '<div><b>' + esc(j.org.name) + '</b><div class="small muted">' + [j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div></div></div>' +
+    (j.sector === 'gov' ? '<div class="notice small mt16">Government position' + (j.agency ? ' · ' + esc(j.agency) : '') + (j.closesAt ? ' · closes ' + esc(day(j.closesAt)) : '') + '. Apply on the official site.</div>' : '') +
+    '<p class="mt16" style="white-space:pre-wrap">' + esc(j.description || 'Open the original posting for the full description.') + '</p><div>' + chips(j.requiredSkills) + '</div>' +
+    '<div class="row wrap-row mt16"><button class="btn" data-action="ext-apply" data-id="' + esc(j.id) + '">Apply on ' + esc(j.source) + ' ↗</button>' +
+    (S.seekerToken ? '' : '<a class="btn secondary" href="#me/register" data-action="close-modal-go" data-to="#me/register">Create a profile to get matched</a>') + '</div>' +
+    '<p class="tiny dim mt16">Listing provided by ' + esc(j.source) + '. IntelliHire links to the original posting; applications are handled by the source.</p>', true);
+}
+
+/* ------------------------------------------------------------------ landing: every job */
+function landingJobsHtml() {
+  const L = S.ui.lj, st = S.ui.mstats;
+  return '<section class="sec" id="all-jobs"><div class="wrap"><div class="row between wrap-row"><div><div class="eyebrow">Live job feed</div><h2 class="mb0">Every open role, in one place</h2>' +
+    '<p class="muted mb0">Direct employers on IntelliHire plus fresh roles our agents pull from public job sources and government portals.</p></div>' +
+    (st ? '<div class="stat-row"><div><b>' + num(st.total) + '</b><span class="small muted">open roles</span></div><div><b>' + num(st.gov) + '</b><span class="small muted">government</span></div><div><b>' + num(st.remote) + '</b><span class="small muted">remote</span></div><div><b>' + num(st.sources + (st.direct ? 1 : 0)) + '</b><span class="small muted">sources</span></div></div>' : '') + '</div>' +
+    '<form data-form="landing-jobs" class="searchbar mt16">' + inp('q', (S.ui.ljq || {}).q, 'type="search" placeholder="Title, skill, company or agency"') + inp('location', (S.ui.ljq || {}).location, 'type="text" placeholder="Location or Remote"') +
+    sel('workType', [['', 'Any arrangement'], 'Remote', 'Hybrid', 'On-site'], (S.ui.ljq || {}).workType) + '<button class="btn" type="submit">Search</button></form>' +
+    '<div class="tabs mt16">' + SECTORS.map(s => '<button class="' + (((S.ui.ljq || {}).sector || 'all') === s[0] ? 'on' : '') + '" data-action="lj-sector" data-v="' + s[0] + '">' + s[1] + '</button>').join('') + '</div>' +
+    (!L ? '<div class="loading">Loading the latest jobs<span class="pulse"></span></div>' : L.jobs.length ? L.jobs.map(mktCard).join('') +
+      '<div class="row wrap-row mt16"><span class="small muted">Showing ' + L.jobs.length + ' of ' + num(L.total) + '</span><span class="grow"></span>' + (L.jobs.length < L.total ? '<button class="btn secondary" data-action="lj-more">Load more</button>' : '') + '<a class="btn ghost" href="#jobs">Open full job search →</a></div>'
+      : '<div class="empty">No roles match. Try a broader search.</div>') + '</div></section>';
+}
+async function loadLanding(reset) {
+  const q = S.ui.ljq || (S.ui.ljq = { sector: 'all' });
+  try {
+    const [r, st] = await Promise.all([call('searchJobs', Object.assign({ per: 12, page: 0, token: S.seekerToken || '' }, q)), S.ui.mstats ? Promise.resolve(S.ui.mstats) : call('getMarketStats')]);
+    S.ui.lj = r; S.ui.mstats = st; rememberJobs(r.jobs);
+    if (['', 'home'].indexOf(S.route.name) >= 0) { const y = window.scrollY; paint(viewLanding()); if (!reset) window.scrollTo(0, y); }
+  } catch (e) { S.ui.lj = { jobs: [], total: 0 }; }
+}
+
+function govTeaserHtml() {
+  return '<section class="sec alt" id="gov-jobs"><div class="wrap hero-grid"><div><div class="eyebrow">Government & public sector</div><h2>Government jobs, in their own section</h2>' +
+    '<p class="muted">Federal openings from USAJOBS, roles from state and local agency feeds, and cleared positions (Public Trust, Secret, TS/SCI) from government contractors — with pay grades, closing dates and official apply links.</p>' +
+    '<div class="cta"><a class="btn" href="#gov">Browse government jobs</a><a class="btn secondary" href="#partners">Agencies: list your openings</a></div></div>' +
+    '<div class="glass"><div class="stat-row"><div><b>🏛</b><span class="small muted">Federal (USAJOBS)</span></div><div><b>🔐</b><span class="small muted">Cleared contractor roles</span></div><div><b>🗺</b><span class="small muted">State & local feeds</span></div></div>' +
+    '<div class="notice mt16">Applications for federal roles happen on the official USAJOBS site; IntelliHire helps you find and track them.</div></div></div></section>';
+}
+function partnerTeaserHtml() {
+  return '<section class="sec" id="partner-teaser"><div class="wrap"><div class="eyebrow center">IntelliHire Partner Network</div><h2 class="sec-title">Job boards, agencies and ATS vendors — plug in</h2>' +
+    '<p class="sec-sub">Even if you run your own job board, list your openings here for free and get qualified candidates sent back to your site. Upgrade to Featured placement, or syndicate our employer jobs onto yours.</p>' +
+    '<div class="grid g4">' + [['🔗', 'Free listing', 'Send a feed or ATS board; every job links back to you.'], ['★', 'Featured partner', 'Top placement and badge across the marketplace.'], ['⇄', 'Syndication', 'XML / RSS / JSON feed of direct-employer jobs for your site.'], ['📊', 'Partner dashboard', 'Listings, apply clicks sent and feed health.']]
+      .map(x => '<article class="card feature"><span class="fi">' + x[0] + '</span><h3>' + x[1] + '</h3><p>' + x[2] + '</p></article>').join('') + '</div><div class="center mt24"><a class="btn" href="#partners">Become a partner</a></div></div></section>';
+}
+function emailIntakeTeaserHtml() {
+  const addr = (S.pub && S.pub.intake) || '';
+  return '<section class="sec alt"><div class="wrap split"><div><div class="eyebrow">Works from your inbox</div><h2>Post jobs and send resumes by email</h2>' +
+    '<p class="muted">Recruiters email a job description to create a posting, or forward resumes to add candidates. Candidates email a resume to apply (put the job reference, like JOB-1A2B3C4D, in the subject) or to create a profile.</p></div>' +
+    '<div class="card"><h3>' + (addr ? esc(addr) : 'Your intake address') + '</h3><div class="stack small"><div><b>Post a job:</b> subject "POST JOB: Title" + description (add PUBLISH to go live)</div><div><b>Add candidates:</b> forward resumes; include JOB-XXXXXXXX to attach to a job</div>' +
+    '<div><b>Candidates:</b> email your resume with the job reference to apply, or [company] to join a talent pool</div></div></div></div></section>';
+}
+
+/* ------------------------------------------------------------------ marketplace tabs, government page */
+function marketTabs() {
+  const cur = (S.ui.mq || {}).sector || 'all';
+  return '<div class="tabs mt16" style="border:0">' + SECTORS.map(s => '<button class="' + (cur === s[0] ? 'on' : '') + '" data-action="mkt-sector" data-v="' + s[0] + '">' + s[1] + '</button>').join('') + '</div>';
+}
+renderMarket = async function () {
+  const p = S.route.params, prev = S.ui.mq || {};
+  S.ui.mq = { q: p.q || prev.q || '', location: p.location || prev.location || '', workType: p.workType || prev.workType || '', sector: p.sector || prev.sector || 'all', source: p.source || '', page: 0 };
+  paint(viewMarket(true));
+  loadPub();
+  try { S.market = await call('searchJobs', Object.assign({ token: S.seekerToken || '' }, S.ui.mq)); rememberJobs(S.market.jobs); paint(viewMarket()); } catch (e) { fail(e); }
+};
+
+async function renderGov() {
+  const q = S.ui.gq || (S.ui.gq = {});
+  paint(viewGov(true));
+  try { S.ui.gov = await call('searchJobs', Object.assign({ sector: 'gov', per: 40, token: S.seekerToken || '' }, q)); rememberJobs(S.ui.gov.jobs); paint(viewGov()); } catch (e) { fail(e); }
+}
+function viewGov(loading) {
+  const g = S.ui.gov, q = S.ui.gq || {};
+  const agencies = {};
+  (g && g.jobs || []).forEach(j => { if (j.agency) agencies[j.agency] = (agencies[j.agency] || 0) + 1; });
+  return '<div class="site">' + siteHeader('gov') + '<section class="hero" style="padding:46px 0 26px"><div class="wrap"><div class="eyebrow">Government & public-sector jobs</div><h1 style="font-size:clamp(30px,4vw,48px)">Serve with <span>purpose.</span></h1>' +
+    '<p class="lead">Federal openings from USAJOBS, state and local agency feeds, and cleared roles from government contractors — in one place.</p>' +
+    '<form data-form="gov-search" class="searchbar mt16">' + inp('q', q.q, 'type="search" placeholder="Title, series, agency or skill"') + inp('location', q.location, 'type="text" placeholder="Location"') +
+    sel('workType', [['', 'Any arrangement'], 'Remote', 'Hybrid', 'On-site'], q.workType) + '<button class="btn" type="submit">Search</button></form></div></section>' +
+    '<div class="wrap" style="padding-bottom:60px"><div class="grid" style="grid-template-columns:1fr 300px;align-items:start"><div>' +
+    (loading || !g ? '<div class="loading">Searching<span class="pulse"></span></div>' : '<div class="small muted" style="margin-bottom:10px">' + num(g.total) + ' government role' + (g.total === 1 ? '' : 's') + '</div>' +
+      (g.jobs.length ? g.jobs.map(mktCard).join('') : '<div class="empty">No government roles match yet. Agents refresh every few hours.</div>')) +
+    '</div><aside class="stack"><div class="card"><h3>Agencies hiring</h3>' + (Object.keys(agencies).length ? Object.entries(agencies).sort((a, b) => b[1] - a[1]).slice(0, 12).map(a => '<a href="#gov" class="row between small" data-action="gov-agency" data-v="' + esc(a[0]) + '" style="padding:5px 0;color:var(--text)"><span>' + esc(a[0]) + '</span><span class="dim">' + a[1] + '</span></a>').join('') : '<p class="small muted">—</p>') + '</div>' +
+    '<div class="card"><h3>Security clearances</h3><p class="small muted">Cleared roles from contractors show the clearance required (Public Trust, Secret, Top Secret, TS/SCI).</p></div>' +
+    '<div class="card"><h3>Government agency?</h3><p class="small muted">List your openings for free through the Partner Network.</p><a class="btn secondary" href="#partners">List openings</a></div></aside></div></div></div>';
+}
+
+/* ------------------------------------------------------------------ Partner Network pages */
+function viewPartners() {
+  const price = 299;
+  return '<div class="site">' + siteHeader('partners') + '<section class="hero" style="padding:56px 0 30px"><div class="wrap hero-grid"><div><div class="eyebrow">IntelliHire Partner Network</div><h1 style="font-size:clamp(32px,4.4vw,54px)">More reach for <span>your jobs.</span></h1>' +
+    '<p class="lead">Job boards, staffing agencies, ATS vendors, universities and government agencies — including other job sites — can list openings on IntelliHire. Candidates apply on <b>your</b> site, so you get the traffic.</p>' +
+    '<div class="cta"><a class="btn xl" href="#partners" data-action="scroll" data-to="partner-form">Apply in 2 minutes</a></div></div>' +
+    '<div class="glass"><div class="stack">' + [['1', 'Send your feed', 'RSS, XML (Indeed format), JSON, or your Greenhouse / Lever / Ashby board.'], ['2', 'We review & connect', 'Usually within one business day; our agent refreshes your jobs on a schedule.'], ['3', 'Get applicants', 'Every listing links back to your site. Track apply clicks in your dashboard.']]
+      .map(s => '<div class="row top"><div class="org-dot" style="width:36px;height:36px;font-size:15px;background:var(--grad)">' + s[0] + '</div><div><b>' + s[1] + '</b><div class="small muted">' + s[2] + '</div></div></div>').join('') + '</div></div></div></section>' +
+    '<section class="sec alt"><div class="wrap"><div class="plans">' +
+    '<article class="card plan"><h3>Free listing</h3><div class="price"><b>$0</b></div><ul><li>Your jobs in the marketplace & search</li><li>"via YourBrand" attribution + link back</li><li>Partner dashboard with apply clicks</li><li>Refreshed every 12 hours</li></ul></article>' +
+    '<article class="card plan popular"><span class="ribbon">Most reach</span><h3>Featured partner</h3><div class="price"><b>$' + price + '</b><span>/mo</span></div><ul><li>Everything in Free</li><li>★ Featured placement above organic results</li><li>Logo badge and priority refresh</li><li>Monthly performance report</li></ul></article>' +
+    '<article class="card plan"><h3>Syndication & API</h3><div class="price"><b>Free</b></div><ul><li>XML / RSS / JSON feed of direct-employer jobs</li><li>Show IntelliHire jobs on your site</li><li>Attribution link required</li><li>Volume / revenue-share options</li></ul></article></div></div></section>' +
+    '<section class="sec" id="partner-form"><div class="wrap split"><div><h2>Apply to the Partner Network</h2><p class="muted">Tell us about your organization and where your jobs live. We only connect official feeds you own or are authorized to share.</p>' +
+    '<div class="notice small">Hiring for your own company instead? <a href="#register">Start an employer workspace</a> — you can import jobs from your site in one click.</div></div>' +
+    '<form data-form="partner-apply" class="card"><div class="form-row">' + field('Organization', inp('name', '', 'required')) + field('Type', sel('kind', ['Job board', 'Staffing agency', 'ATS / HR tech', 'Employer', 'Government agency', 'University', 'Other'], 'Job board')) +
+    field('Your name', inp('contact', '', 'required')) + field('Work email', inp('email', '', 'type="email" required')) + '</div>' + field('Website', inp('website', '', 'type="url" placeholder="https://"')) +
+    field('Job feed or board URL', inp('feedUrl', '', 'type="url" placeholder="https://yoursite.com/jobs.xml · boards.greenhouse.io/you · jobs.lever.co/you"')) + field('Anything else?', area('message', '', 'rows="3"')) +
+    '<label class="check mt8"><input type="checkbox" name="featured"> <span>I\'m interested in Featured partner placement</span></label><div class="hp" aria-hidden="true"><input name="website2" tabindex="-1" autocomplete="off"></div>' +
+    '<button class="btn mt16" style="width:100%">Apply</button></form></div></section></div>';
+}
+async function renderPartnerDash() {
+  const key = S.route.params.key || '';
+  paint('<div class="site">' + siteHeader('partners') + '<div class="loading">Loading your partner dashboard<span class="pulse"></span></div></div>');
+  try { S.ui.pd = await call('getPartnerDashboard', { key: key }); S.ui.pd.key = key; paint(viewPartnerDash()); }
+  catch (e) { paint('<div class="site">' + siteHeader('partners') + '<div class="wrap" style="padding:40px 24px"><div class="card"><h3>Partner dashboard</h3><p class="muted">' + esc(e.message) + '</p><a class="btn" href="#partners">Partner Network</a></div></div></div>'); }
+}
+function viewPartnerDash() {
+  const d = S.ui.pd, p = d.partner, f = d.feed;
+  return '<div class="site">' + siteHeader('partners') + '<div class="wrap" style="padding:30px 24px 60px"><div class="page-head"><div><div class="eyebrow">Partner dashboard</div><h2>' + esc(p.name) + ' ' + statusChip(p.status) + ' ' + chip(p.tier, p.tier === 'Featured' ? 'a' : '') + '</h2><div class="small muted">' + esc(p.kind) + ' · ' + esc(p.website || '') + '</div></div></div>' +
+    '<div class="grid g4">' + kpi(num(d.listings), 'Live listings') + kpi(num(d.clicks), 'Apply clicks sent to you') + kpi(f.lastCount || 0, 'Jobs in last refresh', f.lastRunAt ? ago(f.lastRunAt) : 'not yet run') + kpi(f.everyHours ? 'every ' + f.everyHours + 'h' : '—', 'Refresh schedule') + '</div>' +
+    (f.lastError ? '<div class="notice bad mt16">Feed problem: ' + esc(f.lastError) + '</div>' : '') +
+    '<div class="split mt16"><div class="card"><h3>Top listings</h3>' + (d.top.length ? '<div class="table-wrap"><table><tr><th>Job</th><th>Clicks</th><th>Posted</th></tr>' + d.top.map(t => '<tr><td>' + esc(t.title) + '</td><td>' + t.clicks + '</td><td class="small muted">' + ago(t.postedAt) + '</td></tr>').join('') + '</table></div>' : '<p class="muted">Listings appear after the first refresh.</p>') +
+    '<a class="btn secondary small mt16" href="' + esc(d.marketplace) + '">See your jobs in the marketplace</a></div>' +
+    '<div class="stack"><div class="card"><h3>Syndication feeds</h3><p class="small muted">Show IntelliHire direct-employer jobs on your site (attribution link required).</p>' +
+    (d.syndication ? ['xml', 'rss', 'json'].map(k => '<div class="row mt8"><span class="chip">' + k.toUpperCase() + '</span><input type="text" readonly value="' + esc(d.syndication[k]) + '"><button class="btn small secondary" data-action="copy" data-text="' + esc(d.syndication[k]) + '">Copy</button></div>').join('') : '<p class="small">Available after deployment.</p>') + '</div>' +
+    (p.tier !== 'Featured' ? '<div class="card"><h3>Go Featured</h3><p class="small muted">Top placement and a Featured badge for $' + d.featuredPrice + '/month.</p><button class="btn" data-action="partner-featured">Request Featured</button></div>' : '') + '</div></div></div></div>';
+}
+
+const baseRenderPublic = renderPublic;
+renderPublic = function () {
+  const n = S.route.name;
+  if (n === 'gov') return renderGov();
+  if (n === 'partners') { paint(viewPartners()); return; }
+  if (n === 'partner') return renderPartnerDash();
+  const r = baseRenderPublic();
+  if (['', 'home', 'pricing'].indexOf(n) >= 0 && !S.ui.lj) loadLanding();
+  return r;
+};
+
+/* ------------------------------------------------------------------ employer hints (email intake, refs) */
+function intakeHint(kind, j) {
+  const it = S.db && S.db.org.intake;
+  if (!it || !it.enabled || !it.address) return '';
+  if (kind === 'jobs') return '<div class="notice small">📧 Post by email: send a job description to <b>' + esc(it.address) + '</b> with subject <b>POST JOB: Title</b> (add PUBLISH to go live' + (S.db.myOrgs.length > 1 ? '; add [' + esc(S.db.org.slug) + '] to choose this workspace' : '') + ').</div>';
+  if (kind === 'cands') return '<div class="notice small">📧 Forward resumes to <b>' + esc(it.address) + '</b> — they become candidates here. Put a job reference (e.g. JOB-1A2B3C4D) in the subject to add them to that job.</div>';
+  return '<div class="small muted mt8">Ref <b>' + esc(j.ref) + '</b> · candidates can email a resume to ' + esc(it.address) + ' with "' + esc(j.ref) + '" in the subject.</div>';
+}
+const baseJobsPage = PAGES.jobs, baseCandsPage = PAGES.candidates, baseJobPage = PAGES.job;
+PAGES.jobs = () => intakeHint('jobs') + baseJobsPage();
+PAGES.candidates = () => intakeHint('cands') + baseCandsPage();
+PAGES.job = () => { const j = jobById(S.route.parts[1]); const html = baseJobPage(); if (!j.id) return html; const ref = 'JOB-' + String(j.id).replace(/[^a-f0-9]/gi, '').slice(0, 8).toUpperCase(); return html + intakeHint('job', { ref: ref }); };
+
+/* ------------------------------------------------------------------ platform console: agents, partners, intake */
+function lazyPlat(k, fn) { S.ui.platLoading = S.ui.platLoading || {}; if (S.ui.platLoading[k]) return; S.ui.platLoading[k] = 1; call(fn).then(r => { S.ui.platLoading[k] = 0; if (S.plat) { S.plat[k] = r; renderApp(); } }, e => { S.ui.platLoading[k] = 0; fail(e); }); }
+function platAgentsHtml() {
+  const a = S.plat.agents;
+  if (!a) { lazyPlat('agents', 'platformListConnectors'); return '<div class="loading">Loading<span class="pulse"></span></div>'; }
+  return '<div class="card"><div class="row between wrap-row"><div><h3 class="mb0">Job agents</h3><p class="small muted mb0">Pull recent jobs from official public APIs and feeds every few hours · ' + num(a.total) + ' aggregated postings stored. Never scrapes sites that forbid it (LinkedIn, Indeed).</p></div>' +
+    '<div class="row"><label class="check"><input type="checkbox" data-change="agents-on"' + (a.agentsEnabled ? ' checked' : '') + '> Agents on</label><button class="btn" data-action="agents-run">Run due agents now</button><button class="btn secondary" data-action="con-new">+ Add source</button></div></div>' +
+    '<div class="notice small mt8">USAJOBS (federal jobs): ' + (a.usajobsKey ? '✓ API key set' : 'get a free key at developer.usajobs.gov → Settings → Secrets → USAJOBS_API_KEY') + ' · contact email: ' + (a.usajobsEmail ? esc(a.usajobsEmail) : 'set usajobsEmail in Settings') + '. Review each source\'s terms before turning it on.</div></div>' +
+    '<div class="table-wrap mt16"><table><tr><th>Source</th><th>Status</th><th>Schedule</th><th>Last run</th><th>Live</th><th>Clicks</th><th></th></tr>' + a.connectors.map(c => '<tr><td><b>' + esc(c.name) + '</b><div class="tiny dim">' + esc(c.type) + ' · ' + (c.sector === 'gov' ? '🏛 government' : 'private') + ' · attribution "' + esc(c.attribution) + '"</div>' +
+      (c.lastError ? '<div class="tiny" style="color:var(--bad)">' + esc(c.lastError) + '</div>' : '') + '</td><td>' + (c.enabled === 'Yes' ? chip('On', 'ok') : chip('Off')) + '</td><td class="small">every ' + c.everyHours + 'h</td><td class="small muted">' + (c.lastRunAt ? ago(c.lastRunAt) + ' · ' + c.lastCount + ' found' : 'never') + '</td>' +
+      '<td>' + num(c.active) + '</td><td>' + num(c.clicks) + '</td><td class="right nowrap"><button class="btn small secondary" data-action="con-act" data-id="' + c.id + '" data-v="run">Run</button><button class="btn small ghost" data-action="con-act" data-id="' + c.id + '" data-v="' + (c.enabled === 'Yes' ? 'disable' : 'enable') + '">' + (c.enabled === 'Yes' ? 'Turn off' : 'Turn on') + '</button>' +
+      '<button class="btn small ghost" data-action="con-edit" data-id="' + c.id + '">Edit</button><button class="btn small ghost" data-action="con-act" data-id="' + c.id + '" data-v="clear">Clear jobs</button>' + (c.partnerId ? '' : '<button class="btn small ghost" data-action="con-act" data-id="' + c.id + '" data-v="delete">Delete</button>') + '</td></tr>').join('') + '</table></div>';
+}
+const CONFIG_HINTS = { usajobs: '{"keyword":"","location":"","results":250}', remotive: '{"category":"software-dev","search":"","limit":150}', arbeitnow: '{"pages":2}', themuse: '{"category":"Software Engineering","pages":2}', remoteok: '{}',
+  adzuna: '{"country":"us","what":"software","where":"","pages":2}', ats: '{"urls":"https://boards.greenhouse.io/acme, https://jobs.lever.co/acme","company":"Acme"}', feed: '{"urls":"https://agency.gov/jobs.rss","company":"State of Virginia","agency":"Virginia DHRM"}', partner: '{"urls":"https://partner.com/feed.xml","company":"Partner"}' };
+function connectorForm(c) {
+  c = c || { type: 'feed', sector: 'private', everyHours: 6, enabled: 'Yes', config: {} };
+  return '<form data-form="con-save"><input type="hidden" name="id" value="' + esc(c.id || '') + '"><div class="form-row">' + field('Name', inp('name', c.name, 'required')) + field('Type', sel('type', (S.plat.agents.types || []), c.type, 'data-change="con-type"')) +
+    field('Sector', sel('sector', [['private', 'Private sector'], ['gov', 'Government']], c.sector)) + field('Refresh every (hours)', inp('everyHours', c.everyHours, 'type="number" min="1" max="168"')) + field('Attribution shown on jobs', inp('attribution', c.attribution)) + '</div>' +
+    field('Config (JSON)', area('config', JSON.stringify(c.config || {}, null, 1) === '{}' ? (CONFIG_HINTS[c.type] || '{}') : JSON.stringify(c.config, null, 1), 'rows="4" class="mono" id="con-config"')) +
+    '<label class="check mt8"><input type="checkbox" name="enabled"' + (c.enabled === 'Yes' ? ' checked' : '') + '> On</label><button class="btn mt16">Save source</button></form>';
+}
+function platPartnersHtml() {
+  const p = S.plat.partners;
+  if (!p) { lazyPlat('partners', 'platformListPartners'); return '<div class="loading">Loading<span class="pulse"></span></div>'; }
+  return '<p class="small muted">Public page: <a href="#partners" target="_blank" rel="noopener">#partners</a> · Featured partner price: $' + p.featuredPrice + '/mo (Settings → partnerFeaturedPrice)</p>' +
+    (p.partners.length ? '<div class="table-wrap"><table><tr><th>Partner</th><th>Status</th><th>Feed</th><th>Live</th><th>Clicks</th><th></th></tr>' + p.partners.map(x => '<tr><td><b>' + esc(x.name) + '</b> ' + chip(x.tier, /Featured/.test(x.tier) ? 'a' : '') + '<div class="small muted">' + esc(x.kind) + ' · ' + esc(x.contact) + ' &lt;' + esc(x.email) + '&gt;</div>' + (x.message ? '<div class="tiny dim">' + esc(x.message) + '</div>' : '') + '</td>' +
+      '<td>' + statusChip(x.status) + '</td><td class="small">' + (x.feedUrl ? '<a href="' + esc(x.feedUrl) + '" target="_blank" rel="noopener">' + esc(x.feedUrl.replace(/^https:\/\//, '').slice(0, 40)) + '</a>' : '—') + '</td><td>' + x.listings + '</td><td>' + x.clicks + '</td><td class="right nowrap">' +
+      (x.status === 'Pending' ? '<button class="btn small" data-action="pt-act" data-id="' + x.id + '" data-v="approve">Approve</button><button class="btn small ghost" data-action="pt-act" data-id="' + x.id + '" data-v="reject">Reject</button>' : '') +
+      (x.status === 'Approved' ? '<button class="btn small ghost" data-action="pt-act" data-id="' + x.id + '" data-v="' + (x.tier === 'Featured' ? 'unfeature' : 'feature') + '">' + (x.tier === 'Featured' ? 'Unfeature' : 'Feature') + '</button><button class="btn small ghost" data-action="pt-act" data-id="' + x.id + '" data-v="pause">Pause</button><button class="btn small ghost" data-action="pt-act" data-id="' + x.id + '" data-v="newlink">New link</button>' : '') +
+      (x.status === 'Paused' ? '<button class="btn small ghost" data-action="pt-act" data-id="' + x.id + '" data-v="resume">Resume</button>' : '') + '<button class="btn small ghost" data-action="pt-act" data-id="' + x.id + '" data-v="delete">Delete</button></td></tr>').join('') + '</table></div>' : '<div class="empty">No partner applications yet. Share <b>#partners</b> with job boards, agencies and ATS vendors.</div>');
+}
+function platIntakeHtml() {
+  const it = S.plat.intake;
+  if (!it) { lazyPlat('intake', 'platformIntake'); return '<div class="loading">Loading<span class="pulse"></span></div>'; }
+  const s = it.settings;
+  return '<div class="split"><form data-form="intake-save" class="card"><h3>Email intake</h3>' + field('Intake address (shown to users)', inp('address', s.address, 'type="email" placeholder="jobs@intellisoft-tech.com"')) +
+    field('Gmail search for intake mail', inp('query', s.query)) + '<label class="check mt8"><input type="checkbox" name="enabled"' + (s.enabled ? ' checked' : '') + '> Process mail every 10 minutes</label>' +
+    '<div class="row mt16"><button class="btn">Save</button><button class="btn secondary" type="button" data-action="intake-run">Run now</button></div></form>' +
+    '<div class="card"><h3>Set up (once)</h3><ol class="small"><li>Make the intake address deliver to the Google account that deploys IntelliHire (an alias, a Google Group or a forward).</li>' +
+    '<li>In that Gmail: Settings → Filters → Create filter → <b>To: ' + esc(s.address || 'jobs@yourdomain') + '</b> → Apply the label <b>intellihire-intake</b>.</li><li>Tick "Process mail" here. Processed mail is marked read and labelled <b>intellihire-processed</b>.</li>' +
+    '<li>Optional: plus-addresses like jobs+acme-staffing@… route resumes to that employer (Gmail delivers them to the same inbox).</li></ol></div></div>' +
+    '<h3 class="mt24">Recent intake</h3>' + (it.log.length ? '<div class="table-wrap"><table><tr><th>When</th><th>From</th><th>Subject</th><th>Action</th><th>Result</th></tr>' + it.log.map(l => '<tr><td class="small nowrap">' + esc(when(l.receivedAt)) + '</td><td class="small">' + esc(l.sender) + '</td><td class="small">' + esc(l.subject) + '</td><td>' + chip(l.action) + '</td><td>' + statusChip(l.status) + '<div class="tiny dim">' + esc(l.detail) + '</div></td></tr>').join('') + '</table></div>' : '<div class="empty">No email processed yet.</div>');
+}
+
+/* ------------------------------------------------------------------ v1.4 actions / forms */
+Object.assign(ACTIONS, {
+  'ext-job': d => { const j = (S.ui.extIndex || {})[d.id]; if (j) extJobModal(j); },
+  'ext-apply': async (d, el) => {
+    const j = (S.ui.extIndex || {})[d.id]; const w = window.open('', '_blank');
+    try { const r = await call('trackJobClick', { id: d.id }); const url = r.url || (j && j.applyUrl); if (w) w.location = url; else location.href = url; } catch (e) { if (w && j) w.location = j.applyUrl; }
+  },
+  'close-modal-go': d => { closeModal(); go(d.to); },
+  'lj-sector': d => { S.ui.ljq = Object.assign({}, S.ui.ljq, { sector: d.v }); S.ui.lj = null; paint(viewLanding()); loadLanding(); },
+  'lj-more': async (d, el) => {
+    const q = S.ui.ljq, L = S.ui.lj, page = Math.floor(L.jobs.length / 12);
+    try { const r = await busy(el, call('searchJobs', Object.assign({ per: 12, page: page, token: S.seekerToken || '' }, q))); rememberJobs(r.jobs); L.jobs = L.jobs.concat(r.jobs); const y = window.scrollY; paint(viewLanding()); window.scrollTo(0, y); } catch (e) { fail(e); }
+  },
+  'mkt-sector': d => { S.ui.mq = Object.assign({}, S.ui.mq, { sector: d.v, page: 0 }); paint(viewMarket(true)); call('searchJobs', Object.assign({ token: S.seekerToken || '' }, S.ui.mq)).then(r => { S.market = r; rememberJobs(r.jobs); paint(viewMarket()); }, fail); },
+  'gov-agency': d => { S.ui.gq = Object.assign({}, S.ui.gq, { q: d.v }); renderGov(); },
+  'partner-featured': async (d, el) => { try { await busy(el, call('partnerRequestFeatured', { key: S.ui.pd.key })); toast('Request sent — our team will contact you with an invoice.', 'ok', 6000); } catch (e) { fail(e); } },
+  'agents-run': async (d, el) => { try { const r = await busy(el, call('platformRunAgents')); toast(r.ran + ' source(s) refreshed · ' + r.pruned + ' old postings removed', 'ok', 6000); S.plat.agents = null; renderApp(); } catch (e) { fail(e); } },
+  'con-new': () => openModal('Add job source', connectorForm(), true),
+  'con-edit': d => openModal('Edit job source', connectorForm(S.plat.agents.connectors.find(c => c.id === d.id)), true),
+  'con-act': async (d, el) => {
+    if ((d.v === 'delete' || d.v === 'clear') && !confirm(d.v === 'delete' ? 'Delete this source and its jobs?' : 'Remove all jobs from this source?')) return;
+    try { const r = await busy(el, call('platformConnectorAction', { id: d.id, action: d.v })); toast(r.error ? 'Failed: ' + r.error : d.v === 'run' ? r.found + ' found · ' + r.added + ' new · ' + r.updated + ' updated' : 'Done.', r.error ? 'error' : 'ok', 7000); S.plat.agents = null; renderApp(); } catch (e) { fail(e); }
+  },
+  'pt-act': async (d, el) => {
+    if (d.v === 'delete' && !confirm('Delete this partner and its listings?')) return;
+    try { const r = await busy(el, call('platformPartnerAction', { id: d.id, action: d.v })); S.plat.partners = null; S.plat.agents = null; renderApp();
+      if (r.link) openModal('Partner dashboard link', '<p class="small muted">' + (r.emailed ? 'Emailed to the partner. ' : 'Email failed — send it yourself. ') + 'Keep it private.</p><div class="row"><input type="text" readonly value="' + esc(r.link) + '"><button class="btn small" data-action="copy" data-text="' + esc(r.link) + '">Copy</button></div>');
+      else toast('Done.', 'ok');
+    } catch (e) { fail(e); }
+  },
+  'intake-run': async (d, el) => { try { const r = await busy(el, call('platformIntakeRun')); S.plat.intake = r.state; toast('Intake: ' + r.result, 'ok'); renderApp(); } catch (e) { fail(e); } }
+});
+Object.assign(FORMS, {
+  'landing-jobs': v => { S.ui.ljq = { q: v.q, location: v.location, workType: v.workType, sector: (S.ui.ljq || {}).sector || 'all' }; S.ui.lj = null; paint(viewLanding()); loadLanding(); },
+  'gov-search': v => { S.ui.gq = { q: v.q, location: v.location, workType: v.workType }; renderGov(); },
+  'partner-apply': async (v, f, b) => { try { await busy(b, call('submitPartner', Object.assign({}, v, { featured: !!v.featured }))); f.reset(); openModal('Thank you!', '<p>We received your application and usually reply within one business day with your private partner dashboard link.</p><a class="btn" href="#jobs" data-action="close-modal-go" data-to="#jobs">Explore the marketplace</a>'); } catch (e) { fail(e); } },
+  'con-save': async (v, f, b) => { try { await busy(b, call('platformSaveConnector', Object.assign({}, v, { enabled: !!v.enabled }))); closeModal(); toast('Source saved. Use Run to fetch now.', 'ok'); S.plat.agents = null; renderApp(); } catch (e) { fail(e); } },
+  'intake-save': async (v, f, b) => { try { S.plat.intake = await busy(b, call('platformIntakeSave', Object.assign({}, v, { enabled: !!v.enabled }))); toast('Email intake saved.', 'ok'); renderApp(); } catch (e) { fail(e); } }
+});
+Object.assign(CHANGES, {
+  'agents-on': async (v, el) => { try { await call('platformSaveSettings', { agentsEnabled: el.checked ? 'true' : 'false' }); toast('Job agents ' + (el.checked ? 'on' : 'off') + '.', 'ok'); } catch (e) { fail(e); } },
+  'con-type': v => { const c = $('con-config'); if (c && CONFIG_HINTS[v]) c.value = CONFIG_HINTS[v]; }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target && e.target.dataset && e.target.dataset.action === 'ext-job') ACTIONS['ext-job'](e.target.dataset); });
+
 bind();
 route();
 </script>
