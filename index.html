@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.6.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.7.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -205,6 +205,10 @@ a{color:var(--a)}
 .sched{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}@media(max-width:700px){.sched{grid-template-columns:1fr 1fr}}
 .run-status{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:10px}.dotlive{width:9px;height:9px;border-radius:50%;background:var(--a);box-shadow:0 0 0 4px #4de0c322}.dotlive.off{background:#7d93ab;box-shadow:none}
 .modal{background:linear-gradient(170deg,#14283f,#0d1b2d)}.modal-bg{background:#030a14b8}
+.ic{display:inline-block;vertical-align:-3.5px;flex:0 0 auto}.nav a span .ic{width:17px;height:17px;vertical-align:-3px}.count .ic{width:13px;height:13px}
+.req-chip .ic{width:15px;height:15px}.req-chip.visa{border-color:#4de0c366;color:#0a8f78}.mkt-card .req-chip.visa{color:var(--a)}
+.feature .fi .ic{width:22px;height:22px}.fi{color:var(--a)}.stat-row.icons b .ic{width:26px;height:26px;color:var(--a)}.notice .ic{vertical-align:-4px;margin-right:2px}
+.chip.info .ic{width:13px;height:13px;vertical-align:-2px}
 </style>
 
 </head>
@@ -214,6 +218,55 @@ a{color:var(--a)}
   <div id="toast" role="status" aria-live="polite"></div>
   <noscript>IntelliHire needs JavaScript enabled.</noscript>
 <script>
+/* ==================================================================================
+   v1.7 — inline SVG icon set (stroke icons, inherit currentColor). ic('pin') → <svg…>
+   ================================================================================== */
+const IC_PATHS = {
+  pin: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  video: '<rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3z"/>',
+  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/>',
+  passport: '<rect x="5" y="3" width="14" height="18" rx="2.5"/><circle cx="12" cy="10" r="3.2"/><path d="M8.8 10h6.4M12 6.8c1 .9 1 5.5 0 6.4M12 6.8c-1 .9-1 5.5 0 6.4M9 17h6"/>',
+  gov: '<path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20.5h18"/>',
+  lock: '<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5M12 14.5v2.5"/>',
+  shield: '<path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/>',
+  map: '<path d="M9 4L3.5 6v14L9 18l6 2 5.5-2V4L15 6z"/><path d="M9 4v14M15 6v14"/>',
+  link: '<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/>',
+  star: '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.8z"/>',
+  swap: '<path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5"/>',
+  chart: '<path d="M4 20V10M10 20V4M16 20v-7M21 20.5H3"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5L12 13l8.5-6.5"/>',
+  briefcase: '<rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12.5h18"/>',
+  home: '<path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/>',
+  grid: '<rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"/>',
+  kanban: '<rect x="3" y="4" width="5" height="16" rx="1.6"/><rect x="9.5" y="4" width="5" height="11" rx="1.6"/><rect x="16" y="4" width="5" height="7" rx="1.6"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/>',
+  bench: '<circle cx="7" cy="7" r="2.6"/><circle cx="17" cy="7" r="2.6"/><path d="M2.5 15a4.5 4.5 0 0 1 9 0M12.5 15a4.5 4.5 0 0 1 9 0M3 19.5h18"/>',
+  spark: '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  check: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12.3l2.4 2.4 4.8-5"/>',
+  doc: '<path d="M7 3h7l5 5v12.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',
+  trend: '<path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>',
+  bot: '<rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/>',
+  report: '<rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 16v-3M12 16V9M16 16v-5"/>',
+  globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.5 2.5 14.5 0 17M12 3.5c-2.5 2.5-2.5 14.5 0 17"/>',
+  card: '<rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/>',
+  list: '<path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/>',
+  flag: '<path d="M5 21V4M5 4h11l-1.8 4L16 12H5"/>',
+  clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  agent: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'
+};
+function ic(name, cls) {
+  return '<svg class="ic' + (cls ? ' ' + cls : '') + '" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + (IC_PATHS[name] || '') + '</svg>';
+}
+/** Work-authorization statuses a candidate can choose (asked of everyone; never used in fit scoring). */
+const WORK_STATUSES = ['U.S. Citizen', 'Green Card (Permanent Resident)', 'GC EAD', 'H-1B (transfer)', 'H-4 EAD', 'L-2 EAD', 'OPT / STEM OPT EAD', 'CPT', 'TN', 'E-3',
+  'Asylum / Refugee EAD', 'Other EAD (authorized to work)', 'Will require sponsorship'];
+function workStatusSelect(name, value, required) {
+  const list = WORK_STATUSES.slice();
+  if (value && list.indexOf(value) < 0) list.unshift(value);
+  return '<select name="' + name + '"' + (required ? ' required' : '') + '><option value="">Select your work status…</option>' + list.map(s => '<option' + (s === value ? ' selected' : '') + '>' + esc(s) + '</option>').join('') + '</select>';
+}
 /* IntelliHire web app — runs on the hosted site (fetch → Apps Script JSON API) and inside
    Apps Script (google.script.run). No external libraries. All user text is escaped. */
 'use strict';
@@ -476,7 +529,7 @@ function viewLanding() {
     '<div class="notice">✦ Growth coach: a 3-week MLOps plan with a hands-on lab, then reassess readiness.</div></div></div></section>' +
     landingJobsHtml() +
     '<section class="sec alt" id="features"><div class="wrap"><div class="eyebrow center">One connected platform</div><h2 class="sec-title">Beyond the traditional job board</h2><p class="sec-sub">Built for candidates, employers, staffing agencies, universities and enterprise talent teams.</p>' +
-    '<div class="grid g3">' + mods.map(m => '<article class="card feature"><span class="fi">' + m[0] + '</span><h3>' + m[1] + '</h3><p>' + m[2] + '</p></article>').join('') + '</div></div></section>' +
+    '<div class="grid g3">' + mods.map((m, i) => '<article class="card feature"><span class="fi">' + ic(['globe', 'trend', 'kanban', 'video', 'check', 'shield', 'spark', 'bot', 'grid'][i] || 'spark') + '</span><h3>' + m[1] + '</h3><p>' + m[2] + '</p></article>').join('') + '</div></div></section>' +
     '<section class="sec" id="demos"><div class="wrap"><h2 class="sec-title">See it with realistic data — instantly</h2><p class="sec-sub">Pick a demo package. You get a private 24-hour sandbox; no email needed and nothing is shared.</p>' +
     '<div class="grid g4">' + demoList().map(d => '<article class="card feature"><h3>' + esc(d.name) + '</h3><p>' + esc(d.desc) + '</p><button class="btn secondary small mt16" data-action="demo" data-flavor="' + esc(d.key) + '">Launch employer demo</button></article>').join('') + '</div>' +
     '<div class="center mt24"><button class="btn" data-action="seeker-demo">✦ Try the candidate experience</button> <a class="btn secondary" href="#jobs">Browse the job marketplace</a></div></div></section>' +
@@ -546,9 +599,12 @@ async function launchDemo(flavor) {
 function brandStyle(c) { return '--brand:' + esc(c) + ';--a:' + esc(c); }
 function heroBg(org) { return org.bannerUrl ? 'background:url(&quot;' + esc(org.bannerUrl) + '&quot;) center/cover,linear-gradient(135deg,' + esc(org.color) + ',#071221)' : 'background:linear-gradient(135deg,' + esc(org.color) + ',#071221)'; }
 function coLogo(org, sm) { return org.logoUrl ? '<img class="co-logo' + (sm ? ' sm' : '') + '" src="' + esc(org.logoUrl) + '" alt="' + esc(org.name) + ' logo">' : ''; }
-function reqChips(j) {
-  return (j.locationRequirement || j.interviewProcess) ? '<div class="req-chips">' + (j.locationRequirement ? '<span class="req-chip loc" title="Candidate location requirement">📍 ' + esc(j.locationRequirement) + '</span>' : '') +
-    (j.interviewProcess ? '<span class="req-chip int" title="Interview process">🎙 Interview: ' + esc(j.interviewProcess) + '</span>' : '') + '</div>' : '';
+function reqChips(j, full) {
+  if (!j.locationRequirement && !j.interviewProcess && !j.visaRequirement) return '';
+  return '<div class="req-chips">' + (j.locationRequirement ? '<span class="req-chip loc" title="Candidate location requirement">' + ic('pin') + esc(j.locationRequirement) + '</span>' : '') +
+    (j.interviewProcess ? '<span class="req-chip int" title="Interview process">' + ic('video') + 'Interview: ' + esc(j.interviewProcess) + '</span>' : '') +
+    (j.visaRequirement ? '<span class="req-chip visa" title="Work authorization noted by the client — all work statuses are encouraged to apply">' + ic('passport') + 'Work authorization: ' + esc(j.visaRequirement) + '</span>' : '') + '</div>' +
+    (full && j.visaRequirement ? '<p class="small muted" style="margin:-4px 0 10px">Candidates with any work status are encouraged to apply — our team reviews every profile and discusses options with you.</p>' : '');
 }
 function careersTop(org) {
   return '<div class="careers-hero' + (org.bannerUrl ? ' has-banner' : '') + '" style="' + heroBg(org) + '"><div class="wrap"><div class="co-brand">' + coLogo(org) + '<div class="small" style="opacity:.9;font-weight:700;letter-spacing:1.5px;text-transform:uppercase">' +
@@ -601,7 +657,7 @@ function paintJob() {
     '<a href="#careers/' + esc(slug) + '" style="color:#fff;opacity:.9" class="small">← All roles at ' + esc(d.org.name) + '</a></div><h1 style="margin-top:6px">' + esc(j.title) + '</h1><p>' +
     [j.department, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</p></div></div>' +
     '<div class="wrap grid g2" style="padding-top:22px;padding-bottom:50px;grid-template-columns:1.1fr .9fr;align-items:start">' +
-    '<div class="card"><h3>About the role</h3>' + reqChips(j) + '<p style="white-space:pre-wrap">' + esc(j.description) + '</p>' + (j.responsibilities ? '<h4>What you will do</h4><p style="white-space:pre-wrap">' + esc(j.responsibilities) + '</p>' : '') +
+    '<div class="card"><h3>About the role</h3>' + reqChips(j, true) + '<p style="white-space:pre-wrap">' + esc(j.description) + '</p>' + (j.responsibilities ? '<h4>What you will do</h4><p style="white-space:pre-wrap">' + esc(j.responsibilities) + '</p>' : '') +
     '<h4>Required skills</h4><div>' + chips(j.requiredSkills, 'a') + '</div>' + (j.preferredSkills.length ? '<h4 class="mt16">Nice to have</h4><div>' + chips(j.preferredSkills) + '</div>' : '') +
     (j.minYears ? '<p class="small muted mt16">Experience: ' + j.minYears + '+ years of relevant experience, or equivalent demonstrated skills.</p>' : '') +
     (j.clearance && j.clearance !== 'None' ? '<p class="small">Clearance: ability to obtain and maintain ' + esc(j.clearance) + '.</p>' : '') +
@@ -616,7 +672,7 @@ function paintJob() {
       field('Your resume', resumeSourceHtml('apply')) +
       field('…or paste your resume', area('resumeText', S.ui.resumeDraft || '', 'rows="5"')) +
       (j.screeningQuestions || []).map((q, i) => field(q.q + (q.required ? ' *' : ''), area('answer' + i, '', 'rows="2"' + (q.required ? ' required' : '')))).join('') +
-      field('Work authorization (optional)', sel('workAuthorization', [['', 'Prefer to discuss later'], 'Authorized to work without sponsorship', 'Will require sponsorship now or in the future'], '')) +
+      field('Work authorization status *', workStatusSelect('workAuthorization', '', true)) + '<p class="tiny dim" style="margin-top:-6px">All work statuses are welcome to apply. Used only to discuss eligibility with you — never in fit scoring.</p>' +
       field('Cover note (optional)', area('coverNote', '', 'rows="3"')) +
       '<label class="check mt16"><input type="checkbox" name="consent" required> <span>I agree that ' + esc(d.org.name) + ' may process my application data for recruiting, and keep it for future roles unless I ask for deletion.</span></label>' +
       '<div class="hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div><button class="btn mt16" style="width:100%" type="submit">Submit application</button></form></div>') +
@@ -735,8 +791,8 @@ function renderApp() {
   const nav = NAV.map(g => '<div class="nav-group">' + g[0] + '</div><nav class="nav">' + g[1].map(n => {
     const locked = n[3] && !hasFeat(n[3]);
     return '<a href="#app/' + n[0] + '" class="' + (page === n[0] || (page === 'job' && n[0] === 'jobs') || (page === 'candidate' && n[0] === 'candidates') ? 'on' : '') + (locked ? ' locked' : '') + '"><span>' + n[1] + '</span>' + n[2] +
-      (locked ? '<span class="count">🔒</span>' : counts[n[0]] ? '<span class="count">' + counts[n[0]] + '</span>' : '') + '</a>';
-  }).join('') + '</nav>').join('') + (db.platformAdmin ? '<div class="nav-group">Intellisoft</div><nav class="nav"><a href="#app/platform" class="' + (page === 'platform' ? 'on' : '') + '"><span>⚑</span>Platform console</a></nav>' : '');
+      (locked ? '<span class="count">' + ic('lock') + '</span>' : counts[n[0]] ? '<span class="count">' + counts[n[0]] + '</span>' : '') + '</a>';
+  }).join('') + '</nav>').join('') + (db.platformAdmin ? '<div class="nav-group">Intellisoft</div><nav class="nav"><a href="#app/platform" class="' + (page === 'platform' ? 'on' : '') + '"><span>' + ic('flag') + '</span>Platform console</a></nav>' : '');
   const orgSwitch = db.myOrgs.length > 1 ? '<select data-change="switch-org" style="max-width:220px">' + db.myOrgs.map(o => opt(o.id, org.id, o.name)).join('') + '</select>' : '<b>' + esc(org.name) + '</b>';
   let body = '';
   try { body = (PAGES[page] || PAGES.dashboard)(); } catch (e) { body = '<div class="notice bad">' + esc(e.message) + '</div>'; console.error(e); }
@@ -848,6 +904,8 @@ function jobForm(j) {
     field('Minimum years', inp('minYears', j.minYears || 0, 'type="number" min="0"')) + field('Clearance', sel('clearance', L.clearances, j.clearance || 'None')) +
     field('Candidate location requirement', inp('locationRequirement', j.locationRequirement, 'list="locreq-list" placeholder="e.g. Local candidates only — must live near the job location"')) +
     field('Interview process', inp('interviewProcess', j.interviewProcess, 'list="intv-list" placeholder="e.g. Phone → Video (Teams) → In-person"')) +
+    field('Work authorization (as noted by the client)', inp('visaRequirement', j.visaRequirement, 'list="visa-list" placeholder="e.g. U.S. Citizen, Green Card, H-1B — all statuses still welcome to apply"')) +
+    '<datalist id="visa-list"><option value="Any work status"><option value="U.S. Citizen, Green Card, H-1B"><option value="U.S. Citizen or Green Card only"><option value="No H-1B"><option value="No OPT / CPT"><option value="U.S. citizenship required (security clearance)"></datalist>' +
     '<datalist id="locreq-list"><option value="Local candidates only — must currently live within commuting distance of the job location"><option value="Must currently live in the state of the job location"><option value="Must currently be based in the United States"><option value="Relocation accepted"><option value="On-site from day 1"></datalist>' +
     '<datalist id="intv-list"><option value="Phone → Video (Teams)"><option value="Video (Zoom) → In-person"><option value="Phone → Video → In-person"><option value="In-person (face to face)"><option value="Video + technical assessment"></datalist>' +
     field('Client (staffing)', inp('clientName', j.clientName)) + field('Hiring manager', inp('hiringManager', j.hiringManager)) + field('Recruiter email', inp('recruiter', j.recruiter || S.db.who.email, 'type="email"')) + field('Closes on', inp('closesAt', j.closesAt, 'type="date"')) + '</div></div><div class="ij-step-panel" data-ij-panel="1" hidden>' +
@@ -1684,7 +1742,7 @@ function seekerProfileForm(me) {
     '<button class="btn secondary mt8" data-action="seeker-resume">Upload & extract</button></div>' +
     '<form data-form="seeker-profile" class="card mt16"><h3>Profile</h3><div class="form-row">' + field('Full name', inp('name', me.name, 'required')) + field('Headline', inp('headline', me.headline, 'placeholder="e.g. Senior Data Engineer"')) +
     field('Phone', inp('phone', me.phone)) + field('Location', inp('location', me.location, 'placeholder="City, State"')) + field('Years of experience', inp('yearsExp', me.yearsExp, 'type="number" min="0"')) +
-    field('LinkedIn', inp('linkedin', me.linkedin, 'type="url"')) + field('Skills', inp('skills', me.skills, 'list="sk-skills"')) + field('Work authorization', sel('workAuthorization', [['', 'Prefer to discuss later'], 'Authorized to work without sponsorship', 'Will require sponsorship now or in the future'], me.workAuthorization)) +
+    field('LinkedIn', inp('linkedin', me.linkedin, 'type="url"')) + field('Skills', inp('skills', me.skills, 'list="sk-skills"')) + field('Work authorization status', workStatusSelect('workAuthorization', me.workAuthorization, false)) +
     field('Desired titles', inp('desiredTitles', me.desiredTitles)) + field('Preferred locations', inp('desiredLocations', me.desiredLocations)) + field('Minimum salary (optional)', inp('salaryMin', me.salaryMin, 'type="number" min="0"')) + '</div>' +
     '<datalist id="sk-skills">' + (S.seeker.me.lists.skills || []).map(s => '<option value="' + esc(s) + '">').join('') + '</datalist>' +
     '<label>Work arrangements</label><div class="row">' + ['Remote', 'Hybrid', 'On-site'].map(w => '<label class="check"><input type="checkbox" name="desiredWorkTypes" data-multi="1" value="' + w + '"' + (wts.indexOf(w) >= 0 ? ' checked' : '') + '> ' + w + '</label>').join('') + '</div>' +
@@ -1697,6 +1755,8 @@ function seekerApplyCard(d) {
   const j = d.job;
   return '<div class="card mt16"><h3>Apply with your IntelliHire profile</h3><p class="small muted">Your saved profile and resume are sent to ' + esc(d.org.name) + '. <a href="#me/profile">Edit profile</a></p><form data-form="seeker-apply">' +
     (j.screeningQuestions || []).map((q, i) => field(q.q + (q.required ? ' *' : ''), area('answer' + i, '', 'rows="2"' + (q.required ? ' required' : '')))).join('') +
+    field('Work authorization status *', workStatusSelect('workAuthorization', (S.seeker && S.seeker.me && S.seeker.me.profile && S.seeker.me.profile.workAuthorization) || '', true)) +
+    '<p class="tiny dim" style="margin-top:-6px">All work statuses are welcome to apply.</p>' +
     field('Note to the hiring team (optional)', area('coverNote', '', 'rows="2"')) +
     '<label class="check mt16"><input type="checkbox" name="consent" required> <span>I agree that ' + esc(d.org.name) + ' may process my application data for recruiting.</span></label>' +
     '<div class="application-review"><b>Before you submit</b><span>✓ Your saved profile and resume will be shared with this employer</span><span>✓ Review your answers and consent above</span><span>✓ Track the application from your candidate dashboard</span></div><button class="btn mt16" style="width:100%">Submit application securely →</button></form><p class="small center mt8"><a href="#" data-action="guest-apply">Apply as a guest instead</a></p></div>';
@@ -1863,7 +1923,7 @@ Object.assign(FORMS, {
   'seeker-apply': async (v, f, b) => {
     const d = S.ui.job;
     try {
-      const r = await busy(b, call('seekerApply', { slug: d.org.slug, jobId: d.job.id, consent: !!v.consent, coverNote: v.coverNote, answers: (d.job.screeningQuestions || []).map((q, i) => v['answer' + i] || '') }));
+      const r = await busy(b, call('seekerApply', { slug: d.org.slug, jobId: d.job.id, consent: !!v.consent, coverNote: v.coverNote, workAuthorization: v.workAuthorization, answers: (d.job.screeningQuestions || []).map((q, i) => v['answer' + i] || '') }));
       S.ui.applied = r; S.seeker = null; paintJob(); window.scrollTo(0, 0); toast('Applied! Track it in your candidate profile.', 'ok');
     } catch (e) { fail(e); if (/resume/i.test(e.message)) go('#me/profile'); }
   },
@@ -1968,7 +2028,7 @@ const SECTORS = [['all', 'All jobs'], ['direct', 'Direct employers'], ['gov', 'G
 const baseMktCard = mktCard;
 mktCard = function (j) {
   if (!j.external) return baseMktCard(j);
-  const badge = j.sector === 'gov' ? '<span class="chip info">🏛 ' + esc(j.agency || 'Government') + '</span>' : '';
+  const badge = j.sector === 'gov' ? '<span class="chip info">' + ic('gov') + ' ' + esc(j.agency || 'Government') + '</span>' : '';
   return '<div class="mkt-card' + (j.featured ? ' featured' : '') + '" role="button" tabindex="0" data-action="ext-job" data-id="' + esc(j.id) + '">' + orgDot(j.org) +
     '<div><div class="row wrap-row gap8"><b style="font-size:16.5px">' + esc(j.title) + '</b>' + (j.featured ? '<span class="badge-feat">★ Featured partner</span>' : '') + badge +
     (j.fit ? '<span class="fit ' + fitCls(j.fit.score) + '">' + j.fit.score + '% fit</span>' : '') + '</div>' +
@@ -2012,13 +2072,13 @@ function govTeaserHtml() {
   return '<section class="sec alt" id="gov-jobs"><div class="wrap hero-grid"><div><div class="eyebrow">Government & public sector</div><h2>Government jobs, in their own section</h2>' +
     '<p class="muted">Federal openings from USAJOBS, roles from state and local agency feeds, and cleared positions (Public Trust, Secret, TS/SCI) from government contractors — with pay grades, closing dates and official apply links.</p>' +
     '<div class="cta"><a class="btn" href="#gov">Browse government jobs</a><a class="btn secondary" href="#partners">Agencies: list your openings</a></div></div>' +
-    '<div class="glass"><div class="stat-row"><div><b>🏛</b><span class="small muted">Federal (USAJOBS)</span></div><div><b>🔐</b><span class="small muted">Cleared contractor roles</span></div><div><b>🗺</b><span class="small muted">State & local feeds</span></div></div>' +
+    '<div class="glass"><div class="stat-row icons"><div><b>' + ic('gov') + '</b><span class="small muted">Federal (USAJOBS)</span></div><div><b>' + ic('shield') + '</b><span class="small muted">Cleared contractor roles</span></div><div><b>' + ic('map') + '</b><span class="small muted">State & local feeds</span></div></div>' +
     '<div class="notice mt16">Applications for federal roles happen on the official USAJOBS site; IntelliHire helps you find and track them.</div></div></div></section>';
 }
 function partnerTeaserHtml() {
   return '<section class="sec" id="partner-teaser"><div class="wrap"><div class="eyebrow center">IntelliHire Partner Network</div><h2 class="sec-title">Job boards, agencies and ATS vendors — plug in</h2>' +
     '<p class="sec-sub">Even if you run your own job board, list your openings here for free and get qualified candidates sent back to your site. Upgrade to Featured placement, or syndicate our employer jobs onto yours.</p>' +
-    '<div class="grid g4">' + [['🔗', 'Free listing', 'Send a feed or ATS board; every job links back to you.'], ['★', 'Featured partner', 'Top placement and badge across the marketplace.'], ['⇄', 'Syndication', 'XML / RSS / JSON feed of direct-employer jobs for your site.'], ['📊', 'Partner dashboard', 'Listings, apply clicks sent and feed health.']]
+    '<div class="grid g4">' + [[ic('link'), 'Free listing', 'Send a feed or ATS board; every job links back to you.'], [ic('star'), 'Featured partner', 'Top placement and badge across the marketplace.'], [ic('swap'), 'Syndication', 'XML / RSS / JSON feed of direct-employer jobs for your site.'], [ic('chart'), 'Partner dashboard', 'Listings, apply clicks sent and feed health.']]
       .map(x => '<article class="card feature"><span class="fi">' + x[0] + '</span><h3>' + x[1] + '</h3><p>' + x[2] + '</p></article>').join('') + '</div><div class="center mt24"><a class="btn" href="#partners">Become a partner</a></div></div></section>';
 }
 function emailIntakeTeaserHtml() {
@@ -2116,8 +2176,8 @@ renderPublic = function () {
 function intakeHint(kind, j) {
   const it = S.db && S.db.org.intake;
   if (!it || !it.enabled || !it.address) return '';
-  if (kind === 'jobs') return '<div class="notice small">📧 Post by email: send a job description to <b>' + esc(it.address) + '</b> with subject <b>POST JOB: Title</b> (add PUBLISH to go live' + (S.db.myOrgs.length > 1 ? '; add [' + esc(S.db.org.slug) + '] to choose this workspace' : '') + ').</div>';
-  if (kind === 'cands') return '<div class="notice small">📧 Forward resumes to <b>' + esc(it.address) + '</b> — they become candidates here. Put a job reference (e.g. JOB-1A2B3C4D) in the subject to add them to that job.</div>';
+  if (kind === 'jobs') return '<div class="notice small">' + ic('mail') + ' Post by email: send a job description to <b>' + esc(it.address) + '</b> with subject <b>POST JOB: Title</b> (add PUBLISH to go live' + (S.db.myOrgs.length > 1 ? '; add [' + esc(S.db.org.slug) + '] to choose this workspace' : '') + ').</div>';
+  if (kind === 'cands') return '<div class="notice small">' + ic('mail') + ' Forward resumes to <b>' + esc(it.address) + '</b> — they become candidates here. Put a job reference (e.g. JOB-1A2B3C4D) in the subject to add them to that job.</div>';
   return '<div class="small muted mt8">Ref <b>' + esc(j.ref) + '</b> · candidates can email a resume to ' + esc(it.address) + ' with "' + esc(j.ref) + '" in the subject.</div>';
 }
 const baseJobsPage = PAGES.jobs, baseCandsPage = PAGES.candidates, baseJobPage = PAGES.job;
@@ -2133,7 +2193,7 @@ function platAgentsHtml() {
   return '<div class="card"><div class="row between wrap-row"><div><h3 class="mb0">Job agents</h3><p class="small muted mb0">Pull recent jobs from official public APIs and feeds every few hours · ' + num(a.total) + ' aggregated postings stored. Never scrapes sites that forbid it (LinkedIn, Indeed).</p></div>' +
     '<div class="row"><label class="check"><input type="checkbox" data-change="agents-on"' + (a.agentsEnabled ? ' checked' : '') + '> Agents on</label><button class="btn" data-action="agents-run">Run due agents now</button><button class="btn secondary" data-action="con-new">+ Add source</button></div></div>' +
     '<div class="notice small mt8">USAJOBS (federal jobs): ' + (a.usajobsKey ? '✓ API key set' : 'get a free key at developer.usajobs.gov → Settings → Secrets → USAJOBS_API_KEY') + ' · contact email: ' + (a.usajobsEmail ? esc(a.usajobsEmail) : 'set usajobsEmail in Settings') + '. Review each source\'s terms before turning it on.</div></div>' +
-    '<div class="table-wrap mt16"><table><tr><th>Source</th><th>Status</th><th>Schedule</th><th>Last run</th><th>Live</th><th>Clicks</th><th></th></tr>' + a.connectors.map(c => '<tr><td><b>' + esc(c.name) + '</b><div class="tiny dim">' + esc(c.type) + ' · ' + (c.sector === 'gov' ? '🏛 government' : 'private') + ' · attribution "' + esc(c.attribution) + '"</div>' +
+    '<div class="table-wrap mt16"><table><tr><th>Source</th><th>Status</th><th>Schedule</th><th>Last run</th><th>Live</th><th>Clicks</th><th></th></tr>' + a.connectors.map(c => '<tr><td><b>' + esc(c.name) + '</b><div class="tiny dim">' + esc(c.type) + ' · ' + (c.sector === 'gov' ? 'government' : 'private') + ' · attribution "' + esc(c.attribution) + '"</div>' +
       (c.lastError ? '<div class="tiny" style="color:var(--bad)">' + esc(c.lastError) + '</div>' : '') + '</td><td>' + (c.enabled === 'Yes' ? chip('On', 'ok') : chip('Off')) + '</td><td class="small">every ' + c.everyHours + 'h</td><td class="small muted">' + (c.lastRunAt ? ago(c.lastRunAt) + ' · ' + c.lastCount + ' found' : 'never') + '</td>' +
       '<td>' + num(c.active) + '</td><td>' + num(c.clicks) + '</td><td class="right nowrap"><button class="btn small secondary" data-action="con-act" data-id="' + c.id + '" data-v="run">Run</button><button class="btn small ghost" data-action="con-act" data-id="' + c.id + '" data-v="' + (c.enabled === 'Yes' ? 'disable' : 'enable') + '">' + (c.enabled === 'Yes' ? 'Turn off' : 'Turn on') + '</button>' +
       '<button class="btn small ghost" data-action="con-edit" data-id="' + c.id + '">Edit</button><button class="btn small ghost" data-action="con-act" data-id="' + c.id + '" data-v="clear">Clear jobs</button>' + (c.partnerId ? '' : '<button class="btn small ghost" data-action="con-act" data-id="' + c.id + '" data-v="delete">Delete</button>') + '</td></tr>').join('') + '</table></div>';
@@ -2230,7 +2290,7 @@ const CS_TONE = { New: 'warn', Screening: 'a', Interviewed: 'a', Marketed: 'ok',
 const baseRenderAppStaff = renderApp;
 renderApp = function () {
   const items = NAV[0][1], i = items.findIndex(n => n[0] === 'bench');
-  if (isStaffing() && i < 0) items.splice(4, 0, ['bench', '⚇', 'Consultant bench']);
+  if (isStaffing() && i < 0) items.splice(4, 0, ['bench', ic('bench'), 'Consultant bench']);
   if (!isStaffing() && i >= 0) items.splice(i, 1);
   return baseRenderAppStaff();
 };
@@ -2295,8 +2355,8 @@ PAGES.job = () => {
   const sr = S.staffReqs && S.staffReqs.jobId === j.id ? S.staffReqs : null;
   if (!sr) call('getStaffReqs', j.id).then(r => { S.staffReqs = Object.assign(r, { jobId: j.id }); if (S.route.parts[1] === j.id) renderApp(); }, fail);
   const n = S.db.staffReqCounts[j.id];
-  return '<div class="notice small" style="border-color:#f5b94a">🔒 This job came from ' + n + ' vendor email' + (n > 1 ? 's' : '') + '. Vendor, end client, rate and contacts are private to recruiters — <a href="#" data-action="scroll" data-to="staff-sources">view sources</a>.</div>' +
-    html + '<div class="card mt24" id="staff-sources" style="border-color:#f5b94a66"><div class="row between wrap-row"><h3 class="mb0">🔒 Requirement sources <span class="tiny dim">(private · never shown to candidates or on the careers page)</span></h3>' +
+  return '<div class="notice small" style="border-color:#f5b94a">' + ic('lock') + ' This job came from ' + n + ' vendor email' + (n > 1 ? 's' : '') + '. Vendor, end client, rate and contacts are private to recruiters — <a href="#" data-action="scroll" data-to="staff-sources">view sources</a>.</div>' +
+    html + '<div class="card mt24" id="staff-sources" style="border-color:#f5b94a66"><div class="row between wrap-row"><h3 class="mb0">' + ic('lock') + ' Requirement sources <span class="tiny dim">(private · never shown to candidates or on the careers page)</span></h3>' +
     '<span class="small muted">' + S.db.staffReqCounts[j.id] + ' vendor email' + (S.db.staffReqCounts[j.id] > 1 ? 's' : '') + '</span></div>' +
     (!sr ? '<div class="loading">Loading<span class="pulse"></span></div>' : '<div class="table-wrap mt8"><table><tr><th>Vendor / contact</th><th>End client</th><th>Rate · duration</th><th>Req · deadline · visa</th><th>Status</th><th></th></tr>' + sr.sources.map(s =>
       '<tr><td><b>' + esc(s.vendorCompany || '—') + '</b><div class="small">' + esc(s.contactName) + ' · <a href="mailto:' + esc(s.contactEmail) + '?subject=' + encodeURIComponent('Re: ' + s.subject) + '">' + esc(s.contactEmail) + '</a>' + (s.contactPhone ? ' · ' + esc(s.contactPhone) : '') + '</div><div class="tiny dim">' + ago(s.receivedAt) + '</div></td>' +
@@ -2395,7 +2455,7 @@ Object.assign(CHANGES, {
 });
 
 const baseJobsPageStaff = PAGES.jobs;
-PAGES.jobs = () => (isStaffing() && can('RECRUITER') ? '<div class="notice small">📨 Requirements emailed to <b>' + esc(S.db.org.staffing.mailboxes.join(', ')) + '</b> are posted here automatically as clean contract jobs. Vendor, end client, rate and contacts stay private on each job (🔒 ' +
+PAGES.jobs = () => (isStaffing() && can('RECRUITER') ? '<div class="notice small">' + ic('mail') + ' Requirements emailed to <b>' + esc(S.db.org.staffing.mailboxes.join(', ')) + '</b> are posted here automatically as clean contract jobs. Vendor, end client, rate and contacts stay private on each job (🔒 ' +
   Object.keys(S.db.staffReqCounts || {}).length + ' jobs from email).</div>' : '') + baseJobsPageStaff();
 /* ==================================================================================
    v1.6 — careers branding (logo + header banner), intake schedule helpers.
@@ -2460,6 +2520,13 @@ Object.assign(FORMS, {
     try { await busy(b, call('updateCareersSettings', payload)); S.ui.brand = null; toast('Careers site saved.', 'ok'); await refresh(); } catch (e) { fail(e); }
   }
 });
+
+/* v1.7 — SVG icons in the workspace navigation */
+(function () {
+  const map = { dashboard: 'home', jobs: 'briefcase', pipeline: 'kanban', candidates: 'user', talent: 'users', interviews: 'video', assessments: 'check', verification: 'shield', offers: 'doc',
+    growth: 'trend', copilot: 'bot', reports: 'report', 'careers-site': 'globe', team: 'users', billing: 'card', audit: 'list' };
+  NAV.forEach(g => g[1].forEach(n => { if (map[n[0]]) n[1] = ic(map[n[0]]); }));
+})();
 
 bind();
 route();
