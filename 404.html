@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.8.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.9.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -247,6 +247,10 @@ input[type=file]{max-width:100%}input,select,textarea{max-width:100%;box-sizing:
 }
 @media(max-width:640px){.grid:has(> .kpi){grid-template-columns:repeat(2,minmax(0,1fr))}.kpi{padding:14px}.kpi b{font-size:22px}}
 .top .mobile-only .ic{width:20px;height:20px}
+.perm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px;margin-top:10px}@media(max-width:700px){.perm-grid{grid-template-columns:1fr}}
+.perm{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);font-size:13px;cursor:pointer}
+.perm input{margin-top:2px;accent-color:var(--a)}.perm small{display:block;color:var(--dim);font-size:11px}.perm.na{opacity:.5;cursor:not-allowed}
+.idtag{display:inline-block;font:600 11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.3px;color:var(--b);border:1px solid #70aaff55;background:#70aaff14;border-radius:6px;padding:0 6px;vertical-align:2px;cursor:copy;white-space:nowrap}h2 .idtag{font-size:12px;vertical-align:5px}
 </style>
 
 </head>
@@ -316,6 +320,9 @@ function postedLabel(iso) {
   return '<span class="posted" title="Posted ' + full + '">' + ic('clock') + 'Posted ' + rel + '</span>';
 }
 function fullDate(iso) { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
+
+/** Small copyable tracking-ID tag (JOB-… / CAND-…). */
+function idTag(code) { return code ? '<span class="idtag" title="Tracking ID — click to copy" data-action="copy" data-text="' + esc(code) + '">' + esc(code) + '</span>' : ''; }
 /* IntelliHire web app — runs on the hosted site (fetch → Apps Script JSON API) and inside
    Apps Script (google.script.run). No external libraries. All user text is escaped. */
 'use strict';
@@ -712,7 +719,7 @@ function paintJob() {
     (j.minYears ? '<p class="small muted mt16">Experience: ' + j.minYears + '+ years of relevant experience, or equivalent demonstrated skills.</p>' : '') +
     (j.clearance && j.clearance !== 'None' ? '<p class="small">Clearance: ability to obtain and maintain ' + esc(j.clearance) + '.</p>' : '') +
     '<div class="notice small">We review every application with people. Fit scores are job-related guidance only and never use personal characteristics. Need an accommodation to apply or interview? Mention it in your application.</div></div>' +
-    '<div>' + (applied ? '<div class="card"><h3>Application received ✓</h3><p class="muted">Thank you! We emailed a confirmation. Here is how your profile lines up with this role — and how to grow.</p>' + fitView(applied.fit, applied.plan, true) + '<a class="btn secondary mt16" href="#careers/' + esc(slug) + '">See other roles</a></div>'
+    '<div>' + (applied ? '<div class="card"><h3>Application received ✓</h3>' + (applied.candidateCode ? '<p class="small">Job ID ' + idTag(applied.jobRef) + ' · Your candidate ID ' + idTag(applied.candidateCode) + '</p>' : '') + '<p class="muted">Thank you! We emailed a confirmation. Here is how your profile lines up with this role — and how to grow.</p>' + fitView(applied.fit, applied.plan, true) + '<a class="btn secondary mt16" href="#careers/' + esc(slug) + '">See other roles</a></div>'
       : '<div class="card"><h3>Check your fit</h3><p class="small muted">Paste your resume to see a transparent skills comparison before you apply. Nothing is saved.</p><form data-form="preview-fit">' +
       area('resumeText', S.ui.resumeDraft || '', 'rows="5" placeholder="Paste resume text…" id="fit-text"') + '<button class="btn secondary small mt8" type="submit">Check my fit</button></form>' + (S.ui.preview ? fitView(S.ui.preview.fit, S.ui.preview.plan, true) : '') + '</div>' +
       (S.seekerToken ? seekerApplyCard(d) : '') + '<div class="card mt16' + (S.seekerToken ? ' hidden' : '') + '" id="guest-apply"><h3>Apply</h3>' +
@@ -911,7 +918,7 @@ PAGES.jobs = () => {
     '<div class="tabs">' + ['all'].concat(S.db.lists.jobStatuses).map(s => '<button class="' + (f === s ? 'on' : '') + '" data-action="job-filter" data-v="' + esc(s) + '">' + (s === 'all' ? 'All' : esc(s)) + ' <span class="dim small">' + (s === 'all' ? S.db.jobs.length : S.db.jobs.filter(j => j.status === s).length) + '</span></button>').join('') + '</div>' +
     (jobs.length ? '<div class="table-wrap"><table><tr><th>Job</th><th>Status</th><th>Pipeline</th><th>Top fit</th><th>Pay</th><th>Opened</th></tr>' + jobs.map(j => {
       const ja = appsFor(j.id), act = ja.filter(a => S.db.lists.activeStages.indexOf(a.stage) >= 0);
-      return '<tr class="click" data-action="open-job" data-id="' + j.id + '"><td><b>' + esc(j.title) + '</b><div class="small muted">' + [j.department, j.location, j.workType, j.clientName].filter(Boolean).map(esc).join(' · ') + '</div><div>' + chips(list(j.requiredSkills).slice(0, 5)) + '</div></td>' +
+      return '<tr class="click" data-action="open-job" data-id="' + j.id + '"><td><b>' + esc(j.title) + '</b> ' + idTag(j.code) + '<div class="small muted">' + [j.department, j.location, j.workType, j.clientName].filter(Boolean).map(esc).join(' · ') + '</div><div>' + chips(list(j.requiredSkills).slice(0, 5)) + '</div></td>' +
         '<td>' + statusChip(j.status) + (j.createdBy === 'sample-data' && !isDemo() ? '<div class="tiny dim">sample · hidden from careers page</div>' : '') + '</td><td class="small">' + ja.length + ' total · ' + act.length + ' active<br>' + ja.filter(a => a.stage === 'Hired').length + ' hired / ' + j.openings + ' opening' + (j.openings > 1 ? 's' : '') + '</td>' +
         '<td>' + (act.length ? '<span class="fit ' + fitCls(Math.max.apply(null, act.map(a => a.fitScore))) + '">' + Math.max.apply(null, act.map(a => a.fitScore)) + '%</span>' : '<span class="dim">—</span>') + '</td>' +
         '<td class="small nowrap">' + esc(salaryText(j)) + '</td><td class="small muted">' + (j.publishedAt ? ago(j.publishedAt) : day(j.createdAt)) + '</td></tr>';
@@ -931,7 +938,7 @@ PAGES.job = () => {
   if (can('RECRUITER')) acts.push('<button class="btn secondary" data-action="edit-job" data-id="' + j.id + '">Edit</button><button class="btn ghost" data-action="dup-job" data-id="' + j.id + '">Duplicate</button>');
   if (can('ADMIN') && !ja.length) acts.push('<button class="btn danger" data-action="delete-job" data-id="' + j.id + '">Delete</button>');
   const qs = parse(j.screeningQuestions, []);
-  return '<a href="#app/jobs" class="small">← Jobs</a>' + head(esc(j.title) + ' ' + statusChip(j.status), [j.department, j.location, j.workType, j.employmentType, salaryText(j), j.clientName].filter(Boolean).map(esc).join(' · '), acts.join('')) +
+  return '<a href="#app/jobs" class="small">← Jobs</a>' + head(esc(j.title) + ' ' + statusChip(j.status) + ' ' + idTag(j.code), [j.department, j.location, j.workType, j.employmentType, salaryText(j), j.clientName].filter(Boolean).map(esc).join(' · '), acts.join('')) +
     (j.status === 'Open' && url ? '<div class="notice row between wrap-row"><span>Live on your careers page: <a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(url) + '</a></span><button class="btn small secondary" data-action="copy" data-text="' + esc(url) + '">Copy link</button></div>' : '') +
     '<div class="grid g2" style="grid-template-columns:1.4fr .8fr;align-items:start"><div>' + pipelineBoard(j.id) + '</div><div class="card"><h3>Requirements</h3><b class="small">Required</b><div>' + chips(list(j.requiredSkills), 'a') + '</div>' +
     (j.preferredSkills ? '<b class="small">Preferred</b><div>' + chips(list(j.preferredSkills)) + '</div>' : '') + '<p class="small muted mt8">Min experience: ' + (j.minYears || 0) + ' yrs · Openings: ' + j.openings + (j.clearance !== 'None' ? ' · Clearance: ' + esc(j.clearance) : '') + '</p>' +
@@ -992,16 +999,16 @@ PAGES.pipeline = () => {
 /* ------------------------------------------------------------------ candidates */
 PAGES.candidates = () => {
   const q = (S.ui.candQ || '').toLowerCase();
-  const rows = S.db.candidates.filter(c => !q || (c.name + ' ' + c.email + ' ' + c.headline + ' ' + c.skills + ' ' + c.tags + ' ' + c.location).toLowerCase().indexOf(q) >= 0)
+  const rows = S.db.candidates.filter(c => !q || (c.name + ' ' + c.code + ' ' + c.email + ' ' + c.headline + ' ' + c.skills + ' ' + c.tags + ' ' + c.location).toLowerCase().indexOf(q) >= 0)
     .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
   const u = S.db.org.usage, l = S.db.org.limits;
   return head('Candidates', 'Talent pool · ' + num(u.candidates) + (Number(l.candidates) ? ' / ' + num(l.candidates) : '') + ' candidates',
     (can('RECRUITER') ? '<button class="btn" data-action="new-candidate">+ Add candidate</button><button class="btn secondary" data-action="bulk-resumes">⇪ Bulk resumes</button><button class="btn secondary" data-action="import-cands">Import CSV</button>' : '') +
     (can('ADMIN') && hasFeat('auditExport') ? '<button class="btn ghost" data-action="export-cands">Export</button>' : '')) +
-    '<input type="search" id="cand-q" data-filter="cand" placeholder="Search name, skill, tag, location…" value="' + esc(S.ui.candQ || '') + '" style="max-width:460px">' +
+    '<input type="search" id="cand-q" data-filter="cand" placeholder="Search name, ID (CAND-…), skill, tag, location…" value="' + esc(S.ui.candQ || '') + '" style="max-width:460px">' +
     (rows.length ? '<div class="table-wrap mt16"><table><tr><th>Candidate</th><th>Skills</th><th>Exp.</th><th>Applications</th><th>Source</th><th>Added</th></tr>' + rows.map(c => {
       const ca = S.db.applications.filter(a => a.candidateId === c.id);
-      return '<tr class="click" data-action="open-cand" data-id="' + c.id + '"><td><b>' + esc(c.name) + '</b> ' + (c.status !== 'Active' ? statusChip(c.status) : '') + '<div class="small muted">' + esc(c.headline) + (c.location ? ' · ' + esc(c.location) : '') + '</div>' + (c.tags ? chips(list(c.tags), 'info') : '') + '</td>' +
+      return '<tr class="click" data-action="open-cand" data-id="' + c.id + '"><td><b>' + esc(c.name) + '</b> ' + idTag(c.code) + (c.status !== 'Active' ? statusChip(c.status) : '') + '<div class="small muted">' + esc(c.headline) + (c.location ? ' · ' + esc(c.location) : '') + '</div>' + (c.tags ? chips(list(c.tags), 'info') : '') + '</td>' +
         '<td>' + chips(list(c.skills).slice(0, 5)) + '</td><td class="small">' + (c.yearsExp ? c.yearsExp + ' yrs' : '—') + '</td><td class="small">' + (ca.length ? ca.map(a => esc(jobById(a.jobId).title) + ' ' + stageChip(a.stage) + ' <span class="fit ' + fitCls(a.fitScore) + '">' + a.fitScore + '%</span>').join('<br>') : '<span class="dim">Talent pool</span>') + '</td>' +
         '<td class="small">' + esc(c.source) + '</td><td class="small muted">' + ago(c.createdAt) + '</td></tr>';
     }).join('') + '</table></div>' : '<div class="empty mt16">No candidates' + (q ? ' match "' + esc(q) + '"' : ' yet') + '.</div>');
@@ -1028,7 +1035,7 @@ PAGES.candidate = () => {
     hasFeat('assessments') ? '<button class="btn secondary" data-action="send-test" data-cand="' + c.id + '">Send assessment</button>' : '', '<button class="btn secondary" data-action="message" data-id="' + c.id + '">Email</button>',
     '<button class="btn ghost" data-action="edit-cand" data-id="' + c.id + '">Edit</button>'].join('') : '';
   const tabs = [['apps', 'Applications & fit'], ['interviews', 'Interviews (' + d.interviews.length + ')'], ['validate', 'Assessments & checks'], ['offers', 'Offers'], ['growth', 'Growth'], ['notes', 'Notes (' + d.notes.length + ')'], ['resume', 'Resume']];
-  return '<a href="#app/candidates" class="small">← Candidates</a>' + head(esc(c.name) + ' ' + (c.status !== 'Active' ? statusChip(c.status) : ''), [c.headline, c.location, c.yearsExp ? c.yearsExp + ' yrs' : '', c.email, c.phone].filter(Boolean).map(esc).join(' · ') +
+  return '<a href="#app/candidates" class="small">← Candidates</a>' + head(esc(c.name) + ' ' + idTag(c.code) + ' ' + (c.status !== 'Active' ? statusChip(c.status) : ''), [c.headline, c.location, c.yearsExp ? c.yearsExp + ' yrs' : '', c.email, c.phone].filter(Boolean).map(esc).join(' · ') +
     (c.linkedin ? ' · <a href="' + esc(c.linkedin) + '" target="_blank" rel="noopener">LinkedIn</a>' : ''), acts) +
     '<div>' + chips(list(c.skills)) + chips(d.verified.map(s => '✓ ' + s + ' verified'), 'ok') + (c.tags ? chips(list(c.tags), 'info') : '') + '</div>' +
     '<div class="tabs mt16">' + tabs.map(t => '<button class="' + (tab === t[0] ? 'on' : '') + '" data-action="cand-tab" data-id="' + c.id + '" data-v="' + t[0] + '">' + t[1] + '</button>').join('') + '</div>' + (CAND_TABS[tab] || CAND_TABS.apps)(d);
@@ -2233,7 +2240,7 @@ function intakeHint(kind, j) {
 const baseJobsPage = PAGES.jobs, baseCandsPage = PAGES.candidates, baseJobPage = PAGES.job;
 PAGES.jobs = () => intakeHint('jobs') + baseJobsPage();
 PAGES.candidates = () => intakeHint('cands') + baseCandsPage();
-PAGES.job = () => { const j = jobById(S.route.parts[1]); const html = baseJobPage(); if (!j.id) return html; const ref = 'JOB-' + String(j.id).replace(/[^a-f0-9]/gi, '').slice(0, 8).toUpperCase(); return html + intakeHint('job', { ref: ref }); };
+PAGES.job = () => { const j = jobById(S.route.parts[1]); const html = baseJobPage(); if (!j.id) return html; const ref = j.code || 'JOB-' + String(j.id).replace(/[^a-f0-9]/gi, '').slice(0, 8).toUpperCase(); return html + intakeHint('job', { ref: ref }); };
 
 /* ------------------------------------------------------------------ platform console: agents, partners, intake */
 function lazyPlat(k, fn) { S.ui.platLoading = S.ui.platLoading || {}; if (S.ui.platLoading[k]) return; S.ui.platLoading[k] = 1; call(fn).then(r => { S.ui.platLoading[k] = 0; if (S.plat) { S.plat[k] = r; renderApp(); } }, e => { S.ui.platLoading[k] = 0; fail(e); }); }
@@ -2366,7 +2373,7 @@ PAGES.bench = () => {
     '<div class="row wrap-row mt16"><div class="tabs" style="border:0;margin:0">' + ['all'].concat(b.statuses).map(s => '<button class="' + (f === s ? 'on' : '') + '" data-action="bench-filter" data-v="' + s + '">' + (s === 'all' ? 'All' : s) + ' <span class="dim small">' + (s === 'all' ? b.consultants.length : cnt(s)) + '</span></button>').join('') + '</div><span class="grow"></span>' +
     '<input type="search" placeholder="Search name, skill, vendor" value="' + esc(S.ui.benchQ || '') + '" data-change="bench-q" style="max-width:260px"></div>' +
     (list.length ? '<div class="table-wrap mt8"><table><tr><th>Consultant</th><th>Skills</th><th>Location · auth · availability</th><th>Source</th><th>Status</th><th></th></tr>' + list.map(x =>
-      '<tr class="click" data-action="open-consultant" data-id="' + x.id + '"><td><b>' + esc(x.name) + '</b> <span class="tiny dim">' + esc(x.alias) + '</span><div class="small muted">' + esc(x.headline) + (x.yearsExp ? ' · ' + x.yearsExp + ' yrs' : '') + '</div>' + (x.stage ? '<div class="tiny dim">Screening stage: ' + esc(x.stage) + '</div>' : '') + '</td>' +
+      '<tr class="click" data-action="open-consultant" data-id="' + x.id + '"><td><b>' + esc(x.name) + '</b> ' + idTag(x.code) + ' <span class="tiny dim">' + esc(x.alias) + '</span><div class="small muted">' + esc(x.headline) + (x.yearsExp ? ' · ' + x.yearsExp + ' yrs' : '') + '</div>' + (x.stage ? '<div class="tiny dim">Screening stage: ' + esc(x.stage) + '</div>' : '') + '</td>' +
       '<td>' + chips(list_(x.skills).slice(0, 5)) + '</td><td class="small">' + [x.location, x.workAuth, x.availability].filter(Boolean).map(esc).join(' · ') + (x.rate ? '<div class="tiny dim">rate ' + esc(x.rate) + '</div>' : '') + '</td>' +
       '<td class="small">' + (x.submittedBy === 'Vendor' ? '<b>' + esc(x.vendorCompany || x.vendorEmail) + '</b><div class="tiny dim">' + esc(x.vendorContact) + '</div>' : 'Self') + '<div class="tiny dim">' + ago(x.receivedAt) + '</div></td>' +
       '<td>' + chip(x.status, CS_TONE[x.status]) + (x.openRequests ? ' ' + chip(x.openRequests + ' request' + (x.openRequests > 1 ? 's' : ''), 'warn') : '') + (x.views ? '<div class="tiny dim">' + x.views + ' employer views</div>' : '') + '</td><td class="right">›</td></tr>').join('') + '</table></div>'
@@ -2378,7 +2385,7 @@ function benchDetail(id) {
   const d = S.cons && S.cons.consultant.id === id ? S.cons : null;
   if (!d) { call('getConsultant', id).then(r => { S.cons = r; if (S.route.parts[1] === id) renderApp(); }, fail); return head('Consultant') + '<div class="loading">Loading<span class="pulse"></span></div>'; }
   const x = d.consultant, c = d.candidate;
-  return head(c.name || x.alias, x.alias + ' · ' + x.headline, '<a class="btn secondary" href="#app/bench">← Bench</a>' + (c.id ? '<a class="btn secondary" href="#app/candidate/' + esc(c.id) + '">Open in ATS (interviews, notes)</a>' : '')) +
+  return head(esc(c.name || x.alias) + ' ' + idTag(c.code), x.alias + ' · ' + x.headline, '<a class="btn secondary" href="#app/bench">← Bench</a>' + (c.id ? '<a class="btn secondary" href="#app/candidate/' + esc(c.id) + '">Open in ATS (interviews, notes)</a>' : '')) +
     '<div class="split"><div class="stack">' +
     '<div class="card"><div class="row between"><h3 class="mb0">Status</h3>' + chip(x.status, CS_TONE[x.status]) + '</div><div class="row wrap-row mt8">' + d.statuses.map(s => '<button class="btn small ' + (s === x.status ? '' : 'ghost') + '" data-action="cons-status" data-id="' + x.id + '" data-v="' + s + '">' + s + '</button>').join('') + '</div>' +
     '<p class="tiny dim mt8">Marketed = visible (anonymized) to employers in the IntelliHire talent marketplace. They can read the redacted resume and request the consultant; they never see contact details or the vendor.</p></div>' +
@@ -2587,6 +2594,127 @@ renderApp = function () {
   return r;
 };
 window.addEventListener('hashchange', () => { if (S.ui && S.ui.sideOpen) S.ui.sideOpen = false; });
+/* ==================================================================================
+   v1.9 — company recruiters with configurable permissions; email-job consistency tools.
+   ================================================================================== */
+const canP = key => !!(S.db && S.db.who && (S.db.who.perms || []).indexOf(key) >= 0);
+const ROLE_RANK = ['VIEWER', 'INTERVIEWER', 'RECRUITER', 'HIRING_MANAGER', 'ADMIN'];
+const roleAllows = (role, min) => ROLE_RANK.indexOf(role) >= ROLE_RANK.indexOf(min);
+const ROLE_PRESETS = [
+  ['RECRUITER', 'Recruiter', 'Jobs, candidates, interviews, bench'],
+  ['RECRUITER:sourcer', 'Sourcer', 'Recruiter without contact details, rates or emailing', ['candidates.contact', 'messages.send', 'staffing.sources', 'talent.unlock']],
+  ['RECRUITER:bench', 'Bench sales recruiter', 'Bench & consultants; no vendor rates', ['staffing.sources']],
+  ['HIRING_MANAGER', 'Hiring manager', 'Approves jobs and offers'],
+  ['INTERVIEWER', 'Interviewer', 'Notes, ratings and scorecards only'],
+  ['VIEWER', 'Viewer', 'Read-only'],
+  ['ADMIN', 'Administrator', 'Everything, including team and billing']
+];
+
+function permMatrix(role, revoked, prefix) {
+  const cat = (S.db.lists && S.db.lists.perms) || [];
+  return '<div class="perm-grid">' + cat.map(p => {
+    const allowed = roleAllows(role, p.minRole), on = allowed && (revoked || []).indexOf(p.key) < 0;
+    return '<label class="perm' + (allowed ? '' : ' na') + '"><input type="checkbox" name="' + prefix + p.key + '"' + (on ? ' checked' : '') + (allowed ? '' : ' disabled') + '><span>' + esc(p.label) +
+      (allowed ? '' : '<small>needs ' + lbl(p.minRole) + '</small>') + '</span></label>';
+  }).join('') + '</div>';
+}
+function revokedFrom(v, role, prefix) {
+  return ((S.db.lists && S.db.lists.perms) || []).filter(p => roleAllows(role, p.minRole) && !v[prefix + p.key]).map(p => p.key);
+}
+function presetOf(m) {
+  const rev = parse(m.perms, []).slice().sort().join(',');
+  const hit = ROLE_PRESETS.find(p => p[0].split(':')[0] === m.role && (p[3] || []).slice().sort().join(',') === rev);
+  return hit ? hit[1] : lbl(m.role) + (rev ? ' (custom)' : '');
+}
+
+PAGES.team = () => {
+  const m = S.db.members, l = S.db.org.limits, admin = canP('team.manage');
+  const inv = S.ui.inv || { preset: 'RECRUITER' };
+  const pr = ROLE_PRESETS.find(p => p[0] === inv.preset) || ROLE_PRESETS[0], role = pr[0].split(':')[0];
+  return head('Team & recruiters', m.filter(x => x.status === 'Active').length + (Number(l.members) ? ' / ' + l.members : '') + ' seats in use · roles set the baseline; switch individual permissions off per person') +
+    (admin ? '<form data-form="invite2" class="card"><h3>Add a recruiter or team member</h3><div class="form-row">' + field('Work email', inp('email', '', 'type="email" required placeholder="recruiter@company.com"')) +
+      field('Title (optional)', inp('title', '', 'placeholder="e.g. Bench sales recruiter"')) +
+      field('Access preset', sel('preset', ROLE_PRESETS.map(p => [p[0], p[1] + ' — ' + p[2]]), inv.preset, 'data-change="inv-preset"')) +
+      field('Jobs they can see', sel('scope', [['all', 'All jobs and candidates'], ['own', 'Only jobs assigned to them (recruiter / hiring manager)']], inv.scope || 'all')) + '</div>' +
+      '<details class="mt8"' + (inv.open ? ' open' : '') + '><summary class="small"><b>Permissions</b> — adjust what this person can do</summary>' + permMatrix(role, pr[3] || [], 'p_') + '</details>' +
+      '<button class="btn mt16" type="submit">' + ic('mail') + ' Send invitation</button></form>' : '') +
+    '<div class="table-wrap mt16"><table><tr><th>Member</th><th>Access</th><th>Scope</th><th>Status</th><th></th></tr>' + m.map(x => {
+      const rev = parse(x.perms, []), total = ((S.db.lists && S.db.lists.perms) || []).filter(p => roleAllows(x.role, p.minRole)).length;
+      return '<tr><td><b>' + esc(x.email) + '</b>' + (x.title ? '<div class="small muted">' + esc(x.title) + '</div>' : '') + '<div class="tiny dim">invited by ' + esc(x.invitedBy || '—') + '</div></td>' +
+        '<td>' + chip(presetOf(x), x.role === 'ADMIN' ? 'a' : '') + '<div class="tiny dim">' + (total - rev.filter(k => ((S.db.lists.perms || []).find(p => p.key === k) || {}).minRole && roleAllows(x.role, ((S.db.lists.perms || []).find(p => p.key === k) || {}).minRole)).length) + ' of ' + total + ' permissions</div></td>' +
+        '<td class="small">' + (x.scope === 'own' ? 'Own jobs only' : 'All jobs') + '</td><td>' + statusChip(x.status) + '</td><td class="right nowrap">' +
+        (admin ? '<button class="btn small secondary" data-action="member-access" data-id="' + x.id + '">Edit access</button><button class="btn small ghost" data-action="member-toggle" data-id="' + x.id + '">' + (x.status === 'Active' ? 'Deactivate' : 'Reactivate') + '</button><button class="btn small ghost" data-action="member-resend" data-id="' + x.id + '">Resend invite</button>' : '') + '</td></tr>';
+    }).join('') + '</table></div>' +
+    '<div class="notice small mt16">' + ic('shield') + ' Permissions are enforced on the server. Switching off <b>contact details</b> hides candidate emails, phones and resumes; <b>private requirement sources</b> hides vendors, clients and rates from email requirements; <b>own jobs only</b> limits jobs, applicants and candidates to the person\'s assigned jobs.</div>';
+};
+
+function memberAccessForm(x, role) {
+  role = role || x.role;
+  return '<form data-form="member-access"><input type="hidden" name="id" value="' + esc(x.id) + '"><div class="form-row">' + field('Title', inp('title', x.title || '')) +
+    field('Role', sel('role', ROLE_RANK.map(r => [r, lbl(r)]), role, 'data-change="acc-role" data-id="' + esc(x.id) + '"')) +
+    field('Jobs they can see', sel('scope', [['all', 'All jobs and candidates'], ['own', 'Only jobs assigned to them']], x.scope || 'all')) + '</div>' +
+    '<h4 class="mt16">Permissions</h4>' + permMatrix(role, parse(x.perms, []), 'p_') + '<button class="btn mt16">Save access</button></form>';
+}
+
+/* ------------------------------------------------------------------ hide what the member cannot use */
+const baseRenderAppAccess = renderApp;
+renderApp = function () {
+  const items = NAV[0][1], i = items.findIndex(n => n[0] === 'bench');
+  const r = baseRenderAppAccess.apply(this, arguments);
+  if (i >= 0 && S.db && !canP('staffing.bench')) { const a = document.querySelector('.nav a[href="#app/bench"]'); if (a) a.remove(); }
+  if (S.db && !canP('jobs.create')) document.querySelectorAll('[data-action="new-job"],[data-action="import-jobs"]').forEach(b => b.remove());
+  return r;
+};
+const baseJobPageAccess = PAGES.job;
+PAGES.job = () => { const save = S.db.staffReqCounts; if (!canP('staffing.sources')) S.db.staffReqCounts = {}; try { return baseJobPageAccess(); } finally { S.db.staffReqCounts = save; } };
+
+/* ------------------------------------------------------------------ email jobs: drafts + consistency report */
+const baseJobsPageAccess = PAGES.jobs;
+PAGES.jobs = () => {
+  const drafts = S.db.jobs.filter(j => j.sourceId === 'email' && j.status === 'Draft' && j.externalRef !== 'bench:screening');
+  return (isStaffing() && drafts.length && canP('jobs.publish') ? '<div class="notice small row wrap-row" style="border-color:#ffc47766">' + ic('doc') + ' <span><b>' + drafts.length + '</b> job' + (drafts.length > 1 ? 's' : '') +
+    ' from email saved as draft (missing location or skills). Review them under the <b>Draft</b> tab, or</span> <button class="btn small" data-action="publish-email-drafts">Publish all ' + drafts.length + '</button></div>' : '') + baseJobsPageAccess();
+};
+
+const basePlatIntakeAccess = platIntakeHtml;
+platIntakeHtml = function () {
+  const html = basePlatIntakeAccess(), rp = S.plat.intakeReport;
+  if (!S.plat.intake) return html;
+  if (!rp) { lazyPlat('intakeReport', 'platformIntakeReport'); return html; }
+  const b = rp.byStatus || {}, n = k => b[k] || 0;
+  const card = '<div class="card mt16"><div class="row between wrap-row"><h3 class="mb0">Last ' + rp.days + ' days — what happened to each email</h3><button class="btn small ghost" data-action="intake-report">Refresh</button></div>' +
+    '<div class="grid g6 mt16">' + kpi(rp.total, 'Emails processed') + kpi(n('Published'), 'Published jobs') + kpi(n('Merged') + n('Duplicate'), 'Same job from another vendor') + kpi(n('Draft'), 'Saved as draft') +
+    kpi(n('Created') + n('Updated'), 'Consultants / candidates') + kpi(n('Review') + n('Failed'), 'Review / failed') + '</div>' +
+    '<p class="small muted mt8">' + rp.liveJobs + ' of ' + rp.requirements + ' requirements are live now (others were merged into an existing job, closed, or are drafts). Ignored: ' + (n('Ignored') + n('Throttled')) + ' (own mail, auto-replies, bounces).</p>' +
+    '<div class="row wrap-row mt8">' + (rp.review ? '<button class="btn small" data-action="intake-retry" data-v="Review">Retry ' + Math.min(20, rp.review) + ' review items as jobs</button>' : '') +
+    (rp.failed.length ? '<button class="btn small ghost" data-action="intake-retry" data-v="Failed">Retry failed</button>' : '') + (rp.draftJobs.length ? '<span class="small muted">' + rp.draftJobs.length + ' email jobs are drafts — publish them from Jobs → Draft.</span>' : '') + '</div>' +
+    (rp.failed.length ? '<details class="mt8"><summary class="small">Failed (' + rp.failed.length + ')</summary>' + rp.failed.slice(0, 15).map(l => '<div class="small" style="padding:4px 0">' + esc(l.subject) + ' — <span class="dim">' + esc(l.detail) + '</span></div>').join('') + '</details>' : '') + '</div>';
+  const i = html.indexOf('<div class="card mt24"><div class="row between wrap-row"><div><h3 class="mb0">Staffing mailboxes');
+  return i > 0 ? html.slice(0, i) + card + html.slice(i) : html + card;
+};
+
+Object.assign(ACTIONS, {
+  'member-access': d => { const x = S.db.members.find(m => m.id === d.id); if (x) openModal('Access — ' + x.email, memberAccessForm(x), true); },
+  'publish-email-drafts': async (d, el) => { if (!confirm('Publish every job created from email that is still a draft?')) return; try { const r = await busy(el, call('publishEmailDrafts', {})); toast(r.published + ' job(s) published.', 'ok'); await refresh(); } catch (e) { fail(e); } },
+  'intake-report': () => { S.plat.intakeReport = null; renderApp(); },
+  'intake-retry': async (d, el) => { try { const r = await busy(el, call('platformIntakeRetry', { status: d.v, as: 'job' })); S.plat.intakeReport = r.report; S.plat.intake = null; toast(r.ok + ' processed as jobs · ' + r.failed + ' could not be read as jobs.', 'ok', 6000); renderApp(); } catch (e) { fail(e); } }
+});
+Object.assign(FORMS, {
+  invite2: async (v, f, b) => {
+    const pr = ROLE_PRESETS.find(p => p[0] === v.preset) || ROLE_PRESETS[0], role = pr[0].split(':')[0];
+    try {
+      const r = await busy(b, call('addMember', { email: v.email, role: role, title: v.title || (pr[0].indexOf(':') > 0 ? pr[1] : ''), scope: v.scope, revoked: revokedFrom(v, role, 'p_') }));
+      toast(r.invited ? (r.emailed ? 'Invitation emailed.' : 'Member added — the email could not be sent; they can use "Accept an invite".') : 'Member added.', 'ok', 6000); S.ui.inv = null; await refresh();
+    } catch (e) { fail(e); }
+  },
+  'member-access': async (v, f, b) => {
+    try { await busy(b, call('updateMemberAccess', { id: v.id, role: v.role, scope: v.scope, title: v.title, revoked: revokedFrom(v, v.role, 'p_') })); closeModal(); toast('Access updated.', 'ok'); await refresh(); } catch (e) { fail(e); }
+  }
+});
+Object.assign(CHANGES, {
+  'inv-preset': (v, el) => { const f = el.form; S.ui.inv = { preset: el.value, scope: f.scope.value, open: true }; renderApp(); const nf = document.querySelector('form[data-form=invite2]'); if (nf) { nf.email.value = f.email.value; nf.title.value = f.title.value; } },
+  'acc-role': (v, el) => { const x = S.db.members.find(m => m.id === el.dataset.id); if (!x) return; const f = el.form; const tmp = Object.assign({}, x, { title: f.title.value, scope: f.scope.value }); openModal('Access — ' + x.email, memberAccessForm(tmp, el.value), true); }
+});
 
 bind();
 route();
