@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.15.4"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.16.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -366,6 +366,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 
 .ih-job-page > .ih-careers-list{width:calc(100% - 48px)!important;max-width:1344px!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important}
 @media(max-width:520px){.ih-job-page > .ih-careers-list{width:calc(100% - 32px)!important}}
+.mfa-card h3{display:flex;align-items:center;gap:8px}.mfa-qr{background:#fff;border-radius:12px;padding:10px;width:max-content;margin:12px 0}.mfa-qr svg{display:block}.mfa-key{display:inline-block;margin-top:6px;padding:8px 10px;border-radius:8px;background:var(--panel2);letter-spacing:2px;font-size:15px;user-select:all}.mfa-codes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:10px 0}.mfa-codes code{padding:6px 8px;border-radius:6px;background:var(--panel2);text-align:center;letter-spacing:1px}.mfa-steps{padding-left:18px;margin:8px 0}.mb16{margin-bottom:16px}
+.co-foot{margin-top:40px;border-top:1px solid var(--line);background:#0000001f;padding:30px 0 22px}.co-foot-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px}.co-foot p{color:var(--muted);max-width:620px;margin:8px 0 0;white-space:pre-line}.co-foot .co-logo{width:40px;height:40px;flex:0 0 40px;border-radius:10px;padding:4px}.co-foot-links{display:flex;flex-direction:column;gap:8px;margin:10px 0 12px}.co-foot-links a,.co-foot-links span{display:inline-flex;align-items:center;gap:8px;color:var(--text);font-size:14px}.co-foot-links .ic{color:var(--a)}.co-foot a.small{color:var(--a)}.co-foot-note{max-width:none!important;color:var(--dim);margin-top:22px!important;border-top:1px solid var(--line);padding-top:14px}@media(max-width:760px){.co-foot-grid{grid-template-columns:1fr}}
 </style>
 
 </head>
@@ -461,7 +463,7 @@ const store = {
   set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) { /* storage blocked */ } }
 };
 
-const SEEKER_FNS = /^seeker(?!Register$|Verify$|Login$|RequestCode$|ResetPassword$|Demo$)[A-Z]\w*$/;
+const SEEKER_FNS = /^seeker(?!Register$|Verify$|Login$|LoginMfa$|RequestCode$|ResetPassword$|Demo$)[A-Z]\w*$/;
 const S = { seekerToken: store.get('ij-seeker'), seeker: null, market: null, token: store.get('ij-token'), pub: null, db: null, reports: null, billing: null, plat: null, cand: {}, modal: null,
   route: { name: '', parts: [], params: {} }, ui: { q: '', jobFilter: 'all', pipeJob: '', candQ: '', tab: {}, chat: [], interval: 'monthly', careers: null, task: null, sideOpen: false } };
 
@@ -1007,7 +1009,7 @@ PAGES.dashboard = () => {
       '<div class="card flat"><b>2 · Share your careers page</b><p class="small muted">Candidates apply with one profile and see a transparent fit.</p>' + (db.org.careersUrl ? '<button class="btn secondary small" data-action="copy" data-text="' + esc(db.org.careersUrl) + '">Copy careers link</button>' : '') + '</div>' +
       '<div class="card flat"><b>Or explore with sample data</b><p class="small muted">Load a demo package into this empty workspace.</p>' + (can('ADMIN') ? sel('pkg', demoList().map(d => [d.key, d.name]), 'enterprise', 'id="pkg"') + '<button class="btn secondary small mt8" data-action="load-pkg">Load sample data</button>' : '') + '</div></div></div>' : '') +
     '<div class="grid g6 mt16">' + kpi(db.jobs.filter(j => j.status === 'Open').length, 'Open jobs', db.jobs.filter(j => j.status === 'Pending Approval').length + ' pending approval') +
-    kpi(active.length, 'Active candidates', apps.length + ' applications') + kpi(upcoming.length, 'Upcoming interviews') + kpi(db.offers.filter(o => o.status === 'Sent').length, 'Offers out') +
+    kpi(db.candidates.length, 'Candidates', active.length + ' in an active stage · ' + apps.length + ' application' + (apps.length === 1 ? '' : 's') + (db.candidates.length && !apps.length ? ' · <a href="#app/candidates">add them to a job</a>' : '')) + kpi(upcoming.length, 'Upcoming interviews') + kpi(db.offers.filter(o => o.status === 'Sent').length, 'Offers out') +
     kpi(apps.length ? Math.round(apps.reduce((s, a) => s + Number(a.fitScore || 0), 0) / apps.length) + '%' : '—', 'Average fit') + kpi(apps.filter(a => a.stage === 'Hired').length, 'Hires') + '</div>' +
     '<div class="grid g2 mt16"><div class="card"><h3>Needs attention</h3>' + (att.length ? att.slice(0, 10).map(a => '<a class="row between" style="padding:9px 0;border-bottom:1px solid var(--line);color:var(--text)" href="' + a[2] + '"><span>' + chip(a[0], 'warn') + ' ' + esc(a[1]) + '</span><span class="dim">→</span></a>').join('') : '<p class="muted">All caught up. ✓</p>') + '</div>' +
     '<div class="card"><h3>Upcoming interviews</h3>' + (upcoming.length ? upcoming.slice(0, 7).map(i => '<a class="row between" style="padding:9px 0;border-bottom:1px solid var(--line);color:var(--text)" href="#app/candidate/' + i.candidateId + '"><span><b>' + esc(candById(i.candidateId).name) + '</b> <span class="small muted">· ' + esc(jobById(i.jobId).title) + '</span></span><span class="small">' + esc(when(i.startsAt)) + ' ' + statusChip(i.status) + '</span></a>').join('') : '<p class="muted">Nothing scheduled.</p>') + '</div></div>' +
@@ -1393,7 +1395,7 @@ PAGES.platform = () => {
   if (tab === 'demos') body = platDemosHtml();
   if (tab === 'seekers') body = platSeekersHtml();
   if (tab === 'leads') body = p.leads.length ? '<div class="table-wrap"><table><tr><th>Lead</th><th>Company</th><th>Message</th><th>Source</th><th>Status</th></tr>' + p.leads.map(l => '<tr><td><b>' + esc(l.name) + '</b><div class="small"><a href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a> ' + esc(l.phone) + '</div><div class="tiny dim">' + day(l.createdAt) + '</div></td><td>' + esc(l.company) + '<div class="small muted">' + esc(l.hires) + ' hires/yr</div></td><td class="small">' + esc(l.message) + '</td><td class="small">' + esc(l.source) + '</td><td><select data-change="lead-status" data-id="' + l.id + '">' + opts(['New', 'Contacted', 'Qualified', 'Won', 'Lost'], l.status) + '</select></td></tr>').join('') + '</table></div>' : '<div class="empty">No leads yet.</div>';
-  if (tab === 'users') body = '<div class="table-wrap"><table><tr><th>User</th><th>Status</th><th>Orgs</th><th>Last sign-in</th><th></th></tr>' + p.users.map(u => '<tr><td><b>' + esc(u.name) + '</b><div class="small muted">' + esc(u.email) + '</div></td><td>' + statusChip(u.status) + (u.verified ? '' : ' ' + chip('unverified', 'warn')) + '</td><td>' + u.orgs + '</td><td class="small muted">' + day(u.lastLoginAt) + '</td><td class="right"><button class="btn small ghost" data-action="plat-user" data-id="' + u.id + '" data-v="' + (u.status === 'Disabled' ? 'Active' : 'Disabled') + '">' + (u.status === 'Disabled' ? 'Enable' : 'Disable') + '</button></td></tr>').join('') + '</table></div>';
+  if (tab === 'users') body = '<div class="table-wrap"><table><tr><th>User</th><th>Status</th><th>Orgs</th><th>Last sign-in</th><th></th></tr>' + p.users.map(u => '<tr><td><b>' + esc(u.name) + '</b><div class="small muted">' + esc(u.email) + '</div></td><td>' + statusChip(u.status) + (u.verified ? '' : ' ' + chip('unverified', 'warn')) + '</td><td>' + u.orgs + '</td><td class="small muted">' + day(u.lastLoginAt) + '</td><td class="right">' + (u.mfa ? chip('2-step', 'ok') + ' <button class="btn small ghost" data-action="plat-mfa-reset" data-kind="user" data-id="' + u.id + '" data-email="' + esc(u.email) + '">Reset 2-step</button>' : '') + '<button class="btn small ghost" data-action="plat-user" data-id="' + u.id + '" data-v="' + (u.status === 'Disabled' ? 'Active' : 'Disabled') + '">' + (u.status === 'Disabled' ? 'Enable' : 'Disable') + '</button></td></tr>').join('') + '</table></div>';
   if (tab === 'billing') body = '<div class="row"><button class="btn secondary small" data-action="plat-sync">Sync Stripe now</button></div><div class="table-wrap mt16"><table><tr><th>Date</th><th>Org</th><th>Event</th><th>Plan</th><th>Amount</th><th>By</th></tr>' + p.o.events.map(e => '<tr><td class="small">' + day(e.createdAt) + '</td><td>' + esc(e.orgName) + '</td><td>' + esc(e.type) + '</td><td>' + esc(e.plan) + ' ' + esc(e.interval) + '</td><td>' + (e.amount ? money(e.amount) : '—') + '</td><td class="small">' + esc(e.actor) + '</td></tr>').join('') + '</table></div>';
   if (tab === 'settings') body = '<div class="grid g2"><form data-form="plat-settings" class="card"><h3>Settings</h3>' + Object.keys(s).map(k => field(k, inp(k, s[k]))).join('') + '<button class="btn mt16">Save settings</button></form>' +
     '<div class="stack"><div class="card"><h3>Secrets</h3><p class="small muted">Write-only. Stored securely on the server, never shown again.</p>' + Object.keys(p.s.secrets).map(k => '<form data-form="plat-secret" class="mt16"><input type="hidden" name="key" value="' + k + '"><label>' + k + ' ' + (p.s.secrets[k] ? chip('set ' + p.s.secrets[k], 'ok') : chip('not set', 'warn')) + '</label><div class="row">' + inp('value', '', 'type="password" placeholder="' + (k === 'STRIPE_SECRET_KEY' ? 'sk_live_… or sk_test_…' : 'Gemini API key') + '"') + '<button class="btn small">Save</button></div></form>').join('') + '</div>' +
@@ -1956,7 +1958,8 @@ function platDemosHtml() {
   const d = S.plat.demos;
   if (!d) { call('platformListDemos').then(r => { S.plat.demos = r; renderApp(); }, fail); return '<div class="loading">Loading<span class="pulse"></span></div>'; }
   return '<div class="card"><h3>Demo settings</h3><div class="row wrap-row">' +
-    '<label class="check"><input type="checkbox" data-change="demo-setting" data-k="enabled"' + (d.enabled ? ' checked' : '') + '> Demos available to the public</label>' +
+    '<label class="check"><input type="checkbox" data-change="demo-setting" data-k="enabled"' + (d.enabled ? ' checked' : '') + '> Demos enabled</label>' +
+    '<label class="check">Who can open them <select data-change="demo-setting" data-k="access" style="max-width:300px">' + opts([['registered', 'Registered employers & candidates (signed in)'], ['public', 'Anyone — no sign-in needed']], d.access || 'registered') + '</select></label>' +
     '<label class="check"><input type="checkbox" data-change="demo-setting" data-k="autoReset"' + (d.autoReset ? ' checked' : '') + '> Reset shared demos nightly</label>' +
     '<label class="check">Mode <select data-change="demo-setting" data-k="mode" style="max-width:260px">' + opts([['shared', 'Shared — persistent, instant'], ['sandbox', 'Sandbox — private copy per visitor']], d.mode) + '</select></label></div>' +
     '<p class="small muted mt8">Shared demos are built once and stay until you reset them. Private sandboxes active: ' + d.sandboxes + ' · fictional marketplace candidates: ' + d.demoSeekers + '.</p></div>' +
@@ -1970,7 +1973,7 @@ function platSeekersHtml() {
   const s = S.plat.seekers;
   if (!s) { call('platformListSeekers').then(r => { S.plat.seekers = r; renderApp(); }, fail); return '<div class="loading">Loading<span class="pulse"></span></div>'; }
   return s.length ? '<div class="table-wrap"><table><tr><th>Candidate</th><th>Status</th><th>Marketplace</th><th>Applications</th><th>Joined</th><th></th></tr>' + s.map(x => '<tr><td><b>' + esc(x.name) + '</b><div class="small muted">' + esc(x.email) + ' · ' + esc(x.headline) + '</div></td><td>' + statusChip(x.status) + '</td><td>' + (x.visibility === 'Visible' ? chip('Visible', 'ok') : chip('Hidden')) + '</td><td>' + x.applications + '</td><td class="small muted">' + day(x.createdAt) + '</td>' +
-    '<td class="right"><button class="btn small ghost" data-action="plat-seeker" data-id="' + x.id + '" data-v="' + (x.status === 'Disabled' ? 'Active' : 'Disabled') + '">' + (x.status === 'Disabled' ? 'Enable' : 'Disable') + '</button></td></tr>').join('') + '</table></div>' : '<div class="empty">No candidate accounts yet.</div>';
+    '<td class="right">' + (x.mfa ? chip('2-step', 'ok') + ' <button class="btn small ghost" data-action="plat-mfa-reset" data-kind="seeker" data-id="' + x.id + '" data-email="' + esc(x.email) + '">Reset 2-step</button>' : '') + '<button class="btn small ghost" data-action="plat-seeker" data-id="' + x.id + '" data-v="' + (x.status === 'Disabled' ? 'Active' : 'Disabled') + '">' + (x.status === 'Disabled' ? 'Enable' : 'Disable') + '</button></td></tr>').join('') + '</table></div>' : '<div class="empty">No candidate accounts yet.</div>';
 }
 
 const baseAfterPaint = afterPaint;
@@ -3601,8 +3604,15 @@ PAGES.dashboard = () => {
   const html = baseDash114(), a = S.db.authNeeded;
   if (!a || !a.needed) return html;
   if (!S.db.platformAdmin) return html;
-  const box = '<div class="notice warn small mt8">' + ic('lock') + ' <b>Platform setup: Google Calendar is not connected</b> — Google Meet interviews stay off until it is. ' +
-    (a.owner ? 'Signed in to Google as <b>' + esc(a.owner) + '</b>, ' : '') + 'run the IntelliHire setup step and approve Google Calendar access, then publish the new version. Customers only see "use Zoom / Teams for now".</div>';
+  const why = a.reason === 'api' ? 'The Google Calendar API is switched off for the back-end project — switch it on in the project\'s Google Cloud console (APIs → Google Calendar API → Enable).'
+    : a.reason === 'service' ? 'The Google Calendar service is not added to the back-end project — add it (Services → Google Calendar API), then publish a new version.'
+    : 'Google Calendar access has not been approved for the account that runs IntelliHire' + (a.owner ? ' (<b>' + esc(a.owner) + '</b>)' : '') + '.';
+  const box = '<div class="notice warn small mt8">' + ic('lock') + ' <b>Platform setup: Google Meet is off — Google Calendar is not connected.</b> ' + why +
+    ' Customers just see "use Zoom / Teams for now". Only platform admins see this.' +
+    '<details class="mt8"><summary><b>How to connect</b></summary><ol class="mt8"><li>Open the IntelliHire back-end project signed in to Google as ' + esc(a.owner || 'the account that runs IntelliHire') + '.</li>' +
+    '<li>Run the one-time setup step and click <b>Allow</b> when Google asks for Calendar access.</li><li>Publish: Deploy → Manage deployments → edit → <b>New version</b> (keep the same web address).</li>' +
+    '<li>Come back here and click <b>Check again</b>.</li></ol></details>' +
+    '<div class="row mt8"><button class="btn small secondary" data-action="recheck-setup">Check again</button><span class="tiny dim">Last checked ' + esc(String(a.checkedAt || '').slice(11, 16) || 'just now') + ' UTC</span></div></div>';
   const g = html.indexOf('<span class="grow"></span>'), i = g > 0 ? html.indexOf('</div>', g) : -1;
   return i > 0 ? html.slice(0, i + 6) + box + html.slice(i + 6) : box + html;
 };
@@ -3624,6 +3634,13 @@ platSeekersHtml = function () {
 Object.assign(FORMS, {
   'plat-cpro': async (v, f, b) => { try { S.plat.cpro = await busy(b, call('platformCandidatePro', { save: true, enabled: !!v.enabled, trialDays: v.trialDays, priceMonthly: v.priceMonthly, paymentLink: v.paymentLink })); renderApp(); toast('Saved.', 'ok'); } catch (e) { fail(e); } },
   'plat-cpro-grant': async (v, f, b) => { try { S.plat.cpro = await busy(b, call('platformCandidatePro', { grantEmail: v.grantEmail, days: v.days })); renderApp(); toast('Pro granted to ' + v.grantEmail + '.', 'ok'); } catch (e) { fail(e); } }
+});
+
+Object.assign(ACTIONS, {
+  'recheck-setup': async (d, el) => {
+    try { const r = await busy(el, call('platformRecheckSetup')); S.db.authNeeded = r; renderApp(); toast(r.needed ? 'Still not connected — follow the steps, then check again.' : 'Google Calendar is connected. Google Meet interviews are on.', r.needed ? 'error' : 'ok', 6000); }
+    catch (e) { fail(e); }
+  }
 });
 
 const baseRenderApp115 = renderApp;
@@ -3840,6 +3857,349 @@ viewSeeker = function(tab) {
   return html.replace('<div class="wrap" style="padding:28px 24px 60px">','<div class="wrap ih-candidate-shell" style="padding:28px 24px 60px">');
   function heroPlaceholder(s,n,original){return welcome+s+n+'<section id="ih-applications" class="ih-applications"><div class="ih-section-heading"><h2>My applications</h2><a href="#me/jobs">Browse opportunities →</a></div>'+original+'</section>';}
   function heroSafe(s){return s;}
+};
+
+const QR = (() => {
+  const BLOCKS = [null, [10, [[1, 16]]], [16, [[1, 28]]], [26, [[1, 44]]], [18, [[2, 32]]], [24, [[2, 43]]], [16, [[4, 27]]], [18, [[4, 31]]],
+    [22, [[2, 38], [2, 39]]], [22, [[3, 36], [2, 37]]], [26, [[4, 43], [1, 44]]]];
+  const ALIGN = [null, [], [6, 18], [6, 22], [6, 26], [6, 30], [6, 34], [6, 22, 38], [6, 24, 42], [6, 26, 46], [6, 28, 50]];
+  const mul = (x, y) => { let z = 0; for (let i = 7; i >= 0; i--) { z = (z << 1) ^ ((z >>> 7) * 0x11d); z ^= ((y >>> i) & 1) * x; } return z & 255; };
+  const divisor = deg => { const r = new Array(deg).fill(0); r[deg - 1] = 1; let root = 1; for (let i = 0; i < deg; i++) { for (let j = 0; j < deg; j++) { r[j] = mul(r[j], root); if (j + 1 < deg) r[j] ^= r[j + 1]; } root = mul(root, 2); } return r; };
+  const remainder = (data, div) => { const r = new Array(div.length).fill(0); data.forEach(b => { const f = b ^ r.shift(); r.push(0); div.forEach((c, i) => { r[i] ^= mul(c, f); }); }); return r; };
+  const dataLen = v => BLOCKS[v][1].reduce((n, g) => n + g[0] * g[1], 0);
+
+  function encode(text) {
+    const bytes = Array.from(new TextEncoder().encode(String(text)));
+    let ver = 1;
+    while (ver <= 10 && 4 + (ver < 10 ? 8 : 16) + bytes.length * 8 > dataLen(ver) * 8) ver++;
+    if (ver > 10) throw new Error('Text too long for the QR code.');
+    const cap = dataLen(ver) * 8, bits = [];
+    const put = (val, len) => { for (let i = len - 1; i >= 0; i--) bits.push((val >>> i) & 1); };
+    put(4, 4); put(bytes.length, ver < 10 ? 8 : 16); bytes.forEach(b => put(b, 8));
+    put(0, Math.min(4, cap - bits.length)); while (bits.length % 8) bits.push(0);
+    const words = []; for (let i = 0; i < bits.length; i += 8) words.push(parseInt(bits.slice(i, i + 8).join(''), 2));
+    for (let p = 0xec; words.length < cap / 8; p ^= 0xec ^ 0x11) words.push(p);
+    const ecc = BLOCKS[ver][0], div = divisor(ecc), blocks = [];
+    let k = 0;
+    BLOCKS[ver][1].forEach(g => { for (let i = 0; i < g[0]; i++) { const d = words.slice(k, k + g[1]); k += g[1]; blocks.push({ d: d, e: remainder(d, div) }); } });
+    const out = [], maxD = Math.max.apply(null, blocks.map(b => b.d.length));
+    for (let i = 0; i < maxD; i++) blocks.forEach(b => { if (i < b.d.length) out.push(b.d[i]); });
+    for (let i = 0; i < ecc; i++) blocks.forEach(b => out.push(b.e[i]));
+    return matrix(ver, out);
+  }
+
+  function matrix(ver, code) {
+    const n = ver * 4 + 17, m = [], fn = [];
+    for (let y = 0; y < n; y++) { m.push(new Array(n).fill(false)); fn.push(new Array(n).fill(false)); }
+    const set = (x, y, dark) => { m[y][x] = !!dark; fn[y][x] = true; };
+    for (let i = 0; i < n; i++) { set(6, i, i % 2 === 0); set(i, 6, i % 2 === 0); }
+    const finder = (cx, cy) => { for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) { const x = cx + dx, y = cy + dy, d = Math.max(Math.abs(dx), Math.abs(dy)); if (x >= 0 && x < n && y >= 0 && y < n) set(x, y, d !== 2 && d !== 4); } };
+    finder(3, 3); finder(n - 4, 3); finder(3, n - 4);
+    const al = ALIGN[ver], last = al.length - 1;
+    al.forEach((a, i) => al.forEach((b, j) => { if ((i === 0 && j === 0) || (i === 0 && j === last) || (i === last && j === 0)) return;
+      for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) set(a + dx, b + dy, Math.max(Math.abs(dx), Math.abs(dy)) !== 1); }));
+    const format = (mask, draw) => {
+      const data = mask; let rem = data; for (let i = 0; i < 10; i++) rem = (rem << 1) ^ ((rem >>> 9) * 0x537);
+      const b = ((data << 10) | rem) ^ 0x5412, bit = i => ((b >>> i) & 1) === 1;
+      for (let i = 0; i <= 5; i++) draw(8, i, bit(i));
+      draw(8, 7, bit(6)); draw(8, 8, bit(7)); draw(7, 8, bit(8));
+      for (let i = 9; i < 15; i++) draw(14 - i, 8, bit(i));
+      for (let i = 0; i < 8; i++) draw(n - 1 - i, 8, bit(i));
+      for (let i = 8; i < 15; i++) draw(8, n - 15 + i, bit(i));
+      draw(8, n - 8, true);
+    };
+    format(0, set);
+    if (ver >= 7) {
+      let rem = ver; for (let i = 0; i < 12; i++) rem = (rem << 1) ^ ((rem >>> 11) * 0x1f25);
+      const b = (ver << 12) | rem;
+      for (let i = 0; i < 18; i++) { const d = ((b >>> i) & 1) === 1, a = n - 11 + (i % 3), c = Math.floor(i / 3); set(a, c, d); set(c, a, d); }
+    }
+    let i = 0;
+    for (let right = n - 1; right >= 1; right -= 2) {
+      if (right === 6) right = 5;
+      for (let vert = 0; vert < n; vert++) for (let j = 0; j < 2; j++) {
+        const x = right - j, up = ((right + 1) & 2) === 0, y = up ? n - 1 - vert : vert;
+        if (!fn[y][x] && i < code.length * 8) { m[y][x] = ((code[i >>> 3] >>> (7 - (i & 7))) & 1) === 1; i++; }
+      }
+    }
+    const masks = [(x, y) => (x + y) % 2 === 0, (x, y) => y % 2 === 0, x => x % 3 === 0, (x, y) => (x + y) % 3 === 0,
+      (x, y) => (Math.floor(x / 3) + Math.floor(y / 2)) % 2 === 0, (x, y) => (x * y) % 2 + (x * y) % 3 === 0,
+      (x, y) => ((x * y) % 2 + (x * y) % 3) % 2 === 0, (x, y) => ((x + y) % 2 + (x * y) % 3) % 2 === 0];
+    const apply = k => { for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (!fn[y][x] && masks[k](x, y)) m[y][x] = !m[y][x]; };
+    const draw = (x, y, d) => { m[y][x] = d; };
+    let best = 0, bestScore = Infinity;
+    for (let k = 0; k < 8; k++) { apply(k); format(k, draw); const s = penalty(m, n); if (s < bestScore) { bestScore = s; best = k; } apply(k); }
+    apply(best); format(best, draw);
+    return m;
+  }
+
+  function penalty(m, n) {
+    let p = 0, dark = 0;
+    const line = get => { let run = 1; for (let i = 1; i < n; i++) { if (get(i) === get(i - 1)) { run++; if (run === 5) p += 3; else if (run > 5) p++; } else run = 1; } };
+    const pat = get => { for (let i = 0; i + 10 < n; i++) { const s = []; for (let j = 0; j < 11; j++) s.push(get(i + j) ? 1 : 0); const t = s.join(''); if (t === '10111010000' || t === '00001011101') p += 40; } };
+    for (let y = 0; y < n; y++) { line(x => m[y][x]); line(x => m[x][y]); pat(x => m[y][x]); pat(x => m[x][y]); }
+    for (let y = 0; y < n - 1; y++) for (let x = 0; x < n - 1; x++) { const c = m[y][x]; if (c === m[y][x + 1] && c === m[y + 1][x] && c === m[y + 1][x + 1]) p += 3; }
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (m[y][x]) dark++;
+    return p + (Math.ceil(Math.abs(dark * 20 - n * n * 10) / (n * n)) - 1) * 10;
+  }
+
+  function svg(text, px) {
+    const m = encode(text), n = m.length, q = 4, size = n + q * 2;
+    let d = '';
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (m[y][x]) d += 'M' + (x + q) + ' ' + (y + q) + 'h1v1h-1z';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + size + ' ' + size + '" width="' + (px || 200) + '" height="' + (px || 200) + '" shape-rendering="crispEdges" role="img" aria-label="QR code for your authenticator app">' +
+      '<rect width="' + size + '" height="' + size + '" fill="#fff"/><path d="' + d + '" fill="#000"/></svg>';
+  }
+  return { encode: encode, svg: svg };
+})();
+
+const MFA_FNS = {
+  employer: { status: 'mfaStatus', begin: 'mfaBegin', enable: 'mfaEnable', disable: 'mfaDisable', recovery: 'mfaNewRecoveryCodes', login: 'loginMfa' },
+  seeker: { status: 'seekerMfaStatus', begin: 'seekerMfaBegin', enable: 'seekerMfaEnable', disable: 'seekerMfaDisable', login: 'seekerLoginMfa' }
+};
+const MFA_APPS = 'Google Authenticator, Microsoft Authenticator, Authy, 1Password or any authenticator app';
+
+function mfaState(kind) { S.ui.mfa = S.ui.mfa && S.ui.mfa.kind === kind ? S.ui.mfa : { kind: kind }; return S.ui.mfa; }
+
+function mfaBoxHtml(kind) {
+  const st = mfaState(kind);
+  const head = '<h3>' + ic('shield') + ' Two-step sign-in</h3>';
+  if (st.error) return head + '<div class="notice bad small">' + esc(st.error) + '</div>';
+  if (!st.status) return head + '<div class="loading">Checking<span class="pulse"></span></div>';
+  if (st.codes) return head + '<div class="notice ok small">' + ic('check') + ' Two-step sign-in is on.</div>' +
+    '<p class="small"><b>Save these recovery codes</b> somewhere safe (a password manager or printed). Each one works once if you lose your phone. They will not be shown again.</p>' +
+    '<div class="mfa-codes">' + st.codes.map(c => '<code>' + esc(c) + '</code>').join('') + '</div>' +
+    '<div class="row mt8"><button class="btn small secondary" type="button" data-action="copy" data-text="' + esc(st.codes.join('\n')) + '">Copy codes</button><button class="btn small" type="button" data-action="mfa-done" data-kind="' + kind + '">I saved them</button></div>';
+  if (st.status.enabled) return head + '<p class="small">' + chip('On', 'ok') + ' since ' + esc(day(st.status.since)) + ' · ' + st.status.recoveryLeft + ' recovery code' + (st.status.recoveryLeft === 1 ? '' : 's') + ' left' +
+    (st.status.required ? ' · required by your company' : '') + '</p>' +
+    (st.status.recoveryLeft <= 2 && MFA_FNS[kind].recovery ? '<div class="notice warn small">You are running low on recovery codes — make new ones below.</div>' : '') +
+    '<form data-form="mfa-manage" class="mt8"><input type="hidden" name="kind" value="' + kind + '">' + field('Code from your authenticator app (or a recovery code)', inp('code', '', 'required autocomplete="one-time-code" inputmode="numeric" maxlength="11" placeholder="123 456"')) +
+    '<div class="row mt8">' + (MFA_FNS[kind].recovery ? '<button class="btn small secondary" name="op" value="recovery">New recovery codes</button>' : '') +
+    (st.status.required ? '' : '<button class="btn small ghost" name="op" value="disable">Turn off</button>') + '</div></form>';
+  if (st.setup) return head + '<ol class="small mfa-steps"><li>Open ' + MFA_APPS + ' on your phone.</li><li>Add an account and scan this QR code.</li><li>Enter the 6-digit code it shows.</li></ol>' +
+    '<div class="mfa-qr">' + QR.svg(st.setup.uri, 196) + '</div>' +
+    '<details class="small"><summary>Can\'t scan? Enter this key instead</summary><p class="mt8">Account: <b>' + esc(st.setup.account) + '</b> · Issuer: <b>IntelliHire</b> · Time-based</p><code class="mfa-key">' + esc(st.setup.secret) + '</code></details>' +
+    '<form data-form="mfa-enable" class="mt8"><input type="hidden" name="kind" value="' + kind + '">' + field('6-digit code', inp('code', '', 'required autocomplete="one-time-code" inputmode="numeric" pattern="[0-9 ]{6,7}" maxlength="7" placeholder="123 456"')) +
+    '<div class="row mt8"><button class="btn small">Turn on</button><button class="btn small ghost" type="button" data-action="mfa-cancel" data-kind="' + kind + '">Cancel</button></div></form>';
+  return head + '<p class="small muted">Protect your account with a code from ' + MFA_APPS + ' each time you sign in — even if someone learns your password, they cannot get in.</p>' +
+    '<button class="btn small" data-action="mfa-begin" data-kind="' + kind + '">' + ic('lock') + ' Set up with an authenticator app</button>';
+}
+function mfaPaint(kind) { const el = document.getElementById('mfa-box'); if (el && el.dataset.kind === kind) el.innerHTML = mfaBoxHtml(kind); }
+async function mfaLoad(kind) {
+  const st = mfaState(kind);
+  try { st.status = await call(MFA_FNS[kind].status); st.error = ''; } catch (e) { st.error = e.message; }
+  mfaPaint(kind);
+}
+function mfaSlot(kind) { setTimeout(() => { const st = mfaState(kind); if (!st.status && !st.loading) { st.loading = true; mfaLoad(kind).then(() => { st.loading = false; }); } else mfaPaint(kind); }, 0);
+  return '<div id="mfa-box" class="card mfa-card" data-kind="' + kind + '">' + mfaBoxHtml(kind) + '</div>'; }
+
+Object.assign(ACTIONS, {
+  'mfa-begin': async d => { const st = mfaState(d.kind); try { st.setup = await call(MFA_FNS[d.kind].begin); mfaPaint(d.kind); setTimeout(() => { const i = document.querySelector('#mfa-box [name=code]'); if (i) i.focus(); }, 30); } catch (e) { fail(e); } },
+  'mfa-cancel': d => { const st = mfaState(d.kind); st.setup = null; mfaPaint(d.kind); },
+  'mfa-done': d => { const st = mfaState(d.kind); st.codes = null; st.status = null; if (S.db && S.db.mfa && d.kind === 'employer') { S.db = null; route(); return; } mfaSlot(d.kind); mfaLoad(d.kind); },
+  'mfa-signout': async () => { try { await call('logout'); } catch (e) { /* */ } sessionEnded(); }
+});
+Object.assign(FORMS, {
+  'mfa-enable': async (v, f, b) => { const st = mfaState(v.kind); try { const r = await busy(b, call(MFA_FNS[v.kind].enable, { code: v.code })); st.setup = null; st.codes = r.recoveryCodes; st.status = { enabled: true };
+    if (S.db && S.db.mfa) S.db.mfa.enabled = true; mfaPaint(v.kind); toast('Two-step sign-in is on.', 'ok'); } catch (e) { fail(e); } },
+  'mfa-manage': async (v, f, b) => {
+    const st = mfaState(v.kind), op = (b && b.value) || 'disable';
+    try {
+      if (op === 'recovery') { const r = await busy(b, call(MFA_FNS[v.kind].recovery, { code: v.code })); st.codes = r.recoveryCodes; mfaPaint(v.kind); return; }
+      if (!confirm('Turn off two-step sign-in? Your account will be protected by your password only.')) return;
+      await busy(b, call(MFA_FNS[v.kind].disable, { code: v.code })); st.status = null; toast('Two-step sign-in is off.', 'ok'); mfaLoad(v.kind);
+    } catch (x) { fail(x); }
+  },
+  'mfa-login': async (v, f, b) => {
+    const pend = S.ui.mfaPending; if (!pend) return closeModal();
+    try {
+      const r = await busy(b, call(MFA_FNS[pend.kind].login, { mfaToken: pend.token, code: v.code }));
+      S.ui.mfaPending = null; closeModal();
+      if (r.recoveryLeft !== undefined) toast('Signed in with a recovery code — ' + r.recoveryLeft + ' left. Make new ones in Account → Two-step sign-in.', 'ok', 8000);
+      (pend.kind === 'seeker' ? setSeeker : setSession)(r);
+    } catch (e) { fail(e); if (e.code === 'AUTH') { S.ui.mfaPending = null; closeModal(); } }
+  }
+});
+
+function mfaPrompt(kind, res) {
+  S.ui.mfaPending = { kind: kind, token: res.mfaToken };
+  openModal('Two-step sign-in', '<p class="small muted">Open your authenticator app and enter the 6-digit code for <b>IntelliHire</b>' + (res.email ? ' (' + esc(res.email) + ')' : '') + '.</p>' +
+    '<form data-form="mfa-login">' + field('Code', inp('code', '', 'required autofocus autocomplete="one-time-code" inputmode="numeric" maxlength="11" placeholder="123 456"')) +
+    '<p class="tiny dim mt8">Lost your phone? Enter one of your recovery codes instead (like ABCDE-12345).</p><button class="btn mt16 block">Verify and sign in</button></form>');
+  setTimeout(() => { const i = document.querySelector('form[data-form="mfa-login"] [name=code]'); if (i) i.focus(); }, 30);
+}
+const baseSetSession116 = setSession;
+setSession = function (res) { if (res && res.mfaRequired) return mfaPrompt('employer', res); return baseSetSession116(res); };
+const baseSetSeeker116 = setSeeker;
+setSeeker = function (res) { if (res && res.mfaRequired) return mfaPrompt('seeker', res); return baseSetSeeker116(res); };
+
+const baseAccount116 = ACTIONS.account;
+ACTIONS.account = function () {
+  baseAccount116.apply(null, arguments);
+  if (isDemo() || !S.modal) return;
+  S.ui.mfa = null;
+  const i = S.modal.body.indexOf('</p>');
+  S.modal.body = S.modal.body.slice(0, i + 4) + mfaSlot('employer') + S.modal.body.slice(i + 4);
+  paintModal();
+};
+
+const baseViewSeeker116 = viewSeeker;
+viewSeeker = function (tab) {
+  const html = baseViewSeeker116(tab);
+  if (tab !== 'account' || !S.seeker || S.seeker.me.profile.isDemo === 'Yes') return html;
+  const at = html.indexOf('<div class="split"><form data-form="seeker-password"');
+  return at < 0 ? html : html.slice(0, at) + '<div class="mb16">' + mfaSlot('seeker') + '</div>' + html.slice(at);
+};
+
+const baseRenderApp116 = renderApp;
+renderApp = function () {
+  const m = S.db && S.db.mfa;
+  if (m && m.required && !m.enabled) {
+    paint('<div class="auth"><div class="card" style="max-width:520px"><div class="center">' + logo() + '</div><h3 class="center mt16">Set up two-step sign-in</h3><p class="small muted center">' + esc(S.db.org.name) +
+      ' requires a code from an authenticator app when you sign in. It takes about a minute.</p>' + mfaSlot('employer') +
+      '<button class="btn ghost small mt16" data-action="mfa-signout">Sign out</button></div></div>');
+    return;
+  }
+  return baseRenderApp116();
+};
+
+const baseTeam116 = PAGES.team;
+PAGES.team = () => {
+  const html = baseTeam116(), m = S.db.mfa || {};
+  if (!canP('team.manage') || !m.members || S.db.org.demo) return html;
+  const active = S.db.members.filter(x => x.status === 'Active'), on = active.filter(x => m.members.indexOf(String(x.email).toLowerCase()) >= 0).length;
+  const card = '<div class="card mb16"><div class="row between wrap-row"><div><h3>' + ic('shield') + ' Two-step sign-in</h3><p class="small muted">' + on + ' of ' + active.length + ' active members use an authenticator app.' +
+    (S.db.org.requireMfa ? ' Everyone must set it up before they can work.' : '') + '</p></div>' +
+    '<label class="check"><input type="checkbox" data-change="mfa-policy"' + (S.db.org.requireMfa ? ' checked' : '') + '> Require for everyone in ' + esc(S.db.org.name) + '</label></div></div>';
+  const tagged = html.replace(/<tr><td><b>([^<]+)<\/b>/g, (all, email) => all + (m.members.indexOf(String(email).toLowerCase().replace(/&amp;/g, '&')) >= 0 ? ' <span class="chip ok tiny">2-step</span>' : ''));
+  const at = tagged.indexOf('<form data-form="invite2"');
+  return at < 0 ? card + tagged : tagged.slice(0, at) + card + tagged.slice(at);
+};
+Object.assign(CHANGES, {
+  'mfa-policy': async (v, el) => {
+    const want = el.checked;
+    if (want && !confirm('Require two-step sign-in for everyone? Members without it will be asked to set it up the next time they open IntelliHire.')) { el.checked = false; return; }
+    try { const r = await call('updateMfaPolicy', { require: want }); S.db.org.requireMfa = r.required; toast(r.required ? 'Two-step sign-in is now required (' + r.withMfa + ' of ' + r.members + ' already set up).' : 'Two-step sign-in is optional again.', 'ok', 6000); renderApp(); }
+    catch (e) { el.checked = !want; fail(e); }
+  }
+});
+
+const pubDemoAccess = () => (S.pub && S.pub.demoAccess) || 'registered';
+const realToken = () => { const t = store.get('ij-token-real'); return t || (S.db && S.db.org && S.db.org.demo ? '' : S.token); };
+const baseLaunchDemo116 = launchDemo;
+launchDemo = async function (flavor) {
+  if (!S.pub) { try { await loadPub(); } catch (e) { /* use the default */ } }
+  const access = pubDemoAccess(), tok = realToken();
+  if (access === 'off') { toast('The live demo is currently unavailable. Start a free trial instead.', 'error', 6000); return go('#register'); }
+  if (access === 'registered' && !tok) {
+    store.set('ij-demo-next', flavor || 'enterprise');
+    toast('The live demo is for registered employers — sign in or create your free account and it opens right after.', 'ok', 7000);
+    return go('#login?demo=1');
+  }
+  paint('<div class="loading">Opening the live demo<span class="pulse"></span><p class="small">Loading jobs, candidates, interviews and analytics…</p></div>');
+  try {
+    const res = await call('startDemo', { flavor: flavor, token: tok || '' });
+    if (tok && tok !== S.token) { /* already in a demo: keep the saved real session */ } else if (tok) store.set('ij-token-real', tok);
+    toast(res.shared ? 'Live demo ready — explore freely. Use "Exit demo" to return to your workspace.' : 'Demo ready — a private sandbox for 24 hours.', 'ok', 6000);
+    baseSetSession116(res);
+  } catch (e) {
+    if (e.code === 'DEMO_SIGNIN') { store.set('ij-demo-next', flavor || 'enterprise'); fail(e); return go('#login?demo=1'); }
+    fail(e); setTimeout(() => go('#home'), 50);
+  }
+};
+setSession = (prev => function (res) {
+  if (res && res.token && !res.mfaRequired) {
+    const next = store.get('ij-demo-next');
+    if (next) { store.set('ij-demo-next', ''); S.token = res.token; store.set('ij-token', res.token); return launchDemo(next); }
+  }
+  return prev(res);
+})(setSession);
+const baseSessionEnded116 = sessionEnded;
+sessionEnded = function (msg) {
+  const real = store.get('ij-token-real');
+  if (real && real !== S.token) {
+    store.set('ij-token-real', '');
+    S.token = real; store.set('ij-token', real); S.db = null; S.cand = {}; S.modal = null; paintModal();
+    toast('Back in your workspace.', 'ok'); go('#app/dashboard'); return;
+  }
+  store.set('ij-token-real', '');
+  return baseSessionEnded116(msg);
+};
+ACTIONS['seeker-demo'] = async () => {
+  if (!S.pub) { try { await loadPub(); } catch (e) { /* default */ } }
+  const tok = S.seekerToken || realToken();
+  if (pubDemoAccess() === 'registered' && !tok) { S.ui.afterSeeker = '#candidate-demo'; toast('Sign in or create a free candidate account to open the candidate demo.', 'ok', 6500); return go('#me/login'); }
+  paint('<div class="loading">Opening the candidate demo<span class="pulse"></span></div>');
+  try { const r = await call('seekerDemo', { token: tok || '' }); if (S.seekerToken) store.set('ij-seeker-real', S.seekerToken); baseSetSeeker116(r); toast('Candidate demo — a fictional profile with real workflows.', 'ok'); }
+  catch (e) { fail(e); go(e.code === 'DEMO_SIGNIN' ? '#me/login' : '#home'); }
+};
+const baseSeekerEnded116 = seekerEnded;
+seekerEnded = function (msg) {
+  const real = store.get('ij-seeker-real');
+  store.set('ij-seeker-real', '');
+  if (real && real !== S.seekerToken) { S.seekerToken = real; store.set('ij-seeker', real); S.seeker = null; toast('Back in your candidate account.', 'ok'); go('#me'); return; }
+  return baseSeekerEnded116(msg);
+};
+const baseRenderAppDemo116 = renderApp;
+renderApp = function () {
+  const out = baseRenderAppDemo116();
+  if (S.db && S.db.org && S.db.org.demo && store.get('ij-token-real')) {
+    const b = document.querySelector('.banner.demo');
+    if (b && !b.querySelector('[data-exit-demo]')) b.insertAdjacentHTML('beforeend', ' <button class="btn small" data-exit-demo="1" data-action="logout" style="margin-left:10px">Exit demo — back to my workspace</button>');
+  }
+  return out;
+};
+
+function careersFooter(org) {
+  const c = org.contact || {}, host = u => String(u || '').replace(/^https?:\/\//i, '').replace(/\/$/, '');
+  const items = [
+    c.email ? '<a href="mailto:' + esc(c.email) + '">' + ic('mail') + ' ' + esc(c.email) + '</a>' : '',
+    c.phone ? '<a href="tel:' + esc(String(c.phone).replace(/[^0-9+]/g, '')) + '">' + ic('phone') + ' ' + esc(c.phone) + '</a>' : '',
+    c.website ? '<a href="' + esc(c.website) + '" target="_blank" rel="noopener">' + ic('globe') + ' ' + esc(host(c.website)) + '</a>' : '',
+    c.linkedin ? '<a href="' + esc(c.linkedin) + '" target="_blank" rel="noopener">' + ic('link') + ' LinkedIn</a>' : '',
+    c.address ? '<span>' + ic('pin') + ' ' + esc(c.address) + '</span>' : ''
+  ].filter(Boolean);
+  return '<footer class="co-foot"><div class="wrap"><div class="co-foot-grid"><div><div class="co-brand">' + coLogo(org, true) + '<b style="font-size:17px">' + esc(org.name) + '</b></div>' +
+    (org.about ? '<p class="small">' + esc(org.about) + '</p>' : '<p class="small">' + esc(org.headline || 'Join our team') + '</p>') + '</div>' +
+    '<div><b class="small" style="text-transform:uppercase;letter-spacing:1.4px">Contact</b><div class="co-foot-links">' + (items.length ? items.join('') : '<span class="small">Questions about a role? Apply and our team will be in touch.</span>') + '</div>' +
+    '<a class="small" href="#careers/' + esc(org.slug) + '">All open roles at ' + esc(org.name) + ' →</a></div></div>' +
+    '<p class="tiny co-foot-note">© ' + new Date().getFullYear() + ' ' + esc(org.name) + ' · Careers powered by IntelliHire · Applications are reviewed by people; automated matching never makes the decision.</p></div></footer>';
+}
+const basePaintCareers116 = paintCareers;
+paintCareers = function () {
+  basePaintCareers116();
+  const d = S.ui.careers, page = document.querySelector('.ih-job-page');
+  if (!d || !page) return;
+  const old = page.querySelector('.ih-careers-list > p.small.muted.center'); if (old) old.remove();
+  page.insertAdjacentHTML('beforeend', careersFooter(d.org));
+};
+const basePaintJob116 = paintJob;
+paintJob = function () {
+  basePaintJob116.apply(null, arguments);
+  const d = S.ui.job, page = document.querySelector('.ih-job-page');
+  if (d && page && !page.querySelector('.co-foot')) page.insertAdjacentHTML('beforeend', careersFooter(d.org));
+};
+const baseCareersPage116 = PAGES['careers-site'];
+PAGES['careers-site'] = function () {
+  const html = baseCareersPage116.apply(null, arguments), c = S.db.org.contact || {}, ro = !can('ADMIN') || isDemo() ? ' disabled' : '';
+  const block = '<h4 class="mt16">Footer & contact</h4><p class="small muted">Shown at the bottom of your careers page and every job page, with your company description above.</p><div class="form-row">' +
+    field('Contact email', inp('contactEmail', c.email || '', 'type="email" placeholder="careers@company.com"' + ro)) + field('Phone', inp('contactPhone', c.phone || '', 'placeholder="+1 (703) 555-0100"' + ro)) + '</div><div class="form-row">' +
+    field('Website', inp('contactWebsite', c.website || '', 'placeholder="https://www.company.com"' + ro)) + field('LinkedIn page', inp('contactLinkedin', c.linkedin || '', 'placeholder="https://www.linkedin.com/company/…"' + ro)) + '</div>' +
+    field('Address', inp('contactAddress', c.address || '', 'placeholder="City, State (or full office address)"' + ro));
+  const at = html.indexOf('<label class="check mt16"><input type="checkbox" name="enabled"');
+  return at < 0 ? html : html.slice(0, at) + block + html.slice(at);
+};
+FORMS.careers = async (v, f, b) => {
+  const payload = { slug: v.slug, headline: v.headline, about: v.about, color: v.color, enabled: !!v.enabled,
+    contactEmail: v.contactEmail || '', contactPhone: v.contactPhone || '', contactWebsite: v.contactWebsite || '', contactAddress: v.contactAddress || '', contactLinkedin: v.contactLinkedin || '' };
+  const br = S.ui.brand || {};
+  ['logo', 'banner'].forEach(k => { if (br[k] !== undefined) payload[k] = br[k].data ? { name: br[k].name, data: br[k].data } : ''; });
+  try { await busy(b, call('updateCareersSettings', payload)); S.ui.brand = null; toast('Careers site saved.', 'ok'); await refresh(); } catch (e) { fail(e); }
+};
+IC_PATHS.phone = IC_PATHS.phone || '<path d="M5 4h3.5l1.7 4.2-2.2 1.4a11 11 0 0 0 6.4 6.4l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/>';
+ACTIONS['plat-mfa-reset'] = async (d, el) => {
+  if (!confirm('Turn off two-step sign-in for ' + d.email + '? Only do this after confirming who they are (for example a call to a known number). They are signed out everywhere and get an email.')) return;
+  try { await busy(el, call('platformResetMfa', { id: d.id, kind: d.kind })); toast('Two-step sign-in reset for ' + d.email + '.', 'ok'); if (d.kind === 'seeker') S.plat.seekers = null; else S.plat = null; renderApp(); } catch (e) { fail(e); }
 };
 
 bind();
