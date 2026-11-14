@@ -342,6 +342,26 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .ih-job-page .ih-job-layout input::placeholder,.ih-job-page .ih-job-layout textarea::placeholder{color:#91a7bd!important}
 @media(max-width:900px){.ih-job-page .ih-job-layout{grid-template-columns:minmax(0,1fr)!important}.ih-job-page .careers-hero .wrap,.ih-job-page .ih-job-layout{padding-left:18px;padding-right:18px}}
 @media(max-width:520px){.ih-job-page .ih-job-layout .card{padding:19px!important}.ih-job-page .careers-hero h1{font-size:32px}}
+
+/* v2.1: align job details left edge to candidate workspace's content rail.
+   Both hero and body share one centered width; no nested padding offset. */
+.ih-job-page .careers-hero > .wrap,
+.ih-job-page > .ih-job-layout {
+  width:calc(100% - 48px)!important;
+  max-width:1344px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+.ih-job-page > .ih-job-layout {grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+@media(max-width:900px){
+  .ih-job-page > .ih-job-layout {grid-template-columns:minmax(0,1fr)!important;}
+}
+@media(max-width:520px){
+  .ih-job-page .careers-hero > .wrap,
+  .ih-job-page > .ih-job-layout {width:calc(100% - 32px)!important;}
+}
 </style>
 
 </head>
