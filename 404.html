@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.16.0"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.16.1"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -3604,14 +3604,17 @@ PAGES.dashboard = () => {
   const html = baseDash114(), a = S.db.authNeeded;
   if (!a || !a.needed) return html;
   if (!S.db.platformAdmin) return html;
-  const why = a.reason === 'api' ? 'The Google Calendar API is switched off for the back-end project — switch it on in the project\'s Google Cloud console (APIs → Google Calendar API → Enable).'
-    : a.reason === 'service' ? 'The Google Calendar service is not added to the back-end project — add it (Services → Google Calendar API), then publish a new version.'
-    : 'Google Calendar access has not been approved for the account that runs IntelliHire' + (a.owner ? ' (<b>' + esc(a.owner) + '</b>)' : '') + '.';
+  const why = a.reason === 'api' ? 'The Google Calendar API is switched off for the back-end project.'
+    : a.reason === 'service' ? 'The Google Calendar service is not part of the published version.'
+    : a.reason === 'nocal' ? 'The account that runs IntelliHire' + (a.owner ? ' (<b>' + esc(a.owner) + '</b>)' : '') + ' has no Google Calendar — Calendar may be turned off for it in Google Workspace Admin.'
+    : 'Google refused the Calendar call for the account that runs IntelliHire' + (a.owner ? ' (<b>' + esc(a.owner) + '</b>)' : '') + '.';
   const box = '<div class="notice warn small mt8">' + ic('lock') + ' <b>Platform setup: Google Meet is off — Google Calendar is not connected.</b> ' + why +
+    (a.detail ? '<div class="tiny mt8" style="opacity:.85">Google said: ' + esc(a.detail) + '</div>' : '') +
     ' Customers just see "use Zoom / Teams for now". Only platform admins see this.' +
     '<details class="mt8"><summary><b>How to connect</b></summary><ol class="mt8"><li>Open the IntelliHire back-end project signed in to Google as ' + esc(a.owner || 'the account that runs IntelliHire') + '.</li>' +
-    '<li>Run the one-time setup step and click <b>Allow</b> when Google asks for Calendar access.</li><li>Publish: Deploy → Manage deployments → edit → <b>New version</b> (keep the same web address).</li>' +
-    '<li>Come back here and click <b>Check again</b>.</li></ol></details>' +
+    '<li>In the function list choose <b>connectGoogleCalendar</b> and click <b>Run</b>. Click <b>Allow</b> if Google asks. Open the execution log: it says <b>OK</b>, or exactly what to fix (missing permission, Calendar API switched off, or Calendar turned off for the account). Fix that and run it again until it says OK.</li>' +
+    '<li>Publish: Deploy → Manage deployments → edit → Version: <b>New version</b> → Deploy (same web address). Running a function never updates the live app — only a new version does.</li>' +
+    '<li>Come back here and click <b>Check again</b>. Full steps: DEPLOYMENT.md section 26.</li></ol></details>' +
     '<div class="row mt8"><button class="btn small secondary" data-action="recheck-setup">Check again</button><span class="tiny dim">Last checked ' + esc(String(a.checkedAt || '').slice(11, 16) || 'just now') + ' UTC</span></div></div>';
   const g = html.indexOf('<span class="grow"></span>'), i = g > 0 ? html.indexOf('</div>', g) : -1;
   return i > 0 ? html.slice(0, i + 6) + box + html.slice(i + 6) : box + html;
