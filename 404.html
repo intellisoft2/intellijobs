@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.11.1"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.13.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -253,6 +253,8 @@ input[type=file]{max-width:100%}input,select,textarea{max-width:100%;box-sizing:
 .idtag{display:inline-block;font:600 11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.3px;color:var(--b);border:1px solid #70aaff55;background:#70aaff14;border-radius:6px;padding:0 6px;vertical-align:2px;cursor:copy;white-space:nowrap}h2 .idtag{font-size:12px;vertical-align:5px}
 .btn.join{background:linear-gradient(115deg,#4de0c3,#70aaff);color:#04222c}.btn.join .ic{width:16px;height:16px}button.chip{cursor:pointer}
 .flagrow{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.flagrow .chip .ic{width:12px;height:12px;vertical-align:-2px}.notice.warn{border-left-color:#f5b942}
+.org-dot.svg{background:none!important;padding:0;overflow:hidden}.org-dot.svg svg{display:block;width:100%;height:100%}.exp-item{border-left:2px solid var(--line);padding:6px 0 6px 12px;margin:10px 0}.exp-item ul{margin:6px 0 4px 18px;padding:0}.exp-item li{margin:2px 0}.posted .dim{opacity:.75}
+.aud-pill{margin-left:12px;padding:3px 10px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:rgba(77,224,195,.14);color:#4de0c3;border:1px solid rgba(77,224,195,.35)}.aud-pill.emp{background:rgba(112,170,255,.14);color:#9cc3ff;border-color:rgba(112,170,255,.4)}.aud-bar{background:#071221;color:#dbe7ff;font-size:13.5px;padding:9px 18px;text-align:center}.aud-bar a{color:#4de0c3;font-weight:700}.aud-bar .ic{width:14px;height:14px;vertical-align:-2px;margin-right:4px}@media(max-width:760px){.aud-pill{display:none}}
 </style>
 
 </head>
@@ -1723,7 +1725,7 @@ function orgDot(org) {
   return '<div class="org-dot" style="background:linear-gradient(135deg,' + esc(org.color) + ',#0b2a3d)">' + esc(String(org.name || '?').trim().charAt(0).toUpperCase()) + '</div>';
 }
 function mktCard(j) {
-  return '<a class="mkt-card' + (j.featured ? ' featured' : '') + '" href="#job/' + esc(j.org.slug) + '/' + esc(j.id) + '">' + orgDot(j.org) +
+  return '<a class="mkt-card' + (j.featured ? ' featured' : '') + '" href="#job/' + esc(j.org.slug) + '/' + esc(j.id) + '">' + orgDot(j.org, j) +
     '<div><div class="row wrap-row gap8"><b style="font-size:16.5px">' + esc(j.title) + '</b>' + (j.featured ? '<span class="badge-feat">★ Featured</span>' : '') + (j.fit ? '<span class="fit ' + fitCls(j.fit.score) + '">' + j.fit.score + '% fit</span>' : '') + '</div>' +
     '<div class="small muted">' + [j.org.name, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div><div class="mt8">' + chips(j.requiredSkills.slice(0, 6)) + postedLabel(j.publishedAt) + '</div>' + reqChips(j) + '</div>' +
     '<span class="btn small secondary">View & apply</span></a>';
@@ -2093,7 +2095,7 @@ const baseMktCard = mktCard;
 mktCard = function (j) {
   if (!j.external) return baseMktCard(j);
   const badge = j.sector === 'gov' ? '<span class="chip info">' + ic('gov') + ' ' + esc(j.agency || 'Government') + '</span>' : '';
-  return '<div class="mkt-card' + (j.featured ? ' featured' : '') + '" role="button" tabindex="0" data-action="ext-job" data-id="' + esc(j.id) + '">' + orgDot(j.org) +
+  return '<div class="mkt-card' + (j.featured ? ' featured' : '') + '" role="button" tabindex="0" data-action="ext-job" data-id="' + esc(j.id) + '">' + orgDot(j.org, j) +
     '<div><div class="row wrap-row gap8"><b style="font-size:16.5px">' + esc(j.title) + '</b>' + (j.featured ? '<span class="badge-feat">★ Featured partner</span>' : '') + badge +
     (j.fit ? '<span class="fit ' + fitCls(j.fit.score) + '">' + j.fit.score + '% fit</span>' : '') + '</div>' +
     '<div class="small muted">' + [j.org.name, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div>' +
@@ -2102,7 +2104,7 @@ mktCard = function (j) {
 };
 function rememberJobs(list) { S.ui.extIndex = S.ui.extIndex || {}; (list || []).forEach(j => { if (j.external) S.ui.extIndex[j.id] = j; }); }
 function extJobModal(j) {
-  openModal(j.title, '<div class="row wrap-row gap8">' + orgDot(j.org) + '<div><b>' + esc(j.org.name) + '</b><div class="small muted">' + [j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div></div></div>' +
+  openModal(j.title, '<div class="row wrap-row gap8">' + orgDot(j.org, j) + '<div><b>' + esc(j.org.name) + '</b><div class="small muted">' + [j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</div></div></div>' +
     (j.sector === 'gov' ? '<div class="notice small mt16">Government position' + (j.agency ? ' · ' + esc(j.agency) : '') + '. Apply on the official site.</div>' : '') + '<div class="mt8">' + postedLabel(j.publishedAt) + (j.closesAt ? '<span class="posted">' + ic('calendar') + 'Closes ' + esc(fullDate(j.closesAt)) + '</span>' : '') + '</div>' +
     '<p class="mt16" style="white-space:pre-wrap">' + esc(j.description || 'Open the original posting for the full description.') + '</p><div>' + chips(j.requiredSkills) + '</div>' +
     '<div class="row wrap-row mt16"><button class="btn" data-action="ext-apply" data-id="' + esc(j.id) + '">Apply on ' + esc(j.source) + ' ↗</button>' +
@@ -3105,6 +3107,284 @@ PAGES.dashboard = () => {
     al.slice(0, 6).map(a => '<a href="#app/candidate/' + a.candidateId + '">' + esc(a.name) + '</a> — ' + esc(a.type) + ' ' + (a.daysLeft < 0 ? 'expired ' + esc(a.expiresOn) : 'in ' + a.daysLeft + ' days')).join(' · ') + (al.length > 6 ? ' …' : '') + '</div>';
   const g = html.indexOf('<span class="grow"></span>'), i = g > 0 ? html.indexOf('</div>', g) : -1;
   return i > 0 ? html.slice(0, i + 6) + box + html.slice(i + 6) : box + html;
+};
+/* ------------------------------------------------------------------ v1.12: SVG logos, posted dates, fit check with resume / profile, richer resume extraction */
+
+/* ---------------- SVG logos for employers and agencies */
+function hashHue(s) { let h = 0; for (const ch of String(s || '')) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h % 360; }
+function initialsOf(name) {
+  const w = String(name || '?').replace(/\b(inc|llc|ltd|corp|corporation|co|the|of|and|&|group|company|technologies|technology|solutions|services|systems)\b\.?/gi, ' ').trim().split(/\s+/).filter(Boolean);
+  const all = String(name || '?').trim().split(/\s+/);
+  const src = w.length >= 2 ? w : all;
+  return (src.length >= 2 ? src[0][0] + src[1][0] : src[0][0]).toUpperCase().replace(/[^A-Z0-9]/g, '') || '?';
+}
+const GOV_COLORS = [[/defen[cs]e|dod\b|army|dcma|disa|dla/i, '#1d3b72', '#0b1a3a', '#f2c14e'], [/navy|marine/i, '#0f2f63', '#081a3a', '#e8c25a'], [/air force|space force/i, '#1e5aa8', '#0c2c5a', '#cfe0ff'],
+  [/veterans/i, '#22436f', '#0f2440', '#d9e6f7'], [/health|hhs|cdc|nih|cms\b|fda/i, '#1f6f8b', '#0c3646', '#bff0ff'], [/homeland|dhs|cbp|tsa|fema|uscis|ice\b|coast guard/i, '#174a6e', '#0a2236', '#cde7ff'],
+  [/treasury|irs\b/i, '#2b5d3a', '#10281a', '#d6f2dc'], [/justice|fbi|dea\b|atf/i, '#3b2f6b', '#1a1436', '#e2dcff'], [/state\b|usaid/i, '#284b8a', '#10224a', '#dde8ff'], [/energy|doe\b|nasa|interior|agricultur|commerce/i, '#2f5a6a', '#122a33', '#d4f1f7']];
+function govSvg(agency, sub) {
+  const key = (agency || '') + ' ' + (sub || '');
+  const c = GOV_COLORS.find(g => g[0].test(key)) || [null, '#2c4a7a', '#101f38', '#dbe7ff'];
+  const id = 'g' + hashHue(key);
+  return '<svg viewBox="0 0 52 52" width="100%" height="100%" role="img" aria-label="' + esc(agency || 'Government') + '"><title>' + esc(agency || 'Government agency') + '</title>' +
+    '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="' + c[1] + '"/><stop offset="1" stop-color="' + c[2] + '"/></linearGradient></defs>' +
+    '<rect width="52" height="52" rx="14" fill="url(#' + id + ')"/>' +
+    '<g fill="' + c[3] + '"><path d="M26 11 L40 18.5 H12 Z"/><rect x="12" y="19.5" width="28" height="2.2" rx=".6"/>' +
+    '<rect x="14.2" y="23" width="3" height="13" rx=".8"/><rect x="20.4" y="23" width="3" height="13" rx=".8"/><rect x="28.6" y="23" width="3" height="13" rx=".8"/><rect x="34.8" y="23" width="3" height="13" rx=".8"/>' +
+    '<rect x="11" y="37" width="30" height="2.4" rx=".6"/><rect x="9" y="40.4" width="34" height="2.4" rx=".6"/></g>' +
+    '<circle cx="26" cy="15.6" r="1.4" fill="' + c[1] + '"/></svg>';
+}
+function monogramSvg(name, color) {
+  const hue = hashHue(name), ini = initialsOf(name);
+  const a = color && /^#[0-9a-f]{6}$/i.test(color) ? color : 'hsl(' + hue + ',62%,52%)';
+  const b = 'hsl(' + ((hue + 40) % 360) + ',58%,30%)', id = 'm' + hue + ini;
+  return '<svg viewBox="0 0 52 52" width="100%" height="100%" role="img" aria-label="' + esc(name) + '"><title>' + esc(name) + '</title>' +
+    '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="' + a + '"/><stop offset="1" stop-color="' + b + '"/></linearGradient></defs>' +
+    '<rect width="52" height="52" rx="14" fill="url(#' + id + ')"/>' +
+    '<circle cx="44" cy="8" r="16" fill="#fff" opacity=".10"/><circle cx="6" cy="48" r="12" fill="#000" opacity=".12"/>' +
+    '<path d="M8 40 Q26 30 44 40" stroke="#fff" stroke-opacity=".18" stroke-width="2" fill="none"/>' +
+    '<text x="26" y="' + (ini.length > 1 ? 31.5 : 33) + '" text-anchor="middle" font-family="Manrope,DM Sans,Segoe UI,Arial,sans-serif" font-weight="800" font-size="' + (ini.length > 1 ? 18 : 22) + '" fill="#fff" letter-spacing=".5">' + esc(ini) + '</text></svg>';
+}
+orgDot = function (org, j) {
+  org = org || {};
+  if (org.logoUrl) return '<div class="org-dot img"><img src="' + esc(org.logoUrl) + '" alt="' + esc(org.name) + '" loading="lazy"></div>';
+  const gov = j && (j.sector === 'gov' || j.agency);
+  return '<div class="org-dot svg">' + (gov ? govSvg(j.agency || org.name, org.name) : monogramSvg(org.name || '?', org.color)) + '</div>';
+};
+
+/* ---------------- posted date: real date + how long ago */
+postedLabel = function (iso) {
+  if (!iso) return '';
+  const d = new Date(iso); if (isNaN(d)) return '';
+  const days = Math.floor((Date.now() - d) / 86400000), now = new Date();
+  const date = d.toLocaleDateString('en-US', d.getFullYear() === now.getFullYear() ? { month: 'short', day: 'numeric' } : { month: 'short', day: 'numeric', year: 'numeric' });
+  const rel = days < 1 ? 'today' : days < 2 ? 'yesterday' : days < 31 ? days + ' days ago' : '';
+  return '<span class="posted" title="Posted ' + esc(fullDate(iso)) + '">' + ic('clock') + 'Posted ' + esc(date) + (rel ? ' <span class="dim">· ' + rel + '</span>' : '') + '</span>';
+};
+
+/* ---------------- check your fit: resume file / link / paste, or the signed-in candidate's profile */
+const basePaintJob112 = paintJob;
+paintJob = function () {
+  basePaintJob112();
+  const d = S.ui.job; if (!d || !d.job) return;
+  const card = [...document.querySelectorAll('.card')].find(c => /Check your fit/.test((c.querySelector('h3') || {}).textContent || ''));
+  if (card && !S.ui.applied) {
+    const p = S.ui.preview;
+    const found = p && p.found ? '<p class="tiny dim mt8">Read from your ' + (p.source === 'profile' ? 'profile resume' : 'resume') + ': ' + [p.found.years ? p.found.years + '+ years' : '', p.found.roles ? p.found.roles + ' roles' : '', (p.found.firms || []).slice(0, 3).join(', '), p.found.topSkills && p.found.topSkills.length ? 'top skills ' + p.found.topSkills.slice(0, 5).join(', ') : ''].filter(Boolean).map(esc).join(' · ') + '</p>' : '';
+    card.innerHTML = '<h3>Check your fit</h3><p class="small muted">See a transparent skills comparison before you apply. Nothing is saved.</p>' +
+      (S.seekerToken ? '<button class="btn small" data-action="fit-profile">' + ic('user') + ' Use my profile resume</button><div class="tiny dim mt8">…or check with a different resume:</div>' : '') +
+      '<form data-form="preview-fit" class="mt8">' + resumeSourceHtml('fit') + area('resumeText', S.ui.resumeDraft || '', 'rows="4" placeholder="…or paste resume text" id="fit-text" class="mt8"') +
+      '<button class="btn secondary small mt8" type="submit">Check my fit</button></form>' +
+      (p ? '<div class="mt16">' + (p.source === 'profile' ? chip('Using your profile resume', 'ok') : '') + found + fitView(p.fit, p.plan, true) + '</div>' : '');
+  }
+  // Signed-in candidates see their fit straight away.
+  const key = d.job.id;
+  if (S.seekerToken && !S.ui.applied && !S.ui.preview && (S.ui.fitAuto || {})[key] === undefined) {
+    S.ui.fitAuto = Object.assign({}, S.ui.fitAuto, { [key]: 1 });
+    call('previewFit', { slug: d.org.slug, jobId: d.job.id, useProfile: true, token: S.seekerToken }).then(r => { if (S.ui.job && S.ui.job.job.id === key) { S.ui.preview = r; paintJob(); } }, () => {});
+  }
+};
+FORMS['preview-fit'] = async (v, f, b) => {
+  const d = S.ui.job; S.ui.resumeDraft = v.resumeText;
+  try {
+    const src = await resumeSource('fit');
+    const input = Object.assign({ slug: d.org.slug, jobId: d.job.id }, src || { resumeText: v.resumeText });
+    if (!src && !String(v.resumeText || '').trim()) return toast('Upload or link your resume, or paste a few lines.', 'error');
+    S.ui.preview = await busy(b, call('previewFit', input)); if (S.ui.picked) delete S.ui.picked.fit; paintJob();
+  } catch (e) { fail(e); }
+};
+Object.assign(ACTIONS, {
+  'fit-profile': async (dd, el) => { const d = S.ui.job; try { S.ui.preview = await busy(el, call('previewFit', { slug: d.org.slug, jobId: d.job.id, useProfile: true, token: S.seekerToken })); paintJob(); } catch (e) { fail(e); } }
+});
+
+/* ---------------- candidate profile: experience, firms, top skills, links */
+function expHtml(list, removable) {
+  return (list || []).map((e, i) => '<div class="exp-item"><div class="row between wrap-row"><div><b>' + esc(e.title || 'Role') + '</b>' + (e.company ? ' <span class="muted">· ' + esc(e.company) + '</span>' : '') +
+    '<div class="tiny dim">' + [e.location, [e.start, e.end].filter(Boolean).join(' – ')].filter(Boolean).map(esc).join(' · ') + (e.current ? ' ' + chip('Current', 'ok') : '') + '</div></div>' +
+    (removable ? '<button class="btn small ghost" data-action="exp-del" data-i="' + i + '" title="Remove">✕</button>' : '') + '</div>' +
+    (e.highlights && e.highlights.length ? '<ul class="small">' + e.highlights.map(h => '<li>' + esc(h) + '</li>').join('') + '</ul>' : '') +
+    (e.skills && e.skills.length ? '<div>' + chips(e.skills.slice(0, 6)) + '</div>' : '') + '</div>').join('');
+}
+function linksHtml(L, linkedin) {
+  L = L || {};
+  const items = [[linkedin || L.linkedin, 'LinkedIn', 'link'], [L.github, 'GitHub', 'link']].concat((L.portfolio || []).map(u => [u, 'Portfolio', 'globe'])).concat((L.other || []).map(u => [u, u.replace(/^https?:\/\/(www\.)?/, '').slice(0, 40), 'globe'])).filter(x => x[0]);
+  return items.length ? '<div class="row wrap-row">' + items.map(x => '<a class="chip info" href="' + esc(x[0]) + '" target="_blank" rel="noopener">' + ic(x[2]) + ' ' + esc(x[1]) + '</a>').join('') + '</div>' : '';
+}
+const baseSeekerProfileForm112 = seekerProfileForm;
+seekerProfileForm = function (me) {
+  let html = baseSeekerProfileForm112(me);
+  const exp = me.experience || [], top = me.topSkills || [];
+  const card = '<div class="card mt16"><div class="row between wrap-row"><h3 class="mb0">From your resume</h3>' + (me.resumeChars ? '<span class="tiny dim">Upload a new resume to refresh</span>' : '') + '</div>' +
+    (!me.resumeChars ? '<p class="small muted">Upload your resume above — we fill in your experience, firms, top skills and links (LinkedIn, GitHub, portfolio).</p>' :
+      (top.length ? '<h4>Top skills</h4><div>' + chips(top, 'a') + '</div>' : '') +
+      ((me.firms || '').trim() ? '<h4 class="mt16">Firms</h4><p class="small">' + esc(me.firms) + '</p>' : '') +
+      '<h4 class="mt16">Links</h4>' + (linksHtml(me.links, me.linkedin) || '<p class="small muted">No profile links found — add your LinkedIn below.</p>') +
+      '<h4 class="mt16">Experience</h4>' + (exp.length ? expHtml(exp, true) : '<p class="small muted">We could not find dated roles in the resume. Make sure each role has dates like "Jan 2020 – Present".</p>') +
+      ((me.education || []).length ? '<h4 class="mt16">Education</h4><ul class="small">' + me.education.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '') +
+      ((me.certifications || []).length ? '<h4 class="mt16">Certifications</h4><div>' + chips(me.certifications) + '</div>' : '')) + '</div>';
+  html = html.replace('<form data-form="seeker-profile"', card + '<form data-form="seeker-profile"');
+  const L = me.links || {};
+  html = html.replace('<label>Work arrangements</label>', '<div class="form-row">' + field('GitHub', inp('github', L.github || '', 'type="url" placeholder="https://github.com/…"')) +
+    field('Other links (portfolio, website)', inp('otherLinks', (L.portfolio || []).concat(L.other || []).join(' '), 'placeholder="https://…  (space separated)"')) + '</div><label>Work arrangements</label>');
+  return html;
+};
+const baseSeekerProfileSave112 = FORMS['seeker-profile'];
+FORMS['seeker-profile'] = (v, f, b) => baseSeekerProfileSave112(Object.assign({}, v, { otherLinks: v.otherLinks || '', github: v.github || '' }), f, b);
+function seekerPatchBase() {
+  const p = S.seeker.me.profile;
+  return { name: p.name, phone: p.phone, location: p.location, headline: p.headline, skills: p.skills, linkedin: p.linkedin, yearsExp: p.yearsExp, workAuthorization: p.workAuthorization,
+    desiredTitles: p.desiredTitles, desiredWorkTypes: p.desiredWorkTypes, desiredLocations: p.desiredLocations, salaryMin: p.salaryMin, visible: p.visibility === 'Visible' };
+}
+Object.assign(ACTIONS, {
+  'exp-del': async (d, el) => {
+    const exp = (S.seeker.me.profile.experience || []).filter((x, i) => i !== Number(d.i));
+    try { S.seeker.me.profile = await busy(el, call('seekerUpdateProfile', Object.assign(seekerPatchBase(), { experience: exp }))); renderSeeker(); toast('Removed.', 'ok'); } catch (e) { fail(e); }
+  }
+});
+// Choosing a resume file uploads and extracts it right away.
+document.addEventListener('change', e => {
+  if (e.target && e.target.id === 'rs-file-sk' && e.target.files && e.target.files[0]) {
+    const btn = document.querySelector('[data-action="seeker-resume"]');
+    if (btn && ACTIONS['seeker-resume']) ACTIONS['seeker-resume'](btn.dataset, btn);
+  }
+});
+const baseSeekerResume112 = ACTIONS['seeker-resume'];
+ACTIONS['seeker-resume'] = async (d, el) => {
+  if (S.ui.resumeBusy) return;
+  const src = await resumeSource('sk').catch(err => { fail(err); return null; });
+  if (!src) { if (Date.now() - (S.ui.resumeAt || 0) < 15000) return; return toast('Choose a file, pick from Google Drive, or paste a link.', 'error'); }
+  S.ui.resumeBusy = true;
+  try {
+    const r = await busy(el, call('seekerUploadResume', src)).finally(() => { S.ui.resumeBusy = false; S.ui.resumeAt = Date.now(); });
+    S.ui.picked = {}; S.seeker = null; await renderSeeker();
+    const f = r.found || {};
+    toast('Resume read · ' + [f.experience ? f.experience + ' roles' : '', (f.skills || []).length + ' skills', (f.firms || []).length ? f.firms.length + ' firms' : '', f.linkedin ? 'LinkedIn found' : ''].filter(Boolean).join(' · '), 'ok');
+  } catch (e) { fail(e); }
+};
+
+/* ---------------- employer candidate page: experience, firms, links */
+const baseResumeTab112 = CAND_TABS.resume;
+CAND_TABS.resume = d => {
+  const c = d.candidate;
+  const exp = parse(c.experience, []) || [], L = parse(c.links, {}) || {}, edu = parse(c.education, []) || [], certs = parse(c.certifications, []) || [];
+  const card = '<div class="card mb16"><div class="row between wrap-row"><h3 class="mb0">Experience & links</h3>' + (can('RECRUITER') && c.resumeText ? '<button class="btn small ghost" data-action="cand-reparse" data-id="' + c.id + '">Re-read resume</button>' : '') + '</div>' +
+    (linksHtml(L, c.linkedin) ? '<div class="mt8">' + linksHtml(L, c.linkedin) + '</div>' : '') +
+    (c.firms ? '<p class="small mt8"><b>Firms:</b> ' + esc(c.firms) + '</p>' : '') +
+    (exp.length ? expHtml(exp, false) : '<p class="small muted mt8">No dated roles found in the resume yet.</p>') +
+    (edu.length ? '<h4 class="mt16">Education</h4><ul class="small">' + edu.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '') +
+    (certs.length ? '<h4 class="mt16">Certifications</h4><div>' + chips(certs) + '</div>' : '') + '</div>';
+  return card + baseResumeTab112(d);
+};
+Object.assign(ACTIONS, {
+  'cand-reparse': async (d, el) => { try { const r = await busy(el, call('reparseCandidateResume', d.id)); delete S.cand[d.id]; await refresh(true); toast('Read ' + r.experience.length + ' roles, ' + r.firms.length + ' firms.', 'ok'); } catch (e) { fail(e); } }
+});
+/* ------------------------------------------------------------------ v1.13: pages focus on who is signed in (candidate vs employer) */
+
+/** 'candidate' | 'employer' | 'visitor'. When both sessions exist, the last one signed in wins. */
+function audience() {
+  const c = !!S.seekerToken, e = !!S.token;
+  if (c && e) return store.get('ij-mode') === 'candidate' ? 'candidate' : 'employer';
+  return c ? 'candidate' : e ? 'employer' : 'visitor';
+}
+const baseSetSession113 = setSession;
+setSession = function (res) { store.set('ij-mode', 'employer'); return baseSetSession113(res); };
+const baseSetSeeker113 = setSeeker;
+setSeeker = function (res) { store.set('ij-mode', 'candidate'); return baseSetSeeker113(res); };
+const baseRenderApp113 = renderApp;
+renderApp = function () { if (S.db && S.db.org && S.db.org.slug) store.set('ij-org', S.db.org.slug); return baseRenderApp113(); };
+
+/* ---------------- header */
+const baseSiteHeader113 = siteHeader;
+siteHeader = function (active) {
+  const who = audience();
+  if (who === 'visitor') return baseSiteHeader113(active);
+  const link = (h, t, k) => '<a href="' + h + '" style="white-space:nowrap' + (active === k ? ';color:#fff;font-weight:700' : '') + '">' + t + '</a>';
+  const tab = S.route && S.route.name === 'me' ? (S.route.parts[0] || 'apps') : '';
+  if (who === 'candidate') {
+    const nm = (((S.seeker || {}).me || {}).profile || {}).name;
+    return '<header class="site-top aud-candidate"><div class="wrap row">' + logo() + '<span class="aud-pill">Candidate</span><nav class="site-links" style="margin-left:18px">' +
+      link('#jobs', 'Find jobs', 'jobs') + link('#me/jobs', 'Recommended', tab === 'jobs' ? 'me' : 'x') + link('#me', 'My applications', ['', 'apps'].indexOf(tab) >= 0 && active === 'me' ? 'me' : 'x') +
+      link('#me/profile', 'Profile & resume', tab === 'profile' ? 'me' : 'x') + link('#gov', 'Gov jobs', 'gov') + '</nav><div class="grow"></div>' +
+      (S.token ? '<button class="btn ghost small" data-action="aud-switch" data-v="employer" title="You are also signed in as an employer">Employer view</button>' : '') +
+      '<a class="btn ghost" href="#me/profile">' + ic('user') + ' ' + esc(nm ? nm.split(' ')[0] : 'My profile') + '</a><button class="btn ghost small" data-action="seeker-logout">Sign out</button></div></header>';
+  }
+  return '<header class="site-top aud-employer"><div class="wrap row">' + logo() + '<span class="aud-pill emp">Employer</span><nav class="site-links" style="margin-left:18px">' +
+    link('#app/dashboard', 'Workspace', 'x') + link('#app/jobs', 'My jobs', 'x') + link('#app/talent', 'Find talent', 'x') + link('#jobs', 'Job market', 'jobs') + link('#gov', 'Gov jobs', 'gov') +
+    link('#partners', 'Partners', 'partners') + link('#pricing', 'Plans', 'pricing') + '</nav><div class="grow"></div>' +
+    (S.seekerToken ? '<button class="btn ghost small" data-action="aud-switch" data-v="candidate" title="You are also signed in as a candidate">Candidate view</button>' : '') +
+    '<a class="btn" href="#app/dashboard">Employer workspace</a></div></header>';
+};
+Object.assign(ACTIONS, {
+  'aud-switch': d => { store.set('ij-mode', d.v); go(d.v === 'candidate' ? '#me' : '#app/dashboard'); }
+});
+
+/* ---------------- landing: send signed-in people to their own home */
+const baseRenderPublic113 = renderPublic;
+renderPublic = function () {
+  const who = audience(), n = S.route.name;
+  if (who === 'candidate' && (n === '' || n === 'home')) return go('#me');
+  if (who === 'employer' && n === 'home') return go('#app/dashboard');
+  if (who === 'candidate' && ['register', 'login'].indexOf(n) >= 0 && !S.route.params.employer) {
+    // Employer sign-up / sign-in pages stay reachable, but say who they are for.
+    baseRenderPublic113();
+    const card = document.querySelector('.auth .card');
+    if (card) card.insertAdjacentHTML('afterbegin', '<div class="notice small">You are signed in as a candidate. This page is for <b>employers</b> — <a href="#me">back to your candidate dashboard</a>.</div>');
+    return;
+  }
+  return baseRenderPublic113();
+};
+
+/* ---------------- job marketplace */
+const baseViewMarket113 = viewMarket;
+viewMarket = function (loading) {
+  let html = baseViewMarket113(loading);
+  const who = audience();
+  const hiring = html.indexOf('<div class="card"><h3>Hiring?</h3>');
+  if (who === 'candidate' && hiring > 0) {
+    html = html.slice(0, hiring) + html.slice(html.indexOf('</div>', html.indexOf('Start free trial</a>', hiring)) + 6);
+    const p = (((S.seeker || {}).me || {}).profile) || null;
+    html = html.replace('<aside class="stack">', '<aside class="stack">' + (p && !p.resumeChars ? '<div class="card"><h3>Add your resume</h3><p class="small muted">Upload it once to see your fit on every job and apply in one click.</p><a class="btn" href="#me/profile">Upload resume</a></div>' : ''));
+  }
+  if (who === 'employer') {
+    const a = html.indexOf('<aside class="stack">'), z = html.indexOf('</aside>', a);
+    if (a > 0 && z > a) html = html.slice(0, a) + '<aside class="stack"><div class="card"><h3>Your hiring</h3><p class="small muted">This is the public job market candidates see — compare your postings and pay with what others offer.</p>' +
+      '<div class="stack"><a class="btn" href="#app/jobs">Post or manage jobs</a><a class="btn secondary" href="#app/talent">Find talent</a><a class="btn ghost small" href="#app/distribution">Share jobs on LinkedIn, Facebook, X</a></div></div>' +
+      '<div class="card"><h3>Your careers page</h3><p class="small muted">Branded page with every open role.</p><a class="btn ghost small" href="#app/careers-site">Careers site settings</a></div></aside>' + html.slice(z + 8);
+    html = html.replace('<div class="eyebrow">IntelliHire marketplace</div><h1 style="font-size:clamp(30px,4vw,48px)">Find work that <span>fits you.</span></h1>',
+      '<div class="eyebrow">Job market · employer view</div><h1 style="font-size:clamp(30px,4vw,48px)">See who is <span>hiring.</span></h1>')
+      .replace('<p class="lead">Open roles from every employer on IntelliHire. Transparent fit, one-click apply with your profile, and every application tracked in one place.</p>',
+        '<p class="lead">Every open role on IntelliHire — benchmark titles, skills, pay and arrangements against your own postings.</p>')
+      .replace(/View &amp; apply|View & apply/g, 'View');
+  }
+  return html;
+};
+
+/* ---------------- job page */
+const basePaintJob113 = paintJob;
+paintJob = function () {
+  basePaintJob113();
+  const d = S.ui.job; if (!d || !d.job) return;
+  const who = audience();
+  if (who === 'employer') {
+    const mine = store.get('ij-org') === d.org.slug;
+    const cards = [...document.querySelectorAll('.card')];
+    const fitCard = cards.find(c => /Check your fit/.test((c.querySelector('h3') || {}).textContent || ''));
+    const col = fitCard ? fitCard.parentElement : null;
+    [fitCard, document.getElementById('guest-apply')].concat(cards.filter(c => /Apply with your IntelliHire profile/.test((c.querySelector('h3') || {}).textContent || ''))).forEach(c => { if (c) c.style.display = 'none'; });
+    if (col && !col.querySelector('.aud-emp-card')) col.insertAdjacentHTML('afterbegin', '<div class="card aud-emp-card"><h3>' + (mine ? 'This is your job' : 'Employer view') + '</h3>' +
+      (mine ? '<p class="small muted">This is what candidates see. Applications arrive in your pipeline.</p><div class="stack"><a class="btn" href="#app/job/' + esc(d.job.id) + '">Open in workspace</a><a class="btn ghost small" href="#careers/' + esc(d.org.slug) + '">All roles on your careers page</a></div>'
+        : '<p class="small muted">You are signed in as an employer, so applying is hidden. Candidates apply here with their profile or resume.</p><div class="stack"><a class="btn secondary" href="#app/talent">Find talent for a similar role</a>' +
+          (S.seekerToken ? '<button class="btn ghost small" data-action="aud-switch" data-v="candidate">Switch to candidate view to apply</button>' : '') + '</div>') + '</div>');
+  }
+};
+
+/* ---------------- careers page: employers viewing their own page */
+const basePaintCareers113 = paintCareers;
+paintCareers = function () {
+  basePaintCareers113();
+  const slug = S.ui.careers && S.ui.careers.org && S.ui.careers.org.slug;
+  if (audience() === 'employer' && slug && store.get('ij-org') === slug && !document.querySelector('.aud-bar')) {
+    const a = $('app'); if (a) a.insertAdjacentHTML('afterbegin', '<div class="aud-bar">' + ic('globe') + ' Your public careers page — this is what candidates see. <a href="#app/careers-site">Edit branding</a> · <a href="#app/jobs">Manage jobs</a> · <a href="#app/dashboard">Back to workspace</a></div>');
+  }
 };
 
 bind();
