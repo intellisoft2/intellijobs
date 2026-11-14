@@ -1,0 +1,30 @@
+name: Refresh job feeds
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  feeds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download feeds
+        env:
+          IH_API: ${{ secrets.IH_API }}
+        run: |
+          set -e
+          if [ -z "$IH_API" ]; then echo "IH_API secret not set — nothing to do."; exit 0; fi
+          mkdir -p feeds
+          curl -fsSL "$IH_API?feed=index" -o /tmp/index.json
+          for f in xml rss json; do curl -fsSL "$IH_API?feed=$f" -o "feeds/all.$f"; done
+          for s in $(python3 -c "import json,re;print(' '.join(x for x in json.load(open('/tmp/index.json'))['orgs'] if re.fullmatch(r'[a-z0-9-]{1,60}', x)))"); do
+            for f in xml rss json; do curl -fsSL "$IH_API?feed=$f&org=$s" -o "feeds/$s.$f"; done
+          done
+      - name: Publish
+        run: |
+          git config user.name "IntelliHire"
+          git config user.email "feeds@users.noreply.github.com"
+          git add feeds
+          git diff --cached --quiet || (git commit -qm "Refresh job feeds" && git push -q)
