@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.10.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.11.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -1024,7 +1024,9 @@ function candForm(c) {
     '<div class="form-row">' + field('Full name', inp('name', c.name, 'required')) + field('Email', inp('email', c.email, 'type="email" required')) + field('Phone', inp('phone', c.phone)) + field('Location', inp('location', c.location)) +
     field('Headline', inp('headline', c.headline)) + field('Years of experience', inp('yearsExp', c.yearsExp, 'type="number" min="0"')) + field('Skills', inp('skills', c.skills, 'list="skill-list"')) +
     field('Source', sel('source', S.db.lists.sources, c.source || 'Sourced')) + field('Tags', inp('tags', c.tags, 'placeholder="silver-medalist, referral"')) + field('LinkedIn', inp('linkedin', c.linkedin, 'type="url"')) +
+    field('Work status', sel('citizenship', [['', '— Not recorded —']].concat((S.db.lists.workStatuses || []).map(x => [x, x])), c.citizenship || '')) + field('Alternate phone', inp('altPhone', c.altPhone)) + field('Availability', inp('availability', c.availability, 'placeholder="Immediately, 2 weeks…"')) +
     (c.id ? field('Status', sel('status', ['Active', 'Archived', 'Do not contact'], c.status)) : field('Add to job (optional)', sel('jobId', [['', '— Talent pool only —']].concat(S.db.jobs.filter(j => j.status === 'Open').map(j => [j.id, j.title])), ''))) + '</div>' +
+    (!c.id && isStaffing() && canP('staffing.bench') ? '<label class="check"><input type="checkbox" name="bench"> Put on the consultant bench — screen now without a job, market later or keep for future roles</label>' : '') +
     '<datalist id="skill-list">' + S.db.lists.skills.map(s => '<option value="' + esc(s) + '">').join('') + '</datalist>' +
     field('Resume text', area('resumeText', c.resumeText, 'rows="7" id="cand-resume"')) + '<button class="btn mt16" type="submit">' + (c.id ? 'Save changes' : 'Add candidate') + '</button></form>';
 }
@@ -1035,8 +1037,9 @@ PAGES.candidate = () => {
   const c = d.candidate, tab = S.ui.tab[id] || 'apps';
   const acts = can('RECRUITER') ? ['<button class="btn" data-action="add-to-job" data-id="' + c.id + '">Add to job</button>', '<button class="btn secondary" data-action="schedule" data-cand="' + c.id + '">Schedule interview</button>',
     hasFeat('assessments') ? '<button class="btn secondary" data-action="send-test" data-cand="' + c.id + '">Send assessment</button>' : '', '<button class="btn secondary" data-action="message" data-id="' + c.id + '">Email</button>',
+    isStaffing() && canP('staffing.bench') ? '<button class="btn secondary" data-action="to-bench" data-id="' + c.id + '">' + (list(c.tags).indexOf('bench') >= 0 ? 'On bench ✓' : 'Add to bench') + '</button>' : '',
     '<button class="btn ghost" data-action="edit-cand" data-id="' + c.id + '">Edit</button>'].join('') : '';
-  const tabs = [['apps', 'Applications & fit'], ['interviews', 'Interviews (' + d.interviews.length + ')'], ['validate', 'Assessments & checks'], ['offers', 'Offers'], ['growth', 'Growth'], ['notes', 'Notes (' + d.notes.length + ')'], ['resume', 'Resume']];
+  const tabs = [['apps', 'Applications & fit'], ['matches', 'Best jobs'], ['docs', 'Work status & documents'], ['interviews', 'Interviews (' + d.interviews.length + ')'], ['validate', 'Assessments & checks'], ['offers', 'Offers'], ['growth', 'Growth'], ['notes', 'Notes (' + d.notes.length + ')'], ['resume', 'Resume']];
   return '<a href="#app/candidates" class="small">← Candidates</a>' + head(esc(c.name) + ' ' + idTag(c.code) + ' ' + (c.status !== 'Active' ? statusChip(c.status) : ''), [c.headline, c.location, c.yearsExp ? c.yearsExp + ' yrs' : '', c.email, c.phone].filter(Boolean).map(esc).join(' · ') +
     (c.linkedin ? ' · <a href="' + esc(c.linkedin) + '" target="_blank" rel="noopener">LinkedIn</a>' : ''), acts) +
     '<div>' + chips(list(c.skills)) + chips(d.verified.map(s => '✓ ' + s + ' verified'), 'ok') + (c.tags ? chips(list(c.tags), 'info') : '') + '</div>' +
@@ -1520,7 +1523,9 @@ const FORMS = {
   'candidate': async (v, f, b) => {
     try {
       if (v.id) { await busy(b, act(call('updateCandidate', v), 'Candidate saved.')); delete S.cand[v.id]; renderApp(); }
-      else { const fe = $('cand-file'); const file = fe && fe.files[0] ? await readFile(fe.files[0]) : null; if (file) v.file = file; const r = await busy(b, act(call('createCandidate', v), 'Candidate added' + (v.jobId ? ' and scored for the job.' : '.'))); go('#app/candidate/' + r.id); }
+      else { const fe = $('cand-file'); const file = fe && fe.files[0] ? await readFile(fe.files[0]) : null; if (file) v.file = file; const r = await busy(b, act(call('createCandidate', v), 'Candidate added' + (v.jobId ? ' and scored for the job.' : '.')));
+        if (v.bench) { try { await call('addToBench', { candidateId: r.id }); toast('Added and put on the bench for screening.', 'ok'); } catch (e) { fail(e); } }
+        go('#app/candidate/' + r.id); }
     } catch (e) { fail(e); }
   },
   'note': async (v, f, b) => { try { await busy(b, call('addNote', v)); delete S.cand[v.candidateId]; renderApp(); toast('Note added.', 'ok'); } catch (e) { fail(e); } },
@@ -2884,6 +2889,220 @@ PAGES.job = () => {
   const canPub = can('HIRING_MANAGER') && canP('jobs.publish') && j.reviewStatus === 'Pending';
   const box = '<div class="notice small' + (j.reviewStatus === 'Pending' ? ' warn' : '') + '">' + flagChips(j) + '<div class="mt8">' + (j.reviewStatus === 'Pending' ? '<b>Held for review</b> — not on the careers page yet. ' : '') + esc(j.flagNote || '') + '</div>' +
     (canPub ? '<div class="row mt8"><button class="btn small" data-action="src-review" data-id="' + j.id + '" data-v="approve">Approve & publish</button><button class="btn small ghost" data-action="src-review" data-id="' + j.id + '" data-v="reject">Reject</button></div>' : '') + '</div>';
+  const g = html.indexOf('<span class="grow"></span>'), i = g > 0 ? html.indexOf('</div>', g) : -1;
+  return i > 0 ? html.slice(0, i + 6) + box + html.slice(i + 6) : box + html;
+};
+/* ------------------------------------------------------------------ v1.11: documents, work status & clearance, bench without a job, best matches, job distribution */
+S.docs = {}; S.mjobs = {}; S.mcands = {}; S.dist = {}; S.distAdmin = null;
+
+function b64Blob(data, mime) { const bin = atob(data); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new Blob([u], { type: mime || 'application/octet-stream' }); }
+function readDoc(file) {
+  return new Promise((res, rej) => {
+    if (!file) return res(null);
+    if (file.size > 10 * 1024 * 1024) return rej(new Error('Documents must be under 10 MB.'));
+    const r = new FileReader();
+    r.onload = () => res({ name: file.name, mime: file.type, data: String(r.result).replace(/^data:[^,]*,/, '') });
+    r.onerror = () => rej(new Error('Could not read the file.'));
+    r.readAsDataURL(file);
+  });
+}
+const scoreBadge = (m) => '<span class="fit ' + fitCls(m.score) + '" title="Resume fit ' + m.fitScore + '%">' + m.score + '%</span>' + (m.eligible ? '' : ' <span class="chip bad">Not eligible</span>');
+const whyGaps = m => '<div class="flagrow">' + m.why.map(w => '<span class="chip ok">' + esc(w) + '</span>').join('') + m.gaps.map(g => '<span class="chip warn">' + esc(g) + '</span>').join('') + '</div>';
+
+/* ---------------- candidate: best jobs */
+CAND_TABS.matches = d => {
+  const id = d.candidate.id, r = S.mjobs[id];
+  if (!r) { call('bestJobsForCandidate', { candidateId: id, limit: 20 }).then(x => { S.mjobs[id] = x; renderApp(); }, e => { S.mjobs[id] = { error: e.message }; renderApp(); }); return '<div class="loading">Matching against open jobs<span class="pulse"></span></div>'; }
+  if (r.error) return '<div class="empty">' + esc(r.error) + '</div>';
+  if (!r.matches.length) return '<div class="empty">No open jobs to match yet.</div>';
+  return '<p class="small muted">Ranked from the resume, verified assessments, work status' + (r.candidate.workStatus ? ' (' + esc(r.candidate.workStatus) + ')' : '') + ', clearance, location rules and bench availability. ' + r.total + ' open jobs checked.</p>' +
+    '<div class="table-wrap"><table><tr><th>Job</th><th>Match</th><th>Why / gaps</th><th></th></tr>' + r.matches.map(m =>
+      '<tr><td><a href="#app/job/' + m.jobId + '"><b>' + esc(m.title) + '</b></a> ' + idTag(m.code) + '<div class="small muted">' + [m.location, m.workType, m.status !== 'Open' ? m.status : ''].filter(Boolean).map(esc).join(' · ') + '</div></td>' +
+      '<td class="nowrap">' + scoreBadge(m) + '</td><td>' + whyGaps(m) + '</td><td class="right nowrap">' + (m.stage ? stageChip(m.stage) : can('RECRUITER') ? '<button class="btn small secondary" data-action="match-add" data-cand="' + id + '" data-job="' + m.jobId + '">Add to job</button>' : '') + '</td></tr>').join('') + '</table></div>';
+};
+
+/* ---------------- candidate: work status, clearance, contact & documents */
+function wsFields(c) {
+  const st = (S.ui.ws || {})[c.id] !== undefined ? S.ui.ws[c.id] : (c.citizenship || '');
+  const usc = st === 'U.S. Citizen';
+  return '<div class="form-row">' + field('Work status', sel('citizenship', [['', '— Not recorded —']].concat((S.db.lists.workStatuses || []).map(x => [x, x])), st, 'data-change="ws-status" data-id="' + c.id + '"')) +
+    (usc || !st ? '' : field('Visa / status details', inp('visaType', c.visaType, 'placeholder="e.g. H-1B with Intellisoft, transfer pending"')) + field('Visa / I-797 valid until', inp('visaExpiry', c.visaExpiry, 'type="date"')) +
+      field('I-94 valid until', inp('i94Expiry', c.i94Expiry, 'type="date"')) + (/EAD|OPT/.test(st) ? field('EAD valid until', inp('eadExpiry', c.eadExpiry, 'type="date"')) : '')) + '</div>' +
+    (usc ? '<h4 class="mt16">' + ic('shield') + ' Security clearance <span class="tiny dim">(U.S. citizens only)</span></h4><div class="form-row">' +
+      field('Clearance', sel('clearance', [['', '— None / unknown —']].concat((S.db.lists.clearanceLevels || []).map(x => [x, x])), c.clearance || '')) +
+      field('Status', sel('clearanceStatus', [['', '—'], ['Active', 'Active'], ['Current', 'Current (inactive < 2 yrs)'], ['Expired', 'Expired'], ['In process', 'In process']], c.clearanceStatus || '')) +
+      field('Granting agency', inp('clearanceAgency', c.clearanceAgency, 'placeholder="DoD, DHS, DOE…"')) + field('Investigation date', inp('clearanceDate', c.clearanceDate, 'type="date"')) +
+      field('Polygraph', sel('polygraph', [['', '—'], ['None', 'None'], ['CI', 'Counterintelligence (CI)'], ['Full scope', 'Full scope']], c.polygraph || '')) + '</div>' : '');
+}
+CAND_TABS.docs = d => {
+  const c = d.candidate, id = c.id;
+  const canDocs = canP('candidates.documents') && can('RECRUITER');
+  if (canDocs && !S.docs[id]) call('listCandidateDocs', id).then(r => { S.docs[id] = r; renderApp(); }, e => { S.docs[id] = { error: e.message, docs: [] }; renderApp(); });
+  const r = S.docs[id];
+  const statusForm = can('RECRUITER') ? '<form data-form="workstatus" class="card mt16"><input type="hidden" name="id" value="' + id + '"><h3>Work status & clearance</h3>' + wsFields(c) +
+    '<h4 class="mt16">' + ic('user') + ' Contact & availability</h4><div class="form-row">' + field('Phone', inp('phone', c.phone)) + field('Alternate phone', inp('altPhone', c.altPhone)) +
+    field('Preferred contact', sel('preferredContact', [['', '—'], 'Email', 'Phone', 'Text', 'WhatsApp'], c.preferredContact || '')) + field('Address', inp('address', c.address, 'placeholder="Street, city, state ZIP"')) +
+    field('Availability', inp('availability', c.availability, 'placeholder="Immediately, 2 weeks…"')) + field('Expected rate / salary', inp('expectedRate', c.expectedRate, 'placeholder="$70/hr C2C, $140k…"')) + '</div>' +
+    '<button class="btn mt8">Save</button></form>' : '';
+  let docs = '';
+  if (!canDocs) docs = '<div class="notice small mt16">' + ic('lock') + ' Candidate documents need the "Candidate documents" permission.</div>';
+  else if (!r) docs = '<div class="loading mt16">Loading documents<span class="pulse"></span></div>';
+  else {
+    const types = r.types || S.db.lists.docTypes || [];
+    docs = '<div class="card mt16"><h3>' + ic('passport') + ' Documents <span class="tiny dim">private — never shown to employers, the marketplace or the candidate\'s public profile</span></h3>' +
+      (r.error ? '<div class="empty">' + esc(r.error) + '</div>' : r.docs.length ? '<div class="table-wrap"><table><tr><th>Document</th><th>Number</th><th>Valid until</th><th>Status</th><th>Uploaded</th><th></th></tr>' + r.docs.map(x =>
+        '<tr><td><b>' + esc(x.type) + '</b><div class="tiny dim">' + esc(x.fileName) + (x.country ? ' · ' + esc(x.country) : '') + (x.notes ? ' · ' + esc(x.notes) : '') + '</div></td><td class="small mono">' + esc(x.numberLast4 || '—') + '</td>' +
+        '<td class="small nowrap">' + (x.expiresOn ? esc(x.expiresOn) + ' ' + (x.expiry === 'expired' ? chip('Expired', 'bad') : x.expiry === 'soon' ? chip(x.daysLeft + ' days left', 'warn') : x.expiry === 'watch' ? chip(x.daysLeft + ' days', 'info') : '') : '<span class="dim">—</span>') + '</td>' +
+        '<td><select data-change="doc-status" data-id="' + x.id + '" data-cand="' + id + '">' + opts(r.statuses || ['Received', 'Verified', 'Rejected', 'Expired'], x.status) + '</select>' + (x.verifiedBy ? '<div class="tiny dim">✓ ' + esc(x.verifiedBy) + '</div>' : '') + '</td>' +
+        '<td class="small">' + esc(day(x.uploadedAt)) + '<div class="tiny dim">' + esc(x.uploadedBy) + '</div></td>' +
+        '<td class="right nowrap"><button class="btn small secondary" data-action="doc-open" data-id="' + x.id + '">Download</button> <button class="btn small ghost" data-action="doc-del" data-id="' + x.id + '" data-cand="' + id + '">Delete</button></td></tr>').join('') + '</table></div>' :
+        '<p class="small muted">No documents yet.</p>') +
+      '<form data-form="doc-upload" class="mt16"><input type="hidden" name="candidateId" value="' + id + '"><div class="form-row">' + field('Type', sel('type', types, types[0])) +
+      field('File (PDF, image or Word, max 10 MB)', '<input type="file" id="doc-file" accept=".pdf,.png,.jpg,.jpeg,.heic,.webp,.tif,.tiff,.doc,.docx" required>') +
+      field('Document number', inp('number', '', 'placeholder="only the last 4 are kept" autocomplete="off"')) + field('Issuing country', inp('country', '')) +
+      field('Issued on', inp('issuedOn', '', 'type="date"')) + field('Valid until', inp('expiresOn', '', 'type="date"')) + field('Notes', inp('notes', '', 'placeholder="optional"')) + '</div>' +
+      '<label class="check small"><input type="checkbox" name="noExpiry"> No expiry (e.g. I-94 "D/S")</label><button class="btn mt8">' + ic('doc') + ' Upload document</button></form></div>';
+  }
+  return statusForm + docs;
+};
+Object.assign(CHANGES, {
+  'ws-status': (v, el) => { S.ui.ws = S.ui.ws || {}; S.ui.ws[el.dataset.id] = el.value; const f = el.closest('form'); const keep = formValues(f); renderApp(); const nf = document.querySelector('form[data-form=workstatus]'); if (nf) Object.keys(keep).forEach(k => { const i = nf.elements[k]; if (i && i.type !== 'checkbox' && k !== 'citizenship' && keep[k]) i.value = keep[k]; }); },
+  'doc-status': async (v, el) => { try { S.docs[el.dataset.cand] = await call('updateCandidateDoc', { id: el.dataset.id, status: el.value }); toast('Document ' + el.value.toLowerCase() + '.', 'ok'); await refresh(true); } catch (e) { fail(e); } }
+});
+Object.assign(FORMS, {
+  workstatus: async (v, f, b) => {
+    try { await busy(b, call('updateCandidate', v)); toast('Saved.', 'ok'); delete S.cand[v.id]; delete S.mjobs[v.id]; if (S.ui.ws) delete S.ui.ws[v.id]; await refresh(true); } catch (e) { fail(e); }
+  },
+  'doc-upload': async (v, f, b) => {
+    try {
+      const fe = $('doc-file'); const file = await readDoc(fe && fe.files[0]);
+      if (!file) return toast('Choose the file to upload.', 'error');
+      S.docs[v.candidateId] = await busy(b, call('uploadCandidateDoc', Object.assign({}, v, { file: file })));
+      delete S.cand[v.candidateId]; toast(v.type + ' uploaded.', 'ok'); await refresh(true);
+    } catch (e) { fail(e); }
+  }
+});
+Object.assign(ACTIONS, {
+  'doc-open': async (d, el) => { try { const r = await busy(el, call('getCandidateDoc', d.id)); download(r.name, b64Blob(r.data, r.mime)); } catch (e) { fail(e); } },
+  'doc-del': async (d, el) => { if (!confirmBox('Delete this document? The file is moved to the trash.')) return; try { S.docs[d.cand] = await busy(el, call('deleteCandidateDoc', d.id)); toast('Deleted.', 'ok'); renderApp(); } catch (e) { fail(e); } },
+  'to-bench': async (d, el) => { try { const r = await busy(el, call('addToBench', { candidateId: d.id })); toast('On the bench as ' + r.alias + ' — screening without a job' + (r.needsResume ? '. Add resume text so the redacted profile can be marketed.' : '.'), 'ok'); delete S.cand[d.id]; S.bench = null; await refresh(true); } catch (e) { fail(e); } },
+  'match-add': async (d, el) => { try { const r = await busy(el, call('addToJob', { candidateId: d.cand, jobId: d.job })); toast('Added · fit ' + r.fit + '%.', 'ok'); delete S.mjobs[d.cand]; delete S.mcands[d.job]; delete S.cand[d.cand]; await refresh(true); } catch (e) { fail(e); } }
+});
+
+/* ---------------- job page: best matches + share & post */
+const baseJobPage111 = PAGES.job;
+PAGES.job = () => {
+  const html = baseJobPage111(), j = jobById(S.route.parts[1]);
+  if (!j || !j.id || !can('RECRUITER') || j.externalRef === 'bench:screening') return html;
+  return html + bestCandsCard(j) + shareCard(j);
+};
+function bestCandsCard(j) {
+  const pool = (S.ui.mpool || {})[j.id] || 'all', key = j.id + '|' + pool, r = S.mcands[key];
+  if (!r) call('bestCandidatesForJob', { jobId: j.id, pool: pool, limit: 12 }).then(x => { S.mcands[key] = x; renderApp(); }, e => { S.mcands[key] = { error: e.message }; renderApp(); });
+  return '<div class="card mt16"><div class="row between wrap-row"><h3 class="mb0">' + ic('spark') + ' Best matches</h3><div class="tabs mb0">' + [['all', 'Talent pool + bench'], ['bench', 'Bench only']].map(x =>
+      '<button class="' + (pool === x[0] ? 'on' : '') + '" data-action="mpool" data-id="' + j.id + '" data-v="' + x[0] + '">' + x[1] + '</button>').join('') + '</div></div>' +
+    '<p class="small muted">Ranked from resumes, verified assessments, work status vs this job' + (j.visaRequirement ? ' (' + esc(j.visaRequirement) + ')' : '') + (j.clearance && j.clearance !== 'None' ? ', ' + esc(j.clearance) + ' clearance' : '') + ', location rules and bench availability.</p>' +
+    (!r ? '<div class="loading">Matching<span class="pulse"></span></div>' : r.error ? '<div class="empty">' + esc(r.error) + '</div>' : !r.matches.length ? '<div class="empty">No matching people yet.</div>' :
+      '<div class="table-wrap"><table><tr><th>Person</th><th>Match</th><th>Why / gaps</th><th></th></tr>' + r.matches.map(m =>
+        '<tr><td><a href="#app/candidate/' + m.candidateId + '"><b>' + esc(m.name) + '</b></a> ' + idTag(m.code) + (m.bench ? ' <span class="chip info" title="' + esc(m.bench.status) + '">Bench · ' + esc(m.bench.alias) + (m.bench.rate ? ' · ' + esc(m.bench.rate) : '') + '</span>' : '') +
+        '<div class="small muted">' + [m.headline, m.location, m.workStatus, m.clearance && m.clearance !== 'None' ? m.clearance : ''].filter(Boolean).map(esc).join(' · ') + '</div></td><td class="nowrap">' + scoreBadge(m) + '</td><td>' + whyGaps(m) + '</td>' +
+        '<td class="right nowrap">' + (m.stage ? stageChip(m.stage) : '<button class="btn small secondary" data-action="match-add" data-cand="' + m.candidateId + '" data-job="' + j.id + '">Add to pipeline</button>') + '</td></tr>').join('') + '</table></div>' +
+      '<p class="tiny dim">' + r.total + ' people checked.</p>') + '</div>';
+}
+function shareCard(j) {
+  if (!canP('jobs.share')) return '';
+  if (j.status !== 'Open') return '<div class="card mt16"><h3>' + ic('globe') + ' Share & post</h3><p class="small muted">Publish the job to share it on LinkedIn, Facebook, X and job portals.</p></div>';
+  const r = S.dist[j.id];
+  if (!r) { call('getDistribution', j.id).then(x => { S.dist[j.id] = x; renderApp(); }, e => { S.dist[j.id] = { error: e.message }; renderApp(); }); return '<div class="card mt16"><h3>' + ic('globe') + ' Share & post</h3><div class="loading">Loading<span class="pulse"></span></div></div>'; }
+  if (r.error) return '<div class="card mt16"><h3>Share & post</h3><div class="empty">' + esc(r.error) + '</div></div>';
+  const btn = (ch, label) => '<button class="btn small secondary" data-action="share-open" data-ch="' + ch + '" data-job="' + j.id + '">' + label + '</button>';
+  return '<div class="card mt16"><div class="row between wrap-row"><h3 class="mb0">' + ic('globe') + ' Share & post</h3>' + (r.canManage ? '<a class="small" href="#app/distribution">Distribution settings →</a>' : '') + '</div>' +
+    '<p class="small muted">Share opens the network\'s own dialog — post from your profile or company page.' + (r.connected.length ? ' Connected channels post directly from IntelliHire.' : '') + '</p>' +
+    '<div class="row wrap-row">' + btn('linkedin', 'LinkedIn') + btn('facebook', 'Facebook') + btn('x', 'X') + btn('whatsapp', 'WhatsApp') + btn('email', 'Email') +
+    '<button class="btn small ghost" data-action="copy" data-text="' + esc(r.share.url) + '">' + ic('link') + ' Copy link</button></div>' +
+    (r.connected.length ? '<div class="row wrap-row mt8"><button class="btn small" data-action="post-now" data-job="' + j.id + '">Post now to ' + esc(r.connected.map(c => c.replace(/^webhook:/, '')).join(', ')) + '</button></div>' : '') +
+    '<details class="mt8"><summary class="small">Post text (copy for Instagram, Telegram, Dice, etc.)</summary><textarea rows="5" readonly style="width:100%">' + esc(r.preview.linkedin) + '</textarea></details>' +
+    (r.posts && r.posts.length ? '<h4 class="mt16">History</h4><div class="table-wrap"><table>' + r.posts.map(p => '<tr><td class="small nowrap">' + ago(p.createdAt) + '</td><td>' + chip(p.channel.replace(/^webhook:/, '↗ ')) + '</td><td>' + statusChip(p.status) + (p.mode === 'auto' ? ' <span class="tiny dim">auto</span>' : '') + '</td><td class="small">' +
+      (p.url ? '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">View post</a>' : '') + (p.error ? '<span class="tiny bad">' + esc(p.error) + '</span>' : '') + '</td><td class="tiny dim">' + esc(p.by) + '</td></tr>').join('') + '</table></div>' : '') + '</div>';
+}
+Object.assign(ACTIONS, {
+  'mpool': d => { S.ui.mpool = Object.assign({}, S.ui.mpool, { [d.id]: d.v }); renderApp(); },
+  'share-open': (d) => {
+    const r = S.dist[d.job]; if (!r) return;
+    const url = r.share[d.ch]; if (!url) return;
+    try { window.open(url, '_blank', 'noopener,width=720,height=640'); } catch (e) { location.href = url; }
+    call('logShare', { jobId: d.job, channel: d.ch }).then(() => { delete S.dist[d.job]; renderApp(); }, () => {});
+  },
+  'post-now': async (d, el) => {
+    try { const r = await busy(el, call('postJob', { jobId: d.job })); S.dist[d.job] = r; const bad = r.results.filter(x => x.status !== 'Posted');
+      toast(bad.length ? 'Posted to ' + (r.results.length - bad.length) + ' of ' + r.results.length + ' — ' + bad.map(x => x.channel + ': ' + x.error).join('; ') : 'Posted to ' + r.results.map(x => x.channel.replace(/^webhook:/, '')).join(', ') + '.', bad.length ? 'error' : 'ok'); renderApp(); } catch (e) { fail(e); }
+  }
+});
+
+/* ---------------- admin: job distribution settings */
+const baseRenderApp111 = renderApp;
+renderApp = function () {
+  const g = NAV.find(x => x[0] === 'Admin');
+  if (g && !g[1].some(n => n[0] === 'distribution')) g[1].splice(1, 0, ['distribution', ic('globe'), 'Job distribution']);
+  return baseRenderApp111();
+};
+PAGES.distribution = () => {
+  if (!can('ADMIN')) return head('Job distribution') + '<div class="empty">Admins set up job distribution. Recruiters can share any open job from its page.</div>';
+  const r = S.distAdmin;
+  if (!r) { call('getDistribution').then(x => { S.distAdmin = x; renderApp(); }, e => { S.distAdmin = { error: e.message }; renderApp(); }); return head('Job distribution') + '<div class="loading">Loading<span class="pulse"></span></div>'; }
+  if (r.error) return head('Job distribution') + '<div class="empty">' + esc(r.error) + '</div>';
+  const s = r.settings, hooks = (s.webhooks || []).concat([{ name: '', url: '', enabled: true }]).slice(0, 10);
+  const conn = on => on ? chip('Connected', 'ok') : chip('Not connected');
+  return head('Job distribution', 'Post jobs to LinkedIn, Facebook, X, your other portals and job boards') +
+    '<form data-form="dist-save">' +
+    '<div class="card"><label class="check"><input type="checkbox" name="autoPost"' + (s.autoPost ? ' checked' : '') + '> <b>Post every newly published job automatically</b> to the connected channels below (checked every 15 minutes; each job once per channel)</label>' +
+    '<div class="form-row mt8">' + field('Hashtags', inp('hashtags', s.hashtags, 'placeholder="#hiring #jobs #c2c"')) + field('Post template (optional)', area('template', s.template, 'rows="3" placeholder="We\'re hiring: {title}{where}&#10;{type}{skills}&#10;Apply: {url}&#10;{tags}"')) + '</div>' +
+    '<p class="tiny dim">Placeholders: {title} {where} {type} {skills} {company} {code} {url} {tags}. Recruiters can always use the Share buttons on a job without any setup.</p></div>' +
+    '<div class="grid g3 mt16">' +
+    '<div class="card"><div class="row between"><h3 class="mb0">LinkedIn</h3>' + conn(s.linkedin.token && s.linkedin.orgUrn) + '</div><label class="check small mt8"><input type="checkbox" name="li_enabled"' + (s.linkedin.enabled ? ' checked' : '') + '> Post to the company page</label>' +
+      field('Organization URN', inp('li_orgUrn', s.linkedin.orgUrn, 'placeholder="urn:li:organization:12345678"')) + field('Access token' + (s.linkedin.token ? ' (saved ' + esc(s.linkedin.token) + (s.linkedin.tokenExpires ? ', expires ' + esc(s.linkedin.tokenExpires) : '') + ')' : ''), inp('li_token', '', 'type="password" autocomplete="off" placeholder="paste to replace"')) +
+      field('API version (optional)', inp('li_version', s.linkedin.version, 'placeholder="YYYYMM — leave blank for automatic"')) +
+      '<details class="small"><summary>How to connect</summary><ol><li>Create an app at developer.linkedin.com linked to your company page and request the <b>Community Management API</b> (scope <code>w_organization_social</code>).</li><li>Generate an access token for a page admin (valid 60 days — paste a new one before it expires).</li><li>The organization number is in your company page admin URL.</li></ol></details>' +
+      '<div class="row mt8"><button type="button" class="btn small ghost" data-action="dist-test" data-ch="linkedin">Test</button><button type="button" class="btn small ghost" data-action="dist-disconnect" data-ch="linkedin">Disconnect</button></div></div>' +
+    '<div class="card"><div class="row between"><h3 class="mb0">Facebook</h3>' + conn(s.facebook.token && s.facebook.pageId) + '</div><label class="check small mt8"><input type="checkbox" name="fb_enabled"' + (s.facebook.enabled ? ' checked' : '') + '> Post to the Facebook page</label>' +
+      field('Page ID', inp('fb_pageId', s.facebook.pageId, 'placeholder="1002003004"')) + field('Page access token' + (s.facebook.token ? ' (saved ' + esc(s.facebook.token) + ')' : ''), inp('fb_token', '', 'type="password" autocomplete="off" placeholder="paste to replace"')) +
+      '<details class="small"><summary>How to connect</summary><ol><li>In Meta for Developers create a Business app and add the page.</li><li>Get a long-lived <b>Page access token</b> with <code>pages_manage_posts</code> and <code>pages_read_engagement</code>.</li><li>Page ID: Page → About → Page transparency.</li></ol></details>' +
+      '<div class="row mt8"><button type="button" class="btn small ghost" data-action="dist-test" data-ch="facebook">Test</button><button type="button" class="btn small ghost" data-action="dist-disconnect" data-ch="facebook">Disconnect</button></div></div>' +
+    '<div class="card"><div class="row between"><h3 class="mb0">X</h3>' + conn(s.x.connected) + '</div><label class="check small mt8"><input type="checkbox" name="x_enabled"' + (s.x.enabled ? ' checked' : '') + '> Post to the company X account</label>' +
+      '<div class="form-row">' + field('API key' + (s.x.apiKey ? ' (' + esc(s.x.apiKey) + ')' : ''), inp('x_apiKey', '', 'type="password" autocomplete="off"')) + field('API key secret', inp('x_apiSecret', '', 'type="password" autocomplete="off"')) +
+      field('Access token' + (s.x.accessToken ? ' (' + esc(s.x.accessToken) + ')' : ''), inp('x_accessToken', '', 'type="password" autocomplete="off"')) + field('Access token secret', inp('x_accessSecret', '', 'type="password" autocomplete="off"')) + '</div>' +
+      '<details class="small"><summary>How to connect</summary><ol><li>At developer.x.com create a project + app with <b>Read and write</b> permission.</li><li>Copy the API key & secret and generate the access token & secret for the company account.</li><li>Posting needs an X API plan that allows writes.</li></ol></details>' +
+      '<div class="row mt8"><button type="button" class="btn small ghost" data-action="dist-test" data-ch="x">Test</button><button type="button" class="btn small ghost" data-action="dist-disconnect" data-ch="x">Disconnect</button></div></div></div>' +
+    '<div class="card mt16"><h3>Your other portals (webhooks)</h3><p class="small muted">Each published job is sent as signed JSON to these URLs — your other career sites, Zapier / Make (to reach Dice, Monster, Slack, Teams…). Header <code>X-IntelliHire-Signature: sha256=HMAC(body, secret)</code>.' + (s.webhookSecret ? ' Secret: ' + esc(s.webhookSecret) + '.' : '') + '</p>' +
+      hooks.map((h, i) => '<div class="form-row">' + field('Name', inp('wh_name' + i, h.name, 'placeholder="CloudFeds careers"')) + field('URL (https)', inp('wh_url' + i, h.url, 'type="url" placeholder="https://…"')) + '<label class="check small"><input type="checkbox" name="wh_on' + i + '"' + (h.enabled !== false ? ' checked' : '') + '> On</label></div>').join('') +
+      '<label class="check small"><input type="checkbox" name="newWebhookSecret"> Generate a new signing secret (shown once)</label></div>' +
+    '<button class="btn mt16">Save distribution settings</button></form>' +
+    '<div class="card mt16"><h3>Job boards (feeds)</h3><p class="small muted">Job boards that accept an XML feed (Indeed, ZipRecruiter, Talent.com, Jooble, Adzuna, Careerjet…) and LinkedIn Jobs (once LinkedIn approves your feed) can read your open jobs from these URLs. Send the XML link to the board\'s partner / feed team.</p>' +
+      (r.feeds && r.feeds.xml ? ['xml', 'rss', 'json'].map(k => '<div class="row wrap-row mt8"><b class="small" style="min-width:48px">' + k.toUpperCase() + '</b><code class="small" style="word-break:break-all">' + esc(r.feeds[k]) + '</code><button class="btn small ghost" data-action="copy" data-text="' + esc(r.feeds[k]) + '">Copy</button></div>').join('') : '<p class="small">Feed URLs appear once the web app is deployed.</p>') + '</div>' +
+    (r.recent && r.recent.length ? '<div class="card mt16"><h3>Recent posts</h3><div class="table-wrap"><table>' + r.recent.map(p => { const j = jobById(p.jobId) || {}; return '<tr><td class="small nowrap">' + ago(p.createdAt) + '</td><td><a href="#app/job/' + p.jobId + '">' + esc(j.title || 'Job') + '</a></td><td>' + chip(p.channel) + '</td><td>' + statusChip(p.status) + (p.mode === 'auto' ? ' <span class="tiny dim">auto</span>' : '') + '</td><td class="small">' + (p.url ? '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">View</a>' : '') + (p.error ? '<span class="tiny">' + esc(p.error) + '</span>' : '') + '</td></tr>'; }).join('') + '</table></div></div>' : '');
+};
+Object.assign(FORMS, {
+  'dist-save': async (v, f, b) => {
+    const hooks = []; for (let i = 0; i < 10; i++) if (v['wh_url' + i]) hooks.push({ name: v['wh_name' + i], url: v['wh_url' + i], enabled: !!v['wh_on' + i] });
+    const input = { autoPost: !!v.autoPost, hashtags: v.hashtags, template: v.template, webhooks: hooks, newWebhookSecret: !!v.newWebhookSecret,
+      linkedin: { enabled: !!v.li_enabled, orgUrn: v.li_orgUrn, version: v.li_version, token: v.li_token }, facebook: { enabled: !!v.fb_enabled, pageId: v.fb_pageId, token: v.fb_token },
+      x: { enabled: !!v.x_enabled, apiKey: v.x_apiKey, apiSecret: v.x_apiSecret, accessToken: v.x_accessToken, accessSecret: v.x_accessSecret } };
+    try { const r = await busy(b, call('saveDistribution', input)); S.distAdmin = r; S.dist = {}; renderApp(); toast('Saved.', 'ok');
+      if (r.webhookSecretOnce) openModal('Webhook signing secret', '<p class="small">Copy it now — it is shown only once.</p><input readonly value="' + esc(r.webhookSecretOnce) + '" style="width:100%">'); } catch (e) { fail(e); }
+  }
+});
+Object.assign(ACTIONS, {
+  'dist-test': async (d, el) => { try { const r = await busy(el, call('testDistribution', { channel: d.ch })); toast(r.message, r.ok ? 'ok' : 'error'); } catch (e) { fail(e); } },
+  'dist-disconnect': async (d, el) => { if (!confirmBox('Disconnect ' + d.ch + '? Saved credentials are deleted.')) return; try { S.distAdmin = await busy(el, call('saveDistribution', { disconnect: d.ch })); renderApp(); toast('Disconnected.', 'ok'); } catch (e) { fail(e); } }
+});
+
+/* ---------------- dashboard: expiring documents */
+const baseDash111 = PAGES.dashboard;
+PAGES.dashboard = () => {
+  const html = baseDash111(), al = S.db.docAlerts || [];
+  if (!al.length) return html;
+  const box = '<div class="notice warn small mt8">' + ic('passport') + ' <b>' + al.length + ' candidate document' + (al.length > 1 ? 's' : '') + ' expiring within 30 days or expired:</b> ' +
+    al.slice(0, 6).map(a => '<a href="#app/candidate/' + a.candidateId + '">' + esc(a.name) + '</a> — ' + esc(a.type) + ' ' + (a.daysLeft < 0 ? 'expired ' + esc(a.expiresOn) : 'in ' + a.daysLeft + ' days')).join(' · ') + (al.length > 6 ? ' …' : '') + '</div>';
   const g = html.indexOf('<span class="grow"></span>'), i = g > 0 ? html.indexOf('</div>', g) : -1;
   return i > 0 ? html.slice(0, i + 6) + box + html.slice(i + 6) : box + html;
 };
