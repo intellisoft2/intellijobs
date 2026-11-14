@@ -263,6 +263,20 @@ input[type=file]{max-width:100%}input,select,textarea{max-width:100%;box-sizing:
 .fix-list{list-style:none;padding:0}.fix-list li{margin:7px 0}.rewrite{border-left:2px solid rgba(77,224,195,.5);padding:6px 10px;margin:10px 0}.strike{text-decoration:line-through;opacity:.7}.quiz-q{padding:10px 0;border-bottom:1px solid var(--line)}.quiz-q label{display:block;margin:4px 0}.pre-wrap{white-space:pre-wrap;font-family:inherit}.li-row{padding:6px 0;border-bottom:1px solid var(--line);gap:10px}
 .light .site-top,.light-body .site-top{color:#fff}
 .aud-candidate .logo small,.aud-employer .logo small{white-space:nowrap}.aud-candidate .site-links a,.aud-employer .site-links a{margin-right:14px}
+
+
+/* v1.15 candidate experience and P0 usability foundation */
+:root{--ih-indigo:#6366f1;--ih-cyan:#22d3ee}
+.ih-candidate-hero{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 18px;padding:30px 34px;border-radius:22px;background:linear-gradient(125deg,#172a55 0%,#34378e 60%,#126e8a 100%);color:#fff;overflow:hidden;position:relative}
+.ih-candidate-hero h1{font-size:clamp(26px,3vw,38px);letter-spacing:-.9px;margin:8px 0}.ih-candidate-hero p{color:#dce8ff;max-width:590px}.ih-eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;color:#93e7f8}.ih-hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.ih-candidate-hero .btn.secondary{color:#fff;border-color:#ffffff66;background:#ffffff17}.ih-hero-orb{font-size:100px;line-height:1;color:#a6ecff55;transform:rotate(-18deg)}
+.ih-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 18px}.ih-stat{display:flex;flex-direction:column;gap:5px;border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--panel);text-decoration:none!important;color:var(--text)!important;transition:transform .15s,border-color .15s}.ih-stat:hover{transform:translateY(-2px);border-color:var(--ih-indigo)}.ih-stat span{color:var(--muted);font-size:12px;font-weight:650}.ih-stat strong{font-size:30px;line-height:1.1}.ih-stat small{color:var(--a);font-size:11px}.ih-next{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px}.ih-next h3{margin:5px 0}.ih-section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.ih-section-heading h2{font-size:21px;margin:0}.ih-applications>.card{transition:border-color .15s,transform .15s}.ih-applications>.card:hover{border-color:var(--line2)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--ih-cyan);outline-offset:3px}
+@media(max-width:1050px){.ih-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.ih-candidate-hero{padding:24px}.ih-hero-orb{font-size:64px}}
+@media(max-width:700px){.ih-candidate-hero{padding:22px;display:block}.ih-hero-orb{display:none}.ih-summary{gap:8px}.ih-stat{padding:13px}.ih-stat strong{font-size:25px}.ih-next{align-items:flex-start;flex-direction:column}.ih-section-heading{align-items:flex-start;flex-direction:column}.ih-hero-actions .btn{white-space:normal}.ih-candidate-shell{padding:16px!important}}
+@media(prefers-reduced-motion:reduce){.ih-stat,.ih-applications>.card{transition:none!important}}
+
+
+@media(max-width:1050px){.site .wrap> .grid:has(>aside.card){grid-template-columns:1fr!important}.site .wrap> .grid:has(>aside.card)>aside{position:static}}
 </style>
 
 </head>
@@ -3852,6 +3866,30 @@ paint = function (html) {
   tryRestore();
 };
 try { history.scrollRestoration = 'manual'; } catch (e) { /* unsupported */ }
+/* Candidate experience refresh: presentation-only; preserves existing APIs and actions. */
+const ihPreviousCandidateView = viewSeeker;
+viewSeeker = function(tab) {
+  const html = ihPreviousCandidateView(tab);
+  if (!S.seeker || !S.seeker.me || !S.seeker.me.profile) return html;
+  const me = S.seeker.me.profile, apps = S.seeker.apps || [], recs = (S.seeker.recs || {}).jobs || [];
+  const waiting = apps.reduce((n,a)=>n+((a.tasks||[]).length),0);
+  const complete = Math.max(0,Math.min(100,Number(me.completeness)||0));
+  const welcome = '<section class="ih-candidate-hero"><div><div class="ih-eyebrow">YOUR CAREER WORKSPACE</div><h1>Welcome back' + (me.name ? ', ' + esc(String(me.name).split(' ')[0]) : '') + '</h1><p>Stay on top of your applications, discover relevant roles, and prepare for your next opportunity.</p><div class="ih-hero-actions"><a class="btn" href="#me/jobs">Explore recommended jobs →</a><a class="btn secondary" href="#me/profile">Improve my profile</a></div></div><div class="ih-hero-orb" aria-hidden="true">✦</div></section>';
+  const summary = '<section class="ih-summary" aria-label="Career overview"><a href="#me/home" class="ih-stat"><span>Applications</span><strong>'+apps.length+'</strong><small>Track your progress →</small></a><a href="#me/jobs" class="ih-stat"><span>Recommended roles</span><strong>'+recs.length+'</strong><small>Explore matches →</small></a><a href="#me/home" class="ih-stat"><span>Action required</span><strong>'+waiting+'</strong><small>'+(waiting?'Review next steps →':'You are up to date ✓')+'</small></a><a href="#me/profile" class="ih-stat"><span>Profile strength</span><strong>'+complete+'%</strong><small>Complete your profile →</small></a></section>';
+  const next = waiting ? '<div class="ih-next card"><div><div class="ih-eyebrow">NEXT STEPS</div><h3>You have '+waiting+' action'+(waiting===1?'':'s')+' waiting</h3><p class="small muted">Open an application below to complete interviews, assessments or requests.</p></div><a href="#ih-applications" class="btn small">Review actions →</a></div>' : '<div class="ih-next card"><div><div class="ih-eyebrow">ALL CAUGHT UP</div><h3>No outstanding application tasks</h3><p class="small muted">We will show upcoming steps here when they become available.</p></div><a class="btn secondary small" href="#me/jobs">Find jobs →</a></div>';
+  if (tab === 'home' || !tab) {
+    const tabsEnd = html.indexOf('</div>',html.indexOf('<div class="tabs">'))+6;
+    const contentEnd = html.lastIndexOf('</div></div></div></div>');
+    if (tabsEnd > 5 && contentEnd > tabsEnd) {
+      const original = html.slice(tabsEnd,contentEnd);
+      const newBody = heroSafe(heroPlaceholder(summary, next, original));
+      return html.slice(0,tabsEnd) + newBody + html.slice(contentEnd);
+    }
+  }
+  return html.replace('<div class="wrap" style="padding:28px 24px 60px">','<div class="wrap ih-candidate-shell" style="padding:28px 24px 60px">');
+  function heroPlaceholder(s,n,original){return welcome+s+n+'<section id="ih-applications" class="ih-applications"><div class="ih-section-heading"><h2>My applications</h2><a href="#me/jobs">Browse opportunities →</a></div>'+original+'</section>';}
+  function heroSafe(s){return s;}
+};
 
 bind();
 route();
