@@ -319,6 +319,29 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .ih-job-page .ih-job-layout .notice{background:#102c38;color:#c8e8e6;border-color:#4de0c3}
 .ih-job-page .ih-job-layout label{color:#b6cadd}
 @media(max-width:900px){.ih-job-page .ih-job-layout{grid-template-columns:1fr!important}.ih-job-page .ih-job-layout .card{padding:20px}}
+
+/* Job details: match the candidate career workspace exactly, not the public light theme. */
+.ih-job-page{--bg:#080f22;--bg2:#0c1b2b;--panel:#13233d;--panel2:#1b2c49;--line:#2a3f5d;--line2:#35516c;--text:#e8f0ff;--muted:#a8bbd1;--dim:#8ca4bb;--a:#4de0c3;--b:#70aaff;--a-ink:#071b2c;--grad:linear-gradient(110deg,#4de0c3,#70aaff);min-height:100vh;background:radial-gradient(ellipse 85% 55% at 85% 0%,#103642 0%,transparent 75%),#080f22!important;color:#e8f0ff!important}
+.ih-job-page .careers-hero{background:transparent!important;border-bottom:1px solid #253b54!important;padding:28px 0 25px!important}
+.ih-job-page .careers-hero .wrap,.ih-job-page .ih-job-layout{width:100%;max-width:1398px;margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px}
+.ih-job-page .careers-hero h1{font-size:clamp(32px,3.4vw,46px);line-height:1.15;letter-spacing:-1.25px;margin:12px 0 14px}
+.ih-job-page .careers-hero .co-brand{margin-bottom:6px}
+.ih-job-page .careers-hero p{margin:7px 0;color:#b9cee1}
+.ih-job-page .ih-job-layout{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:start!important;gap:18px;padding-top:24px!important;padding-bottom:60px!important}
+.ih-job-page .ih-job-layout>.ih-job-description,.ih-job-page .ih-job-layout>.ih-job-actions{min-width:0;width:100%;align-self:start;margin:0}
+.ih-job-page .ih-job-layout .card{background:linear-gradient(145deg,#1a2949,#101d34)!important;border:1px solid #2b4162!important;border-radius:21px!important;box-shadow:none!important;padding:26px!important;color:#e8f0ff!important}
+.ih-job-page .ih-job-layout h3{font-size:20px;color:#f2f6ff;margin:0 0 14px}
+.ih-job-page .ih-job-layout h4{color:#e7f0ff}
+.ih-job-page .ih-job-layout p{color:#c8d7e8}
+.ih-job-page .ih-job-layout .muted,.ih-job-page .ih-job-layout .tiny{color:#a8bbd1!important}
+.ih-job-page .ih-job-layout .drop-zone{background:#0e1d34!important;border:1px dashed #37516f!important}
+.ih-job-page .ih-job-layout .btn.secondary{background:#182a45!important;border-color:#334c69!important;color:#e8f0ff!important}
+.ih-job-page .ih-job-layout .btn:not(.secondary){background:linear-gradient(110deg,#4de0c3,#70aaff)!important;color:#071b2c!important}
+.ih-job-page .ih-job-layout .notice{background:#112e39!important;color:#c7e9e5!important}
+.ih-job-page .ih-job-layout input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]),.ih-job-page .ih-job-layout textarea,.ih-job-page .ih-job-layout select{background:#0d1b30!important;color:#eef5ff!important;border:1px solid #35516d!important}
+.ih-job-page .ih-job-layout input::placeholder,.ih-job-page .ih-job-layout textarea::placeholder{color:#91a7bd!important}
+@media(max-width:900px){.ih-job-page .ih-job-layout{grid-template-columns:minmax(0,1fr)!important}.ih-job-page .careers-hero .wrap,.ih-job-page .ih-job-layout{padding-left:18px;padding-right:18px}}
+@media(max-width:520px){.ih-job-page .ih-job-layout .card{padding:19px!important}.ih-job-page .careers-hero h1{font-size:32px}}
 </style>
 
 </head>
@@ -748,7 +771,7 @@ async function renderCareers(slug) {
 function paintCareers() {
   const d = S.ui.careers, q = (S.ui.q || '').toLowerCase(), wt = S.ui.wt || '';
   const jobs = d.jobs.filter(j => (!q || (j.title + ' ' + j.requiredSkills.join(' ') + ' ' + j.location + ' ' + j.department).toLowerCase().indexOf(q) >= 0) && (!wt || j.workType === wt));
-  paint('<div class="light ih-job-page" style="min-height:100vh;' + brandStyle(d.org.color) + '">' + careersTop(d.org) + '<div class="wrap" style="padding-top:24px;padding-bottom:50px">' +
+  paint('<div class="ih-job-page" style="min-height:100vh">' + careersTop(d.org) + '<div class="wrap" style="padding-top:24px;padding-bottom:50px">' +
     '<div class="row wrap-row"><input type="search" id="careers-q" data-filter="careers" placeholder="Search roles, skills or locations" value="' + esc(S.ui.q || '') + '" style="max-width:420px">' +
     '<select data-change="careers-wt" style="max-width:200px">' + opts([['', 'All arrangements'], 'Remote', 'Hybrid', 'On-site'], wt) + '</select><span class="grow"></span><span class="muted small">' + jobs.length + ' open role' + (jobs.length === 1 ? '' : 's') + '</span></div>' +
     '<div class="mt16">' + (jobs.length ? jobs.map(j => '<a class="job-row" href="#job/' + esc(d.org.slug) + '/' + esc(j.id) + '"><div><b style="font-size:16.5px">' + esc(j.title) + '</b><div class="small muted">' +
@@ -777,7 +800,7 @@ function linkify(t) { return esc(t).replace(/\((https:\/\/[^\s)]+)\)/g, '(<a hre
 function paintJob() {
   const d = S.ui.job, j = d.job, slug = d.org.slug;
   const applied = S.ui.applied;
-  paint('<div class="light ih-job-page" style="min-height:100vh;' + brandStyle(d.org.color) + '">' + '<div class="careers-hero' + (d.org.bannerUrl ? ' has-banner' : '') + '" style="' + heroBg(d.org) + ';padding:34px 0 26px"><div class="wrap"><div class="co-brand">' + coLogo(d.org, true) +
+  paint('<div class="ih-job-page" style="min-height:100vh">' + '<div class="careers-hero' + (d.org.bannerUrl ? ' has-banner' : '') + '" style="' + (d.org.bannerUrl ? heroBg(d.org) : '') + '"><div class="wrap"><div class="co-brand">' + coLogo(d.org, true) +
     '<a href="#careers/' + esc(slug) + '" style="color:#fff;opacity:.9" class="small">← All roles at ' + esc(d.org.name) + '</a></div><h1 style="margin-top:6px">' + esc(j.title) + '</h1><p>' +
     [j.department, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</p>' +
     '<p class="small hero-dates">' + (j.publishedAt ? ic('clock') + ' Posted ' + esc(fullDate(j.publishedAt)) : '') + (j.closesAt ? ' &nbsp;·&nbsp; ' + ic('calendar') + ' Apply by ' + esc(fullDate(j.closesAt)) : '') + (j.ref ? ' &nbsp;·&nbsp; Ref ' + esc(j.ref) : '') + '</p></div></div>' +
