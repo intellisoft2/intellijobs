@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.13.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.14.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -255,6 +255,14 @@ input[type=file]{max-width:100%}input,select,textarea{max-width:100%;box-sizing:
 .flagrow{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.flagrow .chip .ic{width:12px;height:12px;vertical-align:-2px}.notice.warn{border-left-color:#f5b942}
 .org-dot.svg{background:none!important;padding:0;overflow:hidden}.org-dot.svg svg{display:block;width:100%;height:100%}.exp-item{border-left:2px solid var(--line);padding:6px 0 6px 12px;margin:10px 0}.exp-item ul{margin:6px 0 4px 18px;padding:0}.exp-item li{margin:2px 0}.posted .dim{opacity:.75}
 .aud-pill{margin-left:12px;padding:3px 10px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:rgba(77,224,195,.14);color:#4de0c3;border:1px solid rgba(77,224,195,.35)}.aud-pill.emp{background:rgba(112,170,255,.14);color:#9cc3ff;border-color:rgba(112,170,255,.4)}.aud-bar{background:#071221;color:#dbe7ff;font-size:13.5px;padding:9px 18px;text-align:center}.aud-bar a{color:#4de0c3;font-weight:700}.aud-bar .ic{width:14px;height:14px;vertical-align:-2px;margin-right:4px}@media(max-width:760px){.aud-pill{display:none}}
+.pro-chip{display:inline-block;font-size:9.5px;font-weight:900;letter-spacing:.08em;padding:2px 6px;border-radius:6px;background:linear-gradient(115deg,#4de0c3,#70aaff);color:#04222c;vertical-align:2px;margin-left:4px}.pro-chip.try{background:rgba(77,224,195,.15);color:#4de0c3;border:1px solid rgba(77,224,195,.4)}
+.profiles-box{border-top:1px solid var(--line);padding-top:12px}.prof-row{display:flex;align-items:center;gap:6px;padding:8px;border-radius:10px;margin-top:6px;border:1px solid transparent}.prof-row.on{border-color:rgba(77,224,195,.35);background:rgba(77,224,195,.06)}
+.icon-btn{background:none;border:0;color:var(--muted,#9fb0c8);cursor:pointer;font-size:13px;padding:4px 6px;border-radius:6px}.icon-btn:hover{background:rgba(255,255,255,.06);color:#fff}
+.pro-hero{background:linear-gradient(140deg,#123a4acc,#101a36cc);border-color:rgba(77,224,195,.35)}.pro-list{list-style:none;padding:0;margin:12px 0 18px}.pro-list li{margin:7px 0}.pro-list .ic{color:#4de0c3;width:15px;height:15px;vertical-align:-2px}
+.pro-tabs{flex-wrap:wrap}.score-ring{--p:0;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;text-align:center;background:conic-gradient(#4de0c3 calc(var(--p)*1%),rgba(255,255,255,.08) 0);position:relative}.score-ring:before{content:'';position:absolute;inset:8px;border-radius:50%;background:#0f1b31}.score-ring b,.score-ring span{position:relative}.score-ring b{font-size:26px;line-height:1}.score-ring span{font-size:10.5px;color:#9fb0c8;margin-top:-18px}
+.fix-list{list-style:none;padding:0}.fix-list li{margin:7px 0}.rewrite{border-left:2px solid rgba(77,224,195,.5);padding:6px 10px;margin:10px 0}.strike{text-decoration:line-through;opacity:.7}.quiz-q{padding:10px 0;border-bottom:1px solid var(--line)}.quiz-q label{display:block;margin:4px 0}.pre-wrap{white-space:pre-wrap;font-family:inherit}.li-row{padding:6px 0;border-bottom:1px solid var(--line);gap:10px}
+.light .site-top,.light-body .site-top{color:#fff}
+.aud-candidate .logo small,.aud-employer .logo small{white-space:nowrap}.aud-candidate .site-links a,.aud-employer .site-links a{margin-right:14px}
 </style>
 
 </head>
@@ -348,7 +356,7 @@ const store = {
   set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) { /* storage blocked */ } }
 };
 
-const SEEKER_FNS = /^seeker(Me|UpdateProfile|UploadResume|Apply|Recommendations|Applications|OpenTask|Withdraw|Logout|ChangePassword|DeleteAccount)$/;
+const SEEKER_FNS = /^seeker(?!Register$|Verify$|Login$|RequestCode$|ResetPassword$|Demo$)[A-Z]\w*$/;
 const S = { seekerToken: store.get('ij-seeker'), seeker: null, market: null, token: store.get('ij-token'), pub: null, db: null, reports: null, billing: null, plat: null, cand: {}, modal: null,
   route: { name: '', parts: [], params: {} }, ui: { q: '', jobFilter: 'all', pipeJob: '', candQ: '', tab: {}, chat: [], interval: 'monthly', careers: null, task: null, sideOpen: false } };
 
@@ -3386,6 +3394,255 @@ paintCareers = function () {
     const a = $('app'); if (a) a.insertAdjacentHTML('afterbegin', '<div class="aud-bar">' + ic('globe') + ' Your public careers page — this is what candidates see. <a href="#app/careers-site">Edit branding</a> · <a href="#app/jobs">Manage jobs</a> · <a href="#app/dashboard">Back to workspace</a></div>');
   }
 };
+/* ------------------------------------------------------------------ v1.14: candidate career services (Pro, 15-day trial), multiple profiles, candidate nav everywhere */
+
+/* ---------------- top navigation on careers / job / task pages for signed-in people */
+function addTopNav() {
+  const who = audience(); if (who === 'visitor') return;
+  const a = $('app'); if (!a || a.querySelector('.site-top')) return;
+  a.insertAdjacentHTML('afterbegin', siteHeader(S.route.name === 'job' || S.route.name === 'careers' ? 'jobs' : ''));
+}
+const basePaintJob114 = paintJob;
+paintJob = function () { basePaintJob114(); addTopNav(); };
+const basePaintCareers114 = paintCareers;
+paintCareers = function () { basePaintCareers114(); addTopNav(); };
+const baseSiteHeader114 = siteHeader;
+siteHeader = function (active) {
+  let h = baseSiteHeader114(active);
+  if (audience() === 'candidate') {
+    const pro = ((((S.seeker || {}).me || {}).profile || {}).pro) || {};
+    const on = S.route && S.route.name === 'me' && S.route.parts[0] === 'pro';
+    h = h.replace('<a href="#gov"', '<a href="#me/pro" style="white-space:nowrap' + (on ? ';color:#fff;font-weight:700' : '') + '">Career services' + (pro.active ? ' <span class="pro-chip">PRO</span>' : ' <span class="pro-chip try">FREE TRIAL</span>') + '</a><a href="#gov"');
+  }
+  return h;
+};
+
+/* ---------------- seeker portal: Career services tab + profiles */
+const baseViewSeeker114 = viewSeeker;
+viewSeeker = function (tab) {
+  const isPro = tab === 'pro';
+  let html = baseViewSeeker114(isPro ? 'home' : tab);
+  // tab button
+  const tabsAt = html.indexOf('<div class="tabs">');
+  if (tabsAt >= 0) {
+    const close = html.indexOf('</div>', tabsAt);
+    let tabs = html.slice(tabsAt, close);
+    if (isPro) tabs = tabs.replace(/class="on"/, 'class=""');
+    tabs = tabs.replace(/(<button class="[^"]*" data-action="seeker-tab" data-v="account">)/, '<button class="' + (isPro ? 'on' : '') + '" data-action="seeker-tab" data-v="pro">Career services ' + (((S.seeker.me.profile.pro || {}).active) ? '<span class="pro-chip">PRO</span>' : '') + '</button>$1');
+    html = html.slice(0, tabsAt) + tabs + html.slice(close);
+    if (isPro) {
+      const bodyStart = html.indexOf('</div>', html.indexOf('<div class="tabs">')) + 6;
+      const bodyEnd = html.lastIndexOf('</div></div></div></div>');
+      html = html.slice(0, bodyStart) + proPage() + html.slice(bodyEnd);
+    }
+  }
+  // profiles switcher in the sidebar
+  html = html.replace('</aside>', profilesWidget() + '</aside>');
+  return html;
+};
+const baseRenderSeeker114 = renderSeeker;
+renderSeeker = async function () {
+  await baseRenderSeeker114();
+  if (S.seeker && !S.seeker.profiles && S.seekerToken) {
+    S.seeker.profiles = { profiles: [], max: 3, loading: true };
+    try { S.seeker.profiles = await call('seekerProfiles'); } catch (e) { S.seeker.profiles = { profiles: [], max: 3 }; }
+    if (S.route.name === 'me' && ['login', 'register', 'verify', 'forgot', 'reset'].indexOf(S.route.parts[0] || '') < 0) paint(viewSeeker(S.route.parts[0] || 'home'));
+  }
+};
+
+function profilesWidget() {
+  const p = S.seeker && S.seeker.profiles;
+  if (!p || !p.profiles.length) return '';
+  return '<div class="profiles-box mt16"><div class="row between"><b class="small">Profiles</b><span class="tiny dim">' + p.profiles.length + ' / ' + p.max + '</span></div>' +
+    p.profiles.map(x => '<div class="prof-row' + (x.active ? ' on' : '') + '"><div class="grow"><div class="small"><b>' + esc(x.label) + '</b>' + (x.active ? ' ' + chip('Active', 'ok') : '') + '</div><div class="tiny dim">' + esc(x.headline || x.resumeName || 'No resume yet') + '</div></div>' +
+      (x.active ? '' : '<button class="btn small ghost" data-action="prof-switch" data-id="' + x.id + '">Use</button>') +
+      '<button class="icon-btn" title="Rename" data-action="prof-rename" data-id="' + x.id + '" data-label="' + esc(x.label) + '">✎</button>' +
+      (p.profiles.length > 1 ? '<button class="icon-btn" title="Remove" data-action="prof-del" data-id="' + x.id + '" data-label="' + esc(x.label) + '">✕</button>' : '') + '</div>').join('') +
+    (p.profiles.length < p.max ? '<button class="btn small secondary mt8" data-action="prof-new">+ Add a profile</button>' : '<div class="tiny dim mt8">Maximum ' + p.max + ' profiles.</div>') +
+    '<div class="tiny dim mt8">Each profile has its own resume, headline and skills. The active one is used to apply and for your fit.</div></div>';
+}
+async function afterProfileChange(r, msg) {
+  S.seeker.profiles = { profiles: r.profiles, max: r.max };
+  if (r.profile) S.seeker.me.profile = r.profile;
+  try { S.seeker.recs = await call('seekerRecommendations'); } catch (e) { /* keep */ }
+  S.ui.pro = {}; paint(viewSeeker(S.route.parts[0] || 'home')); if (msg) toast(msg, 'ok');
+}
+Object.assign(ACTIONS, {
+  'prof-new': () => openModal('Add a profile', '<form data-form="prof-new">' + field('Profile name', inp('label', '', 'required maxlength="40" placeholder="e.g. Data engineer, Project manager"')) +
+    '<label class="check small"><input type="checkbox" name="copy"> Start from my current profile (copy resume, skills and preferences)</label>' +
+    '<p class="small muted">You can keep up to 3 profiles. After creating it, upload the resume for this profile under Profile & resume.</p><button class="btn mt8">Create profile</button></form>'),
+  'prof-switch': async (d, el) => { try { const r = await busy(el, call('seekerSwitchProfile', d.id)); await afterProfileChange(r, 'Switched profile.'); } catch (e) { fail(e); } },
+  'prof-rename': d => openModal('Rename profile', '<form data-form="prof-rename"><input type="hidden" name="id" value="' + esc(d.id) + '">' + field('Profile name', inp('label', d.label, 'required maxlength="40"')) + '<button class="btn mt8">Save</button></form>'),
+  'prof-del': async (d, el) => { if (!confirm('Remove the profile "' + d.label + '" and its resume? Your account and other profiles stay.')) return; try { const r = await busy(el, call('seekerDeleteProfile', d.id)); await afterProfileChange(r, 'Profile removed.'); } catch (e) { fail(e); } }
+});
+Object.assign(FORMS, {
+  'prof-new': async (v, f, b) => { try { const r = await busy(b, call('seekerCreateProfile', { label: v.label, copy: !!v.copy })); closeModal(); await afterProfileChange(r, 'Profile created — now upload its resume.'); go('#me/profile'); } catch (e) { fail(e); } },
+  'prof-rename': async (v, f, b) => { try { const r = await busy(b, call('seekerRenameProfile', v)); closeModal(); S.seeker.profiles = r; S.seeker.me.profile.profileLabel = (r.profiles.find(p => p.active) || {}).label; paint(viewSeeker(S.route.parts[0] || 'home')); toast('Renamed.', 'ok'); } catch (e) { fail(e); } }
+});
+
+/* ---------------- Career services page */
+const PRO_TOOLS = [['review', 'Resume review'], ['tailor', 'Tailored resume & cover letter'], ['linkedin', 'LinkedIn'], ['training', 'Training plan'], ['practice', 'Practice quizzes'], ['interview', 'Interview prep'], ['alerts', 'Job alerts']];
+function proPage() {
+  const me = S.seeker.me.profile, pro = me.pro || {};
+  S.ui.pro = S.ui.pro || {};
+  if (!pro.enabled) return '<div class="empty">Career services are not available right now.</div>';
+  const features = ['Full resume review with a score, fixes and stronger bullet points', 'Resume tailored to any job (Word download) and a matching cover letter', 'LinkedIn headline and About section written from your resume',
+    'Training plan built from the skills real jobs ask for — official learning links, projects and certifications', 'Practice quizzes (AWS, Python, SQL, Kubernetes…)', 'Interview prep for each job: technical and behavioural questions, your best stories',
+    'Daily or weekly job alerts', 'Priority placement when employers search for talent'];
+  if (!pro.active) {
+    return '<div class="card pro-hero"><div class="eyebrow">IntelliHire Pro for candidates</div><h2 style="margin:6px 0">' + (pro.trialUsed ? 'Keep your career services' : 'Free for ' + pro.trialDays + ' days') + '</h2>' +
+      '<ul class="pro-list">' + features.map(f => '<li>' + ic('check') + ' ' + esc(f) + '</li>').join('') + '</ul>' +
+      (pro.trialUsed ? '<p class="small muted">Your trial has ended.' + (pro.priceMonthly ? ' Pro is $' + pro.priceMonthly + '/month.' : '') + '</p><button class="btn" data-action="pro-upgrade">Upgrade</button>'
+        : '<button class="btn" data-action="pro-trial">Start my free ' + pro.trialDays + '-day trial</button><p class="tiny dim mt8">No card needed. Nothing is shared with employers unless you apply.</p>') + '</div>';
+  }
+  const t = S.ui.pro.tab || 'review';
+  return '<div class="card pro-status"><div class="row between wrap-row"><div><b>IntelliHire Pro</b> ' + chip(pro.trial ? 'Trial · ' + pro.daysLeft + ' days left' : 'Active until ' + String(pro.until).slice(0, 10), 'ok') +
+    ' <span class="tiny dim">Profile: ' + esc(me.profileLabel || 'Main profile') + '</span></div>' + (pro.trial ? '<button class="btn small secondary" data-action="pro-upgrade">Upgrade</button>' : '') + '</div></div>' +
+    '<div class="tabs mt16 pro-tabs">' + PRO_TOOLS.map(x => '<button class="' + (t === x[0] ? 'on' : '') + '" data-action="pro-tab" data-v="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>' + proTool(t);
+}
+function jobPicker(name) {
+  const jobs = ((S.seeker.recs || {}).jobs || []).filter(j => !j.external).slice(0, 30);
+  const cur = S.ui.pro.job || (jobs[0] ? jobs[0].org.slug + '|' + jobs[0].id : '');
+  return jobs.length ? sel(name || 'job', jobs.map(j => [j.org.slug + '|' + j.id, j.title + ' — ' + j.org.name + (j.fit ? ' (' + j.fit.score + '% fit)' : '')]), cur, 'data-change="pro-job"') : '<p class="small muted">No matching jobs yet — <a href="#jobs">browse jobs</a>.</p>';
+}
+function jobRef() { const v = S.ui.pro.job || (((S.seeker.recs || {}).jobs || []).filter(j => !j.external)[0] ? (j => j.org.slug + '|' + j.id)(S.seeker.recs.jobs.filter(j => !j.external)[0]) : ''); const p = v.split('|'); return p.length === 2 ? { slug: p[0], jobId: p[1] } : null; }
+function proTool(t) {
+  const r = S.ui.pro[t];
+  const run = (label, act) => '<button class="btn" data-action="pro-run" data-v="' + act + '">' + label + '</button>';
+  if (t === 'review') return '<div class="card">' + (!r ? '<p class="muted">We check structure, results, wording, keywords that matching jobs ask for, and suggest stronger bullet points.</p>' + run('Review my resume', 'review') : reviewHtml2(r) + '<div class="mt16">' + run('Review again', 'review') + '</div>') + '</div>';
+  if (t === 'tailor') return '<div class="card"><p class="muted">Pick a job — we reorder your skills and bullets for it, write a summary and a cover letter. Nothing is invented: missing skills are listed for you to decide.</p>' + jobPicker() +
+    '<div class="row wrap-row mt8">' + run('Tailor my resume', 'tailor') + run('Write a cover letter', 'cover') + '</div>' + (S.ui.pro.tailor ? tailorHtml(S.ui.pro.tailor) : '') + (S.ui.pro.cover ? coverHtml(S.ui.pro.cover) : '') + '</div>';
+  if (t === 'linkedin') return '<div class="card">' + (!r ? '<p class="muted">Headline options, an About section and a checklist, written from your resume.</p>' + run('Suggest my LinkedIn', 'linkedin') : linkedinHtml(r)) + '</div>';
+  if (t === 'training') return '<div class="card">' + (!r ? '<p class="muted">We compare your resume with the open jobs that fit you best and plan what to learn first — with official learning links, projects and certifications.</p>' + run('Build my training plan', 'training') : trainingHtml(r)) + '</div>';
+  if (t === 'practice') return practiceHtml();
+  if (t === 'interview') return '<div class="card"><p class="muted">Questions you are likely to get, your strongest stories from your resume, and questions to ask.</p>' + jobPicker() + '<div class="mt8">' + run('Prepare me', 'interview') + '</div>' + (r ? interviewHtml(r) : '') + '</div>';
+  if (t === 'alerts') { const cur = S.ui.pro.alerts !== undefined ? S.ui.pro.alerts : ''; return '<form data-form="pro-alerts" class="card"><h3>Job alerts</h3><p class="small muted">We email you new jobs with a fit of 60% or more for your active profile.</p>' + field('Send me', sel('frequency', [['daily', 'Daily'], ['weekly', 'Weekly'], ['', 'Off']], cur || 'daily')) + '<button class="btn mt8">Save</button></form>'; }
+  return '';
+}
+function reviewHtml2(r) {
+  const lv = { high: 'bad', medium: 'warn', low: '' };
+  return '<div class="row wrap-row" style="gap:22px"><div class="score-ring" style="--p:' + r.score + '"><b>' + r.score + '</b><span>' + esc(r.grade) + '</span></div><div class="grow"><div class="small muted">' + r.stats.words + ' words · ' + r.stats.roles + ' roles · ' + r.stats.bullets + ' bullets · ' + r.stats.quantified + ' with numbers' + (r.stats.years ? ' · ' + r.stats.years + ' years' : '') + '</div>' +
+    '<div class="mt8">' + r.strengths.map(x => chip('✓ ' + x, 'ok')).join(' ') + '</div></div></div>' +
+    (r.fixes.length ? '<h4 class="mt16">Fix next</h4><ul class="fix-list">' + r.fixes.map(f => '<li>' + chip(f.level, lv[f.level]) + ' ' + esc(f.text) + '</li>').join('') + '</ul>' : '') +
+    (r.rewrites.length ? '<h4 class="mt16">Stronger bullet points</h4>' + r.rewrites.map(w => '<div class="rewrite"><div class="tiny dim">Before</div><div class="small strike">' + esc(w.before) + '</div><div class="tiny dim mt8">After</div><div class="small"><b>' + esc(w.after) + '</b></div></div>').join('') : '') +
+    (r.keywords.missing.length ? '<h4 class="mt16">Skills matching jobs ask for</h4><div>' + r.keywords.missing.map(k => chip(k.skill + ' · ' + k.jobs + (k.jobs === 1 ? ' job' : ' jobs'), 'info')).join(' ') + '</div><p class="tiny dim">Add them only if you have the experience.</p>' : '');
+}
+function tailorHtml(r) {
+  return '<div class="mt16"><h4>Tailored for ' + esc(r.job.title) + (r.job.org ? ' — ' + esc(r.job.org) : '') + ' <span class="fit ' + fitCls(r.fit.score) + '">' + r.fit.score + '% fit</span></h4>' +
+    '<p class="small"><b>Summary:</b> ' + esc(r.summary) + '</p><div>' + chips(r.matched, 'a') + (r.missing.length ? ' ' + r.missing.map(m => chip('missing: ' + m, 'warn')).join(' ') : '') + '</div>' +
+    '<ul class="small">' + r.notes.map(n => '<li>' + esc(n) + '</li>').join('') + '</ul><div class="row wrap-row"><button class="btn small" data-action="pro-dl" data-k="tailor">Download Word (.doc)</button><button class="btn small ghost" data-action="pro-copy" data-k="tailor">Copy text</button></div>' +
+    '<details class="mt8"><summary class="small">Preview text</summary><pre class="pre-wrap small">' + esc(r.text) + '</pre></details></div>';
+}
+function coverHtml(r) {
+  return '<div class="mt16"><h4>Cover letter — ' + esc(r.job.title) + '</h4><textarea rows="14" style="width:100%" id="cover-text">' + esc(r.text) + '</textarea><div class="row wrap-row mt8"><button class="btn small" data-action="pro-copy" data-k="cover">Copy</button><button class="btn small ghost" data-action="pro-dl" data-k="cover">Download .txt</button></div></div>';
+}
+function linkedinHtml(r) {
+  return '<h4>Headline options</h4>' + r.headlines.map((h, i) => '<div class="row between li-row"><span class="small">' + esc(h) + '</span><button class="btn small ghost" data-action="copy" data-text="' + esc(h) + '">Copy</button></div>').join('') +
+    '<h4 class="mt16">About</h4><textarea rows="9" style="width:100%">' + esc(r.about) + '</textarea>' +
+    '<h4 class="mt16">Skills to list</h4><div>' + chips(r.addSkills) + '</div><h4 class="mt16">Checklist</h4><ul class="small">' + r.checklist.map(c => '<li>' + esc(c) + '</li>').join('') + '</ul>' +
+    (r.linkedin ? '<a class="btn small secondary" href="' + esc(r.linkedin) + '" target="_blank" rel="noopener">Open my LinkedIn</a>' : '<p class="small muted">Add your LinkedIn URL under Profile & resume.</p>');
+}
+function trainingHtml(r) {
+  return '<p class="small muted">Compared with ' + r.jobsAnalysed + ' open jobs that fit you' + (r.target ? ' (target: ' + esc(r.target) + ')' : '') + '. Strengths: ' + esc(r.strengths.join(', ')) + '.</p>' +
+    (r.gaps.length ? '<div class="table-wrap"><table><tr><th>Week</th><th>Skill to build</th><th>Why</th><th>Learn</th><th>Prove it</th></tr>' + r.gaps.map(g => '<tr><td>' + g.week + '</td><td><b>' + esc(g.skill) + '</b></td><td class="small">' + g.demand + ' matching job' + (g.demand > 1 ? 's' : '') + ' ask for it</td>' +
+      '<td><a class="btn small secondary" href="' + esc(g.learn) + '" target="_blank" rel="noopener">Official learning</a></td><td class="small">' + esc(g.project) + (g.practice ? '<div><button class="btn small ghost mt8" data-action="pro-quiz" data-v="' + esc(g.skill) + '">Practice quiz</button></div>' : '') +
+      (g.cert ? '<div class="mt8"><a href="' + esc(g.cert.url) + '" target="_blank" rel="noopener">' + esc(g.cert.name) + '</a></div>' : '') + '</td></tr>').join('') + '</table></div>' : '<div class="empty">You already cover the skills your best-matching jobs ask for — focus on interview prep.</div>') +
+    (r.certifications.length ? '<h4 class="mt16">Certifications worth considering</h4><ul class="small">' + r.certifications.map(c => '<li><a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.name) + '</a> <span class="dim">(' + esc(c.skill) + ')</span></li>').join('') + '</ul>' : '') +
+    '<button class="btn small ghost mt8" data-action="pro-run" data-v="training">Refresh plan</button>';
+}
+function practiceHtml() {
+  const q = S.ui.pro.quiz, g = S.ui.pro.graded;
+  const skills = ['AWS', 'Python', 'SQL', 'Kubernetes', 'Terraform', 'Java', 'Azure', 'React', 'Docker', 'Snowflake'];
+  let h = '<div class="card"><p class="muted">Short multiple-choice quizzes — the same banks employers use for skills checks. Answers are shown after you submit.</p><div class="row wrap-row">' +
+    skills.map(s => '<button class="btn small ' + (q && q.skill === s ? '' : 'secondary') + '" data-action="pro-quiz" data-v="' + s + '">' + s + '</button>').join('') + '</div>';
+  if (q && !g) h += '<form data-form="pro-quiz" class="mt16"><h4>' + esc(q.skill) + ' practice</h4>' + q.questions.map((x, i) => '<div class="quiz-q"><b class="small">' + (i + 1) + '. ' + esc(x.q) + '</b>' + x.options.map((o, k) => '<label class="check small"><input type="radio" name="a' + i + '" value="' + k + '"> ' + esc(o) + '</label>').join('') + '</div>').join('') + '<button class="btn mt8">Check answers</button></form>';
+  if (g) h += '<div class="mt16"><h4>' + esc(g.skill) + ': ' + g.score + '%</h4>' + g.results.map(x => '<div class="quiz-q small">' + (x.ok ? '✅' : '❌') + ' ' + esc(x.q) + (x.ok ? '' : '<div class="tiny">Correct: <b>' + esc(x.correct) + '</b>' + (x.yours ? ' · yours: ' + esc(x.yours) : '') + '</div>') + '</div>').join('') +
+    '<p class="tiny dim">Your attempts: ' + g.history.map(x => x.score + '%').join(' · ') + '</p><button class="btn small secondary" data-action="pro-quiz" data-v="' + esc(g.skill) + '">Try again</button></div>';
+  return h + '</div>';
+}
+function interviewHtml(r) {
+  return '<div class="mt16">' + (r.job ? '<h4>' + esc(r.job.title) + (r.job.org ? ' — ' + esc(r.job.org) : '') + '</h4>' + (r.job.process ? '<p class="small">' + ic('video') + ' Process: ' + esc(r.job.process) + '</p>' : '') : '') +
+    '<h4>Technical</h4>' + r.technical.map(t => '<div class="small"><b>' + esc(t.skill) + '</b><ul>' + t.questions.map(q => '<li>' + esc(q) + '</li>').join('') + '</ul></div>').join('') +
+    '<h4>Behavioural</h4><ul class="small">' + r.behavioral.map(q => '<li>' + esc(q) + '</li>').join('') + '</ul>' +
+    '<h4>Answer with STAR</h4><ol class="small">' + r.star.map(x => '<li>' + esc(x) + '</li>').join('') + '</ol>' +
+    (r.stories.length ? '<h4>Your strongest stories</h4><ul class="small">' + r.stories.map(x => '<li><b>' + esc(x.role) + ':</b> ' + esc(x.story) + '</li>').join('') + '</ul>' : '') +
+    '<h4>Questions to ask them</h4><ul class="small">' + r.ask.map(q => '<li>' + esc(q) + '</li>').join('') + '</ul><h4>Tips</h4><ul class="small">' + r.tips.map(q => '<li>' + esc(q) + '</li>').join('') + '</ul></div>';
+}
+function repaintPro() { if (S.route.name === 'me' && S.route.parts[0] === 'pro') paint(viewSeeker('pro')); }
+Object.assign(ACTIONS, {
+  'pro-trial': async (d, el) => { try { const r = await busy(el, call('seekerStartTrial')); S.seeker.me.profile.pro = r.pro; S.ui.pro = { alerts: r.alerts }; repaintPro(); toast('Your ' + r.pro.daysLeft + '-day Pro trial has started.', 'ok'); } catch (e) { fail(e); } },
+  'pro-upgrade': async (d, el) => { try { const r = await busy(el, call('seekerUpgradeRequest')); if (r.paymentLink) window.open(r.paymentLink, '_blank', 'noopener'); else toast('Thanks — our team will contact you to upgrade.', 'ok'); } catch (e) { fail(e); } },
+  'pro-tab': d => { S.ui.pro.tab = d.v; if (d.v === 'alerts' && S.ui.pro.alerts === undefined) call('seekerProStatus').then(r => { S.ui.pro.alerts = r.alerts; repaintPro(); }, () => {}); repaintPro(); },
+  'pro-run': async (d, el) => {
+    const fn = { review: 'seekerResumeReview', tailor: 'seekerTailorResume', cover: 'seekerCoverLetter', linkedin: 'seekerLinkedinTips', training: 'seekerTrainingPlan', interview: 'seekerInterviewPrep' }[d.v];
+    const needsJob = ['tailor', 'cover', 'interview'].indexOf(d.v) >= 0;
+    const ref = needsJob ? jobRef() : null;
+    if (needsJob && !ref && d.v !== 'interview') return toast('Pick a job first.', 'error');
+    try { S.ui.pro[d.v] = await busy(el, call(fn, ref || {})); repaintPro(); } catch (e) { if (e.code === 'PRO') { S.seeker.me.profile.pro.active = false; repaintPro(); } fail(e); }
+  },
+  'pro-quiz': async (d, el) => { try { S.ui.pro.tab = 'practice'; S.ui.pro.graded = null; S.ui.pro.quiz = await busy(el, call('seekerPracticeQuiz', { skill: d.v })); repaintPro(); } catch (e) { fail(e); } },
+  'pro-dl': d => { const r = S.ui.pro[d.k]; if (!r) return; if (d.k === 'tailor') download(r.fileName, new Blob(['﻿', r.html], { type: 'application/msword' })); else download('cover-letter.txt', ($('cover-text') || {}).value || r.text, 'text/plain'); },
+  'pro-copy': d => { const r = S.ui.pro[d.k]; if (!r) return; copy(d.k === 'cover' ? (($('cover-text') || {}).value || r.text) : r.text); }
+});
+Object.assign(CHANGES, { 'pro-job': (v, el) => { S.ui.pro.job = el.value; S.ui.pro.tailor = null; S.ui.pro.cover = null; S.ui.pro.interview = null; } });
+Object.assign(FORMS, {
+  'pro-quiz': async (v, f, b) => { const q = S.ui.pro.quiz; const answers = q.questions.map((x, i) => (v['a' + i] === undefined ? '' : Number(v['a' + i]))); try { S.ui.pro.graded = await busy(b, call('seekerGradeQuiz', { skill: q.skill, answers: answers })); repaintPro(); } catch (e) { fail(e); } },
+  'pro-alerts': async (v, f, b) => { try { const r = await busy(b, call('seekerSetAlerts', { frequency: v.frequency })); S.ui.pro.alerts = r.alerts; toast(r.alerts ? 'Job alerts: ' + r.alerts + '.' : 'Job alerts off.', 'ok'); } catch (e) { fail(e); } }
+});
+
+/* ---------------- employer: remove a candidate from the company (their IntelliHire profile stays) */
+const baseResumeTab114 = CAND_TABS.resume;
+CAND_TABS.resume = d => {
+  let html = baseResumeTab114(d);
+  if (can('ADMIN')) html = html.replace('<button class="btn danger small" data-action="erase-cand"', '<button class="btn secondary small" data-action="remove-cand" data-id="' + d.candidate.id + '" data-name="' + esc(d.candidate.name) + '">Remove from company</button> <button class="btn danger small" data-action="erase-cand"');
+  return html;
+};
+const baseCandPage114 = PAGES.candidate;
+PAGES.candidate = () => {
+  let html = baseCandPage114();
+  const c = (S.cand[S.route.parts[1]] || {}).candidate;
+  if (c && can('ADMIN') && html.indexOf('data-action="remove-cand"') < 0) html = html.replace('data-action="edit-cand"', 'data-action="edit-cand"').replace(/(<button class="btn ghost" data-action="edit-cand"[^>]*>Edit<\/button>)/, '$1<button class="btn ghost" data-action="remove-cand" data-id="' + c.id + '" data-name="' + esc(c.name) + '">Remove</button>');
+  return html;
+};
+Object.assign(ACTIONS, {
+  'remove-cand': d => openModal('Remove ' + d.name + ' from your company?', '<form data-form="remove-cand"><input type="hidden" name="id" value="' + esc(d.id) + '"><p class="small">Their applications, interviews, notes, documents and files <b>in your company</b> are deleted. ' +
+    'Their own IntelliHire candidate profile is <b>not</b> affected — they can still use IntelliHire and apply to your jobs again.</p>' + field('Reason (optional, kept in the audit log)', inp('reason', '', 'maxlength="200" placeholder="Duplicate, not a fit, requested…"')) +
+    '<button class="btn danger mt8">Remove from company</button></form>')
+});
+Object.assign(FORMS, {
+  'remove-cand': async (v, f, b) => { try { const r = await busy(b, call('removeCandidateFromCompany', v)); closeModal(); delete S.cand[v.id]; await refresh(); go('#app/candidates'); toast('Removed from your company' + (r.keptProfile ? ' — their IntelliHire profile stays.' : '.'), 'ok'); } catch (e) { fail(e); } }
+});
+
+/* ---------------- admin notice: Google permissions to approve (e.g. Calendar for Meet) */
+const baseDash114 = PAGES.dashboard;
+PAGES.dashboard = () => {
+  const html = baseDash114(), a = S.db.authNeeded;
+  if (!a || !a.needed) return html;
+  const box = '<div class="notice warn small mt8">' + ic('lock') + ' <b>New Google permissions need approval</b> (Google Calendar for Meet interviews). ' + (a.owner ? 'Sign in as <b>' + esc(a.owner) + '</b>, ' : '') +
+    'open the Apps Script project, run <code>setupIntelliHire</code> and click <b>Allow</b>, then Deploy → Manage deployments → New version. Until then, use Zoom / Teams links for interviews.</div>';
+  const g = html.indexOf('<span class="grow"></span>'), i = g > 0 ? html.indexOf('</div>', g) : -1;
+  return i > 0 ? html.slice(0, i + 6) + box + html.slice(i + 6) : box + html;
+};
+
+/* ---------------- platform console → Candidates: Pro settings and granting Pro */
+const basePlatSeekers114 = platSeekersHtml;
+platSeekersHtml = function () {
+  const c = S.plat.cpro;
+  if (!c) { S.plat.cpro = { loading: true }; call('platformCandidatePro', {}).then(r => { S.plat.cpro = r; renderApp(); }, e => { S.plat.cpro = { error: e.message }; renderApp(); }); }
+  const st = c && c.settings;
+  const card = !st ? '<div class="card"><div class="loading">Loading candidate services<span class="pulse"></span></div></div>' :
+    '<div class="grid g2"><form data-form="plat-cpro" class="card"><h3>Candidate Pro</h3><p class="small muted">Resume review, tailored resumes, cover letters, LinkedIn, training plan, practice quizzes, interview prep, job alerts and priority in talent search. ' +
+      (c.stats ? c.stats.trials + ' trials · ' + c.stats.active + ' active · ' + c.stats.paid + ' paid' : '') + '</p>' +
+      '<label class="check"><input type="checkbox" name="enabled"' + (st.enabled ? ' checked' : '') + '> Offer candidate services</label><div class="form-row">' + field('Free trial (days)', inp('trialDays', st.trialDays, 'type="number" min="1" max="90"')) +
+      field('Price per month (USD)', inp('priceMonthly', st.priceMonthly, 'type="number" min="0"')) + '</div>' + field('Payment link (Stripe Payment Link or similar, optional)', inp('paymentLink', st.paymentLink, 'type="url" placeholder="https://buy.stripe.com/…"')) +
+      '<button class="btn mt8">Save</button></form><form data-form="plat-cpro-grant" class="card"><h3>Grant Pro</h3><p class="small muted">After a candidate pays, extend their Pro access.</p>' + field('Candidate email', inp('grantEmail', '', 'type="email" required')) +
+      field('Days', inp('days', 30, 'type="number" min="1" max="730"')) + '<button class="btn secondary mt8">Grant</button></form></div>';
+  return card + '<div class="mt16">' + basePlatSeekers114() + '</div>';
+};
+Object.assign(FORMS, {
+  'plat-cpro': async (v, f, b) => { try { S.plat.cpro = await busy(b, call('platformCandidatePro', { save: true, enabled: !!v.enabled, trialDays: v.trialDays, priceMonthly: v.priceMonthly, paymentLink: v.paymentLink })); renderApp(); toast('Saved.', 'ok'); } catch (e) { fail(e); } },
+  'plat-cpro-grant': async (v, f, b) => { try { S.plat.cpro = await busy(b, call('platformCandidatePro', { grantEmail: v.grantEmail, days: v.days })); renderApp(); toast('Pro granted to ' + v.grantEmail + '.', 'ok'); } catch (e) { fail(e); } }
+});
 
 bind();
 route();
