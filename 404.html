@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.11.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.11.1"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -822,7 +822,7 @@ function icsText(title, startIso, minutes, location, desc) {
   const f = d => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
   const end = new Date(new Date(startIso).getTime() + (Number(minutes) || 45) * 60000);
   const e = s => String(s || '').replace(/([,;\\])/g, '\\$1').replace(/\n/g, '\\n');
-  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Intellisoft//IntelliHire//EN', 'BEGIN:VEVENT', 'UID:' + Date.now() + '@intellijobs', 'DTSTAMP:' + f(new Date()), 'DTSTART:' + f(startIso), 'DTEND:' + f(end),
+  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Intellisoft//IntelliHire//EN', 'BEGIN:VEVENT', 'UID:' + Date.now() + '@intellihire', 'DTSTAMP:' + f(new Date()), 'DTSTART:' + f(startIso), 'DTEND:' + f(end),
     'SUMMARY:' + e(title), 'DESCRIPTION:' + e(desc), 'LOCATION:' + e(location || ''), 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
 }
 /* ------------------------------------------------------------------ workspace shell */
@@ -1384,7 +1384,7 @@ const ACTIONS = {
   'open-cand': d => go('#app/candidate/' + d.id),
   'cand-tab': d => { S.ui.tab[d.id] = d.v; renderApp(); },
   'import-cands': () => openModal('Import candidates (CSV)', '<p class="small muted">Header row with at least <b>name</b> and <b>email</b>. Optional: phone, location, headline, skills, yearsExp, source, tags, linkedin. Up to 500 rows.</p><form data-form="import"><input type="file" id="csv-file" accept=".csv,text/csv"><p class="small center muted">or paste</p>' + area('csv', 'name,email,headline,skills,yearsExp\nJane Doe,jane@example.com,Data Engineer,"Python, SQL, AWS",5', 'rows="6" class="mono"') + '<button class="btn mt16">Import</button></form>'),
-  'export-cands': async () => { try { download('intellijobs-candidates.csv', await call('exportCandidatesCsv'), 'text/csv'); } catch (e) { fail(e); } },
+  'export-cands': async () => { try { download('intellihire-candidates.csv', await call('exportCandidatesCsv'), 'text/csv'); } catch (e) { fail(e); } },
   'erase-cand': async (d, el) => { if (!confirm('Permanently erase this candidate and every linked record (applications, interviews, notes, files)? This cannot be undone.')) return; try { await busy(el, act(call('eraseCandidate', d.id), 'Candidate erased.')); go('#app/candidates'); } catch (e) { fail(e); } },
   'add-to-job': d => { const open = S.db.jobs.filter(j => j.status === 'Open' || j.status === 'Pending Approval'); if (!open.length) return toast('Create or open a job first.', 'error'); openModal('Add to job', '<form data-form="add-to-job"><input type="hidden" name="candidateId" value="' + esc(d.id) + '">' + field('Job', sel('jobId', open.map(j => [j.id, j.title]), '')) + field('Source', sel('source', S.db.lists.sources, candById(d.id).source || 'Sourced')) + '<button class="btn mt16">Add & score fit</button></form>'); },
   'message': d => { const c = candById(d.id); openModal('Email ' + c.name, '<form data-form="message"><input type="hidden" name="candidateId" value="' + esc(d.id) + '">' + field('Subject', inp('subject', '', 'required')) + field('Message', area('body', 'Hi ' + (c.name || '').split(' ')[0] + ',\n\n', 'rows="7" required')) + '<p class="small muted">Sent from IntelliHire on behalf of ' + esc(S.db.org.name) + '; replies come to you.</p><button class="btn mt8">Send</button></form>'); },
@@ -1448,7 +1448,7 @@ const ACTIONS = {
   'tool-parse': () => openModal('Parse a resume', '<form data-form="tool-parse"><input type="file" id="tp-file" accept=".pdf,.doc,.docx,.rtf,.txt,.md,.json">' + area('text', '', 'rows="6" placeholder="…or paste resume text"') + '<button class="btn mt8">Parse</button></form><div id="tp-out"></div>', true),
   'tool-inclusive': () => openModal('Inclusive-language check', '<form data-form="tool-inclusive">' + area('text', '', 'rows="8" placeholder="Paste a job description…" required') + '<button class="btn mt8">Check</button></form><div id="ti-out"></div>', true),
   'reports-refresh': () => { S.reports = null; renderApp(); },
-  'audit-export': async () => { try { download('intellijobs-audit.csv', await call('getAuditCsv'), 'text/csv'); } catch (e) { fail(e); } },
+  'audit-export': async () => { try { download('intellihire-audit.csv', await call('getAuditCsv'), 'text/csv'); } catch (e) { fail(e); } },
   /* team */
   'member-toggle': async (d, el) => { const m = S.db.members.find(x => x.id === d.id); try { await busy(el, act(call('updateMember', { id: m.id, role: m.role, status: m.status === 'Active' ? 'Inactive' : 'Active' }), 'Updated.')); } catch (e) { fail(e); } },
   'member-resend': async (d, el) => { try { await busy(el, call('resendInvite', d.id)); toast('Invitation re-sent.', 'ok'); } catch (e) { fail(e); } },
