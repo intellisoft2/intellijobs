@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://script.google.com"><link rel="preconnect" href="https://script.googleusercontent.com" crossorigin><link rel="dns-prefetch" href="https://script.googleusercontent.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.15.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.15.2"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -362,6 +362,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
   .ih-job-page .careers-hero > .wrap,
   .ih-job-page > .ih-job-layout {width:calc(100% - 32px)!important;}
 }
+/* careers page: the role list sits on the same left edge as the hero above it */
+.ih-job-page > .ih-careers-list{width:calc(100% - 48px)!important;max-width:1344px!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important}
+@media(max-width:520px){.ih-job-page > .ih-careers-list{width:calc(100% - 32px)!important}}
 </style>
 
 </head>
@@ -422,11 +425,18 @@ function workStatusSelect(name, value, required) {
   return '<select name="' + name + '"' + (required ? ' required' : '') + '><option value="">Select your work status…</option>' + list.map(s => '<option' + (s === value ? ' selected' : '') + '>' + esc(s) + '</option>').join('') + '</select>';
 }
 
+/** Whole calendar days between a date and now, in the viewer's own time zone (yesterday evening is 1, not 0). */
+function calDaysAgo(d, now) {
+  now = now || new Date();
+  const day = x => new Date(x.getFullYear(), x.getMonth(), x.getDate());
+  return Math.max(0, Math.round((day(now) - day(d)) / 86400000));
+}
+
 /** "Posted today" / "Posted 3 days ago" with the full date as a tooltip. */
 function postedLabel(iso) {
   if (!iso) return '';
   const d = new Date(iso); if (isNaN(d)) return '';
-  const days = Math.floor((Date.now() - d) / 86400000), full = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const days = calDaysAgo(d), full = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   const rel = days < 1 ? 'today' : days < 2 ? 'yesterday' : days < 31 ? days + ' days ago' : 'on ' + full;
   return '<span class="posted" title="Posted ' + full + '">' + ic('clock') + 'Posted ' + rel + '</span>';
 }
@@ -446,7 +456,7 @@ const money = (n, cur) => (n === '' || n === null || n === undefined) ? '' : (cu
 const pct = n => (n === null || n === undefined || n === '') ? '—' : n + '%';
 const day = s => s ? String(s).slice(0, 10) : '';
 const when = s => { if (!s) return ''; const d = new Date(s); return isNaN(d) ? String(s) : d.toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); };
-const ago = s => { if (!s) return ''; const d = (Date.now() - new Date(s)) / 86400000; return d < 1 ? 'today' : d < 2 ? 'yesterday' : Math.round(d) + 'd ago'; };
+const ago = s => { if (!s) return ''; const t = new Date(s); if (isNaN(t)) return ''; const d = calDaysAgo(t); return d < 1 ? 'today' : d < 2 ? 'yesterday' : d + 'd ago'; };
 const list = v => String(v || '').split(/\s*,\s*/).filter(Boolean);
 const parse = (s, d) => { if (s && typeof s === 'object') return s; try { return s ? JSON.parse(s) : d; } catch (e) { return d; } };
 const fitCls = n => (n >= 85 ? '' : n >= 70 ? 'mid' : n >= 50 ? 'low' : 'vlow');
@@ -791,7 +801,7 @@ async function renderCareers(slug) {
 function paintCareers() {
   const d = S.ui.careers, q = (S.ui.q || '').toLowerCase(), wt = S.ui.wt || '';
   const jobs = d.jobs.filter(j => (!q || (j.title + ' ' + j.requiredSkills.join(' ') + ' ' + j.location + ' ' + j.department).toLowerCase().indexOf(q) >= 0) && (!wt || j.workType === wt));
-  paint('<div class="ih-job-page" style="min-height:100vh">' + careersTop(d.org) + '<div class="wrap" style="padding-top:24px;padding-bottom:50px">' +
+  paint('<div class="ih-job-page" style="min-height:100vh">' + careersTop(d.org) + '<div class="wrap ih-careers-list" style="padding-top:24px;padding-bottom:50px">' +
     '<div class="row wrap-row"><input type="search" id="careers-q" data-filter="careers" placeholder="Search roles, skills or locations" value="' + esc(S.ui.q || '') + '" style="max-width:420px">' +
     '<select data-change="careers-wt" style="max-width:200px">' + opts([['', 'All arrangements'], 'Remote', 'Hybrid', 'On-site'], wt) + '</select><span class="grow"></span><span class="muted small">' + jobs.length + ' open role' + (jobs.length === 1 ? '' : 's') + '</span></div>' +
     '<div class="mt16">' + (jobs.length ? jobs.map(j => '<a class="job-row" href="#job/' + esc(d.org.slug) + '/' + esc(j.id) + '"><div><b style="font-size:16.5px">' + esc(j.title) + '</b><div class="small muted">' +
@@ -3262,7 +3272,7 @@ orgDot = function (org, j) {
 postedLabel = function (iso) {
   if (!iso) return '';
   const d = new Date(iso); if (isNaN(d)) return '';
-  const days = Math.floor((Date.now() - d) / 86400000), now = new Date();
+  const now = new Date(), days = calDaysAgo(d, now);
   const date = d.toLocaleDateString('en-US', d.getFullYear() === now.getFullYear() ? { month: 'short', day: 'numeric' } : { month: 'short', day: 'numeric', year: 'numeric' });
   const rel = days < 1 ? 'today' : days < 2 ? 'yesterday' : days < 31 ? days + ' days ago' : '';
   return '<span class="posted" title="Posted ' + esc(fullDate(iso)) + '">' + ic('clock') + 'Posted ' + esc(date) + (rel ? ' <span class="dim">· ' + rel + '</span>' : '') + '</span>';
