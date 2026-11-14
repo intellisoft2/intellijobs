@@ -277,6 +277,24 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 
 
 @media(max-width:1050px){.site .wrap> .grid:has(>aside.card){grid-template-columns:1fr!important}.site .wrap> .grid:has(>aside.card)>aside{position:static}}
+
+/* Candidate job detail: aligned, balanced reading and application columns */
+.ih-job-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:start;max-width:1320px;margin-inline:auto}
+.ih-job-layout > *{min-width:0;width:100%;margin-top:0}
+.ih-job-layout .ih-job-description,.ih-job-layout .ih-job-actions>.card:first-child{margin-top:0}
+.ih-job-layout .card{border-radius:20px;padding:24px;box-sizing:border-box}
+.ih-job-layout h3{margin-top:0;line-height:1.3;letter-spacing:-.035em}
+.ih-job-layout .ih-job-description p{line-height:1.72;overflow-wrap:anywhere}
+.ih-job-actions{display:flex;flex-direction:column;gap:16px;min-width:0}
+.ih-job-actions>.card{margin-top:0!important}
+.ih-job-actions .drop-zone{padding:18px;border:1px dashed #cbd7e7;border-radius:14px;background:#f8fafd;min-width:0;box-sizing:border-box}
+.ih-job-actions .drop-zone input[type=file]{display:block;width:100%;max-width:100%;font:inherit;font-size:13px;box-sizing:border-box}
+.ih-job-actions .drop-zone input[type=file]::file-selector-button{border:1px solid #cbd5e1;border-radius:8px;padding:9px 12px;margin-right:12px;background:white;color:#23314a;font:inherit;font-weight:700;cursor:pointer}
+.ih-job-actions .drop-zone .src-row input{width:100%;min-width:0;box-sizing:border-box;text-overflow:ellipsis}
+.ih-job-actions textarea{display:block;width:100%;max-width:100%;box-sizing:border-box;min-height:110px;resize:vertical}
+.ih-job-actions .tiny{line-height:1.5;overflow-wrap:anywhere}
+@media(max-width:900px){.ih-job-layout{grid-template-columns:minmax(0,1fr)!important;gap:16px}.ih-job-layout .card{padding:20px}}
+@media(max-width:520px){.ih-job-layout .card{padding:17px;border-radius:16px}.ih-job-actions .drop-zone{padding:12px}}
 </style>
 
 </head>
@@ -739,13 +757,13 @@ function paintJob() {
     '<a href="#careers/' + esc(slug) + '" style="color:#fff;opacity:.9" class="small">← All roles at ' + esc(d.org.name) + '</a></div><h1 style="margin-top:6px">' + esc(j.title) + '</h1><p>' +
     [j.department, j.location, j.workType, j.employmentType, salaryText(j)].filter(Boolean).map(esc).join(' · ') + '</p>' +
     '<p class="small hero-dates">' + (j.publishedAt ? ic('clock') + ' Posted ' + esc(fullDate(j.publishedAt)) : '') + (j.closesAt ? ' &nbsp;·&nbsp; ' + ic('calendar') + ' Apply by ' + esc(fullDate(j.closesAt)) : '') + (j.ref ? ' &nbsp;·&nbsp; Ref ' + esc(j.ref) : '') + '</p></div></div>' +
-    '<div class="wrap grid g2" style="padding-top:22px;padding-bottom:50px;grid-template-columns:1.1fr .9fr;align-items:start">' +
-    '<div class="card"><h3>About the role</h3>' + reqChips(j, true) + '<p style="white-space:pre-wrap">' + esc(j.description) + '</p>' + (j.responsibilities ? '<h4>What you will do</h4><p style="white-space:pre-wrap">' + esc(j.responsibilities) + '</p>' : '') +
+    '<div class="wrap grid g2 ih-job-layout" style="padding-top:22px;padding-bottom:50px">' +
+    '<div class="card ih-job-description"><h3>About the role</h3>' + reqChips(j, true) + '<p style="white-space:pre-wrap">' + esc(j.description) + '</p>' + (j.responsibilities ? '<h4>What you will do</h4><p style="white-space:pre-wrap">' + esc(j.responsibilities) + '</p>' : '') +
     '<h4>Required skills</h4><div>' + chips(j.requiredSkills, 'a') + '</div>' + (j.preferredSkills.length ? '<h4 class="mt16">Nice to have</h4><div>' + chips(j.preferredSkills) + '</div>' : '') +
     (j.minYears ? '<p class="small muted mt16">Experience: ' + j.minYears + '+ years of relevant experience, or equivalent demonstrated skills.</p>' : '') +
     (j.clearance && j.clearance !== 'None' ? '<p class="small">Clearance: ability to obtain and maintain ' + esc(j.clearance) + '.</p>' : '') +
     '<div class="notice small">We review every application with people. Fit scores are job-related guidance only and never use personal characteristics. Need an accommodation to apply or interview? Mention it in your application.</div></div>' +
-    '<div>' + (applied ? '<div class="card"><h3>Application received ✓</h3>' + (applied.candidateCode ? '<p class="small">Job ID ' + idTag(applied.jobRef) + ' · Your candidate ID ' + idTag(applied.candidateCode) + '</p>' : '') + '<p class="muted">Thank you! We emailed a confirmation. Here is how your profile lines up with this role — and how to grow.</p>' + fitView(applied.fit, applied.plan, true) + '<a class="btn secondary mt16" href="#careers/' + esc(slug) + '">See other roles</a></div>'
+    '<div class="ih-job-actions">' + (applied ? '<div class="card"><h3>Application received ✓</h3>' + (applied.candidateCode ? '<p class="small">Job ID ' + idTag(applied.jobRef) + ' · Your candidate ID ' + idTag(applied.candidateCode) + '</p>' : '') + '<p class="muted">Thank you! We emailed a confirmation. Here is how your profile lines up with this role — and how to grow.</p>' + fitView(applied.fit, applied.plan, true) + '<a class="btn secondary mt16" href="#careers/' + esc(slug) + '">See other roles</a></div>'
       : '<div class="card"><h3>Check your fit</h3><p class="small muted">Paste your resume to see a transparent skills comparison before you apply. Nothing is saved.</p><form data-form="preview-fit">' +
       area('resumeText', S.ui.resumeDraft || '', 'rows="5" placeholder="Paste resume text…" id="fit-text"') + '<button class="btn secondary small mt8" type="submit">Check my fit</button></form>' + (S.ui.preview ? fitView(S.ui.preview.fit, S.ui.preview.plan, true) : '') + '</div>' +
       (S.seekerToken ? seekerApplyCard(d) : '') + '<div class="card mt16' + (S.seekerToken ? ' hidden' : '') + '" id="guest-apply"><h3>Apply</h3>' +
