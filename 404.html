@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://script.google.com"><link rel="preconnect" href="https://script.googleusercontent.com" crossorigin><link rel="dns-prefetch" href="https://script.googleusercontent.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.15.2"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.15.3"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -28,7 +28,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 h1,h2,h3,h4{margin:0 0 .5em;line-height:1.2}h1{font-size:clamp(34px,4.6vw,60px);letter-spacing:-2px}h2{font-size:28px;letter-spacing:-.6px}h3{font-size:18px}h4{font-size:15px}
 p{margin:.3em 0 .9em}.muted{color:var(--muted)}.dim{color:var(--dim)}.small{font-size:12.5px}.tiny{font-size:11px}.center{text-align:center}.right{text-align:right}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}.nowrap{white-space:nowrap}.grow{flex:1}.hidden{display:none!important}
-.wrap{max-width:1240px;margin:0 auto;padding:0 24px}.row{display:flex;align-items:center;gap:12px}.row.wrap-row{flex-wrap:wrap}.row.top{align-items:flex-start}.between{justify-content:space-between}
+.wrap{max-width:1392px;margin:0 auto;padding:0 24px}.row{display:flex;align-items:center;gap:12px}.row.wrap-row{flex-wrap:wrap}.row.top{align-items:flex-start}.between{justify-content:space-between}
 .stack>*+*{margin-top:12px}.gap8{gap:8px}.mt0{margin-top:0}.mt8{margin-top:8px}.mt16{margin-top:16px}.mt24{margin-top:24px}.mb0{margin-bottom:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--grad);border:1px solid transparent;color:var(--a-ink);border-radius:12px;padding:10px 17px;font-weight:750;cursor:pointer;text-decoration:none!important;white-space:nowrap;box-shadow:0 8px 24px -10px var(--a);transition:transform .15s,box-shadow .15s,filter .15s}
 .btn:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 14px 30px -10px var(--a)}.btn:disabled{opacity:.55;cursor:progress}
@@ -362,6 +362,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
   .ih-job-page .careers-hero > .wrap,
   .ih-job-page > .ih-job-layout {width:calc(100% - 32px)!important;}
 }
+/* one content rail for every page: header, hero and body share the same left and right edges (1344px of content, 24px gutters; 16px on phones) */
+@media(max-width:520px){.wrap{padding-left:16px;padding-right:16px}}
 /* careers page: the role list sits on the same left edge as the hero above it */
 .ih-job-page > .ih-careers-list{width:calc(100% - 48px)!important;max-width:1344px!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important}
 @media(max-width:520px){.ih-job-page > .ih-careers-list{width:calc(100% - 32px)!important}}
