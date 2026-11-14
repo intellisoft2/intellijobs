@@ -9,10 +9,10 @@
 <meta property="og:description" content="IntelliHire by Intellisoft — AI talent cloud: branded careers pages, ATS pipeline, explainable job fit, AI screening, skill assessments, consent-based verification, offers and growth plans.">
 <meta property="og:url" content="https://jobs.intellisoft-tech.com/">
 <meta name="theme-color" content="#071221">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://script.google.com"><link rel="preconnect" href="https://script.googleusercontent.com" crossorigin><link rel="dns-prefetch" href="https://script.googleusercontent.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234de0c3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2370aaff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221.5%22%20y%3D%221.5%22%20width%3D%2237%22%20height%3D%2237%22%20rx%3D%2210%22%20fill%3D%22%230b192a%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%222.5%22%2F%3E%3Cpath%20d%3D%22M12%2011v18M20%2011v18M20%2020h8M28%2011v18%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%220.01%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.14.0"};</script>
+<script>window.IJ_CONFIG = {"apiUrl":"https://script.google.com/macros/s/AKfycbyTeEkvBLQBLiuG8XIfSdACD2YpzbxMaDrdyAZBzYGlergLEIKL-fs9H-d0tnSwfDL1cg/exec","version":"1.15.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -3643,6 +3643,215 @@ Object.assign(FORMS, {
   'plat-cpro': async (v, f, b) => { try { S.plat.cpro = await busy(b, call('platformCandidatePro', { save: true, enabled: !!v.enabled, trialDays: v.trialDays, priceMonthly: v.priceMonthly, paymentLink: v.paymentLink })); renderApp(); toast('Saved.', 'ok'); } catch (e) { fail(e); } },
   'plat-cpro-grant': async (v, f, b) => { try { S.plat.cpro = await busy(b, call('platformCandidatePro', { grantEmail: v.grantEmail, days: v.days })); renderApp(); toast('Pro granted to ' + v.grantEmail + '.', 'ok'); } catch (e) { fail(e); } }
 });
+/* ------------------------------------------------------------------ v1.15: recruiter page switches; third-party (vendor) candidates & conversion */
+
+/* ---------------- hide pages / buttons a member cannot use */
+const baseRenderApp115 = renderApp;
+renderApp = function () {
+  const r = baseRenderApp115.apply(this, arguments);
+  if (S.db && S.db.who) {
+    if (!canP('careers.site')) document.querySelectorAll('.nav a[href="#app/careers-site"]').forEach(a => a.remove());
+    if (!canP('staffing.review')) document.querySelectorAll('.nav a[href="#app/sources"]').forEach(a => a.remove());
+    if (!canP('jobs.post')) document.querySelectorAll('[data-action="new-job"],[data-action="import-jobs"],[data-action="dup-job"],[data-action="duplicate-job"]').forEach(b => b.remove());
+  }
+  return r;
+};
+const notAllowed = t => head(t) + '<div class="empty">' + ic('lock') + ' Your access does not include this page. Ask an administrator.</div>';
+const baseCareersSite115 = PAGES['careers-site'];
+PAGES['careers-site'] = () => (canP('careers.site') ? baseCareersSite115() : notAllowed('Careers site'));
+const baseSources115 = PAGES.sources;
+PAGES.sources = () => (canP('staffing.review') ? baseSources115() : notAllowed('Clients & review'));
+
+/* ---------------- candidate page: vendor & right to hire */
+S.eng = {};
+function loadEng(id) {
+  if (S.eng[id] || !canP('staffing.engagements')) return;
+  S.eng[id] = { loading: true };
+  call('getEngagement', id).then(r => { S.eng[id] = r; if (S.route.parts[1] === id) renderApp(); }, () => { S.eng[id] = { error: true }; });
+}
+const RTH_HELP = { 'To be agreed': 'not agreed yet', 'Not allowed': 'no direct hire', 'Allowed after a period': 'after a waiting period', 'Allowed with a fee': 'with a fee', 'Allowed after a period with a fee': 'after a period, with a fee', 'Allowed anytime': 'any time' };
+function engCard(id) {
+  const g = S.eng[id];
+  if (!g || g.loading || g.error) return '';
+  const e = g.engagement, v = g.vendor || {};
+  if (!g.thirdParty && !e) return '<div class="small muted mb16">' + ic('briefcase') + ' Submitted by a third-party employer (vendor)? <a href="#" data-action="eng-edit" data-id="' + id + '">Record the vendor and right-to-hire terms</a>.</div>';
+  const stCls = !e ? 'warn' : e.status === 'Converted to employee' ? 'ok' : /declined/i.test(e.status) ? 'bad' : /approved|Active/.test(e.status) ? 'info' : 'warn';
+  return '<div class="card eng-card mb16"><div class="row between wrap-row"><div><h3 class="mb0">' + ic('briefcase') + ' Third-party employer · ' + esc((e && e.vendorCompany) || v.company || 'Vendor') + '</h3>' +
+    '<div class="small muted">' + (e ? esc(e.arrangement) + ' · right to hire: <b>' + esc(e.rightToHire) + '</b>' + (e.afterMonths !== '' && e.afterMonths !== undefined && /period/.test(e.rightToHire) ? ' after ' + e.afterMonths + ' months' : '') + (e.fee ? ' · fee ' + esc(e.fee) : '') : 'Vendor terms not recorded yet — this person cannot be hired or placed until they are.') + '</div></div>' +
+    chip(e ? e.status : 'Terms needed', stCls) + '</div>' +
+    (e ? '<div class="grid g4 mt8 small"><div><span class="dim">Contact</span><br>' + (g.contactVisible ? esc([e.vendorContact, e.vendorEmail, e.vendorPhone].filter(Boolean).join(' · ') || '—') : '<span class="dim">hidden</span>') + '</div>' +
+      '<div><span class="dim">Subcontract since</span><br>' + esc(e.startDate || '—') + (e.startDate ? ' (' + e.months + ' mo)' : '') + '</div><div><span class="dim">Rate</span><br>' + (g.contactVisible ? esc(e.rate || '—') : '<span class="dim">hidden</span>') + '</div>' +
+      '<div><span class="dim">Vendor decision</span><br>' + esc(e.vendorApprovedBy ? e.vendorApprovedBy + (e.vendorApprovedAt ? ' · ' + day(e.vendorApprovedAt) : '') : e.status === 'Conversion requested' ? 'requested ' + day(e.requestedAt) : '—') + '</div></div>' +
+      '<div class="notice small mt8' + (e.canConvert ? '' : ' warn') + '">' + (e.status === 'Converted to employee' ? '✓ Converted to your employee on ' + esc(String(e.convertedAt).slice(0, 10)) + '.' : (e.canConvert ? '✓ Conversion to employee is allowed: ' : 'Direct hire not allowed yet: ') + esc(e.conversionNote)) + '</div>' : '') +
+    '<div class="row wrap-row mt8"><button class="btn small secondary" data-action="eng-edit" data-id="' + id + '">' + (e ? 'Edit terms' : 'Record vendor terms') + '</button>' +
+    (e && e.status !== 'Converted to employee' ? '<button class="btn small secondary" data-action="eng-request" data-id="' + id + '">Ask vendor to approve conversion</button>' + (can('HIRING_MANAGER') ? '<button class="btn small ghost" data-action="eng-decision" data-id="' + id + '">Record vendor decision</button>' : '') +
+      (can('HIRING_MANAGER') ? '<button class="btn small' + (e.canConvert ? '' : ' ghost') + '" data-action="eng-convert" data-id="' + id + '"' + (e.canConvert ? '' : ' disabled title="' + esc(e.conversionNote) + '"') + '>Convert to employee</button>' : '') : '') + '</div></div>';
+}
+const baseAppsTab115 = CAND_TABS.apps;
+CAND_TABS.apps = d => { loadEng(d.candidate.id); return engCard(d.candidate.id) + baseAppsTab115(d); };
+const baseCandPage115 = PAGES.candidate;
+PAGES.candidate = () => {
+  let html = baseCandPage115();
+  const id = S.route.parts[1], g = S.eng[id];
+  if (g && g.thirdParty) {
+    const e = g.engagement, label = e && e.status === 'Converted to employee' ? 'Converted employee' : 'Third-party · ' + ((e && e.vendorCompany) || (g.vendor || {}).company);
+    html = html.replace(/(<h2>)/, '$1<span class="chip ' + (e && e.status === 'Converted to employee' ? 'ok' : 'warn') + ' tp-chip">' + esc(label) + '</span> ');
+  }
+  return html;
+};
+function engForm(id) {
+  const g = S.eng[id] || {}, e = g.engagement || {}, v = g.vendor || {}, L = g.lists || { arrangements: [], rightToHire: [] };
+  return '<form data-form="eng-save"><input type="hidden" name="candidateId" value="' + esc(id) + '"><div class="form-row">' +
+    field('Vendor / employer of record', inp('vendorCompany', e.vendorCompany || (v.company !== 'Third-party employer' ? v.company : '') || '', 'required')) + field('Vendor contact', inp('vendorContact', e.vendorContact || v.contact || '')) +
+    field('Vendor email', inp('vendorEmail', e.vendorEmail || v.email || '', 'type="email"')) + field('Vendor phone', inp('vendorPhone', e.vendorPhone || v.phone || '')) +
+    field('Arrangement', sel('arrangement', L.arrangements, e.arrangement || L.arrangements[0])) + field('Right to hire (convert to employee)', sel('rightToHire', L.rightToHire, e.rightToHire || 'To be agreed', 'data-change="eng-rth"')) +
+    field('Conversion allowed after (months)', inp('afterMonths', e.afterMonths === undefined ? '' : e.afterMonths, 'type="number" min="0" max="60" placeholder="e.g. 6"')) + field('Conversion fee', inp('fee', e.fee || '', 'placeholder="e.g. $15,000 or 15% of first-year salary"')) +
+    field('Subcontract start date', inp('startDate', e.startDate || '', 'type="date"')) + field('Rate (private)', inp('rate', e.rate || '', 'placeholder="$60/hr C2C"')) + '</div>' +
+    field('Notes (e.g. where the signed agreement is)', area('notes', e.notes || '', 'rows="2"')) +
+    '<p class="tiny dim">Record the terms agreed at the start, or later when they change. Upload the signed agreement under Work status & documents ("Offer / contract").</p><button class="btn mt8">Save terms</button></form>';
+}
+Object.assign(ACTIONS, {
+  'eng-edit': async (d) => { if (!S.eng[d.id] || !S.eng[d.id].lists) { try { S.eng[d.id] = await call('getEngagement', d.id); } catch (e) { return fail(e); } } openModal('Vendor & right to hire', engForm(d.id), true); },
+  'eng-request': d => { const e = (S.eng[d.id] || {}).engagement || {}; openModal('Ask the vendor to approve conversion', '<form data-form="eng-request"><input type="hidden" name="candidateId" value="' + esc(d.id) + '">' +
+    '<p class="small">We email <b>' + esc(e.vendorEmail || 'the vendor (add their email in the terms)') + '</b> a private link to approve or decline converting this person to your employee.</p><div class="form-row">' +
+    field('Proposed fee', inp('fee', e.fee || '')) + field('Proposed conversion date', inp('date', '', 'type="date"')) + '</div>' + field('Message', area('message', '', 'rows="3" placeholder="Optional note to the vendor"')) + '<button class="btn mt8">Send request</button></form>'); },
+  'eng-decision': d => openModal('Record the vendor\'s decision', '<form data-form="eng-decision"><input type="hidden" name="candidateId" value="' + esc(d.id) + '">' + field('Decision', sel('decision', [['approve', 'Vendor approved conversion'], ['decline', 'Vendor declined']], 'approve')) +
+    '<div class="form-row">' + field('Approved by (name)', inp('by', '')) + field('Agreed fee', inp('fee', ((S.eng[d.id] || {}).engagement || {}).fee || '')) + '</div>' + field('Note (e.g. "signed letter dated …")', inp('note', '')) + '<button class="btn mt8">Save</button></form>'),
+  'eng-convert': async (d, el) => { if (!confirm('Convert this person to your employee? This is recorded in the audit log.')) return; try { S.eng[d.id] = await busy(el, call('convertToEmployee', { candidateId: d.id })); toast('Converted to employee.', 'ok'); delete S.cand[d.id]; await refresh(true); } catch (e) { fail(e); } }
+});
+Object.assign(FORMS, {
+  'eng-save': async (v, f, b) => { try { S.eng[v.candidateId] = await busy(b, call('saveEngagement', v)); closeModal(); delete S.cand[v.candidateId]; await refresh(true); toast('Vendor terms saved.', 'ok'); } catch (e) { fail(e); } },
+  'eng-request': async (v, f, b) => { try { const r = await busy(b, call('requestConversion', v)); S.eng[v.candidateId] = r; closeModal(); renderApp(); linkModal('Conversion request sent', r.link, r.mail); } catch (e) { fail(e); } },
+  'eng-decision': async (v, f, b) => { try { S.eng[v.candidateId] = await busy(b, call('recordVendorDecision', v)); closeModal(); renderApp(); toast('Decision recorded.', 'ok'); } catch (e) { fail(e); } }
+});
+
+/* ---------------- offers: subcontract through the vendor */
+const baseNewOffer115 = ACTIONS['new-offer'];
+ACTIONS['new-offer'] = (d, el, ev) => {
+  baseNewOffer115(d, el, ev);
+  const a = appById(d.app), c = a ? candById(a.candidateId) : null;
+  const g = c ? S.eng[c.id] : null;
+  const tp = (g && g.thirdParty) || (c && /(^|,)\s*vendor\s*(,|$)/.test(c.tags || ''));
+  if (tp && S.modal && S.modal.body) {
+    const e = g && g.engagement;
+    S.modal.body = S.modal.body.replace('<form data-form="offer">', '<form data-form="offer"><div class="notice warn small">' + ic('briefcase') + ' Submitted by a third-party employer' + (e ? ' (' + esc(e.vendorCompany) + ')' : '') + '. ' +
+      (e && e.canConvert ? 'Direct hire is allowed: ' + esc(e.conversionNote) : 'A direct-hire offer needs the vendor\'s agreement — place them as a subcontractor instead, or convert later.') + '</div>' +
+      '<label class="check small"><input type="checkbox" name="subcontract"' + (e && e.canConvert ? '' : ' checked') + '> Subcontract through the vendor (the vendor stays the employer of record)</label>');
+    paintModal();
+  }
+};
+
+/* ---------------- vendor's private page: approve / decline conversion */
+PUBLIC_ROUTES.push('conversion');
+const baseRenderPublic115 = renderPublic;
+renderPublic = function () {
+  if (S.route.name !== 'conversion') return baseRenderPublic115();
+  const tok = S.route.parts[0] || '';
+  paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card"><div class="loading">Loading<span class="pulse"></span></div></div></div></div>');
+  call('getConversionRequest', tok).then(r => {
+    const done = r.status !== 'Conversion requested';
+    paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card"><div class="eyebrow">Conversion request</div><h2>' + esc(r.employer) + ' would like to hire ' + esc(r.candidate) + '</h2>' +
+      '<p>' + esc(r.candidate) + ' currently works with ' + esc(r.employer) + ' through <b>' + esc(r.vendor) + '</b>' + (r.since ? ' (since ' + esc(r.since) + ')' : '') + '. ' + esc(r.employer) + ' asks your agreement to convert them to a direct employee' + (r.date ? ' from ' + esc(r.date) : '') + '.</p>' +
+      '<p class="small">Terms on record: <b>' + esc(r.terms) + '</b>' + (r.fee ? ' · proposed fee: <b>' + esc(r.fee) + '</b>' : '') + '</p>' + (r.message ? '<div class="notice small">' + esc(r.message) + '</div>' : '') +
+      (done ? '<div class="notice">This request was already answered (' + esc(r.status) + ').</div>' :
+        '<form data-form="conversion"><input type="hidden" name="token" value="' + esc(tok) + '">' + field('Your name', inp('name', r.contact || '', 'required')) + field('Agreed fee (if different)', inp('fee', '')) + field('Note (optional)', area('note', '', 'rows="2"')) +
+        '<div class="row wrap-row mt8"><button class="btn" name="decision" value="approve">Approve conversion</button><button class="btn ghost" name="decision" value="decline">Decline</button></div></form>') + '</div></div></div>');
+  }, e => paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card"><h3>Link not valid</h3><p class="muted">' + esc(e.message) + '</p></div></div></div>'));
+};
+FORMS.conversion = async (v, f, b) => {
+  const decision = b && b.value === 'decline' ? 'decline' : 'approve';
+  try { await busy(b, call('decideConversion', Object.assign({}, v, { decision: decision }))); paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card"><h2>Thank you</h2><p>Your decision (' + (decision === 'approve' ? 'approved' : 'declined') + ') was sent to the employer.</p></div></div></div>'); } catch (e) { fail(e); }
+};
+/* ------------------------------------------------------------------ v1.15: speed — client cache, request de-duplication, prefetch, scroll restore */
+
+/**
+ * Answers that are safe to reuse for a short time (milliseconds). Public pages are also kept in sessionStorage so
+ * going back, forward or reloading the tab is instant. Personal answers live only in memory for this tab.
+ */
+const CLIENT_TTL = { getPublicConfig: 600000, getCareers: 120000, getPublicJob: 120000, searchJobs: 60000, getMarketStats: 300000,
+  seekerRecommendations: 60000, seekerApplications: 30000, seekerMe: 30000, seekerProfiles: 60000, getEngagement: 60000, bestCandidatesForJob: 60000, bestJobsForCandidate: 60000, getDistribution: 60000, getSources: 30000 };
+const PERSIST_FNS = { getPublicConfig: 1, getCareers: 1, getPublicJob: 1, searchJobs: 1, getMarketStats: 1 };
+const READ_RE = /^(get|list|search|preview|track|seekerMe$|seekerRecommendations$|seekerApplications$|seekerProfiles$|seekerPro|bestCandidates|bestJobs|talentSearch|platform(Overview|Intake$|IntakeReport))/;
+const memCache = new Map(), inflight = new Map();
+const ckey = (fn, args) => fn + '|' + JSON.stringify(args) + '|' + (SEEKER_FNS.test(fn) ? 's' + (S.seekerToken || '').slice(-6) : 'e' + (S.token || '').slice(-6));
+const clone = v => (v === undefined || v === null ? v : JSON.parse(JSON.stringify(v)));
+function cacheRead(k, fn) {
+  const m = memCache.get(k);
+  if (m && Date.now() - m.t < CLIENT_TTL[fn]) return m;
+  if (PERSIST_FNS[fn]) { try { const s = JSON.parse(sessionStorage.getItem('ihc:' + k) || 'null'); if (s && Date.now() - s.t < CLIENT_TTL[fn]) { memCache.set(k, s); return s; } } catch (e) { /* storage blocked */ } }
+  return null;
+}
+function cacheWrite(k, fn, data) {
+  const v = { t: Date.now(), d: data };
+  memCache.set(k, v);
+  if (PERSIST_FNS[fn]) { try { const s = JSON.stringify(v); if (s.length < 400000) sessionStorage.setItem('ihc:' + k, s); } catch (e) { /* full / blocked */ } }
+}
+function clearClientCache(all) {
+  memCache.clear();
+  if (all) { try { Object.keys(sessionStorage).filter(k => k.indexOf('ihc:') === 0).forEach(k => sessionStorage.removeItem(k)); } catch (e) { /* blocked */ } }
+}
+const baseCall115 = call;
+call = function (fn, ...args) {
+  const ttl = CLIENT_TTL[fn];
+  const k = ckey(fn, args);
+  if (ttl) { const hit = cacheRead(k, fn); if (hit) return Promise.resolve(clone(hit.d)); }
+  if (READ_RE.test(fn)) {
+    // The same request already on its way: share it instead of asking the server twice.
+    if (inflight.has(k)) return inflight.get(k).then(clone);
+    const p = baseCall115(fn, ...args).then(d => { if (ttl) cacheWrite(k, fn, d); return d; }).finally(() => inflight.delete(k));
+    inflight.set(k, p);
+    return p.then(clone);
+  }
+  // Anything that changes data: forget cached answers (public ones too — the server refreshes its copy as well).
+  return baseCall115(fn, ...args).then(d => { clearClientCache(/^(applyToJob|seekerApply|createJob|updateJob|setJobStatus|approveJob|commitJobImport|reviewEmailJobs|publishEmailDrafts|updateCareersSettings|updateOrgProfile|deleteJob|featureJob)$/.test(fn)); return d; },
+    e => { throw e; });
+};
+// Signing in or out changes what people see.
+const baseSetSession115 = setSession; setSession = function (r) { clearClientCache(false); return baseSetSession115(r); };
+const baseSetSeeker115 = setSeeker; setSeeker = function (r) { clearClientCache(false); return baseSetSeeker115(r); };
+const baseSeekerEnded115 = seekerEnded; seekerEnded = function (m) { clearClientCache(false); return baseSeekerEnded115(m); };
+const baseSessionEnded115 = sessionEnded; sessionEnded = function (m) { clearClientCache(false); return baseSessionEnded115(m); };
+
+/* ---------------- prefetch a job when the pointer rests on it (or a finger touches it) */
+let prefetchTimer = null;
+function prefetchJob(a) {
+  const m = String(a.getAttribute('href') || '').match(/^#job\/([^/]+)\/([^/?#]+)/);
+  if (!m) return;
+  const k = ckey('getPublicJob', [{ slug: m[1], jobId: m[2] }]);
+  if (cacheRead(k, 'getPublicJob') || inflight.has(k)) return;
+  call('getPublicJob', { slug: m[1], jobId: m[2] }).catch(() => {});
+}
+document.addEventListener('mouseover', e => {
+  const a = e.target.closest && e.target.closest('a[href^="#job/"]');
+  if (!a) return;
+  clearTimeout(prefetchTimer); prefetchTimer = setTimeout(() => prefetchJob(a), 120);
+});
+document.addEventListener('touchstart', e => { const a = e.target.closest && e.target.closest('a[href^="#job/"]'); if (a) prefetchJob(a); }, { passive: true });
+
+/* ---------------- keep the scroll position when going back to a list */
+const scrollPos = {};
+let pendingRestore = null;
+// Remember where the list was before leaving it (link clicks and in-app navigation).
+const rememberScroll = () => { scrollPos[location.hash || '#'] = { y: window.scrollY, t: Date.now() }; };
+document.addEventListener('click', e => { if (e.target.closest && e.target.closest('a[href^="#"],[data-action]')) rememberScroll(); }, true);
+const baseGo115 = go; go = function (h) { rememberScroll(); return baseGo115(h); };
+window.addEventListener('hashchange', e => {
+  const now = location.hash || '#', saved = scrollPos[now];
+  pendingRestore = saved && Date.now() - saved.t < 15 * 60000 && /^#(jobs|gov|careers|me\/jobs|me$|app\/(jobs|candidates|pipeline|sources|bench|talent))/.test(now) ? { hash: now, y: saved.y } : null;
+  if (!pendingRestore) window.scrollTo(0, 0);
+  else { const p = pendingRestore; [0, 60, 180, 400].forEach(ms => setTimeout(() => { if (pendingRestore === p || p.done) { p.done = true; pendingRestore = p; tryRestore(); } }, ms)); setTimeout(() => { if (pendingRestore === p) pendingRestore = null; }, 900); }
+});
+function tryRestore() {
+  if (!pendingRestore || pendingRestore.hash !== (location.hash || '#')) return;
+  const want = pendingRestore.y;
+  if (document.documentElement.scrollHeight >= want + window.innerHeight * 0.5 && Math.abs(window.scrollY - want) > 2) window.scrollTo(0, want);
+}
+const basePaint115 = paint;
+paint = function (html) {
+  basePaint115(html);
+  tryRestore();
+};
+try { history.scrollRestoration = 'manual'; } catch (e) { /* unsupported */ }
 
 bind();
 route();
