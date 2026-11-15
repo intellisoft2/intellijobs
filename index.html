@@ -5156,11 +5156,11 @@ PAGES.bench = function() {
     .replace('<button class="btn ih-glow-btn" data-action="ih-bench-new">', '<div class="ih-bench-quick-actions"><button class="btn ih-glow-btn" data-action="ih-bench-doc-first">'+ic('doc')+' Upload documents · Auto-fill</button><button class="btn secondary" data-action="ih-bench-new">')
     .replace('+ Add consultant</button></div>', '+ Manual entry</button></div></div>');
 };
-const ihBenchAutoState = { parsed: null, resume: null };
+const ihBenchAutoState = { parsed: null, resume: null, packageDocs: [], analyzed: false };
 const ihBenchAutoFields = ['name','email','phone','headline','location','skills','linkedin','yearsExp'];
 function ihBenchReviewFields(p) {
   p=p||{};
-  return '<div class="ih-form-section"><h4>02 · Review extracted profile</h4><p class="tiny dim">Only values found in the resume are suggested. Correct missing or inaccurate information before saving.</p>'+
+  return '<div class="ih-form-section"><h4>02 · Review extracted profile</h4><p class="tiny dim">Values found in uploaded professional documents are suggested; identity information requires manual review. Correct missing or inaccurate information before saving.</p>'+
     '<div class="form-row">'+field('Full name *',inp('name',p.name||'','required'))+field('Email *',inp('email',p.email||'','type="email" required'))+'</div>'+
     '<div class="form-row">'+field('Phone',inp('phone',p.phone||''))+field('Location',inp('location',p.location||''))+'</div>'+
     field('Professional headline',inp('headline',p.headline||''))+field('Skills',area('skills',Array.isArray(p.skills)?p.skills.join(', '):(p.skills||''),'rows="2"'))+
@@ -5169,44 +5169,63 @@ function ihBenchReviewFields(p) {
 }
 Object.assign(ACTIONS, {
   'ih-bench-doc-first': () => {
-    ihBenchAutoState.parsed=null;ihBenchAutoState.resume=null;
+    ihBenchAutoState.parsed=null;ihBenchAutoState.resume=null;ihBenchAutoState.packageDocs=[];ihBenchAutoState.analyzed=false;
     openModal('Consultant Bench · Document-first intake',
-      '<div class="ih-intake-lead"><span class="eyebrow">FAST INTAKE · PRIVATE SCREENING</span><h3>Upload first. Review. Add to bench.</h3><p>Start with a resume and optional supporting documents. IntelliHire extracts professional details from the resume; you only complete missing fields. Identity documents are stored privately and are not parsed into public profiles.</p></div>'+
+      '<div class="ih-intake-lead"><span class="eyebrow">FAST INTAKE · PRIVATE SCREENING</span><h3>Upload first. Review. Add to bench.</h3><p>Upload a ZIP package, resume, or multiple documents. IntelliHire inventories and organizes files, analyzes supported professional documents, and proposes profile details for your review. Identity files remain private and are never used to infer eligibility.</p></div>'+
       '<form class="ih-bench-form" data-form="ih-bench-doc-first">'+
-      '<div class="ih-form-section"><h4>01 · Upload resume</h4><label class="ih-file-drop">'+ic('doc')+' <b>Choose a resume</b><span>PDF, DOCX, DOC, TXT or RTF · max 5 MB</span><input name="resumeUpload" type="file" accept=".pdf,.doc,.docx,.txt,.rtf" required></label><button type="button" class="btn secondary mt8" data-action="ih-bench-extract">'+ic('spark')+' Extract & preview details</button></div>'+
+      '<div class="ih-form-section"><h4>01 · Upload a ZIP or individual documents</h4><p class="tiny dim">ZIP: up to 8 MB, 25 entries; supported PDF, Word, TXT, RTF and image files. ZIP entries are previewed before saving. Images are classified by filename only; OCR is not available.</p><input type="file" name="packageUpload" accept=".zip"><p class="tiny dim">Or provide a resume and additional files below.</p><label class="ih-file-drop">'+ic('doc')+' <b>Choose a resume</b><span>PDF, DOCX, DOC, TXT or RTF · max 5 MB</span><input name="resumeUpload" type="file" accept=".pdf,.doc,.docx,.txt,.rtf"></label><button type="button" class="btn secondary mt8" data-action="ih-bench-extract">'+ic('spark')+' Analyze all documents</button></div>'+
       '<div id="ih-bench-auto-review">'+ihBenchReviewFields({})+'</div>'+
-      '<div class="ih-form-section"><h4>03 · Supporting documents (optional)</h4><p class="tiny dim">You can select multiple files. Store identity documents only when necessary and authorized. Files are private, never sent to employers, and require restricted document access.</p><input type="file" name="supportingDocs" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"><p class="tiny dim">10 MB per document. Files will be labeled “Other” until reviewed in the candidate Documents tab.</p></div>'+
+      '<div class="ih-form-section"><h4>03 · Additional documents (optional)</h4><p class="tiny dim">You can select multiple files. Store identity documents only when necessary and authorized. Files are private, never sent to employers, and require restricted document access.</p><input type="file" name="supportingDocs" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"><p class="tiny dim">10 MB per document. Files will be labeled “Other” until reviewed in the candidate Documents tab.</p></div>'+
       '<label class="ih-consent-line"><input type="checkbox" name="consentConfirmed" required> I confirm authorization and a lawful purpose for collecting and storing these documents.</label>'+
       '<div class="ih-intake-progress" role="status" aria-live="polite" hidden><div class="ih-progress-track"><i></i></div><span>Preparing intake…</span></div>'+
       '<div class="row between mt16"><span class="tiny dim">Private screening · no automatic employer marketing</span><button class="btn ih-glow-btn" type="submit">Create screening bench record →</button></div></form>',true);
   },
   'ih-bench-extract': async () => {
     const f=document.querySelector('form[data-form="ih-bench-doc-first"]');if(!f)return;
-    const file=f.elements.resumeUpload.files[0];if(!file)return toast('Choose a resume first.','error');
+    const zip=f.elements.packageUpload.files[0], resume=f.elements.resumeUpload.files[0];
+    const extras=Array.from(f.elements.supportingDocs.files||[]);
+    if(!zip&&!resume&&!extras.length)return toast('Choose a ZIP or documents first.','error');
     const btn=f.querySelector('[data-action="ih-bench-extract"]');
     try {
-      btn.disabled=true;btn.textContent='Extracting resume…';
-      const encoded=await readFile(file);
-      const result=await call('extractResumeText',encoded);
-      ihBenchAutoState.resume=encoded;ihBenchAutoState.parsed=result;
-      const p=result.parsed||{};
-      const values=formValues(f);
-      const target=f.querySelector('#ih-bench-auto-review');target.innerHTML=ihBenchReviewFields(p);
-      for(const key of ihBenchAutoFields) if(values[key] && target.querySelector('[name="'+key+'"]') && !p[key])target.querySelector('[name="'+key+'"]').value=values[key];
-      toast('Resume extracted. Review all fields before saving.','ok');
-    }catch(e){fail(e);}finally{btn.disabled=false;btn.textContent='Re-extract resume';}
+      btn.disabled=true;btn.textContent='Analyzing documents…';
+      let docs=[], parsed={}, bestResume=null, failures=[];
+      if(zip){
+        const pkg=await call('analyzeBenchPackage',await readDoc(zip));
+        docs=pkg.documents.map(d=>({name:d.name,mime:d.mime,data:d.data,type:d.type,size:d.size,error:d.error,parsed:d.parsed||{},text:d.text||''}));
+        const primary=docs.find(d=>d.type==='Resume'&&Object.keys(d.parsed).length)||docs.find(d=>d.type==='Resume');
+        if(primary){parsed=primary.parsed||{};bestResume=primary;}
+        docs.filter(d=>d!==primary&&d.type!=='Passport'&&d.type!=="Driver's license"&&d.type!=='State ID').forEach(d=>{for(const k of ihBenchAutoFields)if(!parsed[k]&&d.parsed&&d.parsed[k])parsed[k]=d.parsed[k];});
+      }
+      const files=[...(resume?[resume]:[]),...extras];
+      for(const file of files){
+        const encoded=await readDoc(file);
+        const d={name:file.name,mime:encoded.mime,data:encoded.data,size:file.size,type:/resume|cv/i.test(file.name)||file===resume?'Resume':ihBenchGuessType(file.name),parsed:{},text:''};
+        if(/\.(pdf|docx?|rtf|txt)$/i.test(file.name)){
+          try {const r=await call('extractResumeText',encoded);d.parsed=r.parsed||{};d.text=r.text||'';if(d.type==='Resume'){parsed=Object.assign({},d.parsed,parsed);bestResume=d;}else if(!['Passport',"Driver's license",'State ID'].includes(d.type)){for(const k of ihBenchAutoFields)if(!parsed[k]&&d.parsed[k])parsed[k]=d.parsed[k];}}
+          catch(e){d.error='Text extraction unavailable';failures.push(file.name);}
+        }else d.error='Image OCR not available';
+        docs.push(d);
+      }
+      ihBenchAutoState.packageDocs=docs;ihBenchAutoState.parsed={parsed,text:bestResume?bestResume.text||'':''};ihBenchAutoState.resume=bestResume?{name:bestResume.name,mime:bestResume.mime,data:bestResume.data}:null;ihBenchAutoState.analyzed=true;
+      const values=formValues(f), target=f.querySelector('#ih-bench-auto-review');target.innerHTML=ihBenchReviewFields(parsed);
+      for(const key of ihBenchAutoFields)if(values[key]&&target.querySelector('[name="'+key+'"]')&&!parsed[key])target.querySelector('[name="'+key+'"]').value=values[key];
+      f.querySelector('#ih-bench-doc-inventory').innerHTML='<div class="ih-form-section"><h4>Document inventory · '+docs.length+' files</h4><p class="tiny dim">Suggested classifications are editable. All files are private and remain unverified until reviewed.</p>'+docs.map((d,i)=>'<div class="row between ih-bench-doc-row"><span><b>'+esc(d.name)+'</b><small class="dim"> · '+Math.ceil(d.size/1024)+' KB '+(d.error?' · '+esc(d.error):'')+'</small></span><select name="docType'+i+'">'+['Resume','Passport',"Driver\'s license",'State ID','I-94','H-1B approval (I-797)','Visa stamp','EAD card','Green card','Clearance letter','Offer / contract','Other'].map(t=>'<option '+(t===d.type?'selected':'')+'>'+esc(t)+'</option>').join('')+'</select></div>').join('')+'</div>';
+      toast('Documents analyzed. Review profile and classifications before saving.','ok');
+    }catch(e){fail(e);}finally{btn.disabled=false;btn.textContent='Re-analyze documents';}
   }
+
 });
+function ihBenchGuessType(name){return /passport/i.test(name)?'Passport':/driver|license/i.test(name)?"Driver's license":/i.?94/i.test(name)?'I-94':/i.?797/i.test(name)?'H-1B approval (I-797)':/ead/i.test(name)?'EAD card':/contract|offer/i.test(name)?'Offer / contract':'Other';}
 FORMS['ih-bench-doc-first']=async (v,f,b)=>{
   const progress=f.querySelector('.ih-intake-progress'), label=progress.querySelector('span'),bar=progress.querySelector('i');
   const step=(msg,pct)=>{progress.hidden=false;label.textContent=msg;bar.style.width=pct+'%';};
   let candidateId='';
   try {
     if(!f.elements.consentConfirmed.checked)throw new Error('Confirm candidate authorization before saving.');
-    const resumeFile=f.elements.resumeUpload.files[0];if(!resumeFile)throw new Error('Choose a resume.');
-    step('Reading and extracting resume…',12);
-    const file=ihBenchAutoState.resume && ihBenchAutoState.resume.name===resumeFile.name ? ihBenchAutoState.resume : await readFile(resumeFile);
-    const extracted=ihBenchAutoState.parsed && ihBenchAutoState.resume===file ? ihBenchAutoState.parsed : await call('extractResumeText',file);
+    if(!ihBenchAutoState.analyzed)throw new Error('Click Analyze all documents and review the results before creating a consultant.');
+    step('Preparing reviewed profile…',12);
+    const file=ihBenchAutoState.resume && /\.(pdf|docx?|rtf|txt)$/i.test(ihBenchAutoState.resume.name) ? ihBenchAutoState.resume : null;
+    const extracted=ihBenchAutoState.parsed||{parsed:{}};
     const p=extracted.parsed||{};
     const name=String(v.name||p.name||'').trim(), email=String(v.email||p.email||'').trim();
     if(!name||!email){step('Review required details.',0);throw new Error('Name and email are required. Review the extracted fields and enter any missing values.');}
@@ -5215,11 +5234,12 @@ FORMS['ih-bench-doc-first']=async (v,f,b)=>{
     candidateId=c.id;
     step('Adding consultant to screening bench…',60);
     const bench=await call('addToBench',{candidateId:c.id,availability:v.availability||'',rate:v.expectedRate||'',market:false});
-    const docs=Array.from(f.elements.supportingDocs.files||[]);
+    const docs=ihBenchAutoState.packageDocs.filter((d,i)=>(f.elements['docType'+i]||{}).value!=='Resume' || !file || d.name!==file.name);
     for(let i=0;i<docs.length;i++){
       step('Saving restricted document '+(i+1)+' of '+docs.length+'…',65+Math.round(30*i/Math.max(docs.length,1)));
-      const doc=await readDoc(docs[i]);
-      await call('uploadCandidateDoc',{candidateId:c.id,type:'Other',noExpiry:true,file:doc,notes:'Document-first intake; type and details require manual review'});
+      const doc=docs[i],type=(f.elements['docType'+ihBenchAutoState.packageDocs.indexOf(doc)]||{}).value||'Other';
+      if(!/\.(pdf|docx?|png|jpe?g|webp)$/i.test(doc.name))continue;
+      await call('uploadCandidateDoc',{candidateId:c.id,type:type==='Resume'?'Other':type,noExpiry:true,file:{name:doc.name,mime:doc.mime,data:doc.data},notes:'Document package intake; classification and details require manual verification'});
     }
     step('Consultant ready for screening.',100);
     closeModal();S.bench=null;S.cons=null;toast('Consultant added. Review extracted details and documents.','ok');go('#app/bench/'+bench.consultantId);
