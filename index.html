@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%22116%22%20rx%3D%2226%22%20fill%3D%22%230f2238%22%20stroke%3D%22%232a4a68%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%234de0c3%22%2F%3E%3Crect%20x%3D%2275%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%2370aaff%22%2F%3E%3Cpath%20d%3D%22M45%2072%20L75%2050%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M66%2044%20L80%2046%20L76%2059%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.17.3"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.18.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -392,6 +392,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .light .loading:before{border-color:#0d1a2f1f}
 #ij-network-progress{height:2px!important;background:transparent!important}#ij-network-progress:before{box-shadow:none!important;background:linear-gradient(90deg,transparent,#4de0c3,#70aaff)!important}
 .logo{align-items:center}.logo .mark{width:40px!important;height:40px!important;flex:0 0 40px!important;align-self:center}.logo .lt{display:block;line-height:1.05}.logo .lt small{margin-top:3px}
+
+.sub-warn{margin:8px 0;padding-left:18px}.sub-warn li{margin:3px 0;color:var(--muted)}.sub-warn li.warn{color:#ffc477}
+.rtr-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}.rtr-facts>div{border:1px solid var(--line);border-radius:10px;padding:10px}.rtr-facts span{display:block}.rtr-facts b{font-size:15px}
+.src-score{color:var(--a);margin-top:3px}.sc-grid .kpi{padding:10px}.sc-grid .kpi b{font-size:20px}@media(max-width:900px){.sc-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 
 </head>
@@ -4571,6 +4575,205 @@ PAGES.talent = function () {
 };
 const baseProTrial117 = ACTIONS['pro-trial'];
 ACTIONS['pro-trial'] = async function () { await baseProTrial117.apply(null, arguments); S.studio = null; repaintPro(); };
+
+const baseRenderAppSubs118 = renderApp;
+renderApp = function () {
+  const items = NAV[0][1], i = items.findIndex(n => n[0] === 'submissions');
+  const want = isStaffing() && can('RECRUITER') && canP('staffing.submissions');
+  if (want && i < 0) { const at = items.findIndex(n => n[0] === 'sources'); items.splice(at >= 0 ? at + 1 : 4, 0, ['submissions', ic('briefcase'), 'Submissions']); }
+  if (!want && i >= 0) items.splice(i, 1);
+  return baseRenderAppSubs118();
+};
+
+const SUB_CHIP = { 'Awaiting RTR': 'warn', 'Ready to submit': 'info', Submitted: '', 'Client interview': 'a', Offer: 'a', Placed: 'ok', Rejected: 'bad', Withdrawn: '', 'RTR declined': 'bad' };
+const rtrChip = x => x.rtrStatus === 'Signed' ? chip('RTR signed' + (x.rtrValid ? '' : ' · expired'), x.rtrValid ? 'ok' : 'warn') : x.rtrStatus === 'On file' ? chip('RTR on file', x.rtrValid ? 'ok' : 'warn')
+  : x.rtrStatus === 'Declined' ? chip('RTR declined', 'bad') : chip('RTR requested' + (x.rtrSentAt ? ' ' + ago(x.rtrSentAt) : ''), 'warn');
+const money2 = (v, u) => v === '' || v === null || v === undefined ? '—' : '$' + Number(v).toLocaleString('en-US') + (u === 'year' ? '/yr' : '/hr');
+
+function loadSubs(force) {
+  if (S.subs && !force) return;
+  if (S.subsLoading) return;
+  S.subsLoading = true;
+  call('listSubmissions', {}).then(r => { S.subs = r; }, e => { S.subs = { error: e.message }; }).then(() => { S.subsLoading = false; if (S.route.parts[0] === 'submissions' || S.route.parts[0] === 'candidate') renderApp(); });
+}
+
+PAGES.submissions = () => {
+  if (!isStaffing() || !canP('staffing.submissions')) return head('Submissions') + '<div class="empty">Submissions are for staffing workspaces.</div>';
+  loadSubs(false);
+  const r = S.subs, f = S.ui.subf || {};
+  const top = head('Submissions', 'Candidates put forward to end clients and vendors — with right to represent and duplicate checks', '<button class="btn" data-action="sub-new">+ New submission</button>');
+  if (!r) return top + '<div class="loading">Loading submissions<span class="pulse"></span></div>';
+  if (r.error) return top + '<div class="notice bad">' + esc(r.error) + '</div>';
+  const t = r.totals;
+  let list = r.submissions;
+  if (f.status) list = list.filter(x => x.status === f.status);
+  if (f.q) { const q = f.q.toLowerCase(); list = list.filter(x => (x.candidateName + ' ' + x.jobTitle + ' ' + x.clientName + ' ' + x.vendorName).toLowerCase().indexOf(q) >= 0); }
+  return top + '<div class="grid g4">' + kpi(t.active, 'Active submissions') + kpi(t.awaitingRtr, 'Awaiting RTR', 'candidate to confirm') + kpi(t.interviews, 'Client interviews') + kpi(t.placedThisMonth, 'Placed this month') + '</div>' +
+    '<div class="row wrap-row mt16"><input type="search" data-change="sub-q" value="' + esc(f.q || '') + '" placeholder="Search candidate, job, client, vendor" style="max-width:320px">' +
+    '<div class="seg">' + [['', 'All']].concat(r.statuses.map(s => [s, s])).map(s => '<button class="' + ((f.status || '') === s[0] ? 'on' : '') + '" data-action="sub-filter" data-v="' + esc(s[0]) + '">' + esc(s[1]) + '</button>').join('') + '</div></div>' +
+    (list.length ? '<div class="table-wrap mt8"><table><tr><th>Candidate</th><th>Job · end client</th><th>Vendor</th><th class="right">Pay / bill</th><th>Right to represent</th><th>Status</th><th></th></tr>' + list.map(x => subRow(x, r.canSee)).join('') + '</table></div>'
+      : '<div class="empty mt8">No submissions' + (f.status || f.q ? ' match' : ' yet') + '. Use <b>+ New submission</b> or the <b>Submit to client</b> button on a candidate.</div>') +
+    '<div class="notice small mt16">' + ic('shield') + ' Before anyone is sent, the candidate confirms the right to represent (RTR) through a private link — or you record a signed RTR on file. The same person (matched by record, email or phone) to the same end client within 90 days is blocked unless a hiring manager records a reason.</div>';
+};
+function subRow(x, canSee) {
+  const ok = x.rtrStatus === 'Signed' || x.rtrStatus === 'On file';
+  return '<tr><td><a href="#app/candidate/' + esc(x.candidateId) + '"><b>' + esc(x.candidateName || '—') + '</b></a><div class="tiny dim">' + esc(x.candidateCode || '') + ' · ' + esc(day(x.createdAt)) + '</div></td>' +
+    '<td><a href="#app/job/' + esc(x.jobId) + '">' + esc(x.jobTitle) + '</a><div class="small muted">' + esc(x.clientName || '—') + '</div>' + (x.overrideReason ? '<div class="tiny" style="color:#ffc477">Override: ' + esc(x.overrideReason) + '</div>' : '') + '</td>' +
+    '<td>' + esc(x.vendorName || 'Direct') + (canSee && x.vendorEmail ? '<div class="tiny dim">' + esc(x.vendorEmail) + '</div>' : '') + '</td>' +
+    '<td class="right nowrap">' + money2(x.payRate, x.rateUnit) + (canSee ? '<div class="tiny dim">bill ' + money2(x.billRate, x.rateUnit) + (x.margin !== null ? ' · ' + x.margin + '%' : '') + '</div>' : '') + '</td>' +
+    '<td>' + rtrChip(x) + (x.rtrValidUntil && ok ? '<div class="tiny dim">valid to ' + esc(x.rtrValidUntil) + '</div>' : '') + '</td>' +
+    '<td><select data-change="sub-status" data-id="' + esc(x.id) + '" aria-label="Status" style="min-width:160px">' + opts((S.subs.statuses || []).map(s => [s, s]), x.status) + '</select>' + (x.submittedAt ? '<div class="tiny dim">sent ' + esc(day(x.submittedAt)) + '</div>' : '') + '</td>' +
+    '<td class="right nowrap">' + (ok && canSee && ['Ready to submit', 'Submitted'].indexOf(x.status) >= 0 ? '<button class="btn small" data-action="sub-send" data-id="' + esc(x.id) + '">' + (x.status === 'Submitted' ? 'Resend to vendor' : 'Send to vendor') + '</button> ' : '') +
+    (!ok && x.rtrStatus !== 'Declined' ? '<button class="btn small secondary" data-action="sub-rtr" data-id="' + esc(x.id) + '">Resend RTR</button> <button class="btn small ghost" data-action="sub-onfile" data-id="' + esc(x.id) + '">RTR on file</button> ' : '') +
+    '<button class="btn small ghost" data-action="sub-notes" data-id="' + esc(x.id) + '">Notes</button></td></tr>';
+}
+function rtrLinkModal(link) {
+  openModal('Right to represent link', '<p class="small">The email could not be delivered to this candidate\'s address. Send them this private link yourself (text or email) — it works once and expires in 14 days.</p>' +
+    '<div class="row"><input type="text" readonly value="' + esc(link) + '"><button class="btn small secondary" data-action="copy" data-text="' + esc(link) + '">Copy</button></div>');
+}
+function subById(id) { return ((S.subs || {}).submissions || []).concat(Object.values(S.subsByCand || {}).flat()).find(x => x.id === id); }
+function afterSub(r, msg) { S.subs = null; S.subsByCand = {}; loadSubs(true); if (msg) toast(msg, 'ok', 6000); renderApp(); return r; }
+
+function subForm(pre) {
+  pre = pre || {};
+  const cands = (S.db.candidates || []).slice().sort((a, b) => String(a.name).localeCompare(String(b.name)));
+  const jobs = (S.db.jobs || []).filter(j => ['Open', 'On Hold', 'Draft'].indexOf(j.status) >= 0).sort((a, b) => (b.sourceId === 'email') - (a.sourceId === 'email') || String(b.createdAt).localeCompare(String(a.createdAt)));
+  S.ui.subNew = { candidateId: pre.candidateId || '', jobId: pre.jobId || '', check: null };
+  openModal('New submission', '<form data-form="sub-new"><div class="form-row">' +
+    field('Candidate', sel('candidateId', [['', 'Choose…']].concat(cands.map(c => [c.id, c.name + (c.code ? ' · ' + c.code : '')])), pre.candidateId || '', 'required data-change="sub-pick"')) +
+    field('Job', sel('jobId', [['', 'Choose…']].concat(jobs.map(j => [j.id, j.title + (j.code ? ' · ' + j.code : '') + (j.location ? ' · ' + j.location : '')])), pre.jobId || '', 'required data-change="sub-pick"')) + '</div>' +
+    '<div id="sub-check"><p class="small muted">Choose a candidate and a job — we check for duplicates and fill in the end client and vendor.</p></div></form>', true);
+  if (pre.candidateId && pre.jobId) subCheck();
+}
+async function subCheck(vendorKey) {
+  const f = document.querySelector('form[data-form="sub-new"]'); if (!f) return;
+  const cid = f.candidateId.value, jid = f.jobId.value, box = $('sub-check');
+  if (!cid || !jid) return;
+  box.innerHTML = '<div class="loading small">Checking for duplicates<span class="pulse"></span></div>';
+  try {
+    const ck = await call('checkSubmission', { candidateId: cid, jobId: jid, vendorKey: vendorKey || (f.vendorKey && f.vendorKey.value) || '', clientName: (f.clientName && f.clientName.value) || '' });
+    S.ui.subNew.check = ck;
+    const canSee = S.db.who && canP('staffing.sources');
+    const v = ck.vendors.find(x => x.key === (vendorKey || (f.vendorKey && f.vendorKey.value))) || ck.vendors[0] || {};
+    const hard = ck.duplicates.some(d => d.kind === 'job' || d.kind === 'vendor'), soft = ck.blocked && !hard;
+    box.innerHTML = (ck.duplicates.length ? '<div class="notice bad small mt8"><b>' + (hard ? 'Cannot submit' : 'Possible duplicate') + '</b><ul class="mb0">' + ck.duplicates.map(d => '<li>' + esc(d.text) + '</li>').join('') + '</ul></div>' : '<div class="notice ok small mt8">' + ic('check') + ' No duplicate submission found for this person.</div>') +
+      (ck.warnings.length ? '<ul class="small sub-warn">' + ck.warnings.map(w => '<li class="' + w.level + '">' + esc(w.text) + '</li>').join('') + '</ul>' : '') +
+      '<div class="form-row">' + field('End client', canSee ? inp('clientName', ck.client, 'maxlength="120" placeholder="End client" data-change="sub-recheck"') : '<input disabled value="' + esc(ck.client || '—') + '">') +
+      field('Vendor (sent the requirement)', sel('vendorKey', ck.vendors.length ? ck.vendors.map(x => [x.key, x.name + (x.agreement && x.agreement.status ? ' · ' + x.agreement.status : '')]) : [['', 'Direct to client']], v.key || '', 'data-change="sub-vendor"')) + '</div>' +
+      (canSee ? '<div class="form-row">' + field('Vendor contact', inp('vendorContact', v.contact || '', 'maxlength="120"')) + field('Vendor email', inp('vendorEmail', v.email || '', 'type="email"')) + '</div>' : '') +
+      '<div class="form-row">' + field('Pay rate (W2)', inp('payRate', '', 'type="number" min="0" step="0.01" placeholder="e.g. 62"')) + (canSee ? field('Bill rate to vendor', inp('billRate', '', 'type="number" min="0" step="0.01" placeholder="e.g. 78"') + (v.rate ? '<div class="tiny dim mt8">Rate in their email: ' + esc(v.rate) + '</div>' : '')) : '') +
+      field('Per', sel('rateUnit', [['hour', 'Hour'], ['year', 'Year']], 'hour')) + '</div>' +
+      field('Right to represent', sel('rtr', [['send', 'Email the candidate a link to confirm the RTR (recommended)'], ['onfile', 'A signed RTR is already on file']], 'send')) +
+      field('Notes (optional)', area('notes', '', 'rows="2" maxlength="1500" placeholder="Availability, interview slots, anything the vendor should know"')) +
+      (soft ? field('Reason to submit anyway (hiring manager or admin)', inp('overrideReason', '', 'required maxlength="300" placeholder="e.g. The client asked for this person for a different team"')) : '') +
+      '<button class="btn mt8"' + (hard ? ' disabled' : '') + '>' + (soft ? 'Submit anyway' : 'Create submission') + '</button>';
+  } catch (e) { box.innerHTML = '<div class="notice bad small">' + esc(e.message) + '</div>'; }
+}
+Object.assign(CHANGES, {
+  'sub-pick': () => subCheck(),
+  'sub-vendor': (v) => subCheck(v),
+  'sub-recheck': () => subCheck(),
+  'sub-q': (v, el) => { S.ui.subf = Object.assign({}, S.ui.subf, { q: el.value }); renderApp(); const i = document.querySelector('[data-change=sub-q]'); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } },
+  'sub-status': async (v, el) => {
+    const x = subById(el.dataset.id);
+    try { await call('updateSubmission', { id: el.dataset.id, status: v }); afterSub(null, 'Status: ' + v + '.'); } catch (e) { fail(e); if (x) el.value = x.status; }
+  }
+});
+Object.assign(FORMS, {
+  'sub-new': async (v, f, b) => {
+    try {
+      const r = await busy(b, call('createSubmission', v));
+      closeModal();
+      afterSub(r, r.rtrLink ? (r.mail && r.mail.sent ? 'Submission created — the candidate was emailed a link to confirm the right to represent.' : '') : 'Submission created with the RTR on file — ready to send to the vendor.');
+      if (r.rtrLink && !(r.mail && r.mail.sent)) rtrLinkModal(r.rtrLink);
+    } catch (e) { fail(e); }
+  },
+  'sub-send': async (v, f, b) => { try { const r = await busy(b, call('sendSubmissionToVendor', v)); closeModal(); afterSub(r, 'Sent to ' + (v.to || 'the vendor') + (r.attached ? ' with the resume attached.' : ' (no resume file on record — send it separately).')); } catch (e) { fail(e); } },
+  'sub-notes': async (v, f, b) => { try { await busy(b, call('updateSubmission', v)); closeModal(); afterSub(null, 'Saved.'); } catch (e) { fail(e); } }
+});
+Object.assign(ACTIONS, {
+  'sub-new': d => subForm({ candidateId: d.cand || '', jobId: d.job || '' }),
+  'sub-filter': d => { S.ui.subf = Object.assign({}, S.ui.subf, { status: d.v }); renderApp(); },
+  'sub-rtr': async (d, el) => { try { const r = await busy(el, call('resendRtr', d.id)); afterSub(r, r.mail && r.mail.sent ? 'RTR link sent again.' : ''); if (!(r.mail && r.mail.sent)) rtrLinkModal(r.rtrLink); } catch (e) { fail(e); } },
+  'sub-onfile': async (d, el) => { if (!confirm('Record that a signed right to represent is on file for this submission?')) return; try { await busy(el, call('updateSubmission', { id: d.id, rtrOnFile: true })); afterSub(null, 'RTR recorded as on file.'); } catch (e) { fail(e); } },
+  'sub-send': d => { const x = subById(d.id) || {}; openModal('Send to vendor', '<form data-form="sub-send"><input type="hidden" name="id" value="' + esc(d.id) + '"><p class="small">' + esc(x.candidateName) + ' → ' + esc(x.jobTitle) + (x.clientName ? ' (' + esc(x.clientName) + ')' : '') + '. The email includes the candidate summary, the bill rate, W2 employment, the RTR date and the resume file.</p>' +
+    field('Vendor email', inp('to', x.vendorEmail || '', 'type="email" required')) + field('Message (optional)', area('message', '', 'rows="3" placeholder="Availability, best time to interview…"')) + '<button class="btn mt8">Send</button></form>'); },
+  'sub-notes': d => { const x = subById(d.id) || {}; openModal('Notes', '<form data-form="sub-notes"><input type="hidden" name="id" value="' + esc(d.id) + '">' + field('Client interview date', inp('interviewAt', x.interviewAt || '', 'type="date"')) + field('Notes', area('notes', x.notes || '', 'rows="5" maxlength="1500"')) +
+    (x.rtrText ? '<details class="small mt8"><summary>Right to represent text</summary><p class="mt8">' + esc(x.rtrText) + '</p>' + (x.rtrSignedName ? '<p class="tiny dim">' + esc(x.rtrSignedName) + ' · ' + esc(String(x.rtrSignedAt || '').slice(0, 16).replace('T', ' ')) + ' UTC</p>' : '') + '</details>' : '') + '<button class="btn mt8">Save</button></form>'); }
+});
+
+S.subsByCand = {};
+const baseAppsTab118 = CAND_TABS.apps;
+CAND_TABS.apps = d => {
+  const html = baseAppsTab118(d);
+  if (!isStaffing() || !canP('staffing.submissions')) return html;
+  const id = d.candidate.id, list = S.subsByCand[id];
+  if (!list) { S.subsByCand[id] = []; call('listSubmissions', { candidateId: id }).then(r => { S.subsByCand[id] = r.submissions; if (S.subs) S.subs.statuses = r.statuses; else S.subs = null; S.subStatuses = r.statuses; renderApp(); }, () => {}); }
+  const rows = S.subsByCand[id] || [];
+  const card = '<div class="card mt16"><div class="row between wrap-row"><h3 class="mb0">' + ic('briefcase') + ' Client submissions</h3><button class="btn small" data-action="sub-new" data-cand="' + esc(id) + '">Submit to client</button></div>' +
+    (rows.length ? '<div class="table-wrap mt8"><table><tr><th>Job · end client</th><th>Vendor</th><th>RTR</th><th>Status</th></tr>' + rows.map(x => '<tr><td>' + esc(x.jobTitle) + '<div class="small muted">' + esc(x.clientName || '—') + '</div></td><td>' + esc(x.vendorName || 'Direct') + '</td><td>' + rtrChip(x) + '</td><td>' + chip(x.status, SUB_CHIP[x.status] || '') + (x.submittedAt ? '<div class="tiny dim">' + esc(day(x.submittedAt)) + '</div>' : '') + '</td></tr>').join('') + '</table></div>'
+      : '<p class="small muted mt8">Not submitted to any client yet.</p>') + '</div>';
+  return card + html;
+};
+
+PUBLIC_ROUTES.push('rtr');
+const baseRenderPublic118 = renderPublic;
+renderPublic = function () {
+  if (S.route.name !== 'rtr') return baseRenderPublic118();
+  const tok = S.route.parts[0] || '';
+  const shell = inner => paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card" style="max-width:640px;margin:auto">' + inner + '</div></div></div>');
+  shell('<div class="loading">Loading<span class="pulse"></span></div>');
+  call('getRtr', tok).then(r => {
+    const done = r.status !== 'Requested';
+    shell((r.logoUrl ? '<img src="' + esc(r.logoUrl) + '" alt="" style="height:44px;border-radius:8px;margin-bottom:8px">' : '') + '<div class="eyebrow">Right to represent</div><h2>' + esc(r.company) + ' would like to submit you for ' + esc(r.job) + '</h2>' +
+      '<div class="rtr-facts"><div><span class="tiny dim">End client</span><b>' + esc(r.client || '—') + '</b></div>' + (r.vendor ? '<div><span class="tiny dim">Through</span><b>' + esc(r.vendor) + '</b></div>' : '') + (r.location ? '<div><span class="tiny dim">Location</span><b>' + esc(r.location) + '</b></div>' : '') +
+      (r.pay ? '<div><span class="tiny dim">Your pay (W2)</span><b>' + esc(r.pay) + '</b></div>' : '') + '<div><span class="tiny dim">Valid until</span><b>' + esc(r.validUntil) + '</b></div></div>' +
+      '<div class="notice small mt16">' + esc(r.text) + '</div>' +
+      (done ? '<div class="notice mt16">You already answered (' + esc(r.status) + ').</div>' :
+        '<form data-form="rtr" class="mt16"><input type="hidden" name="token" value="' + esc(tok) + '">' + field('Your full name', inp('name', r.candidate || '', 'required maxlength="120"')) +
+        '<label class="check mt8"><input type="checkbox" name="agree"> <span>I confirm the statement above and authorize ' + esc(r.company) + ' to represent me for this position.</span></label>' +
+        field('Note (optional)', area('note', '', 'rows="2" placeholder="For example: I was already submitted to this client by another company"')) +
+        '<div class="row wrap-row mt8"><button class="btn" name="decision" value="confirm">Confirm</button><button class="btn ghost" name="decision" value="decline">I do not authorize</button></div></form>'));
+  }, e => shell('<h3>Link not valid</h3><p class="muted">' + esc(e.message) + '</p>'));
+};
+FORMS.rtr = async (v, f, b) => {
+  const decision = b && b.value === 'decline' ? 'decline' : 'confirm';
+  try { await busy(b, call('signRtr', Object.assign({}, v, { decision: decision, agree: !!v.agree }))); paint('<div class="light" style="min-height:100vh"><div class="task"><div class="card" style="max-width:640px;margin:auto"><h2>Thank you</h2><p>' + (decision === 'confirm' ? 'Your confirmation was recorded. Your recruiter will be in touch with next steps.' : 'Your answer was sent to the recruiter. You will not be submitted for this role.') + '</p></div></div></div>'); } catch (e) { fail(e); }
+};
+
+function agreementChip(a) {
+  if (!a || (!a.status && !a.expires)) return '';
+  if (a.expired) return ' <span class="chip bad tiny">Agreement expired ' + esc(a.expires) + '</span>';
+  if (a.days !== null && a.days <= 30) return ' <span class="chip warn tiny">Agreement expires in ' + a.days + 'd</span>';
+  return '';
+}
+const baseSourceTable118 = sourceTable;
+sourceTable = function (r, kind, q) {
+  let h = baseSourceTable118(r, kind, q);
+  const all = kind === 'client' ? r.clients : r.vendors;
+  all.forEach(x => {
+    const marker = 'data-action="src-details" data-kind="' + kind + '" data-key="' + esc(x.key) + '"';
+    const i = h.indexOf(marker); if (i < 0) return;
+    const rowStart = h.lastIndexOf('<tr>', i), nameEnd = h.indexOf('</b>', rowStart);
+    const sc = x.score, extra = agreementChip(x.agreement) + (sc && sc.submissions ? '<div class="tiny src-score">' + sc.submissions + ' submitted · ' + sc.interviews + ' interview' + (sc.interviews === 1 ? '' : 's') + ' · ' + sc.placed + ' placed' + (sc.placementRate !== null ? ' (' + sc.placementRate + '%)' : '') + '</div>' : '');
+    if (nameEnd > rowStart && extra) h = h.slice(0, nameEnd + 4) + extra + h.slice(nameEnd + 4);
+  });
+  return h;
+};
+const baseSrcDetails118 = srcDetailsHtml;
+srcDetailsHtml = function (kind, x) {
+  let h = baseSrcDetails118(kind, x);
+  const i = x.info || {};
+  h = h.replace('<button class="btn mt8">Save ', '<div class="form-row">' + field('Agreement expires', inp('msaExpires', String(i.msaExpires || '').slice(0, 10), 'type="date"')) + '<div class="small muted" style="align-self:end;padding-bottom:10px">Admins get an email 30 and 7 days before, and on expiry.</div></div><button class="btn mt8">Save ');
+  const sc = x.score;
+  if (kind === 'vendor' && sc) {
+    const cell = (v, l) => '<div class="kpi card flat"><b>' + (v === null || v === undefined ? '—' : v) + '</b><span>' + l + '</span></div>';
+    h = '<h4 class="mb0">Scorecard</h4><div class="grid g6 mt8 sc-grid">' + cell(sc.reqs, 'requirements') + cell(sc.submissions, 'submitted') + cell(sc.interviews, 'interviews') + cell(sc.placed, 'placed') +
+      cell(sc.interviewRate === null ? null : sc.interviewRate + '%', 'interview rate') + cell(sc.avgDaysToSubmit === null ? null : sc.avgDaysToSubmit + 'd', 'avg. time to submit') + '</div>' +
+      '<p class="tiny dim">From requirement emails and your submissions. Placement rate: ' + (sc.placementRate === null ? '—' : sc.placementRate + '%') + ' of sent submissions.</p>' + h;
+  }
+  return h;
+};
 
 bind();
 route();
