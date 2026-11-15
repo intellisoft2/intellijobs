@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%22116%22%20rx%3D%2226%22%20fill%3D%22%230f2238%22%20stroke%3D%22%232a4a68%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%234de0c3%22%2F%3E%3Crect%20x%3D%2275%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%2370aaff%22%2F%3E%3Cpath%20d%3D%22M45%2072%20L75%2050%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M66%2044%20L80%2046%20L76%2059%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.18.0"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.19.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -396,6 +396,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .sub-warn{margin:8px 0;padding-left:18px}.sub-warn li{margin:3px 0;color:var(--muted)}.sub-warn li.warn{color:#ffc477}
 .rtr-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}.rtr-facts>div{border:1px solid var(--line);border-radius:10px;padding:10px}.rtr-facts span{display:block}.rtr-facts b{font-size:15px}
 .src-score{color:var(--a);margin-top:3px}.sc-grid .kpi{padding:10px}.sc-grid .kpi b{font-size:20px}@media(max-width:900px){.sc-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.copilot-box{border:1px solid #4de0c355!important;background:#4de0c30d!important;margin-bottom:14px}.copilot-box textarea{width:100%;margin-top:8px}.ai-changed{border-color:#4de0c3!important;box-shadow:0 0 0 2px #4de0c333!important;background:#4de0c30f!important}.cop-changes{margin:6px 0 0;padding-left:18px}.cop-changes li{margin:2px 0}.strike{text-decoration:line-through;opacity:.7}
 </style>
 
 </head>
@@ -4774,6 +4776,85 @@ srcDetailsHtml = function (kind, x) {
   }
   return h;
 };
+
+const COP_HINT = {
+  'job:new': 'Paste a hiring brief or a full job description — or just type it: "Senior Java developer, Reston VA hybrid, $140–160k, Java, Spring Boot, AWS, 7+ years"',
+  'job:edit': 'Type the changes: "make it remote, add Kubernetes, remove Spark, pay 150–170k, close on 2026-12-31" — or paste an updated description',
+  'candidate:new': 'Paste a resume, LinkedIn profile or notes about the candidate — the copilot fills in the profile',
+  'candidate:edit': 'Type the changes: "now H-1B, available in 2 weeks, add skills Kubernetes, Airflow, location: Reston, VA" — or paste an updated resume',
+  'consultant:edit': 'Type the changes: "available immediately, rate $70/hr W2, add Terraform" — or paste the resume to rebuild the anonymized profile'
+};
+function copilotBox(kind, editing, id) {
+  const key = kind + ':' + (editing ? 'edit' : 'new');
+  return '<div class="card flat tight copilot-box"><div class="row between wrap-row"><b>✦ Copilot</b><span class="tiny dim">' + (editing ? 'Edit with plain words' : 'Create from plain text') + ' — you review every change before saving</span></div>' +
+    '<textarea id="cop-text" rows="3" placeholder="' + esc(COP_HINT[key] || COP_HINT[kind + ':new']) + '"></textarea>' +
+    '<div class="row wrap-row mt8">' + (kind !== 'consultant' ? '<input type="file" id="cop-file" accept=".txt,.md,.pdf,.doc,.docx,.rtf" aria-label="Or attach a file" style="max-width:260px">' : '') +
+    '<button type="button" class="btn small" data-action="cop-run" data-kind="' + kind + '" data-id="' + esc(id || '') + '">' + ic('spark') + ' ' + (editing ? 'Apply changes' : 'Fill in the form') + '</button>' +
+    '<span class="tiny dim">Ctrl + Enter</span></div><div class="cop-result"></div></div>';
+}
+
+const baseJobForm119 = jobForm;
+jobForm = function (j) {
+  let h = baseJobForm119(j);
+  const box = copilotBox('job', !!(j && j.id), j && j.id);
+  const a = h.indexOf('<div class="card flat tight"><b>✦ Draft from a hiring brief</b>');
+  const end = 'data-action="ai-draft">Draft with AI</button></div>';
+  if (a >= 0 && h.indexOf(end, a) > a) return h.slice(0, a) + box + h.slice(h.indexOf(end, a) + end.length);
+  return h.replace(/(<div class="ij-step-panel" data-ij-panel="0"><input type="hidden" name="id" value="[^"]*">)/, '$1' + box);
+};
+const baseCandForm119 = candForm;
+candForm = function (c) {
+  const h = baseCandForm119(c);
+  return h.replace(/(<form data-form="candidate"><input type="hidden" name="id" value="[^"]*">)/, '$1' + copilotBox('candidate', !!(c && c.id), c && c.id));
+};
+const baseBenchDetail119 = benchDetail;
+benchDetail = function (id) {
+  const h = baseBenchDetail119(id);
+  return h.replace(/(<form data-form="cons-save" class="card"><input type="hidden" name="id" value="([^"]*)"><h3>Marketing profile[\s\S]*?<\/h3>)/, (m, all, cid) => all + copilotBox('consultant', true, cid));
+};
+
+function copSetField(form, name, value) {
+  let el = form.elements[name];
+  if (!el) { el = document.createElement('input'); el.type = 'hidden'; el.name = name; form.appendChild(el); }
+  if (el.tagName === 'SELECT' && !Array.from(el.options).some(o => o.value === String(value))) { const o = document.createElement('option'); o.value = o.textContent = String(value); el.appendChild(o); }
+  el.value = value;
+  el.classList.add('ai-changed');
+  el.dispatchEvent(new Event('input', { bubbles: true }));
+}
+async function copRun(btn) {
+  const box = btn.closest('.copilot-box'), form = btn.closest('form'), out = box.querySelector('.cop-result');
+  const kind = btn.dataset.kind;
+  let text = (box.querySelector('#cop-text') || {}).value || '';
+  try {
+    const fi = box.querySelector('#cop-file');
+    if (fi && fi.files && fi.files[0]) { const file = await readFile(fi.files[0]); const x = await busy(btn, call('extractResumeText', file)); text = (text + '\n\n' + (x.text || '')).trim(); }
+    if (text.trim().length < 3) return toast('Type or paste something first.', 'error');
+    const cur = formValues(form);
+    const r = await busy(btn, call('copilotFill', { kind: kind, text: text, current: cur, id: btn.dataset.id || '' }));
+    const prev = {};
+    Object.keys(r.fields).forEach(k => { prev[k] = form.elements[k] ? form.elements[k].value : ''; copSetField(form, k, r.fields[k]); });
+    form._copUndo = prev;
+    if (kind === 'job' && r.inclusive && $('inclusive') && typeof inclusiveHtml === 'function') $('inclusive').innerHTML = inclusiveHtml(r.inclusive);
+    const other = kind === 'job' ? Object.keys(r.fields).filter(k => { const el = form.elements[k]; const p = el && el.closest('[data-ij-panel]'); return p && p.hidden; }).length : 0;
+    out.innerHTML = r.changes.length ? '<div class="notice ok small mt8"><b>' + esc(r.summary) + '</b> <span class="tiny dim">(' + esc(r.provider === 'rules' ? 'built-in rules' : 'AI') + ')</span>' +
+      '<ul class="cop-changes">' + r.changes.map(c => '<li><b>' + esc(c.label) + '</b>: ' + (c.from ? '<span class="strike">' + esc(c.from.length > 60 ? c.from.slice(0, 60) + '…' : c.from) + '</span> → ' : '') + esc(c.to.length > 90 ? c.to.slice(0, 90) + '…' : c.to) + '</li>').join('') + '</ul>' +
+      (other ? '<div class="tiny">Some changes are in the next steps of the form (' + other + ') — review them before saving.</div>' : '') +
+      '<div class="row mt8"><button type="button" class="btn tiny ghost" data-action="cop-undo">Undo</button><span class="tiny dim">Nothing is saved until you click Save.</span></div></div>'
+      : '<div class="notice small mt8">' + esc(r.summary) + ' Try naming the field, e.g. "Location: Reston, VA" or "add skills Kubernetes".</div>';
+  } catch (e) { fail(e); }
+}
+Object.assign(ACTIONS, {
+  'cop-run': (d, el) => copRun(el),
+  'cop-undo': (d, el) => {
+    const form = el.closest('form'); const prev = form && form._copUndo; if (!prev) return;
+    Object.keys(prev).forEach(k => { const f = form.elements[k]; if (f) { f.value = prev[k]; f.classList.remove('ai-changed'); } });
+    form._copUndo = null; el.closest('.cop-result').innerHTML = '<div class="notice small mt8">Changes undone.</div>';
+  }
+});
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && e.target && e.target.id === 'cop-text') { e.preventDefault(); const b = e.target.closest('.copilot-box').querySelector('[data-action="cop-run"]'); if (b) copRun(b); }
+});
+document.addEventListener('input', e => { if (e.isTrusted && e.target && e.target.classList && e.target.classList.contains('ai-changed')) e.target.classList.remove('ai-changed'); });
 
 bind();
 route();
