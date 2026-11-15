@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%22116%22%20rx%3D%2226%22%20fill%3D%22%230f2238%22%20stroke%3D%22%232a4a68%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%234de0c3%22%2F%3E%3Crect%20x%3D%2275%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%2370aaff%22%2F%3E%3Cpath%20d%3D%22M45%2072%20L75%2050%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M66%2044%20L80%2046%20L76%2059%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.19.0"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.20.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -398,6 +398,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .src-score{color:var(--a);margin-top:3px}.sc-grid .kpi{padding:10px}.sc-grid .kpi b{font-size:20px}@media(max-width:900px){.sc-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 .copilot-box{border:1px solid #4de0c355!important;background:#4de0c30d!important;margin-bottom:14px}.copilot-box textarea{width:100%;margin-top:8px}.ai-changed{border-color:#4de0c3!important;box-shadow:0 0 0 2px #4de0c333!important;background:#4de0c30f!important}.cop-changes{margin:6px 0 0;padding-left:18px}.cop-changes li{margin:2px 0}.strike{text-decoration:line-through;opacity:.7}
+
+.boosts-card h3{display:flex;gap:8px;align-items:center}.boost-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.boost-tile{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel2);display:flex;flex-direction:column;justify-content:space-between}.boost-tile p{margin:6px 0 10px}.boost-tile b{display:inline-flex;gap:6px;align-items:center}.boost-pre{max-height:260px;overflow:auto;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:10px;margin:6px 0}
 </style>
 
 </head>
@@ -1977,7 +1979,7 @@ PAGES.billing = () => {
   if (!b || b.error) return html;
   const cr = S.db.org.credits, h = S.creditHist;
   if (!h) call('getCredits').then(r => { S.creditHist = r.history; S.db.org.credits = r; if (S.route.parts[0] === 'billing') renderApp(); }, () => { S.creditHist = []; });
-  return html + '<div class="card mt24"><div class="row between wrap-row"><div><h3 class="mb0">Talent credits</h3><p class="small muted mb0">1 credit unlocks a marketplace profile · ' + cr.featureCost + ' credits feature a job for ' + cr.featureDays + ' days</p></div>' +
+  return html + '<div class="card mt24"><div class="row between wrap-row"><div><h3 class="mb0">Credits</h3><p class="small muted mb0">1 credit unlocks a marketplace profile · ' + cr.featureCost + ' credits feature a job for ' + cr.featureDays + ' days · AI boosts for jobs and candidates use 1–2 credits each</p></div>' +
     '<div class="stat-row"><div><b>' + cr.available + '</b><span class="small muted">available</span></div><div><b>' + cr.included + '/' + cr.monthlyIncluded + '</b><span class="small muted">included this month</span></div><div><b>' + cr.purchased + '</b><span class="small muted">purchased (never expire)</span></div></div></div>' +
     '<div class="grid g3 mt16">' + cr.packs.map(p => '<div class="card flat' + (p.popular ? ' plan popular' : '') + '">' + (p.popular ? '<span class="ribbon">Best value</span>' : '') + '<b>' + esc(p.name) + '</b><div style="font-size:28px;font-weight:850">' + money(p.price) + '</div><div class="small muted">' + p.credits + ' credits · ' + money(p.price / p.credits) + ' each</div>' +
       (b.canManage && !b.isDemo ? '<div class="stack mt16">' + (b.stripeEnabled ? '<button class="btn small" data-action="buy-credits" data-pack="' + p.key + '">Buy now</button>' : '') + '<button class="btn ghost small" data-action="credits-invoice" data-pack="' + p.key + '">Invoice / PO</button></div>' : '') + '</div>').join('') + '</div>' +
@@ -4855,6 +4857,137 @@ document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && e.target && e.target.id === 'cop-text') { e.preventDefault(); const b = e.target.closest('.copilot-box').querySelector('[data-action="cop-run"]'); if (b) copRun(b); }
 });
 document.addEventListener('input', e => { if (e.isTrusted && e.target && e.target.classList && e.target.classList.contains('ai-changed')) e.target.classList.remove('ai-changed'); });
+
+S.boosts = {};
+function loadBoosts(kind, id, force) {
+  const k = kind + ':' + id;
+  if (S.boosts[k] && !force) return S.boosts[k];
+  S.boosts[k] = { loading: true };
+  call('listBoosts', { kind: kind, id: id }).then(r => { S.boosts[k] = r; renderApp(); }, e => { S.boosts[k] = { error: e.message }; });
+  return S.boosts[k];
+}
+function boostsCard(kind, id) {
+  const b = loadBoosts(kind, id);
+  if (b.loading || b.error || !b.enabled || !(b.boosts || []).length) return '';
+  const recentByKey = {};
+  (b.runs || []).forEach(r => { if (!recentByKey[r.key]) recentByKey[r.key] = r; });
+  return '<div class="card mt16 boosts-card"><div class="row between wrap-row"><h3 class="mb0">✦ AI boosts</h3><span class="small"><span class="credit-pill">◆ ' + b.credits.available + ' credits</span>' +
+    (can('ADMIN') ? ' <a href="#app/billing" class="small">Buy credits</a>' : '') + '</span></div>' +
+    '<p class="small muted">' + (kind === 'job' ? 'Improve and promote this job.' : 'Enhance this candidate\'s profile and presentation.') + ' Each run uses credits (monthly included credits first). Saved results open free.</p>' +
+    '<div class="boost-grid">' + b.boosts.map(x => '<div class="boost-tile"><div class="row between"><b>' + ic(x.icon || 'spark') + ' ' + esc(x.name) + '</b><span class="chip tiny">◆ ' + x.credits + '</span></div><p class="small muted">' + esc(x.desc) + '</p>' +
+      '<div class="row wrap-row">' + (b.canBuy ? '<button class="btn small" data-action="boost-run" data-key="' + x.key + '" data-kind="' + kind + '" data-id="' + esc(id) + '" data-credits="' + x.credits + '" data-name="' + esc(x.name) + '">Run · ' + x.credits + ' credit' + (x.credits === 1 ? '' : 's') + '</button>' : '<span class="tiny dim">Ask an admin for the "AI boosts" permission.</span>') +
+      (recentByKey[x.key] ? '<button class="btn small ghost" data-action="boost-open" data-id="' + recentByKey[x.key].id + '">Last result · ' + esc(day(recentByKey[x.key].createdAt)) + '</button>' : '') + '</div></div>').join('') + '</div></div>';
+}
+
+const basePagesJob120 = PAGES.job;
+PAGES.job = () => {
+  const html = basePagesJob120(), j = jobById(S.route.parts[1]);
+  if (!j || !j.id || !can('RECRUITER')) return html;
+  return html + boostsCard('job', j.id);
+};
+const baseAppsTab120 = CAND_TABS.apps;
+CAND_TABS.apps = d => (can('RECRUITER') ? boostsCard('candidate', d.candidate.id) : '') + baseAppsTab120(d);
+
+function boostOptionsForm(d) {
+  const needJob = ['cand.brief', 'cand.resume'].indexOf(d.key) >= 0;
+  const jobs = (S.db.jobs || []).filter(j => ['Open', 'On Hold'].indexOf(j.status) >= 0);
+  return '<form data-form="boost-run"><input type="hidden" name="key" value="' + esc(d.key) + '"><input type="hidden" name="id" value="' + esc(d.id) + '"><input type="hidden" name="kind" value="' + esc(d.kind) + '">' +
+    (needJob ? field('For a job (optional — tunes the result)', sel('jobId', [['', 'No specific job']].concat(jobs.map(j => [j.id, j.title + (j.code ? ' · ' + j.code : '')])), '')) : '') +
+    (d.key === 'cand.resume' ? '<label class="check"><input type="checkbox" name="hideContact" checked> Hide the candidate\'s contact details (show "Contact through ' + esc(S.db.org.name) + '")</label>' : '') +
+    '<p class="small">This uses <b>' + esc(d.credits) + ' credit' + (d.credits === '1' ? '' : 's') + '</b>. The result is saved — opening it again is free.</p><button class="btn mt8">Run ' + esc(d.name) + '</button></form>';
+}
+async function runBoostNow(v, btn) {
+  try {
+    const r = await busy(btn, call('runBoost', { key: v.key, id: v.id, jobId: v.jobId || '', hideContact: !!v.hideContact }));
+    if (S.db && S.db.org) S.db.org.credits = r.credits;
+    S.boosts[v.kind + ':' + v.id] = null; loadBoosts(v.kind, v.id, true);
+    showBoost({ id: r.id, key: r.key, name: r.name, output: r.output, provider: r.provider, createdAt: new Date().toISOString() });
+    toast(r.name + ' ready — ' + r.charged + ' credit' + (r.charged === 1 ? '' : 's') + ' used, ' + r.credits.available + ' left.', 'ok', 6000);
+  } catch (e) { fail(e); }
+}
+Object.assign(ACTIONS, {
+  'boost-run': (d, el) => {
+    if (['cand.brief', 'cand.resume'].indexOf(d.key) >= 0) return openModal(d.name, boostOptionsForm(d));
+    if (!confirm('Run ' + d.name + ' for ' + d.credits + ' credit' + (d.credits === '1' ? '' : 's') + '?')) return;
+    runBoostNow({ key: d.key, id: d.id, kind: d.kind }, el);
+  },
+  'boost-open': async (d, el) => { try { showBoost(await busy(el, call('getBoostResult', d.id))); } catch (e) { fail(e); } },
+  'boost-export': async (d, el) => { try { const r = await busy(el, call('exportBoost', { id: d.id, format: d.v })); dlB64(r.fileName, r.mime, r.base64); } catch (e) { fail(e); } },
+  'boost-apply': async (d, el) => {
+    const box = el.closest('.modal') || document;
+    const fields = Array.from(box.querySelectorAll('input[name="bfield"]:checked')).map(x => x.value);
+    if (!fields.length) return toast('Tick what to apply.', 'error');
+    const title = (box.querySelector('input[name="btitle"]:checked') || {}).value;
+    try { await busy(el, call('applyBoost', { id: d.id, fields: fields, title: title })); closeModal(); toast('Applied — review the ' + (d.kind === 'job' ? 'job' : 'profile') + '.', 'ok'); S.cand = {}; await refresh(); } catch (e) { fail(e); }
+  }
+});
+FORMS['boost-run'] = async (v, f, b) => { await runBoostNow(v, b); };
+
+const cpy = (t, label) => '<button class="btn tiny ghost" type="button" data-action="copy" data-text="' + esc(t) + '">' + (label || 'Copy') + '</button>';
+function showBoost(r) {
+  const o = r.output || {}, k = r.key;
+  let body = '';
+  if (k === 'job.optimize') {
+    body = '<div class="row wrap-row" style="gap:18px"><div class="score-ring" style="--p:' + o.score + '"><b>' + o.score + '</b><span>posting score</span></div><ul class="ats-list grow">' + o.checks.map(c => '<li class="' + (c.ok ? 'ok' : 'no') + '">' + (c.ok ? '✓' : '!') + ' ' + esc(c.label) + (c.tip ? '<div class="tiny dim">' + esc(c.tip) + '</div>' : '') + '</li>').join('') + '</ul></div>' +
+      '<h4>Title options</h4>' + o.titles.map((t, i) => '<label class="check"><input type="radio" name="btitle" value="' + esc(t) + '"' + (i === 0 ? ' checked' : '') + '> ' + esc(t) + '</label>').join('') +
+      '<h4 class="mt16">Rewritten description</h4><pre class="pre-wrap small boost-pre">' + esc(o.apply.description) + '</pre><h4>Responsibilities</h4><pre class="pre-wrap small boost-pre">' + esc(o.apply.responsibilities) + '</pre>' +
+      '<h4>Search keywords</h4><div>' + chips(o.keywords) + '</div>' +
+      '<div class="card flat mt16"><b class="small">Apply to the job</b><div class="row wrap-row mt8">' + [['title', 'Title'], ['description', 'Description'], ['responsibilities', 'Responsibilities']].map(f => '<label class="check small"><input type="checkbox" name="bfield" value="' + f[0] + '"' + (f[0] !== 'title' ? ' checked' : '') + '> ' + f[1] + '</label>').join('') +
+      '<button class="btn small" data-action="boost-apply" data-id="' + r.id + '" data-kind="job">Apply selected</button></div></div>';
+  } else if (k === 'job.pay') {
+    body = o.postings >= 3 ? '<div class="grid g3">' + [['25th percentile', o.p25], ['Median', o.median], ['75th percentile', o.p75]].map(x => '<div class="kpi card flat"><b>$' + Math.round(x[1] / 1000) + 'k</b><span>' + x[0] + '</span></div>').join('') + '</div>' +
+      '<p class="mt16"><b>Suggested range:</b> $' + num(o.suggested.min) + ' – $' + num(o.suggested.max) + (o.current.max ? ' · your posting is <b>' + esc(o.position) + '</b> the typical range ($' + num(o.current.min || 0) + ' – $' + num(o.current.max) + ')' : ' · your posting has no range yet') + '</p>' +
+      (o.byArrangement.length ? '<p class="small">' + o.byArrangement.map(x => x.type + ': $' + Math.round(x.median / 1000) + 'k (' + x.n + ')').join(' · ') + '</p>' : '') +
+      '<div class="table-wrap"><table><tr><th>Similar posting</th><th class="right">Range</th><th>Source</th></tr>' + o.sample.map(s => '<tr><td>' + esc(s.title) + '</td><td class="right">$' + num(s.min) + ' – $' + num(s.max) + (s.hourly ? ' <span class="tiny dim">(hourly × 2,080)</span>' : '') + '</td><td class="small">' + esc(s.src) + '</td></tr>').join('') + '</table></div>'
+      : '<div class="notice">Not enough postings with pay for similar titles yet (' + o.postings + '). No range is suggested — nothing is estimated without data.</div>';
+    body += '<p class="tiny dim mt8">' + esc(o.note) + '</p>';
+  } else if (k === 'job.social') {
+    const blk = (t, txt, extra) => '<div class="card flat mt8"><div class="row between"><b class="small">' + t + '</b>' + cpy(txt) + '</div><pre class="pre-wrap small boost-pre">' + esc(txt) + '</pre>' + (extra || '') + '</div>';
+    body = blk('LinkedIn', o.linkedin) + blk('X (' + o.x.length + '/280)', o.x) + blk('Facebook', o.facebook) + blk('Email to your talent pool — ' + esc(o.email.subject), o.email.body) + blk('Text message', o.sms) + '<p class="small mt8">Hashtags: ' + esc(o.hashtags.join(' ')) + '</p>';
+  } else if (k === 'job.interview') {
+    body = '<div class="row wrap-row"><button class="btn small" data-action="boost-export" data-id="' + r.id + '" data-v="doc">Download Word</button><button class="btn small ghost" data-action="boost-export" data-id="' + r.id + '" data-v="pdf">PDF</button></div>' +
+      '<h4 class="mt16">Stages</h4><ol class="small">' + o.stages.map(s => '<li><b>' + esc(s.name) + '</b> · ' + s.mins + ' min — ' + esc(s.focus) + '</li>').join('') + '</ol>' +
+      '<h4>Knockout questions</h4><ul class="small">' + o.knockout.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' +
+      '<h4>Questions</h4>' + o.questions.map(q => '<div class="card flat mt8 small"><b>' + esc(q.skill) + '</b><ul>' + q.question.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul><div class="tiny" style="color:#4de0c3">Strong: ' + esc(q.strong) + '</div><div class="tiny" style="color:#ffc477">Weak: ' + esc(q.weak) + '</div></div>').join('');
+  } else if (k === 'cand.brief') {
+    body = (o.fit ? '<p><span class="fit ' + fitCls(o.fit.score) + '">' + o.fit.score + '% fit</span> for <b>' + esc(o.job.title) + '</b> · ' + esc(o.fit.band) + '</p>' : '') + '<p>' + esc(o.summary) + '</p>' +
+      '<h4>Strengths</h4><ul class="small">' + o.strengths.map(s => '<li><b>' + esc(s.skill) + '</b> — ' + esc(s.evidence) + '</li>').join('') + '</ul>' +
+      (o.toVerify.length ? '<h4>To verify</h4><ul class="small">' + o.toVerify.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '') + '<h4>Questions to ask</h4><ul class="small">' + o.questions.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' +
+      '<div class="row mt8">' + cpy(o.text, 'Copy brief') + '</div>';
+  } else if (k === 'cand.resume') {
+    body = '<p class="small">On your letterhead' + (o.job ? ', tuned to <b>' + esc(o.job.title) + '</b>' : '') + (o.hideContact ? ', contact details hidden' : '') + '.</p><div class="row wrap-row"><button class="btn small" data-action="boost-export" data-id="' + r.id + '" data-v="doc">Download Word</button><button class="btn small secondary" data-action="boost-export" data-id="' + r.id + '" data-v="pdf">Download PDF</button></div>' +
+      '<details class="mt8"><summary class="small">Preview text</summary><pre class="pre-wrap small boost-pre">' + esc(o.preview) + '</pre></details>';
+  } else if (k === 'cand.verify') {
+    body = (o.flags.length ? '<div class="notice warn small"><b>Timeline</b><ul class="mb0">' + o.flags.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul></div>' : '<div class="notice ok small">' + ic('check') + ' No gaps or overlaps found in the dates.</div>') +
+      '<div class="table-wrap mt8"><table><tr><th>Skill</th><th>Confidence</th><th>Evidence</th><th>Ask</th></tr>' + o.skills.map(s => '<tr><td><b>' + esc(s.skill) + '</b>' + (s.roles.length ? '<div class="tiny dim">' + esc(s.roles.join('; ')) + '</div>' : '') + '</td><td>' + chip(s.confidence, /^High/.test(s.confidence) ? 'ok' : /^Medium/.test(s.confidence) ? '' : 'warn') + '</td><td class="small">' + (s.evidence.map(esc).join('<br>') || '—') + '</td><td class="small">' + s.questions.map(esc).join('<br>') + '</td></tr>').join('') + '</table></div><p class="tiny dim">' + esc(o.note) + '</p>';
+  } else if (k === 'cand.enrich') {
+    body = '<p><b>' + esc(o.level) + '</b> · ' + o.years + ' years from the dated roles · suggested headline: <b>' + esc(o.headline) + '</b></p>' +
+      (o.timeline.length ? '<h4>Timeline</h4><div class="table-wrap"><table><tr><th>Role</th><th>Company</th><th>Dates</th></tr>' + o.timeline.map(t => '<tr><td>' + esc(t.title) + '</td><td>' + esc(t.company) + '</td><td class="small">' + esc(t.start) + ' – ' + esc(t.end) + '</td></tr>').join('') + '</table></div>' : '') +
+      '<h4>Years per skill</h4><div>' + o.perSkill.slice(0, 12).map(s => chip(s.skill + ' · ' + (s.years ? s.years + 'y' : s.roles ? s.roles + ' role' : 'listed'), s.years >= 3 ? 'ok' : '')).join(' ') + '</div>' +
+      '<div class="card flat mt16"><b class="small">Apply to the profile</b><div class="row wrap-row mt8">' + [['headline', 'Headline'], ['yearsExp', 'Years of experience'], ['skills', 'Skills (ordered by experience)']].map(f => '<label class="check small"><input type="checkbox" name="bfield" value="' + f[0] + '" checked> ' + f[1] + '</label>').join('') +
+      '<button class="btn small" data-action="boost-apply" data-id="' + r.id + '" data-kind="candidate">Apply selected</button></div></div>';
+  }
+  openModal(r.name + ' · ' + day(r.createdAt), body, true);
+}
+
+const basePlatform120 = PAGES.platform;
+PAGES.platform = () => {
+  const html = basePlatform120();
+  if ((S.ui.tab.platform || 'tenants') !== 'settings' || !S.db.platformAdmin) return html;
+  const p = S.plat || {};
+  if (!p.boosts) { p.boosts = { loading: true }; call('platformAiBoosts', {}).then(r => { S.plat.boosts = r; renderApp(); }, () => {}); }
+  const b = p.boosts;
+  const card = !b || b.loading ? '' : '<form data-form="plat-boosts" class="card mt16"><h3>AI boosts (paid in credits)</h3><p class="small muted">' + b.creditsThisMonth + ' credits spent on boosts this month. A credit costs the customer roughly the credit-pack price per credit.</p>' +
+    '<label class="check"><input type="checkbox" name="enabled"' + (b.enabled ? ' checked' : '') + '> Offer AI boosts</label><div class="table-wrap mt8"><table><tr><th>Boost</th><th>For</th><th>Credits</th><th>Offered</th><th class="right">Runs (month / all)</th></tr>' +
+    b.boosts.map(x => '<tr><td>' + esc(x.name) + '</td><td class="small">' + x.kind + '</td><td><input type="number" min="0" max="100" name="price_' + x.key + '" value="' + x.credits + '" style="max-width:90px"></td><td><input type="checkbox" name="on_' + x.key + '"' + (x.on ? ' checked' : '') + '></td><td class="right small">' + x.runsThisMonth + ' / ' + x.runs + '</td></tr>').join('') +
+    '</table></div><button class="btn mt8">Save</button></form>';
+  return html + card;
+};
+FORMS['plat-boosts'] = async (v, f, b) => {
+  const prices = {}, off = [];
+  (S.plat.boosts.boosts || []).forEach(x => { prices[x.key] = v['price_' + x.key]; if (!v['on_' + x.key]) off.push(x.key); });
+  try { S.plat.boosts = await busy(b, call('platformAiBoosts', { save: true, enabled: !!v.enabled, prices: prices, off: off })); toast('AI boost prices saved.', 'ok'); renderApp(); } catch (e) { fail(e); }
+};
 
 bind();
 route();
