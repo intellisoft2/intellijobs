@@ -5175,6 +5175,7 @@ Object.assign(ACTIONS, {
       '<form class="ih-bench-form" data-form="ih-bench-doc-first">'+
       '<div class="ih-form-section"><h4>01 · Upload a ZIP or individual documents</h4><p class="tiny dim">ZIP: up to 8 MB, 25 entries; supported PDF, Word, TXT, RTF and image files. ZIP entries are previewed before saving. Images are classified by filename only; OCR is not available.</p><input type="file" name="packageUpload" accept=".zip"><p class="tiny dim">Or provide a resume and additional files below.</p><label class="ih-file-drop">'+ic('doc')+' <b>Choose a resume</b><span>PDF, DOCX, DOC, TXT or RTF · max 5 MB</span><input name="resumeUpload" type="file" accept=".pdf,.doc,.docx,.txt,.rtf"></label><button type="button" class="btn secondary mt8" data-action="ih-bench-extract">'+ic('spark')+' Analyze all documents</button></div>'+
       '<div id="ih-bench-auto-review">'+ihBenchReviewFields({})+'</div>'+
+      '<div id="ih-bench-doc-inventory" aria-live="polite"></div>'+ 
       '<div class="ih-form-section"><h4>03 · Additional documents (optional)</h4><p class="tiny dim">You can select multiple files. Store identity documents only when necessary and authorized. Files are private, never sent to employers, and require restricted document access.</p><input type="file" name="supportingDocs" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"><p class="tiny dim">10 MB per document. Files will be labeled “Other” until reviewed in the candidate Documents tab.</p></div>'+
       '<label class="ih-consent-line"><input type="checkbox" name="consentConfirmed" required> I confirm authorization and a lawful purpose for collecting and storing these documents.</label>'+
       '<div class="ih-intake-progress" role="status" aria-live="polite" hidden><div class="ih-progress-track"><i></i></div><span>Preparing intake…</span></div>'+
@@ -5191,7 +5192,7 @@ Object.assign(ACTIONS, {
       let docs=[], parsed={}, bestResume=null, failures=[];
       if(zip){
         const pkg=await call('analyzeBenchPackage',await readDoc(zip));
-        docs=pkg.documents.map(d=>({name:d.name,mime:d.mime,data:d.data,type:d.type,size:d.size,error:d.error,parsed:d.parsed||{},text:d.text||''}));
+        docs=pkg.documents.map(d=>({name:d.name,mime:d.mime,data:d.data,type:d.type,size:d.size,error:d.error,parsed:d.parsed||{},text:d.text||'',fingerprint:d.fingerprint||''}));
         const primary=docs.find(d=>d.type==='Resume'&&Object.keys(d.parsed).length)||docs.find(d=>d.type==='Resume');
         if(primary){parsed=primary.parsed||{};bestResume=primary;}
         docs.filter(d=>d!==primary&&d.type!=='Passport'&&d.type!=="Driver's license"&&d.type!=='State ID').forEach(d=>{for(const k of ihBenchAutoFields)if(!parsed[k]&&d.parsed&&d.parsed[k])parsed[k]=d.parsed[k];});
@@ -5206,15 +5207,23 @@ Object.assign(ACTIONS, {
         }else d.error='Image OCR not available';
         docs.push(d);
       }
+      const seen=new Map();
+      docs.forEach((d,i)=>{const key=d.fingerprint||((d.data||'').length+':'+(d.data||''));if(seen.has(key))d.duplicateOf=seen.get(key)+1;else seen.set(key,i);});
       ihBenchAutoState.packageDocs=docs;ihBenchAutoState.parsed={parsed,text:bestResume?bestResume.text||'':''};ihBenchAutoState.resume=bestResume?{name:bestResume.name,mime:bestResume.mime,data:bestResume.data}:null;ihBenchAutoState.analyzed=true;
       const values=formValues(f), target=f.querySelector('#ih-bench-auto-review');target.innerHTML=ihBenchReviewFields(parsed);
       for(const key of ihBenchAutoFields)if(values[key]&&target.querySelector('[name="'+key+'"]')&&!parsed[key])target.querySelector('[name="'+key+'"]').value=values[key];
-      f.querySelector('#ih-bench-doc-inventory').innerHTML='<div class="ih-form-section"><h4>Document inventory · '+docs.length+' files</h4><p class="tiny dim">Suggested classifications are editable. All files are private and remain unverified until reviewed.</p>'+docs.map((d,i)=>'<div class="row between ih-bench-doc-row"><span><b>'+esc(d.name)+'</b><small class="dim"> · '+Math.ceil(d.size/1024)+' KB '+(d.error?' · '+esc(d.error):'')+'</small></span><select name="docType'+i+'">'+['Resume','Passport',"Driver\'s license",'State ID','I-94','H-1B approval (I-797)','Visa stamp','EAD card','Green card','Clearance letter','Offer / contract','Other'].map(t=>'<option '+(t===d.type?'selected':'')+'>'+esc(t)+'</option>').join('')+'</select></div>').join('')+'</div>';
+      f.querySelector('#ih-bench-doc-inventory').innerHTML='<div class="ih-form-section"><h4>Document Intelligence · '+docs.length+' files</h4><p class="tiny dim">Review categories, duplicates and expiry dates. Scanned images and IDs require manual verification; no identity verification is performed.</p><div class="ih-bench-readiness">'+ihBenchReadiness(docs)+'</div>'+docs.map((d,i)=>'<div class="row between ih-bench-doc-row"><span><b>'+esc(d.name)+'</b><small class="dim"> · '+Math.ceil(d.size/1024)+' KB '+(d.error?' · '+esc(d.error):'')+(d.duplicateOf?' · Possible duplicate of file '+d.duplicateOf:'')+'</small></span><select name="docType'+i+'">'+['Resume','Passport',"Driver\'s license",'State ID','I-94','H-1B approval (I-797)','Visa stamp','EAD card','Green card','Clearance letter','Offer / contract','Other'].map(t=>'<option '+(t===d.type?'selected':'')+'>'+esc(t)+'</option>').join('')+'</select><label class="ih-bench-expiry">Expires <input type="date" name="docExpiry'+i+'" aria-label="Expiry date for '+esc(d.name)+'"></label><label class="ih-bench-skip"><input type="checkbox" name="docSkip'+i+'" '+(d.duplicateOf?'checked':'')+'> Skip</label></div>').join('')+'</div>';
       toast('Documents analyzed. Review profile and classifications before saving.','ok');
     }catch(e){fail(e);}finally{btn.disabled=false;btn.textContent='Re-analyze documents';}
   }
 
 });
+function ihBenchReadiness(docs){
+  const hasResume=docs.some(d=>d.type==='Resume');
+  const duplicates=docs.filter(d=>d.duplicateOf).length;
+  const unreadable=docs.filter(d=>d.error).length;
+  return '<span>'+ (hasResume?'✓ Resume identified':'! No resume identified') +'</span> · <span>'+duplicates+' possible duplicates</span> · <span>'+unreadable+' files need manual text review</span>';
+}
 function ihBenchGuessType(name){return /passport/i.test(name)?'Passport':/driver|license/i.test(name)?"Driver's license":/i.?94/i.test(name)?'I-94':/i.?797/i.test(name)?'H-1B approval (I-797)':/ead/i.test(name)?'EAD card':/contract|offer/i.test(name)?'Offer / contract':'Other';}
 FORMS['ih-bench-doc-first']=async (v,f,b)=>{
   const progress=f.querySelector('.ih-intake-progress'), label=progress.querySelector('span'),bar=progress.querySelector('i');
@@ -5234,12 +5243,13 @@ FORMS['ih-bench-doc-first']=async (v,f,b)=>{
     candidateId=c.id;
     step('Adding consultant to screening bench…',60);
     const bench=await call('addToBench',{candidateId:c.id,availability:v.availability||'',rate:v.expectedRate||'',market:false});
-    const docs=ihBenchAutoState.packageDocs.filter((d,i)=>(f.elements['docType'+i]||{}).value!=='Resume' || !file || d.name!==file.name);
+    const docs=ihBenchAutoState.packageDocs.filter((d,i)=>!f.elements['docSkip'+i]?.checked && ((f.elements['docType'+i]||{}).value!=='Resume' || !file || d.name!==file.name));
     for(let i=0;i<docs.length;i++){
       step('Saving restricted document '+(i+1)+' of '+docs.length+'…',65+Math.round(30*i/Math.max(docs.length,1)));
       const doc=docs[i],type=(f.elements['docType'+ihBenchAutoState.packageDocs.indexOf(doc)]||{}).value||'Other';
       if(!/\.(pdf|docx?|png|jpe?g|webp)$/i.test(doc.name))continue;
-      await call('uploadCandidateDoc',{candidateId:c.id,type:type==='Resume'?'Other':type,noExpiry:true,file:{name:doc.name,mime:doc.mime,data:doc.data},notes:'Document package intake; classification and details require manual verification'});
+      const expiry=f.elements['docExpiry'+ihBenchAutoState.packageDocs.indexOf(doc)]?.value||'';
+      await call('uploadCandidateDoc',{candidateId:c.id,type:type==='Resume'?'Other':type,noExpiry:!expiry,expiryDate:expiry,file:{name:doc.name,mime:doc.mime,data:doc.data},notes:'Document package intake; classification and details require manual verification'});
     }
     step('Consultant ready for screening.',100);
     closeModal();S.bench=null;S.cons=null;toast('Consultant added. Review extracted details and documents.','ok');go('#app/bench/'+bench.consultantId);
