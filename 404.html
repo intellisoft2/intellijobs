@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%22116%22%20rx%3D%2226%22%20fill%3D%22%230f2238%22%20stroke%3D%22%232a4a68%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%234de0c3%22%2F%3E%3Crect%20x%3D%2275%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%2370aaff%22%2F%3E%3Cpath%20d%3D%22M45%2072%20L75%2050%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M66%2044%20L80%2046%20L76%2059%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.21.0"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.22.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -412,10 +412,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .cop-choice{display:flex;align-items:start;gap:10px;cursor:pointer}.cop-choice input{margin-top:5px;accent-color:#42d6c7}.cop-choice>span{min-width:0;flex:1}.cop-before,.cop-after{display:block;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:5px;padding:7px 9px;border-radius:7px}.cop-before{color:#c4cbd9;background:#e87c7c12}.cop-after{color:#b9f3e8;background:#41d5bd15}.cop-after:before{content:'Suggested: ';font-weight:700}
 .copilot-box{border:1px solid #4ad6cc5e!important;background:linear-gradient(145deg,#182c4d,#12233d)!important;border-radius:16px!important}.copilot-box textarea{min-height:92px}
 .ij-button-wait{display:inline-block;animation:ij-spin .85s linear infinite;margin-right:6px}.btn:disabled{cursor:wait;opacity:.75}
-.loading,.loading.small{border:1px solid #5ec9d22c!important;border-radius:14px!important;background:linear-gradient(115deg,#1b2c4a,#15223a)!important;min-height:64px!important;padding:20px!important}.loading:after{content:''!important;display:block!important;position:absolute!important;bottom:0!important;left:0!important;width:36%!important;height:3px!important;background:linear-gradient(90deg,#3dd5c8,#69b5f9)!important;animation:ih-progress 1.5s ease-in-out infinite!important;border-radius:99px!important}
+.loading,.loading.small{overflow:hidden;padding-bottom:22px!important}.loading:after{content:''!important;display:block!important;position:absolute!important;bottom:8px!important;left:50%!important;width:140px!important;margin-left:-70px!important;height:2px!important;border-radius:99px!important;background:linear-gradient(90deg,#ffffff12 0%,#3dd5c8 35%,#69b5f9 55%,#ffffff12 90%)!important;background-size:250% 100%!important;animation:ih-hair 1.3s ease-in-out infinite!important}@keyframes ih-hair{from{background-position:120% 0}to{background-position:-120% 0}}
 @keyframes ih-progress{0%{left:0;width:15%}50%{left:40%;width:48%}100%{left:90%;width:10%}}
 @media(max-width:700px){.ih-quality-grid{grid-template-columns:1fr}.ih-resume-banner{padding:20px}.ih-resume-steps{width:100%}}
 @media(prefers-reduced-motion:reduce){.loading:after,.ij-button-wait{animation:none!important}}
+.cop-changes{list-style:none;padding-left:0}.cop-changes li{margin:6px 0}
 </style>
 <style>
 
@@ -4860,31 +4861,44 @@ async function copRun(btn) {
     if (text.trim().length < 3) return toast('Type or paste something first.', 'error');
     const cur = formValues(form);
     const r = await busy(btn, call('copilotFill', { kind: kind, text: text, current: cur, id: btn.dataset.id || '' }));
-    const pending = Object.keys(r.fields || {}).filter(k => form.elements[k]).map(k => ({key:k, before:String(form.elements[k].value || ''), after:String(r.fields[k] == null ? '' : r.fields[k])}));
+    const labels = {}; (r.changes || []).forEach(c => { labels[c.field] = c.label; });
+    const pending = Object.keys(r.fields || {}).map(k => {
+      const el = form.elements[k];
+      return { key: k, label: labels[k] || k, before: String(el ? (el.value || '') : ''), after: String(r.fields[k] == null ? '' : r.fields[k]), hidden: !el };
+    }).filter(c => c.before !== c.after);
     form._copPending = pending;
-    const prev = {}; // populated only when changes are actually accepted
-
-    const other = kind === 'job' ? Object.keys(r.fields).filter(k => { const el = form.elements[k]; const p = el && el.closest('[data-ij-panel]'); return p && p.hidden; }).length : 0;
-    out.innerHTML = r.changes.length ? '<div class="notice ok small mt8"><b>' + esc(r.summary) + '</b> <span class="tiny dim">(' + esc(r.provider === 'rules' ? 'built-in rules' : 'AI') + ')</span>' +
-      '<ul class="cop-changes">' + pending.map(c => '<li><label class="cop-choice"><input type="checkbox" data-cop-key="' + esc(c.key) + '" checked> <span><b>' + esc(c.key) + '</b><span class="cop-before">' + esc(c.before.slice(0, 180) || '(empty)') + '</span><span class="cop-after">' + esc(c.after.slice(0, 300)) + '</span></span></label></li>').join('') + '</ul>' +
-      (other ? '<div class="tiny">Some changes are in the next steps of the form (' + other + ') — review them before saving.</div>' : '') +
-      '<div class="row mt8 wrap-row"><button type="button" class="btn small" data-action="cop-accept">Apply selected changes</button><button type="button" class="btn tiny ghost" data-action="cop-discard">Discard</button><span class="tiny dim">Review each change. Nothing is saved until you click Save.</span></div></div>'
-      : '<div class="notice small mt8">' + esc(r.summary) + ' Try naming the field, e.g. "Location: Reston, VA" or "add skills Kubernetes".</div>';
+    const other = kind === 'job' ? pending.filter(c => { const el = form.elements[c.key]; const p = el && el.closest('[data-ij-panel]'); return p && p.hidden; }).length : 0;
+    const row = c => '<li><label class="cop-choice"><input type="checkbox" data-cop-key="' + esc(c.key) + '" checked> <span><b>' + esc(c.label) + '</b>' +
+      (c.hidden ? ' <span class="tiny dim">(saved with the profile)</span>' : '') +
+      '<span class="cop-before">' + esc(c.before.slice(0, 180) || '(empty)') + '</span><span class="cop-after">' + esc(c.after.slice(0, 300) || '(cleared)') + '</span></span></label></li>';
+    out.innerHTML = pending.length ? '<div class="notice ok small mt8"><b>' + esc(r.summary) + '</b> <span class="tiny dim">(' + esc(r.provider === 'rules' ? 'built-in rules' : 'AI') + ')</span>' +
+      '<ul class="cop-changes">' + pending.map(row).join('') + '</ul>' +
+      (other ? '<div class="tiny">' + other + ' change' + (other === 1 ? ' is' : 's are') + ' in later steps of the form — review them before saving.</div>' : '') +
+      '<div class="row mt8 wrap-row"><button type="button" class="btn small" data-action="cop-accept">Apply selected (' + pending.length + ')</button>' +
+      '<button type="button" class="btn tiny ghost" data-action="cop-toggle">Select none</button>' +
+      '<button type="button" class="btn tiny ghost" data-action="cop-discard">Discard</button><span class="tiny dim">Nothing is saved until you click Save.</span></div></div>'
+      : '<div class="notice small mt8">' + esc(r.changes && r.changes.length ? 'Those changes are already in the form.' : r.summary) + ' Try naming the field, e.g. "Location: Reston, VA" or "add skills Kubernetes".</div>';
   } catch (e) { fail(e); }
 }
 Object.assign(ACTIONS, {
   'cop-accept': (d, el) => {
     const form = el.closest('form'), pending = form && form._copPending || [], prev = {};
-    pending.forEach(c => { const check = Array.from(form.querySelectorAll('[data-cop-key]')).find(x => x.dataset.copKey === c.key); if (!check || !check.checked) return; prev[c.key] = form.elements[c.key].value; copSetField(form, c.key, c.after); });
+    let n = 0;
+    pending.forEach(c => { const check = Array.from(form.querySelectorAll('[data-cop-key]')).find(x => x.dataset.copKey === c.key); if (!check || !check.checked) return; prev[c.key] = form.elements[c.key] ? form.elements[c.key].value : null; copSetField(form, c.key, c.after); n++; });
     form._copUndo = prev; form._copPending = null;
-    el.closest('.cop-result').innerHTML = '<div class="notice ok small">Selected changes applied to the form. <button type="button" class="btn tiny ghost" data-action="cop-undo">Undo changes</button> Review before saving.</div>';
+    el.closest('.cop-result').innerHTML = n ? '<div class="notice ok small mt8">' + n + ' change' + (n === 1 ? '' : 's') + ' applied to the form. <button type="button" class="btn tiny ghost" data-action="cop-undo">Undo</button> Review before saving.</div>' : '<div class="notice small mt8">No changes selected. Your form is unchanged.</div>';
     if (typeof ihJobQualityRefresh === 'function') ihJobQualityRefresh(form);
   },
   'cop-discard': (d, el) => { const f = el.closest('form'); f._copPending = null; el.closest('.cop-result').innerHTML = '<div class="notice small">Suggestions discarded. Your form is unchanged.</div>'; },
   'cop-run': (d, el) => copRun(el),
+  'cop-toggle': (d, el) => {
+    const boxes = Array.from(el.closest('.cop-result').querySelectorAll('[data-cop-key]')); const on = !boxes.every(b => b.checked);
+    boxes.forEach(b => { b.checked = on; }); el.textContent = on ? 'Select none' : 'Select all';
+  },
   'cop-undo': (d, el) => {
     const form = el.closest('form'); const prev = form && form._copUndo; if (!prev) return;
-    Object.keys(prev).forEach(k => { const f = form.elements[k]; if (f) { f.value = prev[k]; f.classList.remove('ai-changed'); } });
+    Object.keys(prev).forEach(k => { const f = form.elements[k]; if (!f) return; if (prev[k] === null && f.type === 'hidden') { f.remove(); return; } f.value = prev[k] || ''; f.classList.remove('ai-changed'); });
+    if (typeof ihJobQualityRefresh === 'function') ihJobQualityRefresh(form);
     form._copUndo = null; el.closest('.cop-result').innerHTML = '<div class="notice small mt8">Changes undone.</div>';
   }
 });
@@ -5083,7 +5097,7 @@ Object.assign(ACTIONS, {
   'ih-bench-new': () => openModal('New consultant · secure intake', '<div class="ih-intake-lead"><span class="eyebrow">PRIVATE RECRUITER WORKSPACE</span><h3>Build a complete consultant record</h3><p>Identity documents are optional, restricted to authorized staff and never included in the employer-facing profile. Obtain candidate consent before collecting them.</p></div>'+
     '<form data-form="ih-bench-create" class="ih-bench-form">'+
     '<div class="ih-form-section"><h4>01 · Contact & profile</h4><div class="form-row">'+field('Full name *',inp('name','','required maxlength="120"'))+field('Email *',inp('email','','type="email" required'))+'</div><div class="form-row">'+field('Phone',inp('phone','','autocomplete="tel"'))+field('Location',inp('location','','placeholder="City, state"'))+'</div>'+field('Professional headline',inp('headline','','placeholder="Senior Java / AWS Engineer"'))+field('Skills (comma-separated)',inp('skills','','placeholder="Java, AWS, Spring, SQL"'))+'</div>'+
-    '<div class="ih-form-section"><h4>02 · Placement preferences</h4><div class="form-row">'+field('Availability',inp('availability','','placeholder="Immediately / 2 weeks"'))+field('Expected rate (private)',inp('expectedRate','','placeholder="$85/hr C2C"'))+'</div>'+field('Work authorization (private)',inp('workAuthorization','','placeholder="Optional — do not upload ID unless needed"'))+'</div>'+
+    '<div class="ih-form-section"><h4>02 · Placement preferences</h4><div class="form-row">'+field('Availability',inp('availability','','placeholder="Immediately / 2 weeks"'))+field('Expected rate (private)',inp('expectedRate','','placeholder="$85/hr W2"'))+'</div>'+field('Work authorization (private)',inp('workAuthorization','','placeholder="Optional — do not upload ID unless needed"'))+'</div>'+
     '<div class="ih-form-section"><h4>03 · Resume</h4><label class="ih-file-drop">'+ic('doc')+' <b>Choose a resume</b><span>PDF, DOCX, Word or text · 5 MB max</span><input type="file" name="resumeUpload" accept=".pdf,.doc,.docx,.txt,.rtf"></label>'+field('Or paste resume text',area('resumeText','','rows="3" placeholder="Optional if resume uploaded"'))+'</div>'+
     '<div class="ih-form-section"><h4>04 · Private identity document (optional)</h4><p class="tiny dim">Collect only when necessary for an authorized process. Do not store SSNs or full document numbers in notes.</p><div class="form-row">'+field('Document type',sel('docType',[['','None']].concat(ihDocTypeChoices.map(x=>[x,x])) ,''))+field('Expiry date',inp('docExpiry','','type="date"'))+'</div><input type="file" name="identityUpload" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"><p class="tiny dim">Private Drive storage · maximum 10 MB · authorized recruiter access only</p></div>'+
     '<label class="ih-consent-line"><input type="checkbox" name="consentConfirmed" required> I confirm a lawful basis and candidate authorization for collecting this information.</label>'+
@@ -5153,7 +5167,7 @@ Object.assign(ACTIONS, {
     openModal('Consultant Bench · Document-first intake',
       '<div class="ih-intake-lead"><span class="eyebrow">FAST INTAKE · PRIVATE SCREENING</span><h3>Upload first. Review. Add to bench.</h3><p>Start with a resume and optional supporting documents. IntelliHire extracts professional details from the resume; you only complete missing fields. Identity documents are stored privately and are not parsed into public profiles.</p></div>'+
       '<form class="ih-bench-form" data-form="ih-bench-doc-first">'+
-      '<div class="ih-form-section"><h4>01 · Upload resume</h4><label class="ih-file-drop">'+ic('doc')+' <b>Choose a resume</b><span>PDF, DOCX, DOC, TXT or RTF · max 5 MB</span><input name="resumeUpload" type="file" accept=".pdf,.doc,.docx,.txt,.rtf" required></label><button type="button" class="btn secondary mt8" data-action="ih-bench-extract">'+ic('sparkles')+' Extract & preview details</button></div>'+
+      '<div class="ih-form-section"><h4>01 · Upload resume</h4><label class="ih-file-drop">'+ic('doc')+' <b>Choose a resume</b><span>PDF, DOCX, DOC, TXT or RTF · max 5 MB</span><input name="resumeUpload" type="file" accept=".pdf,.doc,.docx,.txt,.rtf" required></label><button type="button" class="btn secondary mt8" data-action="ih-bench-extract">'+ic('spark')+' Extract & preview details</button></div>'+
       '<div id="ih-bench-auto-review">'+ihBenchReviewFields({})+'</div>'+
       '<div class="ih-form-section"><h4>03 · Supporting documents (optional)</h4><p class="tiny dim">You can select multiple files. Store identity documents only when necessary and authorized. Files are private, never sent to employers, and require restricted document access.</p><input type="file" name="supportingDocs" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"><p class="tiny dim">10 MB per document. Files will be labeled “Other” until reviewed in the candidate Documents tab.</p></div>'+
       '<label class="ih-consent-line"><input type="checkbox" name="consentConfirmed" required> I confirm authorization and a lawful purpose for collecting and storing these documents.</label>'+
@@ -5205,6 +5219,53 @@ FORMS['ih-bench-doc-first']=async (v,f,b)=>{
     closeModal();S.bench=null;S.cons=null;toast('Consultant added. Review extracted details and documents.','ok');go('#app/bench/'+bench.consultantId);
   }catch(e){if(candidateId){step('Candidate created; remaining steps need attention.',0);toast('Candidate saved. Finish bench/documents from the candidate record: '+e.message,'error',10000);}else step('Please correct the intake form.',0);fail(e);}
 };
+function ihDupNotice(f, m) {
+  let box = f.querySelector('.ih-dup');
+  if (!box) { box = document.createElement('div'); box.className = 'ih-dup'; f.insertBefore(box, f.firstChild); }
+  const onBench = m.consultantId ? ' Already on your bench (' + esc(m.benchStatus || 'Screening') + ').' : '';
+  box.innerHTML = '<div class="notice warn small mb8"><b>' + esc(m.name) + '</b> is already in your talent pool' +
+    (m.by === 'phone' ? ' with the same phone number' : '') + ' — ' + esc(m.email) + (m.headline ? ' · ' + esc(m.headline) : '') + '.' + onBench +
+    '<div class="row mt8 wrap-row">' +
+    (m.consultantId
+      ? '<button type="button" class="btn small" data-action="ih-dup-open" data-id="' + esc(m.consultantId) + '">Open consultant</button>'
+      : '<button type="button" class="btn small" data-action="ih-dup-bench" data-id="' + esc(m.id) + '">Add existing profile to bench</button>') +
+    '<button type="button" class="btn tiny ghost" data-action="ih-dup-cand" data-id="' + esc(m.id) + '">View candidate</button>' +
+    (m.by === 'phone' ? '<button type="button" class="btn tiny ghost" data-action="ih-dup-ignore" data-id="' + esc(m.id) + '">Different person — continue</button>' : '') +
+    '</div></div>';
+  box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+['ih-bench-create', 'ih-bench-doc-first'].forEach(key => {
+  const base = FORMS[key];
+  if (typeof base !== 'function') return;
+  FORMS[key] = async (v, f, b) => {
+    let email = String(v.email || '').trim(), phone = String(v.phone || '').trim();
+    if (!email && typeof ihBenchAutoState !== 'undefined' && ihBenchAutoState.parsed) { const p = ihBenchAutoState.parsed.parsed || {}; email = p.email || ''; phone = phone || p.phone || ''; }
+    if (email || phone) {
+      try {
+        const r = await busy(b, call('findTalentMatch', { email: email, phone: phone }));
+        const m = r && r.match;
+        if (m && f._dupOk !== m.id) { f._dupMatch = Object.assign({ availability: v.availability || '', rate: v.expectedRate || '' }, m); ihDupNotice(f, m); return; }
+      } catch (e) { /* the guard is advisory; the server still rejects duplicate emails */ }
+    }
+    const old = f.querySelector('.ih-dup'); if (old) old.remove();
+    return base(v, f, b);
+  };
+});
+Object.assign(ACTIONS, {
+  'ih-dup-bench': async (d, el) => {
+    const f = el.closest('form'), m = f && f._dupMatch; if (!m) return;
+    try {
+      const r = await busy(el, call('addToBench', { candidateId: m.id, availability: m.availability, rate: m.rate, market: false }));
+      closeModal(); S.bench = null; S.cons = null; toast('Existing profile added to the screening bench.', 'ok'); go('#app/bench/' + r.consultantId);
+    } catch (e) { fail(e); }
+  },
+  'ih-dup-open': (d, el) => { closeModal(); go('#app/bench/' + el.dataset.id); },
+  'ih-dup-cand': (d, el) => { closeModal(); go('#app/candidate/' + el.dataset.id); },
+  'ih-dup-ignore': (d, el) => {
+    const f = el.closest('form'); f._dupOk = el.dataset.id; const box = f.querySelector('.ih-dup'); if (box) box.remove();
+    toast('Noted — click save again to create a new profile.', 'ok');
+  }
+});
 
 bind();
 route();
