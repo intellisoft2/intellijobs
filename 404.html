@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%22116%22%20rx%3D%2226%22%20fill%3D%22%230f2238%22%20stroke%3D%22%232a4a68%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%234de0c3%22%2F%3E%3Crect%20x%3D%2275%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%2370aaff%22%2F%3E%3Cpath%20d%3D%22M45%2072%20L75%2050%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M66%2044%20L80%2046%20L76%2059%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.24.0"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.25.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -465,6 +465,19 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .ih-book-time{padding:10px 16px;border-radius:10px;border:1px solid #cbd5e1;background:#fff;color:#0d1a2f;font-weight:650;font-size:15px;cursor:pointer;min-width:96px}
 .ih-book-time:hover{border-color:#1fb5a3}.ih-book-time.on{background:#1fb5a3;border-color:#1fb5a3;color:#06192a}
 @media(max-width:600px){.ih-book-time{flex:1 1 calc(50% - 8px)}.ih-slot-grid{grid-template-columns:1fr 1fr}}
+
+
+.tabs a{display:inline-block;border-bottom:2px solid transparent;padding:9px 12px;color:var(--muted);font-weight:650;text-decoration:none;white-space:nowrap}
+.tabs a.on{color:var(--a);border-color:var(--a)}.tabs a .count{font-size:12px;opacity:.8;margin-left:4px}
+.side .count.warn{background:#f5c26b26;color:#f5c26b}
+.ih-dup-banner a{font-weight:650}
+.ih-dup-recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px}
+.ih-dup-rec{display:block;border:1px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;background:#ffffff05;font-weight:400}
+.ih-dup-rec.is-keep{border-color:#4de0c3;background:#4de0c30d}
+.ih-dup-pick{display:inline-flex;align-items:center;gap:6px;font-size:13px}.ih-dup-pick input{width:auto;margin:0}
+.ih-dup-name{font-size:16px;font-weight:700;margin:8px 0 4px}.ih-dup-name a{color:var(--text)}
+.ih-dup-snip{margin-top:8px;padding:8px 10px;border-radius:8px;background:#00000026;font-size:12px;color:var(--muted);line-height:1.45;max-height:74px;overflow:hidden}
+.ih-dup-actions{align-items:center;gap:10px}.ih-dup-hint{max-width:520px}
 </style>
 
 </head>
@@ -5665,6 +5678,115 @@ Object.assign(ACTIONS, {
       fail(e);
     }
   }
+});
+(function () {
+  const admin = NAV.find(g => g[0] === 'Admin');
+  if (admin && !admin[1].some(n => n[0] === 'duplicates')) admin[1].splice(1, 0, ['duplicates', ic('swap'), 'Duplicates']);
+})();
+function dupTotal() { const d = S.db && S.db.duplicates; return d ? (d.candidates || 0) + (d.jobs || 0) : 0; }
+function dupCanSee() { return can('RECRUITER') && (canP('candidates.edit') || canP('jobs.create')); }
+
+const ihDupRenderApp = renderApp;
+renderApp = function () {
+  const r = ihDupRenderApp.apply(this, arguments);
+  const a = document.querySelector('.side a[href="#app/duplicates"]');
+  if (a) { if (!dupCanSee()) a.remove(); else if (dupTotal() && !a.querySelector('.count')) a.insertAdjacentHTML('beforeend', '<span class="count warn">' + dupTotal() + '</span>'); }
+  return r;
+};
+function dupBanner(kind) {
+  const d = (S.db && S.db.duplicates) || {}; if (!dupCanSee()) return '';
+  const n = kind ? d[kind] : dupTotal(); if (!n) return '';
+  const what = kind === 'jobs' ? 'possible duplicate job' : kind === 'candidates' ? 'possible duplicate candidate' : 'possible duplicate';
+  return '<div class="notice warn small ih-dup-banner">' + ic('swap') + ' <b>' + n + ' ' + what + (n === 1 ? '' : 's') + '</b>' +
+    (!kind ? ' (' + [d.candidates ? d.candidates + ' candidate group' + (d.candidates === 1 ? '' : 's') : '', d.jobs ? d.jobs + ' job group' + (d.jobs === 1 ? '' : 's') : ''].filter(Boolean).join(', ') + ')' : '') +
+    ' — <a href="#app/duplicates' + (kind ? '/' + kind : '') + '">review and merge or keep</a></div>';
+}
+['dashboard', 'candidates', 'jobs'].forEach(p => {
+  const base = PAGES[p]; if (!base) return;
+  PAGES[p] = function () { return dupBanner(p === 'dashboard' ? '' : p) + base.apply(this, arguments); };
+});
+
+PAGES.duplicates = () => {
+  if (!dupCanSee()) return head('Duplicates', '') + '<div class="empty">You do not have permission to review duplicates.</div>';
+  const kind = S.route.parts[1] === 'jobs' ? 'jobs' : 'candidates';
+  S.dups = S.dups || {};
+  const data = S.dups[kind];
+  if (!data && !S.dupsLoading) {
+    S.dupsLoading = true;
+    call('listDuplicates', { kind: kind }).then(r => { S.dups[kind] = r; S.db.duplicates = r.counts; }, fail).finally(() => { S.dupsLoading = false; if (S.route.parts[0] === 'duplicates') renderApp(); });
+  }
+  const counts = data ? data.counts : (S.db.duplicates || {});
+  const tabs = '<div class="tabs mt8">' + [['candidates', 'Candidates'], ['jobs', 'Jobs']].map(([k, l]) => '<a href="#app/duplicates/' + k + '" class="' + (k === kind ? 'on' : '') + '">' + l + ' <span class="count">' + (counts[k] || 0) + '</span></a>').join('') + '</div>';
+  const intro = kind === 'jobs'
+    ? 'Jobs with the same title and location, the same description or the same source reference. Keep one: the others are closed (or deleted if they are unpublished drafts with no applicants), and their applicants move to the job you keep.'
+    : 'Candidates who share an email, phone, LinkedIn or the same resume (even with a different name or contact header), or the same name with matching details. Merging keeps one record: applications, notes, interviews, documents and submissions move to it, empty fields are filled in, and the other record is removed.';
+  const body = !data ? '<div class="loading">Checking for duplicates…</div>'
+    : !data.groups.length ? '<div class="empty">' + ic('check') + ' No possible duplicate ' + kind + ' found.</div>'
+    : data.groups.map((g, gi) => dupGroup(kind, g, gi)).join('');
+  return head('Duplicates', 'Find records entered twice and decide: merge, or keep both', '<button class="btn small ghost" data-action="dup-reload">Check again</button>') +
+    tabs + '<p class="small muted mt8">' + intro + '</p>' + body;
+};
+function dupGroup(kind, g, gi) {
+  const canAct = kind === 'jobs' ? canP('jobs.create') : canP('candidates.edit');
+  const recs = g.records.map((r, i) => '<label class="ih-dup-rec' + (i === 0 ? ' is-keep' : '') + '"><div class="row between"><span class="ih-dup-pick">' +
+    (canAct ? '<input type="radio" name="keep-' + gi + '" value="' + esc(r.id) + '"' + (i === 0 ? ' checked' : '') + ' data-dup-keep> <b>Keep this one</b>' : '') + '</span>' +
+    (i === 0 ? '<span class="chip ok tiny">suggested</span>' : '') + '</div>' + (kind === 'jobs' ? dupJob(r) : dupCand(r)) + '</label>').join('');
+  return '<div class="card mt16 ih-dup-group" data-group="' + gi + '"><div class="row between wrap-row"><div>' +
+    chip(g.strong ? 'Strong match' : 'Likely match', g.strong ? 'bad' : 'warn') + ' ' + g.reasons.map(x => '<span class="chip">' + esc(x) + '</span>').join(' ') +
+    '</div><span class="tiny dim">' + g.records.length + ' records</span></div><div class="ih-dup-recs">' + recs + '</div>' +
+    (canAct ? '<div class="row wrap-row mt16 ih-dup-actions"><button class="btn small" data-action="dup-merge" data-group="' + gi + '">' + (kind === 'jobs' ? 'Keep selected, close the others' : 'Merge into the selected record') + '</button>' +
+      '<button class="btn small ghost" data-action="dup-keep" data-group="' + gi + '">Not duplicates — keep all</button><span class="tiny dim ih-dup-hint"></span></div>' : '<p class="tiny dim mt8">Ask a recruiter with edit rights to resolve this.</p>') + '</div>';
+}
+function dupCand(r) {
+  return '<div class="ih-dup-name"><a href="#app/candidate/' + esc(r.id) + '">' + esc(r.name || '—') + '</a> ' + (r.code ? idTag(r.code) : '') + '</div>' +
+    '<div class="small">' + [r.email, r.phone].filter(Boolean).map(esc).join(' · ') + '</div>' +
+    '<div class="small muted">' + [r.location, r.headline, r.yearsExp ? r.yearsExp + ' yrs' : ''].filter(Boolean).map(esc).join(' · ') + '</div>' +
+    (r.skills.length ? '<div class="mt8">' + r.skills.map(s => '<span class="chip tiny">' + esc(s) + '</span>').join(' ') + '</div>' : '') +
+    '<div class="tiny dim mt8">Source: ' + esc(r.source || '—') + ' · added ' + esc(String(r.createdAt || '').slice(0, 10)) + ' · ' + r.applications + ' application' + (r.applications === 1 ? '' : 's') +
+    (r.activeApplications ? ' (' + r.activeApplications + ' active)' : '') + ' · ' + (r.hasResume ? 'resume on file' : '<b class="warn-t">no resume</b>') + '</div>' +
+    (r.resumeStart ? '<div class="ih-dup-snip">' + esc(r.resumeStart) + '…</div>' : '');
+}
+function dupJob(r) {
+  return '<div class="ih-dup-name"><a href="#app/job/' + esc(r.id) + '">' + esc(r.title) + '</a> ' + (r.code ? idTag(r.code) : '') + ' ' + statusChip(r.status) + '</div>' +
+    '<div class="small muted">' + [r.location, r.workType, r.clientName ? r.clientName + ' (client)' : '', r.salary ? '$' + r.salary : ''].filter(Boolean).map(esc).join(' · ') + '</div>' +
+    (r.requiredSkills.length ? '<div class="mt8">' + r.requiredSkills.map(s => '<span class="chip tiny">' + esc(s) + '</span>').join(' ') + '</div>' : '') +
+    '<div class="tiny dim mt8">Created ' + esc(String(r.createdAt || '').slice(0, 10)) + (r.publishedAt ? ' · published ' + esc(String(r.publishedAt).slice(0, 10)) : ' · not published') +
+    ' · ' + r.applications + ' applicant' + (r.applications === 1 ? '' : 's') + (r.recruiter ? ' · ' + esc(r.recruiter) : '') + '</div>' +
+    (r.descriptionStart ? '<div class="ih-dup-snip">' + esc(r.descriptionStart) + '…</div>' : '');
+}
+async function dupResolve(el, action) {
+  const kind = S.route.parts[1] === 'jobs' ? 'jobs' : 'candidates';
+  const gi = +el.dataset.group, g = S.dups[kind].groups[gi]; if (!g) return;
+  const card = el.closest('.ih-dup-group'), keep = (card.querySelector('[data-dup-keep]:checked') || {}).value;
+  const ids = g.records.map(r => r.id);
+  if (action === 'merge' && el.dataset.armed !== '1') {   // two-step: say exactly what will happen, then confirm
+    const others = g.records.filter(r => r.id !== keep), k = g.records.find(r => r.id === keep);
+    el.dataset.armed = '1'; el.classList.add('danger');
+    el.textContent = kind === 'jobs' ? 'Confirm: close ' + others.length + ' job' + (others.length === 1 ? '' : 's') : 'Confirm: merge ' + others.length + ' into ' + (k.name || 'the selected record');
+    card.querySelector('.ih-dup-hint').textContent = kind === 'jobs'
+      ? 'Applicants move to "' + k.title + '". Unpublished drafts with no applicants are deleted; others are closed.'
+      : 'Applications, notes, interviews, documents and submissions move to ' + (k.name || 'the kept record') + '. The other record' + (others.length === 1 ? ' is' : 's are') + ' removed. This cannot be undone.';
+    setTimeout(() => { if (el.isConnected && el.dataset.armed === '1') { el.dataset.armed = ''; el.classList.remove('danger'); el.textContent = kind === 'jobs' ? 'Keep selected, close the others' : 'Merge into the selected record'; card.querySelector('.ih-dup-hint').textContent = ''; } }, 8000);
+    return;
+  }
+  try {
+    const r = await busy(el, call('resolveDuplicates', { kind: kind, action: action, ids: ids, keepId: keep }));
+    toast(action === 'keep' ? 'Marked as not duplicates.' : kind === 'jobs'
+      ? 'Done: ' + [r.closed ? r.closed + ' closed' : '', r.deleted ? r.deleted + ' deleted' : '', r.moved ? r.moved + ' applicant' + (r.moved === 1 ? '' : 's') + ' moved' : ''].filter(Boolean).join(', ') + '.'
+      : 'Merged ' + r.merged + ' record' + (r.merged === 1 ? '' : 's') + (r.withdrawn ? ' · ' + r.withdrawn + ' duplicate application withdrawn' : '') + '.', 'ok');
+    S.dups = {}; await loadDb(); renderApp();
+  } catch (e) { fail(e); }
+}
+Object.assign(ACTIONS, {
+  'dup-merge': (d, el) => dupResolve(el, 'merge'),
+  'dup-keep': (d, el) => dupResolve(el, 'keep'),
+  'dup-reload': () => { S.dups = {}; renderApp(); }
+});
+document.addEventListener('change', e => {
+  if (!e.target || !e.target.matches || !e.target.matches('[data-dup-keep]')) return;
+  const card = e.target.closest('.ih-dup-group');
+  card.querySelectorAll('.ih-dup-rec').forEach(x => x.classList.toggle('is-keep', !!x.querySelector('[data-dup-keep]:checked')));
+  const b = card.querySelector('[data-action="dup-merge"]'); if (b && b.dataset.armed === '1') { b.dataset.armed = ''; b.classList.remove('danger'); b.textContent = S.route.parts[1] === 'jobs' ? 'Keep selected, close the others' : 'Merge into the selected record'; card.querySelector('.ih-dup-hint').textContent = ''; }
 });
 
 bind();
