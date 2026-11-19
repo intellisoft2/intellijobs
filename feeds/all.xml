@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?><source><publisher>IntelliHire</publisher><publisherurl>https://jobs.intellisoft-tech.com/</publisherurl><lastBuildDate>Thu, 19 Nov 2026 19:06:09 GMT</lastBuildDate><job><title><![CDATA[IAM/PAM Architect]]></title><date><![CDATA[Wed, 18 Nov 2026 20:52:35 GMT]]></date><referencenumber><![CDATA[59f4258e-4998-4325-bf74-ea7818e1b0e1]]></referencenumber><url><![CDATA[https://jobs.intellisoft-tech.com/#job/intellisoft/59f4258e-4998-4325-bf74-ea7818e1b0e1]]></url><company><![CDATA[Intellisoft Technologies]]></company><city><![CDATA[Boston, MA]]></city><country><![CDATA[US]]></country><description><![CDATA[Intellisoft Technologies is hiring an IAM/PAM Architect as a full-time W2 employee, working hybrid in Boston, MA.
+<?xml version="1.0" encoding="UTF-8"?><source><publisher>IntelliHire</publisher><publisherurl>https://jobs.intellisoft-tech.com/</publisherurl><lastBuildDate>Thu, 19 Nov 2026 19:39:58 GMT</lastBuildDate><job><title><![CDATA[Cloud Engineer]]></title><date><![CDATA[Thu, 19 Nov 2026 18:59:19 GMT]]></date><referencenumber><![CDATA[eae59ade-1cf5-4499-bbaf-90530efaa544]]></referencenumber><url><![CDATA[https://jobs.intellisoft-tech.com/#job/intellisoft/eae59ade-1cf5-4499-bbaf-90530efaa544]]></url><company><![CDATA[Intellisoft Technologies]]></company><city><![CDATA[Wilmington, DE]]></city><country><![CDATA[US]]></country><description><![CDATA[Intellisoft Technologies is hiring a Cloud Engineer as a full-time W2 employee, working in Wilmington, DE.
+
+We're looking for a Cloud Infrastructure Engineer with strong hands-on experience in Terraform and AWS to design, build, and maintain scalable,
+
+What you bring:
+• 4+ years of experience in cloud infrastructure or DevOps roles
+• 3+ years of hands-on Terraform experience in production environments
+• Solid understanding and working experience of Core Java(8/7/21) and
+• its related concepts.
+• Strong working knowledge of core AWS services (networking, compute,
+• storage, databases, IAM)
+• Solid understanding of AWS networking: VPC design, subnets, NAT,
+• Transit Gateway, VPC peering, and VPN/Direct Connect
+• Experience writing modular, DRY Terraform code (variables, outputs,
+• locals, data sources, for each, dynamic blocks)
+• Hands-on experience with Python, CI/CD, Git, Linux, Security
+
+This is a full-time W2 position with Intellisoft Technologies. Apply with your resume; our recruiting team will contact qualified candidates with next steps.]]></description><salary><![CDATA[]]></salary><jobtype><![CDATA[Full-time]]></jobtype><remotetype><![CDATA[On-site]]></remotetype></job><job><title><![CDATA[IAM/PAM Architect]]></title><date><![CDATA[Wed, 18 Nov 2026 20:52:35 GMT]]></date><referencenumber><![CDATA[59f4258e-4998-4325-bf74-ea7818e1b0e1]]></referencenumber><url><![CDATA[https://jobs.intellisoft-tech.com/#job/intellisoft/59f4258e-4998-4325-bf74-ea7818e1b0e1]]></url><company><![CDATA[Intellisoft Technologies]]></company><city><![CDATA[Boston, MA]]></city><country><![CDATA[US]]></country><description><![CDATA[Intellisoft Technologies is hiring an IAM/PAM Architect as a full-time W2 employee, working hybrid in Boston, MA.
 
 We are seeking an experienced IAM/PAM Architect to lead the design, (PAM) and Secrets Management capabilities using Delinea Secret Server Cloud.
 
