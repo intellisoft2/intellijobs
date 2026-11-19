@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%22116%22%20rx%3D%2226%22%20fill%3D%22%230f2238%22%20stroke%3D%22%232a4a68%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%234de0c3%22%2F%3E%3Crect%20x%3D%2275%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%2370aaff%22%2F%3E%3Cpath%20d%3D%22M45%2072%20L75%2050%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M66%2044%20L80%2046%20L76%2059%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.25.0"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.25.1"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -5718,7 +5718,7 @@ PAGES.duplicates = () => {
   const counts = data ? data.counts : (S.db.duplicates || {});
   const tabs = '<div class="tabs mt8">' + [['candidates', 'Candidates'], ['jobs', 'Jobs']].map(([k, l]) => '<a href="#app/duplicates/' + k + '" class="' + (k === kind ? 'on' : '') + '">' + l + ' <span class="count">' + (counts[k] || 0) + '</span></a>').join('') + '</div>';
   const intro = kind === 'jobs'
-    ? 'Jobs with the same title and location, the same description or the same source reference. Keep one: the others are closed (or deleted if they are unpublished drafts with no applicants), and their applicants move to the job you keep.'
+    ? 'Jobs from the same source (the same vendor or client email, the same import, or entered by hand) posted within 14 days of each other, with the same title and location or the same description — or with the same source reference. The same role from two different vendors is not a duplicate. Keep one: the others are closed (or deleted if they are unpublished drafts with no applicants), and their applicants move to the job you keep.'
     : 'Candidates who share an email, phone, LinkedIn or the same resume (even with a different name or contact header), or the same name with matching details. Merging keeps one record: applications, notes, interviews, documents and submissions move to it, empty fields are filled in, and the other record is removed.';
   const body = !data ? '<div class="loading">Checking for duplicates…</div>'
     : !data.groups.length ? '<div class="empty">' + ic('check') + ' No possible duplicate ' + kind + ' found.</div>'
@@ -5750,7 +5750,7 @@ function dupJob(r) {
   return '<div class="ih-dup-name"><a href="#app/job/' + esc(r.id) + '">' + esc(r.title) + '</a> ' + (r.code ? idTag(r.code) : '') + ' ' + statusChip(r.status) + '</div>' +
     '<div class="small muted">' + [r.location, r.workType, r.clientName ? r.clientName + ' (client)' : '', r.salary ? '$' + r.salary : ''].filter(Boolean).map(esc).join(' · ') + '</div>' +
     (r.requiredSkills.length ? '<div class="mt8">' + r.requiredSkills.map(s => '<span class="chip tiny">' + esc(s) + '</span>').join(' ') + '</div>' : '') +
-    '<div class="tiny dim mt8">Created ' + esc(String(r.createdAt || '').slice(0, 10)) + (r.publishedAt ? ' · published ' + esc(String(r.publishedAt).slice(0, 10)) : ' · not published') +
+    '<div class="tiny dim mt8">Source: <b>' + esc(r.source || '—') + '</b> · posted ' + esc(String(r.postedAt || r.createdAt || '').slice(0, 10)) + (r.publishedAt ? '' : ' · not published') +
     ' · ' + r.applications + ' applicant' + (r.applications === 1 ? '' : 's') + (r.recruiter ? ' · ' + esc(r.recruiter) : '') + '</div>' +
     (r.descriptionStart ? '<div class="ih-dup-snip">' + esc(r.descriptionStart) + '…</div>' : '');
 }
