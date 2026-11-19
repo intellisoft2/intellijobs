@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%22116%22%20height%3D%22116%22%20rx%3D%2226%22%20fill%3D%22%230f2238%22%20stroke%3D%22%232a4a68%22%20stroke-width%3D%223%22%2F%3E%3Crect%20x%3D%2230%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%234de0c3%22%2F%3E%3Crect%20x%3D%2275%22%20y%3D%2228%22%20width%3D%2215%22%20height%3D%2264%22%20rx%3D%227.5%22%20fill%3D%22%2370aaff%22%2F%3E%3Cpath%20d%3D%22M45%2072%20L75%2050%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M66%2044%20L80%2046%20L76%2059%22%20stroke%3D%22%23bff5ea%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E">
 <link rel="canonical" href="https://jobs.intellisoft-tech.com/">
-<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.23.4"};</script>
+<script>window.IJ_CONFIG = {"e":"Y2V4ZS9nYzFMRGZ3U250MGQtSDlzZi1MS0lFTGdyZWxHWXpCWkF5ZHJEYU14YnpwWTJEQ0FkU2ZJWDhHdWlMQlFMQnZrRWVUeWJjeWZLQS9zL3NvcmNhbS9tb2MuZWxnb29nLnRwaXJjcy8vOnNwdHRo","version":"1.24.0"};</script>
 <style>
 :root{--bg:#080f18;--bg2:#0c1825;--panel:#132438;--panel2:#1b324d;--line:#2a4563;--line2:#3c5e85;--text:#f2fbfe;--muted:#b8d8e1;--dim:#8aaeb7;
 --a:#6bc8e7;--a-ink:#ffffff;--b:#22d3ee;--c:#7fb4e7;--gold:#fbbf24;--bad:#fb7185;--good:#34d399;--warn:#fbbf24;--radius:16px;--shadow:0 30px 80px #0009;
@@ -448,6 +448,23 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 
 
 @media(max-width:900px){.co-banner{padding-top:14px}.co-banner .wrap{padding:0 14px}.co-banner img{height:auto;max-height:none;aspect-ratio:auto;object-fit:contain;border-radius:12px}}
+
+
+.ih-pick-mode{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:4px 0 12px}
+.ih-seg{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-size:14px}
+.ih-seg input{width:auto;margin:0}.ih-seg:has(input:checked){border-color:#4de0c3;background:#4de0c314;color:#bff5ea}
+.ih-slots{border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:6px;background:#ffffff05}
+.ih-slot-tools{gap:10px;align-items:center}.ih-slot-tools select{width:auto;padding:6px 8px;margin-left:4px}.ih-slot-status{margin:8px 0}
+.ih-slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;max-height:320px;overflow:auto;padding:2px}
+.ih-slot{display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-size:13px}
+.ih-slot input{width:auto;margin:2px 0 0}.ih-slot small{display:block;color:var(--muted);font-size:12px}.ih-slot:has(input:checked){border-color:#4de0c3;background:#4de0c30f}
+.ih-slot.is-odd small{color:#f5c26b}.ih-slots [data-slot-add]{width:auto;padding:7px 9px}
+#iv-tzcheck{margin:-4px 0 10px;line-height:1.5}#iv-tzcheck .warn-t,.warn-t{color:#f5c26b;font-weight:600}
+.ih-book-day{margin:14px 0}.ih-book-day h4{margin:0 0 8px;font-size:15px}
+.ih-book-times{display:flex;flex-wrap:wrap;gap:8px}
+.ih-book-time{padding:10px 16px;border-radius:10px;border:1px solid #cbd5e1;background:#fff;color:#0d1a2f;font-weight:650;font-size:15px;cursor:pointer;min-width:96px}
+.ih-book-time:hover{border-color:#1fb5a3}.ih-book-time.on{background:#1fb5a3;border-color:#1fb5a3;color:#06192a}
+@media(max-width:600px){.ih-book-time{flex:1 1 calc(50% - 8px)}.ih-slot-grid{grid-template-columns:1fr 1fr}}
 </style>
 
 </head>
@@ -5433,6 +5450,222 @@ Object.assign(ACTIONS, {
     go('#me/pro');
   };
 })();
+
+const IH_STATE_TZ = { CT: 'America/New_York', DE: 'America/New_York', DC: 'America/New_York', FL: 'America/New_York', GA: 'America/New_York', IN: 'America/Indiana/Indianapolis',
+  ME: 'America/New_York', MD: 'America/New_York', MA: 'America/New_York', MI: 'America/Detroit', NH: 'America/New_York', NJ: 'America/New_York', NY: 'America/New_York',
+  NC: 'America/New_York', OH: 'America/New_York', PA: 'America/New_York', RI: 'America/New_York', SC: 'America/New_York', VT: 'America/New_York', VA: 'America/New_York',
+  WV: 'America/New_York', KY: 'America/New_York', AL: 'America/Chicago', AR: 'America/Chicago', IL: 'America/Chicago', IA: 'America/Chicago', KS: 'America/Chicago',
+  LA: 'America/Chicago', MN: 'America/Chicago', MS: 'America/Chicago', MO: 'America/Chicago', NE: 'America/Chicago', ND: 'America/Chicago', OK: 'America/Chicago',
+  SD: 'America/Chicago', TN: 'America/Chicago', TX: 'America/Chicago', WI: 'America/Chicago', AZ: 'America/Phoenix', CO: 'America/Denver', ID: 'America/Boise',
+  MT: 'America/Denver', NM: 'America/Denver', UT: 'America/Denver', WY: 'America/Denver', CA: 'America/Los_Angeles', NV: 'America/Los_Angeles', OR: 'America/Los_Angeles',
+  WA: 'America/Los_Angeles', AK: 'America/Anchorage', HI: 'Pacific/Honolulu', PR: 'America/Puerto_Rico' };
+const IH_COUNTRY_TZ = [[/\bindia\b|hyderabad|bengaluru|bangalore|chennai|pune|mumbai|delhi|noida|gurgaon|gurugram|kolkata/i, 'Asia/Kolkata'],
+  [/\bcanada\b|toronto|ottawa|montreal/i, 'America/Toronto'], [/vancouver/i, 'America/Vancouver'], [/\buk\b|united kingdom|london|england/i, 'Europe/London'],
+  [/\buae\b|dubai|abu dhabi/i, 'Asia/Dubai'], [/\bmexico\b/i, 'America/Mexico_City'], [/philippines|manila/i, 'Asia/Manila']];
+const myTz = () => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { return 'America/New_York'; } };
+function tzFromLocation(loc) {
+  loc = String(loc || '');
+  const st = loc.match(/,\s*([A-Z]{2})\b/); if (st && IH_STATE_TZ[st[1]]) return IH_STATE_TZ[st[1]];
+  const hit = IH_COUNTRY_TZ.find(([re]) => re.test(loc)); return hit ? hit[1] : '';
+}
+function tzName(tz) {
+  try { return new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'long' }).formatToParts(new Date()).find(p => p.type === 'timeZoneName').value.replace(/ (Standard|Daylight) Time$/, ' Time'); }
+  catch (e) { return tz; }
+}
+function tzTime(iso, tz, withDay) {
+  try { return new Date(iso).toLocaleString('en-US', Object.assign({ timeZone: tz, hour: 'numeric', minute: '2-digit' }, withDay ? { weekday: 'short', month: 'short', day: 'numeric' } : {})); }
+  catch (e) { return when(iso); }
+}
+function tzHour(iso, tz) { try { return +new Intl.DateTimeFormat('en-US', { timeZone: tz, hour: 'numeric', hourCycle: 'h23' }).format(new Date(iso)); } catch (e) { return 12; } }
+const oddHour = h => h < 8 || h >= 20;
+function ivCandidate(appId) { const a = S.db.applications.find(x => x.id === appId); return a ? candById(a.candidateId) : null; }
+
+function slotPicker(prefix) {
+  return '<div class="ih-slots" id="' + prefix + '-slots">' +
+    '<div class="row wrap-row ih-slot-tools"><label class="tiny">Look ahead ' + '<select data-slot-days>' + opts([[5, '5 working days'], [10, '10 working days'], [3, '3 working days']], 5) + '</select></label>' +
+    '<label class="tiny">Hours <select data-slot-hours>' + opts([['9-17', '9 am – 5 pm'], ['8-18', '8 am – 6 pm'], ['10-16', '10 am – 4 pm']], '9-17') + '</select></label>' +
+    '<button type="button" class="btn small" data-action="slot-find">' + ic('calendar') + ' Find free times</button></div>' +
+    '<div class="ih-slot-status tiny dim">IntelliHire checks the interviewers\' Google Calendars and existing interviews, then suggests times.</div>' +
+    '<div class="ih-slot-list" data-slot-list></div>' +
+    '<div class="row wrap-row mt8"><input type="datetime-local" data-slot-add aria-label="Add a time"><button type="button" class="btn small ghost" data-action="slot-add">+ Add this time</button></div></div>';
+}
+function slotRows(box) { return Array.from(box.querySelectorAll('[data-slot]')).filter(x => x.checked).map(x => x.value); }
+function renderSlotList(box, slots, candTz) {
+  const list = box.querySelector('[data-slot-list]'), mine = myTz();
+  const prev = {}; Array.from(list.querySelectorAll('[data-slot]')).forEach(x => { prev[x.value] = x.checked; });
+  const all = Array.from(new Set(Object.keys(prev).concat(slots.map(s => s.start || s)))).sort();
+  let pickDefault = null;
+  if (!Object.keys(prev).length) { const per = {}; pickDefault = []; all.forEach(iso => { const k = new Date(iso).toDateString(); if (pickDefault.length < 6 && (per[k] || 0) < 2) { per[k] = (per[k] || 0) + 1; pickDefault.push(iso); } }); }
+  list.innerHTML = all.length ? '<div class="ih-slot-grid">' + all.map(iso => {
+    const on = prev[iso] !== undefined ? prev[iso] : !pickDefault || pickDefault.indexOf(iso) >= 0;
+    const ct = candTz && candTz !== mine ? '<small>' + esc(tzTime(iso, candTz)) + ' candidate</small>' : '';
+    const warn = (candTz && oddHour(tzHour(iso, candTz))) ? ' is-odd' : '';
+    return '<label class="ih-slot' + warn + '"><input type="checkbox" data-slot value="' + esc(iso) + '"' + (on ? ' checked' : '') + '><span><b>' + esc(tzTime(iso, mine, true)) + '</b>' + ct + '</span></label>';
+  }).join('') + '</div><div class="tiny dim mt8"><span data-slot-count></span> · times shown in your time zone (' + esc(tzName(mine)) + ')' + (candTz && candTz !== mine ? ' and the candidate\'s (' + esc(tzName(candTz)) + ')' : '') + '. The candidate sees them in their own time zone.</div>'
+    : '<div class="tiny dim">No times yet.</div>';
+  slotCount(box);
+}
+function slotCount(box) { const n = slotRows(box).length, el = box.querySelector('[data-slot-count]'); if (el) el.textContent = n + ' time' + (n === 1 ? '' : 's') + ' selected' + (n < 2 ? ' — pick at least 2' : ''); }
+async function findSlots(box, form, el) {
+  const v = formValues(form), hours = (box.querySelector('[data-slot-hours]').value || '9-17').split('-');
+  const status = box.querySelector('.ih-slot-status');
+  try {
+    const r = await busy(el, call('suggestInterviewSlots', { interviewers: v.interviewers || '', durationMin: v.durationMin || 45, days: box.querySelector('[data-slot-days]').value,
+      dayStart: +hours[0], dayEnd: +hours[1], timezone: myTz(), applicationId: v.applicationId || '', max: 18 }));
+    const cand = form._candTz || '';
+    renderSlotList(box, r.slots, cand);
+    status.innerHTML = r.slots.length
+      ? (r.calendar ? '✓ Checked ' + (r.checked.length ? esc(r.checked.join(', ')) : 'the calendar') : 'Google Calendar could not be checked — only IntelliHire interviews were avoided') +
+        (r.unknown.length && r.calendar ? '. <b class="warn-t">Not visible:</b> ' + esc(r.unknown.join(', ')) + ' (outside your Google Workspace — confirm their availability)' : '') + '.'
+      : '<b class="warn-t">No free times found</b> in that range. Try more days or longer hours, or add times by hand.';
+  } catch (e) { fail(e); }
+}
+
+const ihBaseSchedule = ACTIONS.schedule;
+ACTIONS.schedule = d => {
+  ihBaseSchedule(d);
+  const form = document.querySelector('form[data-form="schedule"]'); if (!form) return;
+  const when = form.querySelector('#iv-when'); if (!when) return;
+  when.insertAdjacentHTML('beforebegin', '<div class="ih-pick-mode" id="iv-pickmode"><span class="tiny dim">Who picks the time?</span>' +
+    '<label class="ih-seg"><input type="radio" name="bookingMode" value="recruiter" checked data-change="iv-bookmode"> <span>I\'ll pick a time</span></label>' +
+    '<label class="ih-seg"><input type="radio" name="bookingMode" value="candidate" data-change="iv-bookmode"> <span>Let the candidate choose</span></label></div>');
+  const startRow = form.querySelector('[name="startsAt"]');
+  if (startRow) startRow.closest('.form-row').insertAdjacentHTML('afterend', '<div id="iv-tzcheck" class="tiny"></div>');
+  const prov = when.querySelector('#iv-prov') || form.querySelector('[name="provider"]');
+  when.insertAdjacentHTML('beforeend', '<div id="iv-slotbox" hidden><h4 class="mt8 mb0">Times to offer</h4>' + slotPicker('iv') + '</div>');
+  ivRefreshTz(form);
+};
+function ivRefreshTz(form) {
+  const v = formValues(form), c = ivCandidate(v.applicationId), mine = myTz();
+  const ct = c ? tzFromLocation(c.location) : '';
+  form._candTz = ct;
+  const box = form.querySelector('#iv-tzcheck'); if (!box) return;
+  const cand = c ? (c.location ? esc(c.location) + (ct ? ' · ' + esc(tzName(ct)) : ' · time zone unknown') : 'location not recorded') : '';
+  if (!v.startsAt || v.bookingMode === 'candidate') { box.innerHTML = c ? '<span class="dim">Candidate: ' + cand + '</span>' : ''; return; }
+  const iso = new Date(v.startsAt).toISOString();
+  const myOdd = oddHour(tzHour(iso, mine)), cOdd = ct ? oddHour(tzHour(iso, ct)) : false;
+  box.innerHTML = '<span class="dim">Candidate: ' + cand + '</span>' +
+    (ct && ct !== mine ? '<div><b>' + esc(tzTime(iso, mine, true)) + '</b> your time = <b>' + esc(tzTime(iso, ct, true)) + '</b> for the candidate</div>' : '') +
+    (myOdd || cOdd ? '<div class="warn-t">⚠ This is ' + (cOdd ? 'outside 8 am – 8 pm for the candidate' : '') + (myOdd && cOdd ? ' and ' : '') + (myOdd ? 'outside 8 am – 8 pm for you' : '') + '. Check the date and time.</div>' : '');
+}
+Object.assign(CHANGES, {
+  'iv-bookmode': (v, el) => {
+    const form = el.closest('form'), cand = el.value === 'candidate';
+    const start = form.querySelector('[name="startsAt"]'); if (start) { start.parentElement.hidden = cand; start.required = !cand; }
+    const sb = form.querySelector('#iv-slotbox'); if (sb) sb.hidden = !cand;
+    const hint = form.querySelector('#iv-hint'); if (hint) hint.textContent = cand ? 'The candidate gets an email with the times you select and books one in their own time zone. The calendar invitation goes out when they book.' : 'The candidate gets an email with a calendar invite and a private link to confirm or request another time.';
+    const btn = form.querySelector('button.btn.mt8:not([type="button"])'); if (btn) btn.textContent = cand ? 'Send times to the candidate' : 'Schedule & notify';
+    ivRefreshTz(form);
+  }
+});
+document.addEventListener('change', e => {
+  const form = e.target && e.target.closest && e.target.closest('form[data-form="schedule"]');
+  if (form && /^(startsAt|applicationId)$/.test(e.target.name)) { ivRefreshTz(form); const sb = form.querySelector('#iv-slotbox'); if (sb) { const list = sb.querySelector('[data-slot-list]'); if (list.children.length) renderSlotList(sb.querySelector('.ih-slots'), [], form._candTz); } }
+  if (e.target && e.target.matches && e.target.matches('[data-slot]')) slotCount(e.target.closest('.ih-slots'));
+});
+document.addEventListener('input', e => { const form = e.target && e.target.closest && e.target.closest('form[data-form="schedule"]'); if (form && e.target.name === 'startsAt') ivRefreshTz(form); });
+Object.assign(ACTIONS, {
+  'slot-find': (d, el) => findSlots(el.closest('.ih-slots'), el.closest('form'), el),
+  'slot-add': (d, el) => {
+    const box = el.closest('.ih-slots'), input = box.querySelector('[data-slot-add]');
+    if (!input.value) return toast('Choose a date and time to add.', 'error');
+    const iso = new Date(input.value).toISOString();
+    if (new Date(iso) < new Date(Date.now() + 30 * 60000)) return toast('Choose a future time.', 'error');
+    renderSlotList(box, [iso], (el.closest('form') || {})._candTz || ''); const cb = box.querySelector('[data-slot][value="' + iso + '"]'); if (cb) cb.checked = true; slotCount(box); input.value = '';
+  }
+});
+const ihBaseScheduleForm = FORMS.schedule;
+FORMS.schedule = async (v, f, b) => {
+  if (v.bookingMode === 'candidate') {
+    const slots = slotRows(f.querySelector('.ih-slots'));
+    if (slots.length < 2) return toast('Select at least two times for the candidate to choose from — use "Find free times" or add them.', 'error');
+    v.slots = slots; delete v.startsAt;
+    if (/AI-assisted screening/.test(v.mode)) return toast('Written screenings have no time to book — choose a live interview type.', 'error');
+  }
+  return ihBaseScheduleForm(v, f, b);
+};
+
+const ACTIVE_UI = ['Awaiting booking', 'Scheduled', 'Confirmed', 'Reschedule requested'];
+const ihBaseIvCard = interviewCard;
+interviewCard = function (i, cards) {
+  let html = ihBaseIvCard(i, cards);
+  const offered = (() => { try { return JSON.parse(i.slots || '[]'); } catch (e) { return []; } })();
+  const extra = [];
+  if (i.status === 'Awaiting booking') {
+    const open = offered.filter(s => s > new Date().toISOString());
+    extra.push('<div class="notice small mt8">' + ic('calendar') + ' Waiting for the candidate to choose — ' + open.length + ' of ' + offered.length + ' offered times still open' +
+      (open.length ? ' (next: ' + esc(tzTime(open[0], myTz(), true)) + ')' : '') + '.' + (i.remindedAt ? ' Reminder sent ' + esc(when(i.remindedAt)) + '.' : '') + '</div>');
+  }
+  if (i.candidateTz && i.startsAt && i.candidateTz !== myTz()) extra.push('<div class="tiny dim">Candidate\'s time: ' + esc(tzTime(i.startsAt, i.candidateTz, true)) + ' (' + esc(tzName(i.candidateTz)) + ')</div>');
+  const btns = can('RECRUITER') && ACTIVE_UI.indexOf(i.status) >= 0 && i.mode !== 'AI-assisted screening'
+    ? '<button class="btn small secondary" data-action="iv-offer" data-id="' + i.id + '">' + (i.status === 'Awaiting booking' ? 'Change offered times' : 'Offer new times') + '</button>' +
+      (i.status === 'Awaiting booking' ? '<button class="btn small ghost" data-action="iv-link" data-id="' + i.id + '">New booking link</button><button class="btn small ghost" data-action="iv-cancel" data-id="' + i.id + '">Cancel</button>' : '')
+    : '';
+  if (btns) extra.push('<div class="row wrap-row mt8">' + btns + '</div>');
+  return extra.length ? html.replace(/<div id="sum-/, extra.join('') + '<div id="sum-') : html;
+};
+const ihBasePagesInterviews = PAGES.interviews;
+PAGES.interviews = () => {
+  const all = S.db.interviews, waiting = all.filter(i => i.status === 'Awaiting booking');
+  if (!waiting.length) return ihBasePagesInterviews();
+  let html;
+  try { S.db.interviews = all.filter(i => i.status !== 'Awaiting booking'); html = ihBasePagesInterviews(); } finally { S.db.interviews = all; }
+  const sc = id => S.db.scorecards.filter(s => s.interviewId === id);
+  const block = '<h3 class="mt24">Waiting for the candidate to book (' + waiting.length + ')</h3>' + waiting.map(i => interviewCard(i, sc(i.id))).join('');
+  return html.replace('<h3 class="mt24">Upcoming & awaiting response', block + '<h3 class="mt24">Upcoming & awaiting response');
+};
+Object.assign(ACTIONS, {
+  'iv-offer': d => {
+    const i = S.db.interviews.find(x => x.id === d.id); if (!i) return;
+    openModal('Offer times to the candidate', '<form data-form="iv-offer"><input type="hidden" name="id" value="' + esc(i.id) + '"><input type="hidden" name="interviewers" value="' + esc(i.interviewers || '') + '">' +
+      '<input type="hidden" name="durationMin" value="' + esc(i.durationMin || 45) + '"><input type="hidden" name="applicationId" value="' + esc(i.applicationId) + '">' +
+      '<p class="small muted">' + esc(candById(i.candidateId).name) + ' · ' + esc(jobById(i.jobId).title) + ' · ' + esc(i.durationMin) + ' min' + (i.interviewers ? ' · Panel: ' + esc(i.interviewers) : '') + '</p>' +
+      slotPicker('ivo') + '<div class="notice small mt8">The candidate gets a new link to choose one of these times. ' + (i.calendarEventId ? 'The current calendar event is cancelled. ' : '') + 'The previous link stops working.</div>' +
+      '<button class="btn mt8">Send times to the candidate</button></form>', true);
+    const form = document.querySelector('form[data-form="iv-offer"]'); form._candTz = tzFromLocation(candById(i.candidateId).location);
+    findSlots(form.querySelector('.ih-slots'), form, form.querySelector('[data-action="slot-find"]'));
+  },
+  'iv-cancel': async (d, el) => { try { await busy(el, act(call('updateInterview', { id: d.id, status: 'Canceled' }), 'Booking cancelled.')); } catch (e) { fail(e); } }
+});
+FORMS['iv-offer'] = async (v, f, b) => {
+  const slots = slotRows(f.querySelector('.ih-slots'));
+  if (slots.length < 2) return toast('Select at least two times.', 'error');
+  try { const r = await busy(b, act(call('offerInterviewSlots', { id: v.id, slots: slots, timezone: myTz() }), null)); linkModal('Times sent to the candidate', r.link, r.mail); } catch (e) { fail(e); }
+};
+
+const ihBasePaintTask = paintTask;
+paintTask = function () {
+  const t = S.ui.task;
+  if (!t || t.kind !== 'interview' || !t.awaitingBooking) return ihBasePaintTask();
+  const tz = myTz(), hi = 'Hi ' + esc(t.candidateName || 'there') + ',';
+  const days = {};
+  (t.slots || []).forEach(iso => { const k = new Date(iso).toLocaleDateString('en-US', { timeZone: tz, weekday: 'long', month: 'long', day: 'numeric' }); (days[k] = days[k] || []).push(iso); });
+  const pick = S.ui.bookPick || '';
+  const list = Object.keys(days).length ? Object.keys(days).map(k => '<div class="ih-book-day"><h4>' + esc(k) + '</h4><div class="ih-book-times">' + days[k].map(iso =>
+    '<button type="button" class="ih-book-time' + (pick === iso ? ' on' : '') + '" data-action="book-pick" data-v="' + esc(iso) + '">' + esc(tzTime(iso, tz)) + '</button>').join('') + '</div></div>').join('')
+    : '<div class="notice">All the offered times have passed or were taken. Use the form below and the hiring team will send new times.</div>';
+  paint(taskShell('<div class="card"><h3>Choose your interview time</h3><p>' + hi + '</p><p><b>' + esc(t.mode) + '</b> · ' + esc(t.durationMin) + ' minutes' + (t.provider ? ' · ' + esc(t.provider) : '') + '</p>' +
+    '<p class="small muted">Times are shown in your time zone: <b>' + esc(tzName(tz)) + '</b>.</p>' + list +
+    (Object.keys(days).length ? '<div class="row mt16 wrap-row"><button class="btn" data-action="book-confirm"' + (pick ? '' : ' disabled') + '>' + (pick ? 'Book ' + esc(tzTime(pick, tz, true)) : 'Choose a time above') + '</button></div>' : '') +
+    '<details class="mt16"' + (Object.keys(days).length ? '' : ' open') + '><summary class="small">None of these times work?</summary><form data-form="task-interview" class="mt8">' +
+    field('Tell the hiring team when you are available', area('note', '', 'rows="2" placeholder="e.g. weekdays after 3 pm Eastern, or any time Thursday"')) +
+    '<button class="btn secondary" type="submit" data-submit="reschedule">Ask for other times</button></form></details></div>'));
+};
+Object.assign(ACTIONS, {
+  'book-pick': d => { S.ui.bookPick = d.v; paintTask(); },
+  'book-confirm': async (d, el) => {
+    const t = S.ui.task, pick = S.ui.bookPick; if (!pick) return;
+    try {
+      await busy(el, call('bookInterviewSlot', { token: t.token, start: pick, timezone: myTz() }));
+      S.ui.bookPick = null;
+      S.ui.task = Object.assign(await call('getCandidateTask', t.token), { token: t.token });
+      paintTask(); toast('Booked — a confirmation is on its way.', 'ok');
+    } catch (e) {
+      if (e.code === 'SLOT_TAKEN') { S.ui.bookPick = null; try { S.ui.task = Object.assign(await call('getCandidateTask', t.token), { token: t.token }); } catch (x) { /* keep */ } paintTask(); }
+      fail(e);
+    }
+  }
+});
 
 bind();
 route();
